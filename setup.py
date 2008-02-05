@@ -30,8 +30,8 @@ setup(name='Products.CMFBibliographyAT',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'Products.CMFPlone',
-          'Products.ATExtensions',
+          #'Products.CMFPlone',
+          #'Products.ATExtensions',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

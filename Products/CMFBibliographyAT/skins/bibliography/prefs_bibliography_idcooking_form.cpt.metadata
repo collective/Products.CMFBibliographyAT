@@ -1,0 +1,16 @@
+[default]
+title=Bibliography setup
+
+[security]
+View=0:Authenticated
+
+[validators]
+validators..Save=
+validators..Cancel=
+validators=
+
+[actions]
+action.success..Save=traverse_to:string:prefs_bibliography_idcooking
+action.success..Cancel=redirect_to:string:prefs_bibliography_idcooking_form
+action.success=traverse_to:string:prefs_bibliography_idcooking_form
+action.failure=traverse_to:string:prefs_bibliography_idcooking_form

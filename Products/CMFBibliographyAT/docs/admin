@@ -1,0 +1,100 @@
+Title: Administrator's Guide
+Subject:
+Publisher: No publisher
+Description: CMFBibliography's Administrator's Guide covers its installation and customization.
+Contributors:
+Effective_date: None
+Expiration_date: None
+Type: Document
+Format: text/plain
+Language:
+Rights:
+SafetyBelt: 1070963294.18
+
+Installing CMFBibliography
+
+  CMFBibliography is a standard Zope/CMF/Plone product so you install
+  it like any other product by moving or copying the source code into
+  your site's products folder (usualy something like
+  ../yourZope/Products or ../yourZope/lib/python/Products depending on
+  your installation) and restarting the server.
+
+  Next you have to tell your Plone instance that you want to use
+  it. There are at least three ways to do so. Log in as manager and
+  then either go to 'plone setup' -> 'add products', select
+  'CMFBibliography' and click 'install'. Make sure, however, that you
+  have ArcheTypes installed first, otherwise the installation will
+  fail (newer versions of Plone come with ArcheTypes included, so you
+  should not have to worry).  Alternativly you can go to the ZMI and
+  then either use the Quickinstaller from there or you install it
+  using an External Method refering to the products 'install' method
+  from the 'Install' module in the 'Extensions' folder.
+
+  After successfull installation you should have a number of new
+  content types available, namely the Bibliography Folder and all the
+  different reference types as well as the Bibliography tool including
+  a few parsers and renderers.
+
+
+Customizing CMFBibliography
+
+  Possible customizations mainly concern the skin methods which
+  control the appearance of the Bibliography Folder and its
+  entries. Whereas their 'views' are just page templates like any
+  other content type's view, there are some more specific methods that
+  need some explanation.
+
+ Customizing the formatting of the author list
+
+  To control for the formatting of the author list, the reference
+  type's 'Authors' method understands a number of optional arguments
+  through which you can specify whether first names should be
+  abbreviated or not, whether they should be leading or trailing last
+  names, what to use as sparator between names, whether or not to
+  include links to the authors' URLs etc.  (see the Developer's Guide
+  for a more formal description). Use these arguments when customizing
+  view templates with respect to the author list formatting.
+
+  If those options are not sufficient for your needs, you can
+  alternatively access the raw authors information via the reference
+  type's 'getAuthors' method. This method returns a list of
+  dictionaries, one for each author, holding the respective parts of
+  the author information like first names (key: 'firstname'), middle
+  part (key: 'middlename'), last names (key: 'lastname'), and the
+  homepage (key: 'homepage').  You can then process this list of
+  dictonaries to fit your needs.
+
+Customizing the formatting of the source string
+
+  The other specialized method is the 'Source' method that controls
+  the formatting of the source string. (This is the part that looks
+  somethig like: *Journal of Irreproducible Results, 345(6):77-88.*)
+  This source string is formatted differently for the individual
+  reference types and you find the corresponding methods like
+  'ArticleSource' in the 'bibliography' skin folder from where you can
+  customize them for the different reference types as needed.
+
+ Controling the supported import/export formats
+
+  To add or remove support for certain import or export formats go to
+  the management interface of the 'Bibliography Tool' (via ZMI). Here
+  you can add or remove parsers or renderers as you see fit. Currently
+  there is only a very limited amount of parsers and renderes
+  available some of which require additional software to be installed
+  on your server. See the Developer's Guide on how to provide your own
+  parser or renderer.
+
+ Enableling the Large Bibliography Folder
+
+  The Bibliography Folder comes in two flavors:
+
+  - **Bibliography Folder:** This uses a regular folder (Archetype's
+    'BaseFolder' as base class whereas the
+
+  - **Large Bibliography Folder** uses 'BaseBTreeFolder as base class.
+
+  Per default, only the regular folder type is enabled for the users
+  to be added. Use the 'Implicitly addable' flag on the respective
+  factory type information objects available through the types tool to
+  customize which ones to offer at your site.
+

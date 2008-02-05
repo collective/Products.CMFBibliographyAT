@@ -1,0 +1,8 @@
+[default]
+title=Bibliography Folder - Manage Duplicates Form
+
+[actions]
+action.success..Manage=traverse_to:string:bibliography_duplicates_manage
+action.success..Scan=traverse_to:string:bibliography_duplicates_bibfolderscan
+action.success=traverse_to:string:bibliography_duplicatesForm
+action.failure=traverse_to:string:bibliography_duplicatesForm

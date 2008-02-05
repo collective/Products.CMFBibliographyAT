@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="content_type_registry">
+ <predicate name="Bibliography_ext" content_type_name="BibliographyFolder"
+    predicate_type="extension">
+  <argument value="bib,med,end,ris"/>
+ </predicate>
+</object>

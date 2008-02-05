@@ -1,0 +1,154 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+  <head><title></title></head>
+  <body>
+    <metal:define define-macro="edit">
+      <metal:use use-macro="here/widgets/field/macros/edit">
+       <tal:block metal:fill-slot="widget_body">
+       <fieldset tal:define="values python:field.getEditAccessor(here)();
+                             session_values python:here.session_restore_value(fieldName, values);
+                             cached_values python:request.get(fieldName,session_values);
+                             values python:cached_values or values;
+                             i18n_domain field/widget/i18n_domain|context/i18n_domain|string:plone">
+       <table>
+        <tr> 
+	<tal:block repeat="key python:field.getSubfields()">
+	<td tal:condition="python:field.testSubfieldCondition(key,here,portal,template)"
+            tal:content="structure python: here.translate(domain=i18n_domain, msgid=field.getSubfieldLabel(key), default=field.getSubfieldLabel(key))">
+	Label
+	</td>
+	</tal:block>
+	<td>
+            <span i18n:translate="delete_this_entry"
+                  id="delete_this_entry">
+             delete</span>
+	</td>
+	</tr>
+	<tr tal:repeat="idx python:range(field.getEditSize(here))">
+	<tal:keys tal:repeat="key python:field.getSubfields()">
+        <td tal:condition="python:field.testSubfieldCondition(key,here,portal,template)">
+	<tal:block define="type python:field.getSubfieldType(key)">
+	<tal:string condition="python: type == 'string' and not field.isSelection(key)">
+	<input type="text"
+	       name=""
+	       value=""
+	       size="30"
+	       tabindex="#"
+	       tal:attributes="name string:${fieldName}.${key}:records:ignore_empty;
+	       value python:field.getSubfieldValue(values, idx, key);
+	       size python:field.getSubfieldSize(key);
+	       maxlength python:field.getSubfieldMaxlength(key); 
+	       tabindex tabindex/next;"
+	       />
+	</tal:string>
+	<tal:selection condition="python: field.isSelection(key)">
+	<tal:block tal:define="value python:field.getSubfieldValue(values, idx, key);
+                               vocab python:field.getVocabularyFor(key, here)">
+	   <select tal:attributes="name string:${fieldName}.${key}:records:ignore_empty; 
+                                   id fieldName;
+		                   tabindex tabindex/next;"
+                   i18n:domain="python:i18n_domain">
+	      <option tal:repeat="item vocab"
+		      tal:attributes="value item;
+		      selected python:test(here.checkSelected(item, value), 'selected', None);"
+		      tal:content="python: vocab.getValue(item)"
+		      i18n:translate=""
+		      />
+	    </select>
+	  </tal:block>
+	</tal:selection>
+	<tal:text condition="python: type == 'lines'">
+	<textarea name=""
+		  cols="30"
+		  rows="5"
+		  tabindex="#"
+		  tal:attributes="name string:${fieldName}.${key}:records:ignore_empty:lines;
+        	                  tabindex tabindex/next;"
+		  tal:content="python:'\n'.join(field.getSubfieldValue(values, idx, key, []))" >
+	</textarea>
+	</tal:text>
+	<tal:date condition="python:type == 'datetime'">
+	<div tal:define="id string:${fieldName}_${key}_${idx};
+               value python:field.getSubfieldValue(values, idx, key);
+	       inputname  string:${fieldName}.${key}:ignore_empty:records;
+	       formname   string:edit_form;
+	       inputvalue python: test(value, value, '');
+	       tabindex tabindex/next;"
+	       tal:omit-tag="">
+	    <div metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox|here/calendar_slot/macros/calendarDatePickerBox">
+	      a pop-up calendar
+        </div>
+	</div>
+	</tal:date>
+	<tal:number condition="python: type in ['float', 'int', 'long']">
+	<input type="text"
+	       name=""
+	       value=""
+	       size="10"
+	       tabindex="#"
+	       tal:attributes="name string:${fieldName}.${key}:${type}:records:ignore_empty;
+	       value python:field.getSubfieldValue(values, idx, key);
+	       size python:field.getSubfieldSize(key);
+	       maxlength python:field.getSubfieldMaxlength(key); 
+	       tabindex tabindex/next;"
+	       />
+	</tal:number>
+	</tal:block>
+	</td>
+  </tal:keys>
+	<td>
+		     <input type="hidden"
+                    tal:attributes="name string:${fieldName}.orderindex:records;
+                                    id string:orderindex_${idx};
+                                    value repeat/idx/number;" />
+             <img src=""
+                  tal:attributes="src string:${portal_url}/arrowUp.gif"
+                  alt="Move up"
+                  onclick="moveRowUp(this);return false"/>
+              <img src=""
+                   tal:attributes="src string:${portal_url}/arrowDown.gif"
+                   alt="Move down"
+                   onclick="moveRowDown(this);return false"/>
+             <img src=""
+                  tal:attributes="src string:${portal_url}/delete_icon.gif"
+                  alt="Delete row"
+                  onclick="removeFieldRow(this);return false" />
+
+             
+	</td>
+	</tr>
+       </table>
+       <input type="submit" name="form.button.more" class="context"
+       tal:condition="python: field.showMore(values)"
+       tal:attributes="tabindex tabindex/next" 
+       i18n:attributes="value more_entries" />
+          <div tal:condition="values">
+            <input class="noborder"
+                   type="checkbox"
+                   value="off"
+                   tabindex=""
+                   tal:attributes="tabindex tabindex/next;
+                       name string:${fieldName}_delete;
+                       id string:${fieldName}_checkbox;"
+		     />
+            <span i18n:translate="delete_all_entries"
+                  id="delete_all_entries">
+                  delete all entries</span>
+          </div> 
+       </fieldset>
+       </tal:block>
+      </metal:use>
+    </metal:define>
+
+    <div metal:define-macro="search">
+      <div metal:use-macro="here/widgets/string/macros/edit">
+      </div>
+    </div>
+
+  </body>
+
+</html>
+

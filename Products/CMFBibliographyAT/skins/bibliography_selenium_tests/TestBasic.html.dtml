@@ -1,0 +1,214 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+Copyright 2004 ThoughtWorks, Inc
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+        http-equiv="content-type"/>
+  <title>Test CMFBibliographyAT Duplication handling</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+  <tbody>
+    <tr>
+      <td rowspan="1" colspan="3">Test CMFBibiliographyAT Duplicate Import<br/>
+      </td>
+    </tr>
+
+     <tr>
+       <td>open</td>
+       <td>./selenium_ft_tool/setup?user_type=Member</td>
+       <td><br/></td>
+     </tr>
+    <tr>
+       <td>storeValue</td>
+       <td>username</td>
+       <td><br/></td>
+     </tr>
+     <tr>
+       <td>setVariable</td>
+       <td>base_url</td>
+       <td>'./'</td>
+     </tr>
+     <tr>
+       <td>open</td>
+       <td>${base_url}</td>
+       <td><br/></td>
+     </tr>
+     <tr>
+       <td>type</td>
+       <td>__ac_name</td>
+       <td>${username}</td>
+     </tr>
+     <tr>
+       <td>type</td>
+       <td>__ac_password</td>
+       <td>${username}</td>
+     </tr>
+     <tr>
+       <td>click</td>
+       <td>submit</td>
+       <td><br/></td>
+     </tr>
+     <tr>
+       <td>verifyTextPresent</td>
+       <td>Welcome! You are now logged in</td>
+       <td><br/></td>
+     </tr>
+     <tr>
+       <td>setVariable</td>
+       <td>myfolder_url</td>
+       <td>'${base_url}/Members/${username}/folder_contents'</td>
+     </tr>
+
+    <tr>
+      <td>open</td>
+      <td>./Members/${username}/createObject?type_name=BibliographyFolder</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>verifyTextPresent</td>
+      <td>BibliographyFolder has been created.</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>title</td>
+      <td>selenium test</td>
+    </tr>
+    <tr>
+      <td>click</td>
+      <td>form_submit</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>verifyTextPresent</td>
+      <td>Your changes have been saved. </td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>click</td>
+      <td>//a[@accesskey='accesskeys-Import']</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>up_text</td>
+      <td>
+@Book{Lutz2001,
+  author =       {Mark Lutz},
+  authorURLs =   {http://home.rmi.net/~lutz/},
+  title =        {Programming Python.},
+  URL =          {http://home.rmi.net/~lutz/about-pp2e.html},
+  abstract =     {This edition has been updated for Python version 2.
+  More significantly, it is also an almost entirely new advanced Python topics
+  book--a complete rewrite from the ground up. Very roughly, this edition includes:
+
+    * 240 pages (4 chapters) on Systems Programming
+    * 260 pages (4 chapters) on GUI Programming
+    * 400 pages (6 chapters) on Internet Scripting
+    * 150 pages (3 chapters) on Databases, Objects, and Text
+    * 100 pages (2 chapters) on Python/C Integration
+
+  To give you some idea of this edition's scope, it spans 1256 pages in its final
+  published format, and includes some 446 program file examples, and 302 screen shots
+  (broken down here). See the table of contents link above for more content details.
+
+  The book also includes a brand new CD-ROM with book examples, Python version 2.x
+  release packages and installers, and related open source packages (NumPy, SWIG, PIL,
+  PMW, and so on). Among other things, the book examples distribution on CD includes
+  self-launching and Python-coded clocks, text editors, image viewers, email clients,
+  calculators, and more.},
+  publisher =    {O'Reilly},
+  year =         2001,
+  address =      {Sebastoplol, CA},
+  edition =      {3rd}
+}
+</td>
+    </tr>
+    <tr>
+      <td>click</td>
+      <td>form.button.import</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>verifyTextPresent</td>
+      <td>Processed Entries: 1. Errors: 0.</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>type</td>
+      <td>up_text</td>
+      <td>
+@Book{Lutz2001,
+  author =       {Mark Lutz},
+  authorURLs =   {http://home.rmi.net/~lutz/},
+  title =        {Programming Python.},
+  URL =          {http://home.rmi.net/~lutz/about-pp2e.html},
+  abstract =     {This edition has been updated for Python version 2.
+  More significantly, it is also an almost entirely new advanced Python topics
+  book--a complete rewrite from the ground up. Very roughly, this edition includes:
+
+    * 240 pages (4 chapters) on Systems Programming
+    * 260 pages (4 chapters) on GUI Programming
+    * 400 pages (6 chapters) on Internet Scripting
+    * 150 pages (3 chapters) on Databases, Objects, and Text
+    * 100 pages (2 chapters) on Python/C Integration
+
+  To give you some idea of this edition's scope, it spans 1256 pages in its final
+  published format, and includes some 446 program file examples, and 302 screen shots
+  (broken down here). See the table of contents link above for more content details.
+
+  The book also includes a brand new CD-ROM with book examples, Python version 2.x
+  release packages and installers, and related open source packages (NumPy, SWIG, PIL,
+  PMW, and so on). Among other things, the book examples distribution on CD includes
+  self-launching and Python-coded clocks, text editors, image viewers, email clients,
+  calculators, and more.},
+  publisher =    {O'Reilly},
+  year =         2001,
+  address =      {Sebastoplol, CA},
+  edition =      {3rd}
+}
+</td>
+    </tr>
+    <tr>
+      <td>click</td>
+      <td>form.button.import</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>verifyTextPresent</td>
+      <td>Processed Entries: 0. Errors: 1.</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>click</td>
+      <td>//a[@accesskey='accesskeys-import duplicates']</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>verifyTextPresent</td>
+      <td>Reference Duplication Management</td>
+      <td>&nbsp;</td>
+    </tr>
+
+
+    <tr>       <td>open</td>       <td>./selenium_ft_tool/tearDown?user=${username}</td>       <td><br/></td></tr>
+  </tbody>
+</table>
+</body>
+</html>

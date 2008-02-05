@@ -1,0 +1,42 @@
+<html>
+  <div tal:replace="structure here/manage_page_header"/>
+    <body bgcolor="#ffffff" link="#000099" alink="#000099"
+vlink="#000099">
+      <div tal:replace="structure here/manage_tabs"/>
+
+
+      <div class="form-help"><p>The listing below shows the criteria
+        to be checked for duplication during an import of bibliography entries.
+        Selected criteria will be added.</p> <p>To change a criteria for a type,
+        check it and click "Save Changes".</p>
+      </div>
+      <form action="manage_changeCriteria" method="POST"
+            tal:define="criteria_types here/allCriteria;"
+            tal:repeat="type criteria_types">
+        <input type="hidden" name="bibtype"
+               tal:attributes="value python:type[0];" />
+        <table class="main" width="100%"
+                tal:define="bibtype python:type[0]">
+          <tr>
+            <th colspan="2" style="text-align:left; background:#efefef"
+                tal:content="bibtype">TYPE</th>
+          </tr>
+          <tr tal:repeat="criterion python:type[1]">
+            <th width="10%">&nbsp;</th>
+            <td style="margin-left:2em">
+              <input type="checkbox"
+                     tal:attributes="name python:bibtype +'_'+ criterion;
+                                     checked python:here.isCriterionSelected(bibtype, criterion);" />
+            <label tal:content="criterion">&nbsp;</label>
+            </td>
+          </tr>
+          <tr>
+           <td>&nbsp;</td>
+           <td>
+           <input type="submit" name = "submit" value="Update Changes" />
+           </td>
+          </tr>
+        </table>
+      </form>
+  </body>
+</html>

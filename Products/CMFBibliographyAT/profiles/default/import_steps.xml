@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="bibliography-tool" version="20070313-01"
+              handler="Products.CMFBibliographyAT.exportimport.importBibliographyTool"
+              title="Bibliography Tool">
+ <dependency step="componentregistry"/>
+    Import bibliography tool definitions
+ </import-step>
+ <import-step id="various-bibliography" version="20070316-01"
+              handler="Products.CMFBibliographyAT.setuphandlers.importVarious"
+              title="Various Bibliographyic Settings">
+  <dependency step="toolset"/>
+  <dependency step="componentregistry"/>
+  Import various settings for CMFBibliographyAT.
+ </import-step>
+</import-steps>

@@ -1,0 +1,12 @@
+[default]
+title=Import Bibliographical References
+
+[validators]
+validators..cancel=
+validators..import=validate_bibliography_import
+validators=validate_bibliography_import
+
+[actions]
+action.success..import=traverse_to:string:bibliography_import
+action.success=traverse_to:string:bibliography_import
+action.failure=traverse_to:string:bibliography_importForm

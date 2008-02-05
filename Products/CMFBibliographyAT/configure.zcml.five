@@ -1,0 +1,47 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           xmlns:five="http://namespaces.zope.org/five">
+
+  <five:traversable
+      class=".content.folder.DuplicatesBibliographyFolder" />
+
+  <five:deprecatedManageAddDelete
+      class=".content.folder.BibliographyFolder" />
+  <five:deprecatedManageAddDelete
+      class=".content.folder.LargeBibliographyFolder" />
+  <five:deprecatedManageAddDelete
+      class=".content.folder.DuplicatesBibliographyFolder" />
+  <five:deprecatedManageAddDelete
+      class=".content.article.ArticleReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.book.BookReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.booklet.BookletReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.conference.ConferenceReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.inbook.InbookReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.incollection.IncollectionReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.inproceedings.InproceedingsReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.manual.ManualReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.mastersthesis.MastersthesisReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.misc.MiscReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.phdthesis.PhdthesisReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.preprint.PreprintReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.proceedings.ProceedingsReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.techreport.TechreportReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.unpublished.UnpublishedReference" />
+  <five:deprecatedManageAddDelete
+      class=".content.webpublished.WebpublishedReference" />
+
+</configure>

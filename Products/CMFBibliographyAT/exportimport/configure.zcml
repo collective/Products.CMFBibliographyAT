@@ -1,0 +1,11 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:five="http://namespaces.zope.org/five"
+   i18n_domain="cmf"
+   >
+
+  <adapter factory=".bibliographytool.BibliographyToolComponentNodeAdapter"/>
+  <adapter factory=".bibliographytool.BibliographyToolFolderNodeAdapter"/>
+  <adapter factory=".bibliographytool.BibliographyToolXMLAdapter"/>
+
+</configure>

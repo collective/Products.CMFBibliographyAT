@@ -1,0 +1,19 @@
+# Gettext Message File for CMFBibliographyAT.
+# Raphael Ritz <r.ritz@biologie.hu-berlin.de>, 2002-2006
+msgid ""
+msgstr ""
+"Project-Id-Version: CMFBibliographyAT 0.9\n"
+"POT-Creation-Date: 2004-02-07 12:45+0000\n"
+"PO-Revision-Date: 2005-02-07 12:45-0300\n"
+"Last-Translator: Jonas Nielsen <jonasn@mail.tele.dk>\n"
+"Language-Team: CMFBibliographyAT i18n <plone-biblio@zaubberer.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-code: da\n"
+"Language-name: Danish\n"
+"Domain: plone\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Preferred-encodings: latin1 utf-8\n"
+"X-Is-Fallback-For: da-dk\n"
+

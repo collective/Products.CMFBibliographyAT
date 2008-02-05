@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<metal:main fill-slot="main">
+
+    <tal:main-macro metal:define-macro="main">
+
+    <metal:duplicates-criteria metal:define-macro="duplicates_criteria">
+
+            <form action="" method="POST"
+                  tal:attributes="action string:${form_action}"
+                  tal:define="criteria_types python: criteria_object.sortCriteriaByTitles(criteria_object.allCriteria());">
+
+                <input type="hidden" name="bibtype"
+                       tal:attributes="value string:all" />
+
+                <tal:form-for-all-bibtypes tal:repeat="type criteria_types">
+
+                <table class="main" width="100%"
+                       tal:define="bibtype python: type[0]">
+                <tr>
+                <th colspan="2" style="text-align:left; background:#efefef"
+                    tal:content="python: here.translate(domain='plone', msgid=here.portal_bibliography.getBibrefArchetypeName(bibtype), default=bibtype)">TYPE</th>
+                </tr>
+                <tal:fields tal:repeat="criterion python:type[1]">
+                <tr>
+                    <th width="10%">&nbsp;</th>
+                <td style="margin-left:2em">
+                    <input type="checkbox"
+                           disabled=""
+                           tal:attributes="name python:bibtype +'_'+ criterion;
+                                           disabled python: test(here.portal_bibliography.getEnableDuplicatesManager(instance=here) and (criterion != 'reference_type'), None, 'disabled');
+                                           checked python:criteria_object.isCriterionSelected(bibtype, criterion);" />
+                    <label tal:content="python: here.translate(domain='cmfbibliographyat', msgid='label_%s' % criterion, default=criterion)">&nbsp;</label>
+                </td>
+                </tr>
+                </tal:fields>
+                <tr><td>&nbsp;</td></tr>
+                </table>
+                </tal:form-for-all-bibtypes>
+            <input class="context" type="submit" name = "submit" value="Update All Duplicates Criteria"
+                   i18n:attributes="value" />
+            </form>
+
+    </metal:duplicates-criteria>
+
+    </tal:main-macro>
+
+</metal:main>
+
+</body>
+</html>
+

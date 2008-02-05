@@ -1,0 +1,114 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<metal:block metal:fill-slot="head_slot">
+    <link rel="alternate" title="RSS 1.0" type="application/rss+xml"
+          tal:condition="request/SearchableText|nothing"
+          tal:attributes="href string:$here_url/search_rss?${request/QUERY_STRING}"/>
+</metal:block>
+
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<div metal:fill-slot="main"
+     tal:define="DateTime python:modules['DateTime'].DateTime;
+                 style request/style|here/default_bibliography_style|here/portal_bibliostyles/default_bibliography_style|string:stl_default;
+                 use_types_blacklist request/use_types_blacklist | python:True;
+                 navtool here/portal_properties/navtree_properties | nothing;
+                 bib_tool here/portal_bibliography;
+                 today string:2005/01/23;
+                 this_year python: DateTime().earliestTime().year();
+                 this_year_start python: '%s/01/01' % this_year;
+                 this_year_end python: '%s/12/31' % this_year;
+
+                 today_last_year python: DateTime().earliestTime() - 365;
+                 last_year python: today_last_year.year();
+                 last_year_start python: '%s/01/01' % last_year;
+                 last_year_end python: '%s/12/31' % last_year;
+
+                 today_5_years_ago python: DateTime().earliestTime() - 365*5+1;
+                 five_years_ago python: today_5_years_ago.year();
+                 five_years_ago_start python: '%s/01/01' % five_years_ago;
+
+                 dummy python: (request.get('publication_date_range') == 'this-year') and request.set('publication_date', {'query': (DateTime(this_year_start).Date(), DateTime(this_year_end).Date()), 'range': 'min:max', });
+                 dummy python: (request.get('publication_date_range') == 'last-year') and request.set('publication_date', {'query': (DateTime(last_year_start).Date(), DateTime(last_year_end).Date()), 'range': 'min:max', });
+                 dummy python: (request.get('publication_date_range') == 'last-5-years') and request.set('publication_date', {'query': (DateTime(five_years_ago_start).Date(), DateTime(this_year_end).Date()), 'range': 'min:max', });
+                 dummy python: (request.get('publication_date_range') == 'custom-range') and request.set('publication_date', {'query': ((DateTime(request.get('publication_date_range_start'))-365).Date(), DateTime(request.get('publication_date_range_end')).Date()), 'range': 'min:max', });
+                 results python: here.queryCatalog(REQUEST=request,use_types_blacklist=use_types_blacklist) or [];
+
+                 results python: bib_tool.filterOutBibEntriesFromNonSearchableBibFolders(results);
+                 results python: [ result for result in results if [ role for role in mtool.getAuthenticatedMember().getRolesInContext(result.getObject()) if role in ['Manager', 'BibManager', 'Reviewer', 'Owner'] ] or (navtool and result.review_state in navtool.getProperty('wf_states_to_show')) ];
+                 sort_on python:(('publication_year', 'cmp', 'desc'),
+                                 ('Authors', 'nocase', 'asc'));
+                 results python:sequence.sort(results, sort_on);
+                 Batch python:modules['Products.CMFPlone'].Batch;
+                 b_start python:request.get('b_start',0);
+
+                 desc_length site_properties/search_results_description_length;
+                 desc_ellipsis site_properties/ellipsis;
+                 searchterm request/SearchableText|nothing;
+                 use_view_action site_properties/typesUseViewActionInListings|python:();">
+
+    <h1 i18n:translate="search_heading_search_results">Bibliography Search Results</h1>
+
+    <div tal:condition="not: results">
+        <p><strong i18n:translate="search_description_no_results_found">No bibliographical entries matching your search criteria were found.</strong></p>
+    </div>
+
+    <p i18n:domain="plone" i18n:translate="search_results_advanced">
+    Did you not find what you were looking for? Try the
+    <span i18n:name="advanced_search">
+    <a href=""
+       i18n:translate="search_results_advanced_link"
+       tal:attributes="href string:$portal_url/search_form">Advanced Search</a>
+    </span>
+    for more precise search options.
+    </p>
+
+    <div tal:condition="results">
+
+    <form name="searchresults" action="" method="post"
+          tal:condition="results"
+          tal:define="batch python:Batch(results, 25, int(b_start), orphan=1)">
+
+        <strong i18n:domain="plone" i18n:translate="batch_x_items_matching_your_criteria">
+            <span i18n:name="number" tal:omit-tag="" tal:content="python:len(results)">234</span> items matching your criteria.
+        </strong>
+
+
+        <tal:syndicate condition="syntool/isSiteSyndicationAllowed">
+        <a href="" tal:attributes="href string:$here_url/search_rss?${request/QUERY_STRING}">
+        <img i18n:domain="plone"
+             i18n:attributes="title title_rss_feed; alt label_rss_feed;"
+             tal:attributes="src string:$portal_url/rss.gif"
+             src="rss.gif"
+             alt="RSS Feed"
+             title="RSS feed of these search results" />
+        </a>
+        </tal:syndicate>
+
+        <br /><br />
+
+        <metal:bibstyle metal:use-macro="here/bibliography_view/macros/bibentries_style" />
+
+        <!-- Navigation -->
+        <div metal:use-macro="here/batch_macros/macros/navigation" />
+
+        <!-- Search results -->
+        <metal:bibentry metal:use-macro="here/bibliography_view/macros/bibentries_view" />
+
+        <!-- Navigation -->
+        <div metal:use-macro="here/batch_macros/macros/navigation" />
+
+    </form>
+
+
+    </div>
+
+</div>
+
+
+</html>
+

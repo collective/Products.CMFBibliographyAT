@@ -1,0 +1,631 @@
+2006-01-05  Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * i18n files for de/en are done and should be always co-maintained
+          when changing anything in schema texts or skins!!!
+
+        * loads of minor bugs fixed while translating and proof-reading
+
+2006-12-24  Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * Added slective enable/disable capabilities for
+      PDF upload policies:
+
+      - disable PDF upload completely (bibliography tool)
+
+      - select individual bibref types that support PDF
+        upload (bibfolder schema)
+
+      - define defaults for type-based selective PDF upload
+        feature in bibliography tool
+
+
+2006-10-20  Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Introduced "BaseEntry.AuthorItems" to return a list of
+      individual author strings. Also introduced a new keyword index
+      with the same name. This should make it easier now to search
+      the portal catalog for publications of a specific author
+      (e.g., from the 'AuthorsCriterion' of the new bib-topic).
+
+    Make sure to reinstall the product for the catalog extension
+    to take effect.
+
+2006-10-02 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * MERGE: duplicates-branch -> trunk
+
+    * FEATURES:
+
+      - added folder type DuplicatesBibliographyFolder
+
+      - duplicates now are proper bibref item objects in a
+        sub-DuplicatesBibliographyFolder.
+
+      - duplicates management engine can be en-/disabled on a
+        per-folder-basis
+
+      - duplicates management rules now also apply to cut+copy+paste
+        actions
+
+      - list of duplicates and matches can be updated on manage duplicates page
+
+2006-09-28 Mike Gabriel <m.gabriel@sunweavers.net>
+
+
+    * migration: added general schema upgrade code to migration section (for 'annote' field)
+
+    * schema:added a dummy id field that is shown when id-cooking after bibref edit is
+      enabled, it tells the user, that (s)he cannot change a bibref item's ID.
+
+    * PDF renderer: fixed PDF renderer (it exported only a single item from bibliotopics)
+
+2006-09-21 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * MERGED: incorporated-pdffile-branch -> trunk
+
+    * FEATURES:
+
+      - PDF files are now uploaded into the reference item, but stored in
+        separate PDF file objects in the PDF folder (as it used to be)
+
+      - moving, copying, pasting, renaming of bibref items does the same with
+        PDF files
+
+      - ID cooking is done for both: bibref item and PDF file
+
+      - local roles (Owner) is kept in sync (when inferring author references)
+
+      - creators metadata field of PDF files is kept in sync (when inferring author references)
+
+      - keeping the PDF files in sync with bibref items can be disabled in
+        bibliography tool configlet (no recommended)
+
+    * LINGUAPLONE: add-on products that re-register bibref types (schema patches)
+      should check Products.CMFBibliographyAT.config.CMFBAT_USES_LINGUAPLONE to decide on
+      importing from Archetypes.public or LinguaPlone.public
+
+    * Member Reference Support: in the bibliography tool configlet you can now
+      explicitly select the attribute to perform the fulltext search on when search
+      for author names.
+
+    * fix: the inferring of member references can now distinguish between different surnames of
+      authors and distinguishes properly between firstnames and lastnames
+
+    * import tab: is now a document_action
+
+    * icons: renamed icons, added new icon for bibliography export, PDF
+      Folder, bibliography import
+
+    * tests: added testPdfFolder
+
+    * tests: repaired and activated testMemberAuthorReferences (formerly testMemberAuthors)
+
+2006-09-06 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * IdCooking: ID cooking after creation/edit has been moved
+      into a Python Script and runs with proxy role 'Manager'. This is
+      needed if the owner of the to-be-renamed (setId) BibRefItem is
+      not owner of the parent bibliography folder.
+
+    * Owners/Creators: added two more boolean properties to the
+      bibliography tool that control whether being author of an item
+      implies becoming creator / owner of the item. Adding authors
+      as owners to local roles is performed in a Python Script that runs
+      with proxy role 'Manager'.
+
+        authorof_implies_owner
+        authorof_implies_creator
+
+      The equally named variables in config.py have been removed.
+
+      Also added fields in member reference support plone configlet that
+      control the resp. properties.
+
+      To let this work, member reference support and inferral of
+      authors -> members has to be enabled.
+
+    * portal tabs: the sharing tab will only be shown, if the
+      authenticated member has sufficient privileges to work on
+      local roles.
+
+    * bibliography_import: the bibliography_import.cpy script does not
+      any longer run with proxy role 'Manager'. This was a security breach
+      in CMFBibliographyAT v0.8.
+
+2006-09-05 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * BibTool: added two more properties:
+
+        - infer_author_references_after_edit
+        - infer_author_references_after_import
+
+      These are portal wide switches that control the
+      inferral of author names -> member references. They only work
+      if member references support is enabled.
+
+    * Bibliography Setup: added resp. checkbox to the member references
+      support plone configlet page
+
+    * authorField: If member reference support is enabled on your site the
+      author names + homepage are derived from the member reference in
+      the pre_validate method of your reference item. If this has already been
+      done and you want to update author names / homepage, then put a '?' into the
+      resp. author widget's subfield.
+
+2006-08-28 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * BookReference: setDetailsFromISBN now works on object creation,
+      just enter the isbn number, leave out the required fields(!)
+      and the rest will be done by the amazon_tool.
+
+    * BookReference: the "set details from amazon" tab will only be shown if an ISBN is
+      specified
+
+2006-08-27 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * Pluggable ID Cooking: merged pluggable-idcooker-branch into trunk
+
+      Features:
+
+        For each bibfolder you can select:
+
+        o an individual ID cooking method
+        o force ID cooking on import (as opposed to using parser IDs)
+        o force ID cooking on bibref item creation TTW
+        o force ID re-cooking on every bibref item edit
+
+        Site-wide settings:
+
+        o set defaults for new bibfolders (ID cooking method, ID cooking on create,
+          on every edit, on import)
+        o enable / disable ID cookers site-wide
+
+2006-08-19 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * skins: added configlet page sceleton for id cooker setup
+
+    * idcookers: renamed "default" idcooker to "plone" idcooker
+
+2006-08-15 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * pluggable IdCookers: added framework for pluggable id cooking to
+      bibliography tool
+
+2006-08-13 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * skins: added select field for output encoding to export
+      bibliography page and defined the bibexport form as a
+      macro that can be used from within other bib products.
+
+      Now you can select your custom output encoding on each
+      export. As default output encoding the select field provides the
+      encoding configured by the portal manager in the plone configlet
+      of the bibliography tool.
+
+2006-08-11 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * skins: bugfix in Bibliography Setup plone configlet
+
+    * schema: abstract field -> RichWidget (visual editor), Description
+      is a copy of abstract field, but in plain text.
+
+    * ConferenceReference: added new reference type ConferenceReference
+      (to be more inspired by BiBTex).
+
+2006-08-09 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * parsers/renderers:
+
+        - added PropertyManager to all parsers/renderers
+        - added isEnabled() method and renderer_enabled /
+          parser_enabled to all r+p
+        - added Description() method to all renderers and parsers.
+          It looks for a translation msgid in a parser/renderer
+          specific i18n-domain, if not available, it take the
+          class's __doc__ string. i have chosen the
+          i18n-domain-specific-thing to make it possible to have
+          third-party renderers and parserers developed that also
+          support i18n in the description text.
+
+    * skins: import / export page template show Description()s, parsers and
+      renderers are sorted alphabetically. The object's Title() and Description()
+      is now also displayed on export / import pages.
+
+    * renderers: added default_output_encoding property to all renderers.
+      Now you can set the default output encoding of text export in the
+      renderer's PropertyManager (ZMI).
+
+    * TODO:
+        - write a plone configlet for default_output_encoding +
+          enable/disable of r+p
+        - add an encoding selector to bibexport page templates (to
+          override the default_output_encoding)
+        - create i18n template files for renderers / parsers
+
+    * renderers: extended functionality of renderers. In order
+      to make them work properly with ATBiblioTopic, ATBiblioList,
+      they also have to accept a list of bibref items to render.
+
+      If the bibliotopic/bibliolist hands itself over to the parser
+      as first object, it will be ignored (i.e. not rendered), but
+      its title and URL will be taken into account (e.g. on creation of a
+      PDF export file).
+
+    * issue #16 closed: editor_flag will no longer be ignored. For
+      bibliostyles, there is currently only a fix of this issue in
+
+        ATBiblioList/branches/bibliotopic-branch/ATBiblioStyles
+
+      available.
+
+    * bugfix: some bibref items' source_fields still contained deprecated
+      'type' field; changed to 'publication_type'.
+
+2006-08-08 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * CMFMember support: now the code has been tested with
+      CMFMember 1.1b2 on Plone 2.1.3.
+
+      Make sure to explicitly (re-)enable member reference support
+      in the bibliography setup (plone configlet) AFTER you have
+      installed CMFMember.
+
+2006-08-07 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * Translatable Bibliography: added two boolean switches to
+      the bibliography tool that can be used to enable/disable
+      LinguaPlone support.
+
+    * BibFolders/BibrefItems: added an isTranslatable() method that overrides
+      PLONE's default isTranslatable.py script. It additionally queries the
+      translatability configuration of the bibliography setup.
+
+    * prefs_bibliography_memberrefsupport_form.cpt: Added the respective
+      radio buttons that configure translatability to the plone configlet
+      (Bibliography Setup - Details)
+
+    * inferAuthorReferences: complete rewrite of the code, takes several
+      information into account (member type fields, authors field,
+      Title()), before it gives up.
+
+    * inferAuthorReferences: also sets the creators field (if available),
+      added a switch AUTHOROF_IMPLIES_CREATOR to config.py
+
+    * member reference support: made the mechanism LinguaPlone robust.
+      If the referred to member type is a multi-lingual object, we
+      now always refer to the canonical object. We also derive the author
+      data from the canonical object.
+
+      The reference that is stored in the author schema is also a
+      reference to the member type's canonical object.
+
+      The getSiteMember method also generates an author list (for the
+      selector) that goes back to contents of the resp. the canonical
+      objects.
+
+      The necessary changes occur in BaseEntry.getSiteMembers() and
+      BaseEntry.pre_validate() and BaseEntry.inferAuthorReferences
+
+    * getMembers: commented out the getMembers method, as it does not really
+      seem to be used, seems to be working fine without...
+
+    * parsers/renderers: added the proposed isAvailable() method to
+      parsers and renderers. isAvailable() is always True in the base code
+      of parsers and renderers, but can be overriden in the parsers' /
+      renderers' specific code snippets. Target use of isAvailable() is a
+      pre-check, if all requirements for usage of a specific parser /
+      renderer are fullfilled (e.g. AmazonTool installed and configured,
+      TODO: LaTeX installed, etc.).
+
+2006-08-06 Mike Gabriel <m.gabriel@sunweaves.net>
+
+    * authorSchema: added subfield_maxlength for home_page subfield
+      (set to 300).
+
+    * BaseEntry: commented out everything that had to do with
+      updateMemberPublicationAuthors. It looks like it is dead
+      end code. Seems to be working fine without.
+
+    * BaseEntry: rewrote of the pre_validate method. It only took
+      _name_from_reference() method into account, but ignored the
+      getAuthorDataFromMember.py script in skins/bibliography/.
+
+      now pre_validate() method first looks at the script result and
+      only if this results in no author's lastname, it then considers
+      the _name_from_reference() method.
+
+    * BibliographyTool: added a new bib_tool property called 'select_members_attr':
+      until now the reference selection selector of the authors schema only showed
+      the Title() or getId(). With this new tool property, it is now possible to
+      be more precise on what should be displayed in the reference selcetor of the
+      authors widget.
+
+    * plone bibtool configlet: added the resp. plone configlet block for
+      'select_members_attr' to the bib_tool configuration.
+
+    * migration: removed the old, commented out migrateAuthorSchema code
+
+    * utils.py: moved _encode() and _decode() from folder.py to utils.py
+
+2006-08-05 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * BookReference:
+        - introduced Amazon's valid-license-key feature to BookReference
+        - after setting details from amazon we have to reindex the BookReference
+          object
+        - the ASIN search is now always called with locale 'us' (the date
+          parsing fails with locale 'de').
+        - now the month is extracted correctly from the date field
+
+    * ISBN parser:
+        - made the ISBN parser valid-license-key awarer (AmazonTool)
+        - using locale 'us' for all ASIN search queries (override
+          AmazonTool setup)
+
+2006-08-04 Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * BibliographySetup: refactored the bib tool plone configlet (esp.
+      introduced the member reference support configuration into the
+      plone configlet. TODO: write some "About CMFBAT"
+
+2006-08-03  Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * WebpublishedReference: as it is essential for this bibref type
+      the URL of WebpublishedReferences is included in the default
+      source method.
+
+    * bibfolder base_view: slightly changed the behaviour of the
+      getIntro()/default view. The Description() now is always
+      displayed (as documentDescription CSS class); the intro
+      text can now contain html tags.
+
+2006-08-02  Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * NOTE: schema update!!! reinstall your product!!!
+
+    * the way fields are declared as "required" fields has changed:
+
+        o the required fields used to be static (defined on a per field basis)
+        o now the required flag is set only after the SourceSchema has been composed
+          right before the class is defined.
+        o the XXXRefernceSchema always has to be a copy of the original schemas
+
+    * schemata: for all content types several changes in the schema have been applied (fields have been added):
+
+        article.py:    source_fields = ('journal', 'volume', 'number', 'pages', 'pmid')
+        booklet.py:    source_fields = ('howpublished',)
+        book.py:    source_fields = ('publisher', 'address', 'edition', 'volume',
+                                    'number', 'isbn')
+        inbook.py:    source_fields = ('booktitle', 'editor', 'publisher', 'address',
+                                       'edition', 'series', 'chapter', 'pages')
+        incollection.py:    source_fields = ('booktitle', 'editor', 'volume', 'number',
+                                             'type', 'publisher', 'address', 'edition',
+                         'series', 'chapter', 'pages')
+        inproceedings.py:    source_fields = ('booktitle', 'editor', 'volume', 'number',
+                                              'chapter', 'pages', 'publisher', 'organization',
+                          'address', 'edition', 'series',)
+        manual.py:    source_fields = ('organization', 'address', 'edition')
+        mastersthesis.py:    source_fields = ('school', 'address')
+        misc.py:    source_fields = ('howpublished',)
+        phdthesis.py:    source_fields = ('school', 'address')
+        preprint.py:    source_fields = ('preprint_server', )
+        proceedings.py:    source_fields = ('publisher', 'address', 'volume',
+                                            'number', 'organization', 'series')
+        techreport.py:    source_fields = ('institution', 'type', 'number', 'address')
+
+      the Source() methods of all bibref item types has been rewritten, still needs
+      improvement.
+
+    * typeField: the id of the typeField has been renamed to 'publication_type'
+      in order to avoid name collision with a definition in Archetypes's BaseObject class:
+
+        schema = type = content_type
+
+    * content: IncollectionReference and InProceedingsReference used
+      to be clones of InbookReference. The three bibref item times differ in
+      required fields as well as slightly in the field composition
+      (referred to BibTex way of bibliography administration).
+
+    * Extensions/Install: the ActionIcon tool is pretty picky with already
+      existing icons, and easily causes product install to fail with a
+      KeyError: 'Duplicate definition!'.
+
+      To avoid this, the removeActionIcons function is called on install AND uninstall
+
+        o ('plone', 'downloadBib') -> deprecated, has been renamed to exportBib
+        o ('plone', 'exportBib'),
+        o ('plone', 'download_pdf') -> just in case uninstall ai remove failed on product
+          uninstall
+        o ('controlpanel', 'BibliographySetup') -> in case of an error raised after adding
+          the bibliography tool during last product instal
+
+    * ImportCriteriasManager: the old 'publication_type' criterion name has
+      been renamed to 'reference_type' in order to give way to the new typeField
+      id 'publication_type' in several bibref item types.
+
+        THIS CHANGE IS MIGHT BREAK YOUR PRODUCTS!!!
+
+      plz adapt your products if based on CMFBibAT.
+
+    * bibliography tool: renamed needsUpgrade to needsAuthorSchemaUpgrade
+      analogous for upgrade method itself... this code will move into the
+      migration section of this product soon
+
+    * reworked some tests, added tests for the bibtex parser
+
+    * cmf08to09: added more migration code for 0.8 -> 0.9
+
+        (1)
+        test if the ImportCriteriasManager needs an upgrade, if so:
+
+        'publication_type' -> 'reference_type' (means bibref_item.meta_type)
+        'type' -> 'publication_type' (means new typeField id)
+
+        (2)
+        updateSchema of typeField
+
+            o get old typeField values (id='type'),
+            o store it in new typeField
+        o delete the old 'type' attribute from the object
+
+    * bibtex parser: on bibtex import, INBOOKs need a slightly different import mapping,
+      as opposed to IncollectionReferences and InproceedingsReferences:
+
+            BIBTEX title   -> CMFBAT booktitle,
+        BIBTEX chapter -> CMFBAT chapter
+                          and
+                          CMFBAT title
+
+    * bibtex parser: the BibTex 'type'field has to be mapped to CMFBAT 'publication_type'
+      in the result dict of the parser (cf. migration code add-ons)
+
+    * all parsers: renamed the 'publication_type' result dict key to 'reference_type'
+
+    * citationmanager parser: added a preprocess method that strips off all <CR> values from
+      the incoming source file -> fixes tests/testCitationManagerParser.py
+
+        * bibtex parser: added 'aq_base' to
+
+        url = entry.aq_base.getURL()
+
+      -> fixes tests/testBibliographyFolder.py
+
+2006-07-18  Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * A BookReference and ProceedingsReference can have either editors or authors. When
+      exporting a bibtex @BOOK with the editor field set, this was not acknowledged by
+      the BibtexParser. The "authors" field ended up empty and the "editor_flag" unset.
+      -> FIXED (editors of books and proceedings can now as well be imported into
+      CMFBibliographyAT: bibtex editors are taken as "authors" and the "editor_flag"
+      is set.)
+
+2006-07-18  Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * In BiBTeX files, all elements outside of @REFTYPE{...} are considered as comments (so
+      called "outside BiBTeX code").
+      Thus, "inside BiBTeX code" has to be seperated from outside code by the parser. This functionality
+      has been implemented as a completely rewritten stripComments() method in the BibtexParser
+      class.
+      Furthermore the old stripComments() method called in the BiBTeX parser was aimed at
+      removing all "^%.*$" lines... But this would apply to latex code, not BiBTeX code!!!
+
+    * If the bibtex parser encounters TABs or NEWLINES as opposed to blank characters
+      between lastname und firstname (or initials) of authors then the imported author list
+      will end up corrupt. a general patch has been applied to the last line in the bibtex
+      parser's clean() method.
+
+    * The last entry in a bibtex file always had a trailing ",". FIXED.
+
+2006-07-18  Mike Gabriel <m.gabriel@sunweavers.net>
+
+    * when checking for duplicates (e.g. on bibtex import) in bibfolders
+      containing PDF files an error was raised.
+      This fix adds a filter in BaseBibliographyFolder.isDuplicate()
+      when calling <folder_obj>.getContentValues(), so that bibfolder
+      objects are only returned for duplicate checking if they are
+      known to portal_bibliography (i.e. returned by portal_bibliography's
+      getReferenceTypes() method).
+
+2006-06-08  Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Fixed http://plone.org/products/cmfbibliographyat/issues/15
+      first attempt at least; this is somewhat trickey because
+      CMFBib provides 'getURL' with a different semantics compared
+      to catalog brains which are checked for by some of Plone's
+          default macros by looking for 'getURL' explicitly :-(
+
+2006-05-29  Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Support the recent addition of 'additionalReferenceInfo' for
+      the ATReferenceBrowserWidget.
+
+2006-05-02  Frank Bennett <bennett@nomolog.nagoya-u.ac.jp>
+
+    * Eliminated space after string: in action definition.
+      Bibliography tab now receives the highlight when selected.
+
+2006-03-28  Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Updating README.
+      This closes http://plone.org/products/cmfbibliographyat/issues/3
+
+2006-03-07  Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Merged the duplicate handling branch.
+
+2006-01-11  Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Fixed http://plone.org/products/cmfbibliographyat/issues/1
+
+2006-01-11  Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Merged Tim's atbib branch; ATBiblioLists can now support
+      imports into an associated bibliographic folder.
+
+2006-01-10  Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Fixed the broken tests.
+
+    * Added support for configuring member content types
+      for author references on the tool.
+
+    * Fixed permission issue with 'listFolderContents' by
+      calling 'folderlistingFolderContents' now in
+      'bibliographyfolder_view'.
+
+    * Enabled 'bibliographyfolder_view' for large bibliography
+      folders as well.
+
+2005-12-23  Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Added and registered custom transformation (bibaware2html)
+
+    Together with today's fix of PortalTransforms/TransformEngine
+    to make policies work any 'text/x-html-safe' text is now
+    bib-aware. Maybe we shouldn't do it per default but somehow
+    controlled in the config but currently I don't care too much.
+
+2005-12-02 Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Added explicit security declarations to all content types.
+
+2005-11-28 Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Moved all source formatting methods from the skin layer
+      to their respective classes.
+
+      The defaults are more sensible now if no skins are available.
+      Overriding TTW is still possible by providing methods
+      with the appropriate names (e.g., 'ArticleSource' for the
+      article reference type).
+
+      Existing customizations should continue to work as before.
+
+2005-11-08 Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Register custom mime type (text/x-html-bibaware)
+      on product install
+
+    * Added and registered custom transformation (html2bibaware)
+
+      Now inline citations are also supported via specifying
+      the default_output_type as 'text/x-html-bibaware' on
+      any AT TextField.
+
+2005-09-14 Raphael Ritz <r.ritz@biologie.hu-berlin.de>
+
+    * Enabled explicit entity replacement for the BibTeX renderer.
+
+    * Merged the 'bibtex-marshaller' branch (r 8896:11859) into trunk.
+
+    * fixed last broken test
+
+    * Added Portuguese translation (thanks to J Esteves)
+
+    * some package restructuring
+
+    * start the ChangeLog
+
+(all prior history seems to be lost - if it ever existed)
+
+

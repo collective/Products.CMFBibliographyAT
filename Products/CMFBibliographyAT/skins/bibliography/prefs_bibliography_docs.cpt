@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/prefs_main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<div metal:fill-slot="prefs_configlet_main"
+     tal:define="errors options/state/getErrors;
+                 bib_tool here/portal_bibliography">
+
+    <ul class="contentViews">
+       <li class="selected">
+          <a href=""
+             tal:attributes="href string:$here_url/$template_id"
+             i18n:translate="label_bibliography_docs">Documentation</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_general_form"
+             i18n:translate="label_bibliography_general">General</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_idcooking_form"
+             i18n:translate="label_bibliography_idcooking">ID Cooking</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_importexport_form"
+             i18n:translate="label_bibliography_importexport">Import / Export</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_duplicates_form"
+             i18n:translate="label_bibliography_duplicates">Duplicates Management</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_memberrefsupport_form"
+             i18n:translate="label_bibliography_memberrefsupport">Member Reference Support</a>
+       </li>
+    </ul>
+
+    <div class="contentActions">
+      &nbsp;
+    </div>
+
+    <h1 i18n:translate="head_docs_bibliography_setup">Bibliography Setup - Documentation</h1>
+
+    <a href=""
+       class="link-parent"
+       tal:attributes="href string: $portal_url/plone_control_panel"
+       i18n:translate="label_up_to_plone_setup"
+       i18n:domain="plone">
+    Up to Plone Setup
+    </a>
+
+    <p i18n:translate="description_docs_bibliography_setup">
+        CMFBibliographyAT - A powerful Plone approach to bibliography administration.
+    </p>
+
+    <fieldset>
+        <legend i18n:translate="legend_bibliography_docs">About CMFBibliographyAT</legend>
+        <div class="field">
+        <p>Nothing here, yet ...</p>
+        </div>
+    </fieldset>
+
+</div>
+
+</body>
+</html>
+

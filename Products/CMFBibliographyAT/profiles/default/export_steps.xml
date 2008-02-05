@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<export-steps>
+ <export-step id="bibliography-tool"
+              handler="Products.CMFBibliographyAT.exportimport.exportBibliographyTool"
+              title="Bibliography Tool (properties and child objects)">
+  Export the bibliography tool settings
+ </export-step>
+</export-steps>

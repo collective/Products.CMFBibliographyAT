@@ -1,0 +1,11 @@
+[default]
+title=Bibliography Folder defaults form
+
+[validators]
+validators=
+
+[actions]
+action.success..More=traverse_to:string:bibliography_defaults_edit
+action.success..Save=traverse_to:string:bibliography_defaults_edit
+action.success=traverse_to:string:bibliography_defaults_edit
+action.failure=traverse_to:string:bibliography_defaultsForm

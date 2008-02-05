@@ -1,0 +1,752 @@
+# Gettext Message File for CMFBibliographyAT.
+# Raphael Ritz <r.ritz@biologie.hu-berlin.de>, 2002-2004
+# Arthur Lutz <arthur.lutz@logilab.fr>, 2005
+msgid ""
+msgstr ""
+"Project-Id-Version: CMFBibliographyAT\n"
+"POT-Creation-Date: 2004-05-14 12:45+0000\n"
+"PO-Revision-Date: 2004-05-14 12:45-0300\n"
+"Last-Translator: David Convent <david@convent.be>\n"
+"Language-Team: CMFBibliographyAT i18n <r.ritz@biologie.hu-berlin.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-code: en\n"
+"Language-name: English\n"
+"Domain: plone\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Preferred-encodings: latin1 utf-8\n"
+
+#: bibtex_types/ArticleReference.py
+msgid "Article Reference"
+msgstr ""
+
+msgid "Bibliography"
+msgstr ""
+
+#: bibtex_types/BookReference.py
+msgid "Book Reference"
+msgstr ""
+
+#: bibtex_types/BookletReference.py
+msgid "Booklet Reference"
+msgstr ""
+
+#.   <input name="form.button.Cancel" type="submit" class="standalone" value="Cancel" tabindex="" attributes="tabindex tabindex/next;" />
+#: from skins/bibliography/prefs_bibliography_form.cpt
+msgid "Cancel"
+msgstr ""
+
+#.          <input class="context"
+#.                 tabindex=""
+#.                 type="submit"
+#.                 name="submit"
+#.                 value="Export"
+#.                 i18n:attributes="value"
+#.                 tal:attributes="tabindex tabindex/next;" />
+#.   <input name="submit" type="submit" class="context" value="Export" tabindex="" attributes="tabindex tabindex/next;" />
+#: skins/bibliography/bibliography_exportForm.pt from
+msgid "Export"
+msgstr ""
+
+#.   <strong>Import</strong>
+#.   <input name="form.button.import" type="submit" class="context" value="Import" tabindex="" attributes="tabindex tabindex/next;">
+#.           </input>
+#: from skins/bibliography/bibliography_importForm.cpt
+msgid "Import"
+msgstr ""
+
+#.          <input class="context"
+#.                 tabindex=""
+#.                 type="submit"
+#.                 name="submit"
+#.                 value="Import File"
+#.                 i18n:attributes="value"
+#.                 tal:attributes="tabindex tabindex/next;" />
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "Import File"
+msgstr ""
+
+#: bibtex_types/InbookReference.py
+msgid "Inbook Reference"
+msgstr ""
+
+#: bibtex_types/IncollectionReference.py
+msgid "Incollection Reference"
+msgstr ""
+
+#: bibtex_types/InproceedingsReference.py
+msgid "Inproceedings Reference"
+msgstr ""
+
+#: bibtex_types/ManualReference.py
+msgid "Manual Reference"
+msgstr ""
+
+#: bibtex_types/MasterthesisReference.py
+msgid "Masterthesis Reference"
+msgstr ""
+
+#: bibtex_types/MiscReference.py
+msgid "Misc Reference"
+msgstr ""
+
+#.          <input class="context"
+#.                 type="submit"
+#.                 tabindex=""
+#.                 name="more_authors"
+#.                 value="More Authors"
+#.                 i18n:attributes="value"
+#.                 tal:attributes="tabindex tabindex/next;" />
+#.   <input name="more_authors" type="submit" class="context" value="More Authors" tabindex="" tal:attributes="tabindex tabindex/next;" />
+#: skins/bibliography/authors_widget.pt from
+msgid "More Authors"
+msgstr ""
+
+#.          <input class="context"
+#.                 tabindex=""
+#.                 type="submit"
+#.                 name="form.button.More"
+#.                 value="More Links"
+#.                 i18n:attributes="value"
+#.                 tal:attributes="tabindex tabindex/next;" />
+#.   <input name="form.button.More" type="submit" class="context" value="More Links" tabindex="" attributes="tabindex tabindex/next;" />
+#: skins/bibliography/bibliography_defaultsForm.pt from
+#: skins/bibliography/bibliography_defaultsForm.cpt
+msgid "More Links"
+msgstr ""
+
+#: bibtex_types/PhdthesisReference.py
+msgid "Phdthesis Reference"
+msgstr ""
+
+#: bibtex_types/PreprintReference.py
+msgid "Preprint Reference"
+msgstr ""
+
+#: bibtex_types/ProceedingsReference.py
+msgid "Proceedings Reference"
+msgstr ""
+
+#.   <input name="form.button.Save" type="submit" class="context" value="Save" tabindex="" attributes="tabindex tabindex/next;" />
+#: from skins/bibliography/prefs_bibliography_form.cpt
+#: skins/bibliography/bibliography_defaultsForm.cpt
+msgid "Save"
+msgstr ""
+
+#: bibtex_types/UnpublishedReference.py
+msgid "Unpublished Reference"
+msgstr ""
+
+#: bibtex_types/WebpublishedReference.py
+msgid "Webpublished Reference"
+msgstr ""
+
+msgid "bibliography_delay_title"
+msgstr "nothing is done; leave as it is"
+
+msgid "bibliography_force_title"
+msgstr "the entry is added as new (with a new uid)"
+
+msgid "bibliography_replace_title"
+msgstr "the import replaces the old one"
+
+msgid "bibliography_skip_title"
+msgstr "entry is deleted from duplicated records"
+
+#.    <div i18n:translate="description_bibliography" class="description">
+#.     This folder holds the following references to publications, sorted by year and author:</div>
+#: skins/bibliography/bibliography_folder_view.pt
+msgid "description_bibliography"
+msgstr ""
+"This folder holds the following references to publications, sorted by year "
+"and author:"
+
+#.    <div i18n:translate="description_bibliography_ref" class="description">References to publications,
+#.      sorted by year and author.</div>
+#: skins/bibliography/bibliography_view.pt
+msgid "description_bibliography_ref"
+msgstr "References to publications, sorted by year and author."
+
+#.   <p>
+#.           Bibliography settings.
+#.       </p>
+#: from skins/bibliography/prefs_bibliography_form.cpt
+msgid "description_bibliography_setup"
+msgstr ""
+
+#.    <p i18n:translate="description_pubref_defaults">
+#.      Specify default settings for bibliographyic entries within this folder.
+#.    </p>
+#: skins/bibliography/bibliography_defaultsForm.pt
+msgid "description_pubref_defaults"
+msgstr ""
+"Specify default settings for bibliographyic entries within this folder."
+
+#.    <p i18n:translate="description_pubref_export">
+#.      Select the format from the drop-down list. Confirm by clicking
+#.      <stan i18n:name="export"><strong i18n:translate="">export</strong></span>.
+#.    </p>
+#: skins/bibliography/bibliography_exportForm.pt
+msgid "description_pubref_export"
+msgstr ""
+"Select the format from the drop-down list. Confirm by clicking ${export}."
+
+#.    <p i18n:translate="description_pubref_import">
+#.      Enter the name of your source file or click <strong>browse</strong>
+#.      to get a file dialog box to select it. Then specify the format from
+#.      the drop-down list. Start by clicking
+#.      <span i18n:name="import"><strong i18n:translate="">import</strong></span>.
+#.    </p>
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "description_pubref_import"
+msgstr ""
+"Enter the name of your source file or click <strong>browse</strong> to get a "
+"file dialog box to select it. Then specify the format from the drop-down "
+"list. Start by clicking ${import}."
+
+#.    <p i18n:translate="description_pubref_export">
+#.      Select the format from the drop-down list. Confirm by clicking
+#.      <stan i18n:name="export"><strong i18n:translate="">export</strong></span>.
+#.    </p>
+#.   <strong>export</strong>
+#: skins/bibliography/bibliography_exportForm.pt from
+msgid "export"
+msgstr ""
+
+#.            <th i18n:translate="header_first_name">First Name</th>
+#: skins/bibliography/authors_widget.pt
+msgid "header_first_name"
+msgstr "First Name"
+
+#.            <th i18n:translate="header_homepage">Homepage</th>
+#: skins/bibliography/bibliography_defaultsForm.pt
+msgid "header_homepage"
+msgstr "Homepage"
+
+#.            <th i18n:translate="header_last_name">Last Name</th>
+#: skins/bibliography/authors_widget.pt
+msgid "header_last_name"
+msgstr "Last Name"
+
+#.            <th i18n:translate="header_middle_name">Middle Name(s)</th>
+#: skins/bibliography/authors_widget.pt
+msgid "header_middle_name"
+msgstr "Middle Name(s)"
+
+#.            <th i18n:translate="header_name">Name</th>
+#: skins/bibliography/bibliography_defaultsForm.pt
+msgid "header_name"
+msgstr "Name"
+
+#.    <h1 i18n:translate="heading_bibliography">Bibliography</h1>
+#: skins/bibliography/bibliography_view.pt
+msgid "heading_bibliography"
+msgstr "Bibliography"
+
+#.   <h1>Bibliography Setup</h1>
+#: from skins/bibliography/prefs_bibliography_form.cpt
+msgid "heading_bibliography_setup"
+msgstr ""
+
+#.   <h1>Reference Duplication Management</h1>
+#: from skins/bibliography/manage_duplicates.pt
+msgid "heading_manage_duplicate"
+msgstr ""
+
+#.    <h1 i18n:translate="heading_pubref_defaults">Default Settings for Bibliographic Entries</h1>
+#: skins/bibliography/bibliography_defaultsForm.pt
+msgid "heading_pubref_defaults"
+msgstr "Default Settings for Bibliographic Entries"
+
+#.    <h1 i18n:translate="heading_pubref_export">Export Bibliographic Entries</h1>
+#: skins/bibliography/bibliography_exportForm.pt
+msgid "heading_pubref_export"
+msgstr "Export Bibliographic Entries"
+
+#.    <h1 i18n:translate="heading_pubref_import">Import Bibliographic Entries</h1>
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "heading_pubref_import"
+msgstr "Import Bibliographic Entries"
+
+#.          <div class="formHelp" i18n:translate="help_bibliography_export_format">
+#.            Please select the format.
+#.          </div>
+#: skins/bibliography/bibliography_exportForm.pt
+msgid "help_bibliography_export_format"
+msgstr "Please select the format."
+
+#.            <div class="formHelp" i18n:translate="help_bibliography_file_import">
+#.              Select the file to be imported by clicking the 'Browse' button.
+#.            </div>
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "help_bibliography_file_import"
+msgstr "Select the file to be imported by clicking the 'Browse' button."
+
+#.          <div class="formHelp" i18n:translate="help_bibliography_import_format">
+#.            Please select the format for the source file.
+#.          </div>
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "help_bibliography_import_format"
+msgstr "Please select the format for the source file."
+
+# msgid "Save"
+# msgstr ""
+#.          <input class="context"
+#.                 tabindex=""
+#.                 type="submit"
+#.                 name="form.button.Save"
+#.                 value="Save"
+#.                 i18n:attributes="value"
+#.                 tal:attributes="tabindex tabindex/next;" />
+#.   <div class="formHelp">
+#.   	      Please select span of search for duplicates of references
+#.   	     </div>
+#: skins/bibliography/bibliography_defaultsForm.pt from
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "help_bibliography_import_span"
+msgstr "Please select span of search for duplicates of references"
+
+#.          <div class="formHelp" i18n:translate="help_bibliography_text_import">
+#.            You can paste here the import text (make sure it is correctly formatted regarding the parser you will choose below).
+#.          </div>
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "help_bibliography_text_import"
+msgstr ""
+"You can paste here the import text (make sure it is correctly formatted "
+"regarding the parser you will choose below)."
+
+#: BaseEntry.py
+msgid "help_bibref_abstract"
+msgstr "An abstract of the referenced publication."
+
+#: BaseEntry.py
+msgid "help_bibref_note"
+msgstr "Any additional information that can help the reader."
+
+#: BaseEntry.py
+msgid "help_bibref_url"
+msgstr "The URL to get to the referenced resource."
+
+#.        <div class="formHelp" i18n:translate="help_default_homepage_links">
+#.            To provide default homepage links for authors enter their names (firstname
+#.            plus lastname as they are specified in the entries) and links (homepage URLs)
+#.            here.
+#.        </div>
+#: skins/bibliography/bibliography_defaultsForm.pt
+msgid "help_default_homepage_links"
+msgstr ""
+"To provide default homepage links for authors enter their names (firstname "
+"plus lastname as they are specified in the entries) and links (homepage "
+"URLs) here."
+
+#: bibtex_types/ArticleReference.py
+msgid "help_editor_flag"
+msgstr ""
+"Check here if the author(s) specified above are actually the editor(s) of "
+"the book."
+
+#.   <div class="formHelp">
+#.                   The site-wide default for the ISBN links that book references may offer if the ISBN number of the book is specified. This may be overriden by defining a 'show_isbn_link' property for an individual bibliography folder or even individual book reference.
+#.                   </div>
+#: from skins/bibliography/prefs_bibliography_form.cpt
+msgid "help_isbn_link"
+msgstr ""
+
+#.   <div class="formHelp">
+#.                   The preprint servers users can select from. The format has to be in the form 'server name:server url'. The URL may be omitted but the ':' still needs to be present then.
+#.                   </div>
+#: from skins/bibliography/prefs_bibliography_form.cpt
+msgid "help_preprint_servers"
+msgstr ""
+
+#: BaseEntry.py
+msgid "help_publication_month"
+msgstr ""
+"The month in which the work was published or, for an unpublished work, in "
+"which it was written."
+
+#.          <div class="formHelp" i18n:translate="help_publication_ranking">
+#.            To rank the publications in this folder, enter their ids (their names as they
+#.            appear on the URLs) one per line in the order in which they should be ranked.
+#.          </div>
+#: skins/bibliography/bibliography_defaultsForm.pt
+msgid "help_publication_ranking"
+msgstr ""
+"To rank the publications in this folder, enter their ids (their names as "
+"they appear on the URLs) one per line in the order in which they should be "
+"ranked."
+
+#: BaseEntry.py
+msgid "help_publication_year"
+msgstr ""
+"The year of publication or, for an unpublished work, the year it was "
+"written. This field's text should contain only numerals."
+
+#: bibtex_types/BookReference.py bibtex_types/InbookReference.py
+#: bibtex_types/ManualReference.py bibtex_types/MasterthesisReference.py
+#: bibtex_types/PhdthesisReference.py bibtex_types/ProceedingsReference.py
+#: bibtex_types/TechreportReference.py
+msgid "help_source_address"
+msgstr ""
+"Publisher's address. For major publishing houses, just the city is given. "
+"For small publishers, you can help the reader by giving the complete address."
+
+#: bibtex_types/InbookReference.py
+msgid "help_source_booktitle"
+msgstr "Title of a book, part of which is being cited."
+
+#: bibtex_types/InbookReference.py
+msgid "help_source_chapter"
+msgstr "A chapter number."
+
+#: bibtex_types/BookReference.py bibtex_types/ManualReference.py
+msgid "help_source_edition"
+msgstr "The edition of a book - for example, 'second'."
+
+#: bibtex_types/InbookReference.py
+msgid "help_source_editor"
+msgstr ""
+"Name(s) of editor(s). If there is also an 'author' field, then the 'editor' "
+"field gives the editor of the book or collection in which the reference "
+"appears."
+
+#: bibtex_types/BookletReference.py bibtex_types/MiscReference.py
+msgid "help_source_howpublished"
+msgstr ""
+"How something strange has been published (mainly for publications without a "
+"publisher). e.g., an 'Institute Report'."
+
+#: bibtex_types/TechreportReference.py
+msgid "help_source_institution"
+msgstr "The institution that published the work."
+
+#: bibtex_types/ArticleReference.py
+msgid "help_source_journal"
+msgstr "A journal name (should be its standard abbreviation)."
+
+#: bibtex_types/ArticleReference.py bibtex_types/BookReference.py
+#: bibtex_types/ProceedingsReference.py bibtex_types/TechreportReference.py
+msgid "help_source_number"
+msgstr ""
+"The number of a journal, magazine, or technical report. An issue of a "
+"journal or magazine is usually identified by its volume and number; the "
+"organization that issues a technical report usually gives it a number."
+
+#: bibtex_types/ManualReference.py bibtex_types/ProceedingsReference.py
+msgid "help_source_organization"
+msgstr "The organization sponsoring a conference."
+
+#: bibtex_types/ArticleReference.py bibtex_types/InbookReference.py
+msgid "help_source_pages"
+msgstr ""
+"A page number or range of numbers such as '42--111'; you may also have "
+"several of these, separating them with commas: '7,41,73--97'. The standard "
+"styles convert a single dash to a double."
+
+#: bibtex_types/ArticleReference.py
+msgid "help_source_pmid"
+msgstr "The reference's number in the PubMed database."
+
+#: bibtex_types/PreprintReference.py
+msgid "help_source_preprint_server"
+msgstr ""
+
+#: bibtex_types/BookReference.py bibtex_types/InbookReference.py
+#: bibtex_types/ProceedingsReference.py
+msgid "help_source_publisher"
+msgstr "The publisher's name."
+
+#: bibtex_types/MasterthesisReference.py bibtex_types/PhdthesisReference.py
+msgid "help_source_school"
+msgstr "The name of the school where a thesis was written."
+
+#: bibtex_types/ProceedingsReference.py
+msgid "help_source_series"
+msgstr ""
+"The name of a series or set of books. When citing an entire book, the the "
+"'title' field gives its title and an optional 'series' field gives the name "
+"of a series in which the book is published."
+
+#: bibtex_types/TechreportReference.py
+msgid "help_source_type"
+msgstr "The type of a technical report - for example, 'Research Note'."
+
+#: bibtex_types/ArticleReference.py bibtex_types/BookReference.py
+#: bibtex_types/ProceedingsReference.py
+msgid "help_source_volume"
+msgstr "The volume of a journal or multivolume book work."
+
+#.   <a href="" attributes="href string:${portal_url}/reference_catalog/lookupObject?uuid=${uuid}">
+#.   			    here
+#.   			  </a>
+#: from skins/bibliography/manage_duplicates.pt
+msgid "here"
+msgstr ""
+
+#.    <p i18n:translate="description_pubref_import">
+#.      Enter the name of your source file or click <strong>browse</strong>
+#.      to get a file dialog box to select it. Then specify the format from
+#.      the drop-down list. Start by clicking
+#.      <span i18n:name="import"><strong i18n:translate="">import</strong></span>.
+#.    </p>
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "import"
+msgstr ""
+
+#.   <label for="show_isbn_link_off">Do not show ISBN links.</label>
+#: from skins/bibliography/prefs_bibliography_form.cpt
+msgid "label_allow_members_to_create_password"
+msgstr ""
+
+#.        <legend i18n:translate="label_bibliography_export">Export</legend>
+#: skins/bibliography/bibliography_exportForm.pt
+msgid "label_bibliography_export"
+msgstr "Export"
+
+#.          <label i18n:translate="label_bibliography_export_format">Export Format</label>
+#: skins/bibliography/bibliography_exportForm.pt
+msgid "label_bibliography_export_format"
+msgstr "Export Format"
+
+#.   <label>Global (all site)</label>
+#: from skins/bibliography/bibliography_importForm.cpt
+msgid "label_bibliography_global"
+msgstr ""
+
+#.          <label i18n:translate="label_bibliography_import_format">Import Format</label>
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "label_bibliography_import_format"
+msgstr "Import Format"
+
+#.   <label for="import_span">Import duplicate search span</label>
+#: from skins/bibliography/bibliography_importForm.cpt
+msgid "label_bibliography_import_span"
+msgstr "Import duplicate search span"
+
+#.   <label>Local (this folder)</label>
+#: from skins/bibliography/bibliography_importForm.cpt
+msgid "label_bibliography_local"
+msgstr ""
+
+#.          <label i18n:translate="label_bibref_abstract">Abstract</label>
+#: BaseEntry.py skins/bibliography/bibliography_entry_view.pt
+msgid "label_bibref_abstract"
+msgstr "Abstract"
+
+#.         <p tal:condition="not:here/Source"
+#.            i18n:translate="label_bibref_no_source">
+#.            No source specified
+#.         </p>
+#: skins/bibliography/bibliography_entry_view.pt
+msgid "label_bibref_no_source"
+msgstr "No source specified"
+
+#.          <label i18n:translate="label_bibref_note">Note</label>
+#: BaseEntry.py skins/bibliography/bibliography_entry_view.pt
+msgid "label_bibref_note"
+msgstr "Note"
+
+#.          <label i18n:translate="label_bibref_url">URL</label>
+#: BaseEntry.py skins/bibliography/bibliography_entry_view.pt
+msgid "label_bibref_url"
+msgstr "URL"
+
+#.        <label i18n:translate="label_default_homepage_links">Default Homepage Links</label>
+#: skins/bibliography/bibliography_defaultsForm.pt
+msgid "label_default_homepage_links"
+msgstr "Default Homepage Links"
+
+#: bibtex_types/ArticleReference.py
+msgid "label_editor_flag"
+msgstr "Editor Flag"
+
+#.   <label for="show_isbn_link_on">Allow ISBN links to be displayed.</label>
+#: from skins/bibliography/prefs_bibliography_form.cpt
+msgid "label_generate_and_email_passwords"
+msgstr ""
+
+#.   <h4>Import History</h4>
+#: from skins/bibliography/bibliography_importForm.cpt
+msgid "label_import_history"
+msgstr ""
+
+#.   <h4>Import Report</h4>
+#: from skins/bibliography/bibliography_importForm.cpt
+msgid "label_import_report"
+msgstr ""
+
+#.   <label>ISBN Link</label>
+#: from skins/bibliography/prefs_bibliography_form.cpt
+msgid "label_isbn_link"
+msgstr ""
+
+#.   <label>Keywords</label>
+#: from skins/bibliography/bibliography_entry_view.pt
+msgid "label_keywords"
+msgstr ""
+
+#.   <label>Preprint Servers</label>
+#: from skins/bibliography/prefs_bibliography_form.cpt
+msgid "label_preprint_servers"
+msgstr ""
+
+#: BaseEntry.py
+msgid "label_publication_month"
+msgstr "Publication Month"
+
+#.          <label i18n:translate="label_publication_ranking">Ranking</label>
+#: skins/bibliography/bibliography_defaultsForm.pt
+msgid "label_publication_ranking"
+msgstr "Ranking"
+
+# msgid "label_name"
+# msgstr ""
+# msgid "help_name"
+# msgstr ""
+#: BaseEntry.py
+msgid "label_publication_year"
+msgstr "Publication Year"
+
+#.   <a href="#" attributes="href string:${template/getId}?show_history=1">
+#.              Show import history.
+#.   	</a>
+#: from skins/bibliography/bibliography_importForm.cpt
+msgid "label_show_import_history"
+msgstr ""
+
+#: bibtex_types/BookReference.py bibtex_types/InbookReference.py
+#: bibtex_types/ManualReference.py bibtex_types/MasterthesisReference.py
+#: bibtex_types/PhdthesisReference.py bibtex_types/ProceedingsReference.py
+#: bibtex_types/TechreportReference.py
+msgid "label_source_address"
+msgstr "Address"
+
+#: bibtex_types/InbookReference.py
+msgid "label_source_booktitle"
+msgstr "Book Title"
+
+#: bibtex_types/InbookReference.py
+msgid "label_source_chapter"
+msgstr "Chapter"
+
+#: bibtex_types/BookReference.py bibtex_types/ManualReference.py
+msgid "label_source_edition"
+msgstr "Edition"
+
+#: bibtex_types/InbookReference.py
+msgid "label_source_editor"
+msgstr "Editor"
+
+#.            <label for="file" i18n:translate="label_source_file">Source File</label>
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "label_source_file"
+msgstr "Source File"
+
+#: bibtex_types/BookletReference.py bibtex_types/MiscReference.py
+msgid "label_source_howpublished"
+msgstr "How published"
+
+#: bibtex_types/TechreportReference.py
+msgid "label_source_institution"
+msgstr "Institution"
+
+#: bibtex_types/ArticleReference.py
+msgid "label_source_journal"
+msgstr "Journal"
+
+#: bibtex_types/ArticleReference.py bibtex_types/BookReference.py
+#: bibtex_types/ProceedingsReference.py bibtex_types/TechreportReference.py
+msgid "label_source_number"
+msgstr "Number"
+
+#: bibtex_types/ManualReference.py bibtex_types/ProceedingsReference.py
+msgid "label_source_organization"
+msgstr "Organization"
+
+#: bibtex_types/ArticleReference.py bibtex_types/InbookReference.py
+msgid "label_source_pages"
+msgstr "Pages"
+
+#: bibtex_types/ArticleReference.py
+msgid "label_source_pmid"
+msgstr "PMID"
+
+#: bibtex_types/PreprintReference.py
+msgid "label_source_preprint_server"
+msgstr "Preprint Server"
+
+#: bibtex_types/BookReference.py bibtex_types/InbookReference.py
+#: bibtex_types/ProceedingsReference.py
+msgid "label_source_publisher"
+msgstr "Publisher"
+
+#: bibtex_types/MasterthesisReference.py bibtex_types/PhdthesisReference.py
+msgid "label_source_school"
+msgstr "School"
+
+#: bibtex_types/ProceedingsReference.py
+msgid "label_source_series"
+msgstr "Series"
+
+#.          <label for="up_text" i18n:translate="label_source_text">Source Text</label>
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "label_source_text"
+msgstr "Source Text"
+
+#: bibtex_types/TechreportReference.py
+msgid "label_source_type"
+msgstr "Type"
+
+#: bibtex_types/ArticleReference.py bibtex_types/BookReference.py
+#: bibtex_types/ProceedingsReference.py
+msgid "label_source_volume"
+msgstr "Volume"
+
+#.   <a href="" class="link-parent" attributes="href string: $portal_url/plone_control_panel">
+#.       Up to Plone Setup
+#.       </a>
+#: from skins/bibliography/prefs_bibliography_form.cpt
+msgid "label_up_to_plone_setup"
+msgstr ""
+
+#.      <legend i18n:translate="legend_bibliography_default_settings">Default Settings</legend>
+#: skins/bibliography/bibliography_defaultsForm.pt
+msgid "legend_bibliography_default_settings"
+msgstr "Default Settings"
+
+#.   <legend>Bibliography Details</legend>
+#: from skins/bibliography/prefs_bibliography_form.cpt
+msgid "legend_bibliography_details"
+msgstr ""
+
+#.        <legend i18n:translate="legend_import_source">Import Source</legend>
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "legend_import_source"
+msgstr "Import Source"
+
+#.            <span i18n:translate="no_file_imported"
+#.                  tal:define="file_size python:here.getObjSize(here)"
+#.                  tal:condition="not: file_size">
+#.              (No file has been imported yet)
+#.            </span>
+#: skins/bibliography/bibliography_importForm.cpt
+msgid "no_file_imported"
+msgstr "(No file has been imported yet)"
+
+#.    <p tal:condition="not: results" i18n:translate="no_refs">
+#.        There are no bibliographic entries on this site.
+#.    </p>
+#: skins/bibliography/bibliography_view.pt
+msgid "no_refs"
+msgstr "There are no bibliographic entries on this site."
+
+#.    <p tal:condition="not: results" i18n:translate="no_refs_in_folder">
+#.      There are no bibliographic entries in this folder.</p>		
+#: skins/bibliography/bibliography_folder_view.pt
+msgid "no_refs_in_folder"
+msgstr "There are no bibliographic entries in this folder."
+
+# <p i18n:translate="info_items_in_bibfolder">There are <span i18n:name="count" tal:replace="python:len(results)">len(results)</span> references in this bibliography folder.</p>
+msgid "info_items_in_bibfolder"
+msgstr "There are ${count} references in this bibliography folder."

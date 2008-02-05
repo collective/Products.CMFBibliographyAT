@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<object name="portal_bibliography" meta_type="Bibliography Tool">
+ <property name="title"></property>
+ <property name="default_idcooker_id">etal</property>
+ <property name="cook_ids_on_bibref_creation">False</property>
+ <property name="cook_ids_after_bibref_edit">False</property>
+ <property name="use_pids_on_import">True</property>
+ <property name="synchronize_pdffile_attributes">False</property>
+ <property name="enable_duplicates_manager">True</property>
+ <property name="allow_folder_intro">False</property>
+ <property name="allow_pdfupload_portal_policy">True</property>
+ <property name="allow_pdfupload_for_types">
+  <element value="ArticleReference"/>
+  <element value="BookletReference"/>
+  <element value="BookReference"/>
+  <element value="ConferenceReference"/>
+  <element value="InbookReference"/>
+  <element value="IncollectionReference"/>
+  <element value="InproceedingsReference"/>
+  <element value="ManualReference"/>
+  <element value="MastersthesisReference"/>
+  <element value="MiscReference"/>
+  <element value="PhdthesisReference"/>
+  <element value="PreprintReference"/>
+  <element value="ProceedingsReference"/>
+  <element value="TechreportReference"/>
+  <element value="UnpublishedReference"/>
+  <element value="WebpublishedReference"/>
+ </property>
+ <property name="bibfolders_translatable">True</property>
+ <property name="bibrefitems_translatable">True</property>
+ <property name="support_member_references">False</property>
+ <property name="member_types"/>
+ <property name="sort_members_on"></property>
+ <property name="select_members_attr"></property>
+ <property name="members_search_on_attr"></property>
+ <property name="infer_author_references_after_edit">False</property>
+ <property name="infer_author_references_after_import">True</property>
+ <property name="authorof_implies_owner">False</property>
+ <property name="authorof_implies_creator">False</property>
+ <property name="show_isbn_link">False</property>
+ <property name="preprint_servers"/>
+ <property name="searchable_bibfolders">True</property>
+ <object name="IdCookers" meta_type="IdCooker Folder">
+  <property name="title">BibliographyTool's id cooker folder</property>
+  <object name="abbrev" meta_type="Abbreviation Bibliography ID Cooker">
+   <property name="title">Abbreviation Bibliography ID Cooker</property>
+   <property name="idcooker_enabled">True</property>
+  </object>
+  <object name="etal" meta_type="EtAl Bibliography ID Cooker">
+   <property name="title">EtAl Bibliography ID Cooker</property>
+   <property name="idcooker_enabled">True</property>
+  </object>
+  <object name="plone" meta_type="PLONE Default Bibliography ID Cooker">
+   <property name="title">PLONE Default Bibliography ID Cooker</property>
+   <property name="idcooker_enabled">True</property>
+  </object>
+  <object name="uid" meta_type="UID Bibliography ID Cooker">
+   <property name="title">UID Bibliography ID Cooker</property>
+   <property name="idcooker_enabled">True</property>
+  </object>
+ </object>
+ <object name="Parsers" meta_type="Parser Folder">
+  <property name="title">BibliographyTool's parser folder</property>
+  <object name="bibtex" meta_type="Bibtex Parser">
+   <property name="title">BibTeX parser</property>
+   <property name="parser_enabled">True</property>
+  </object>
+  <object name="bids" meta_type="IBSS Parser">
+   <property name="title">IBSS parser</property>
+   <property name="parser_enabled">True</property>
+  </object>
+  <object name="citationmanager" meta_type="CitationManager Parser">
+   <property name="title">CitationManager parser</property>
+   <property name="parser_enabled">True</property>
+  </object>
+  <object name="endnote" meta_type="EndNote Parser">
+   <property name="title">EndNote's text format parser</property>
+   <property name="parser_enabled">True</property>
+  </object>
+  <object name="medline" meta_type="Medline Parser">
+   <property name="title">Medline parser</property>
+   <property name="parser_enabled">True</property>
+  </object>
+  <object name="xml_mods" meta_type="XML (MODS) Parser">
+   <property name="title">XML(MODS) parser</property>
+   <property name="parser_enabled">True</property>
+  </object>
+ </object>
+ <object name="Renderers" meta_type="Renderer Folder">
+  <property name="title">BibliographyTool's renderer folder</property>
+  <object name="bibtex" meta_type="Bibtex Renderer">
+   <property name="title">BibTeX renderer</property>
+   <property name="renderer_enabled">True</property>
+   <property name="default_output_encoding"></property>
+  </object>
+  <object name="endnote" meta_type="EndNote Renderer">
+   <property name="title">transforms bibtex renderer output</property>
+   <property name="renderer_enabled">True</property>
+   <property name="default_output_encoding"></property>
+  </object>
+  <object name="pdf" meta_type="PDF Renderer">
+   <property name="title">PDF renderer (via latex/bibtex)</property>
+   <property name="renderer_enabled">True</property>
+   <property name="template">
+    \documentclass[english,12pt,a4paper]{article}
+    \usepackage[T1]{fontenc}
+    \usepackage[latin9]{inputenc}
+    \usepackage{bibmods}
+    \usepackage{bibnames}
+    \usepackage{showtags}
+    \renewcommand{\refname}{~}
+    
+    
+    \begin{document}
+    \begin{center}
+    {\large \bf %s}\\
+    (URL: %s)
+    \end{center}
+    
+    
+    ~\hfill \today
+    
+    
+    \nocite{*}
+    \bibliographystyle{abbrv}
+    \bibliography{references}
+    
+    
+    \end{document}</property>
+  </object>
+  <object name="ris" meta_type="RIS Renderer">
+   <property name="title">transforms bibtex renderer output</property>
+   <property name="renderer_enabled">True</property>
+   <property name="default_output_encoding"></property>
+  </object>
+  <object name="xml_mods" meta_type="XML Renderer">
+   <property
+      name="title">XML (MODS) - transforms bibtex renderer output</property>
+   <property name="renderer_enabled">True</property>
+   <property name="default_output_encoding"></property>
+  </object>
+ </object>
+</object>

@@ -1,0 +1,321 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/prefs_main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<div metal:fill-slot="prefs_configlet_main"
+     tal:define="errors options/state/getErrors;
+                 bib_tool here/portal_bibliography">
+
+    <ul class="contentViews">
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_docs"
+             i18n:translate="label_bibliography_docs">Documentation</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_general_form"
+             i18n:translate="label_bibliography_general">General</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_idcooking_form"
+             i18n:translate="label_bibliography_idcooking">ID Cooking</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_importexport_form"
+             i18n:translate="label_bibliography_importexport">Import / Export</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_duplicates_form"
+             i18n:translate="label_bibliography_duplicates">Duplicates Management</a>
+       </li>
+       <li class="selected">
+          <a href=""
+             tal:attributes="href string:$here_url/$template_id"
+             i18n:translate="label_bibliography_memberrefsupport">Member Reference Support</a>
+       </li>
+    </ul>
+
+    <div class="contentActions">
+      &nbsp;
+    </div>
+
+    <h1 i18n:translate="heading_memberrefsupport_bibliography_setup">Bibliography Setup - Member Reference Support</h1>
+
+    <a href=""
+       class="link-parent"
+       tal:attributes="href string: $portal_url/plone_control_panel"
+       i18n:translate="label_up_to_plone_setup"
+       i18n:domain="plone">
+    Up to Plone Setup
+    </a>
+
+    <p i18n:translate="description_memberrefsupport_bibliography_setup">
+        Set up how authors / editors for bibliographical items can be referenced to member objects of your site.
+    </p>
+
+    <form action=""
+          name="prefs_bibliography_memberrefsupport"
+          method="post"
+          tal:attributes="action string:${here/absolute_url}/${template/getId}">
+
+        <fieldset>
+            <legend i18n:translate="legend_bibliography_memberrefsupportdetails">Member Referencing Details</legend>
+
+            <div class="field"
+                 tal:define="isShowMembersChecked python:bib_tool.support_member_references;
+                             isShowMembersNotChecked python:not bib_tool.support_member_references;
+                             tabindex tabindex/next;">
+
+                <label i18n:translate="label_memberrefsupport_link">Support Member References for the authors and editors fields</label>
+
+                <div class="formHelp" i18n:translate="help_memberrefsupport_text">
+                Should it be allowed on all bibliographical reference items to relate authors / editors to portal members?
+                </div>
+
+                <input class="noborder"
+                       type="radio"
+                       name="support_member_references:int"
+                       id="support_member_references_on"
+                       value="1"
+                       tabindex=""
+                       tal:attributes="checked isShowMembersChecked;
+                                       tabindex tabindex;" />
+
+                <label for="support_member_references_on"
+                       i18n:translate="label_memberrefsupport_on">Support referencing authors / editors to portal members</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="support_member_references:int"
+                       id="support_member_references_off"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked isShowMembersNotChecked;
+                                       tabindex tabindex;" />
+
+                <label for="support_member_references_off"
+                       i18n:translate="label_memberrefsupport_off">Just enter author / editor names into ordinary text fields</label>
+
+            </div>
+
+            <div class="field"
+                 tal:define="isInferAuthorReferencesAfterEditChecked python:bib_tool.infer_author_references_after_edit;
+                             isInferAuthorReferencesAfterEditNotChecked python:not bib_tool.infer_author_references_after_edit;
+                             tabindex tabindex/next;">
+
+                <label i18n:translate="label_memberrefsafteredit_link">Infer author references after each edit of a bibliographical reference item</label>
+
+                <div class="formHelp" i18n:translate="help_memberrefsafteredit_text">
+                Should author names be automagically referred to member references after edit?
+                </div>
+
+                <input class="noborder"
+                       type="radio"
+                       name="infer_author_references_after_edit:int"
+                       id="infer_author_references_after_edit_on"
+                       value="1"
+                       tabindex=""
+                       tal:attributes="checked isInferAuthorReferencesAfterEditChecked;
+                                       tabindex tabindex;" />
+
+                <label for="infer_author_references_after_edit_on"
+                       i18n:translate="label_memberrefafteredit_on">Automatically infer authors to member references</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="infer_author_references_after_edit:int"
+                       id="infer_author_references_after_edit_off"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked isInferAuthorReferencesAfterEditNotChecked;
+                                       tabindex tabindex;" />
+
+                <label for="infer_author_references_after_edit_off"
+                       i18n:translate="label_memberrefafteredit_off">Leave the member reference field of authors / editors untouched</label>
+
+            </div>
+
+            <div class="field"
+                 tal:define="isInferAuthorReferencesAfterImportChecked python:bib_tool.infer_author_references_after_import;
+                             isInferAuthorReferencesAfterImportNotChecked python:not bib_tool.infer_author_references_after_import;
+                             tabindex tabindex/next;">
+
+                <label i18n:translate="label_memberrefsafterimport_link">Infer author references after import of bibliographical reference items</label>
+
+                <div class="formHelp" i18n:translate="help_memberrefsafterimport_text">
+                Should author names be automagically referred to member references after import?
+                </div>
+
+                <input class="noborder"
+                       type="radio"
+                       name="infer_author_references_after_import:int"
+                       id="infer_author_references_after_import_on"
+                       value="1"
+                       tabindex=""
+                       tal:attributes="checked isInferAuthorReferencesAfterImportChecked;
+                                       tabindex tabindex;" />
+
+                <label for="infer_author_references_after_import"
+                       i18n:translate="label_memberrefafterimport_on">Automatically infer authors to member references</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="infer_author_references_after_import:int"
+                       id="infer_author_references_after_import_off"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked isInferAuthorReferencesAfterImportNotChecked;
+                                       tabindex tabindex;" />
+
+                <label for="infer_author_references_after_import_off"
+                       i18n:translate="label_memberrefafterimport_off">Leave the member reference field of authors / editors untouched</label>
+
+            </div>
+
+            <div class="field"
+                 tal:define="authorOfImpliesOwnerChecked python:bib_tool.authorof_implies_owner;
+                             authorOfImpliesOwnerNotChecked python:not bib_tool.authorof_implies_owner;
+                             tabindex tabindex/next;">
+
+                <label i18n:translate="label_authorofimpliesowner_link">Make authors that can be referenced to a portal member owners of their bibliographical entries</label>
+
+                <div class="formHelp" i18n:translate="help_authorofimpliesowner_text">
+                With this feature you can make sure that authors will always be able to edit their own bibliographical entries.
+                </div>
+
+                <input class="noborder"
+                       type="radio"
+                       name="authorof_implies_owner:int"
+                       id="authorof_implies_owner_on"
+                       value="1"
+                       tabindex=""
+                       tal:attributes="checked authorOfImpliesOwnerChecked;
+                                       tabindex tabindex;" />
+
+                <label for="authorof_implies_owner"
+                       i18n:translate="label_authorofimpliesowner_on">Make authors owners of their bibliographical entries</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="authorof_implies_owner:int"
+                       id="authorof_implies_owner_off"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked authorOfImpliesOwnerNotChecked;
+                                       tabindex tabindex;" />
+
+                <label for="authorof_implies_owner_off"
+                       i18n:translate="label_authorofimpliesowner_off">Do not touch any local roles of bibliographical entries!!!</label>
+
+            </div>
+
+            <div class="field"
+                 tal:define="authorOfImpliesCreatorChecked python:bib_tool.authorof_implies_creator;
+                             authorOfImpliesCreatorNotChecked python:not bib_tool.authorof_implies_creator;
+                             tabindex tabindex/next;">
+
+                <label i18n:translate="label_authorofimpliescreator_link">Make authors that can be referenced to a portal member creators (the metadata field) of their bibliographical entries</label>
+
+                <div class="formHelp" i18n:translate="help_authorofimpliescreator_text">
+                This feature takes care of the metadata field 'creators'. It copies all referenceable authors' member IDs into the 'creators' metadata field.
+                </div>
+
+                <input class="noborder"
+                       type="radio"
+                       name="authorof_implies_creator:int"
+                       id="authorof_implies_creator_on"
+                       value="1"
+                       tabindex=""
+                       tal:attributes="checked authorOfImpliesCreatorChecked;
+                                       tabindex tabindex;" />
+
+                <label for="authorof_implies_creator"
+                       i18n:translate="label_authorofimpliescreator_on">Make authors creators of their bibliographical entries</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="authorof_implies_creator:int"
+                       id="authorof_implies_creator_off"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked authorOfImpliesCreatorNotChecked;
+                                       tabindex tabindex;" />
+
+                <label for="authorof_implies_creator_off"
+                       i18n:translate="label_authorofimpliescreator_off">Do not touch the creators metadata field!!!</label>
+
+            </div>
+
+            <div class="formControls">
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.Save"
+                       value="Save"
+                       i18n:attributes="value label_save"
+                       i18n:domain="plone"
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+                <input class="standalone"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.Cancel"
+                       value="Cancel"
+                       i18n:attributes="value label_cancel"
+                       i18n:domain="plone"
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
+        </fieldset>
+
+        <input type="hidden" name="form.submitted" value="1" />
+
+        <tal:cmf-member-hiddenfields tal:condition="bib_tool/usesCMFMember">
+            <select style="visibility: hidden; padding-bottom:-2em;"
+                    multiple="multiple" name="member_types:list" id="member_types">
+
+                <option value="Member" selected="selected">Member</option>
+
+            </select>
+            <select style="visibility: hidden; padding-bottom:-2em;"
+                    name="select_members_attr:text" id="select_members_attr">
+
+                <option value="Title" selected="selected"></option>
+
+            </select>
+            <select style="visibility: hidden; padding-bottom:-2em;"
+                    name="sort_members_on:text" id="sort_members_on">
+
+                <option value="sortable_title" selected="selected"></option>
+
+            </select>
+        </tal:cmf-member-hiddenfields>
+
+    </form>
+
+</div>
+
+</body>
+</html>
+

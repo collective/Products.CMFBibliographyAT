@@ -1,0 +1,6 @@
+[validators]
+validators=
+
+[actions]
+action.failure=traverse_to:string:prefs_bibliography_idcooking_form
+action.success=redirect_to:string:prefs_bibliography_idcooking_form

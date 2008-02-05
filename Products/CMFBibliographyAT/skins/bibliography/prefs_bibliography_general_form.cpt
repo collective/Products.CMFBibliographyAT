@@ -1,0 +1,454 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/prefs_main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+  <metal:javascriptslot fill-slot="javascript_head_slot">
+      <script type="text/javascript">
+      //<!--
+
+        function selectRadio(name, checkit){
+          for (var i = 0; (input = document.getElementsByTagName('input').item(i)); i++) {
+
+            if (input.name.split(":")[0] == name.split(":")[0]) {
+
+                if ( checkit && ( input.id == name.split(":")[0] + "_on" )) input.checked = true;
+                if ( ! checkit && ( input.id == name.split(":")[0] + "_off" )) input.checked = true;
+
+            }
+          }
+        }
+
+       //-->
+       </script>
+  </metal:javascriptslot>
+
+<body>
+
+<div metal:fill-slot="prefs_configlet_main"
+     tal:define="errors options/state/getErrors;
+                 bib_tool here/portal_bibliography">
+
+    <ul class="contentViews">
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_docs"
+             i18n:translate="label_bibliography_docs">Documentation</a>
+       </li>
+       <li class="selected">
+          <a href=""
+             tal:attributes="href string:$here_url/$template_id"
+             i18n:translate="label_bibliography_general">General</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_idcooking_form"
+             i18n:translate="label_bibliography_idcooking">ID Cooking</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_importexport_form"
+             i18n:translate="label_bibliography_importexport">Import / Export</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_duplicates_form"
+             i18n:translate="label_bibliography_duplicates">Duplicates Management</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_memberrefsupport_form"
+             i18n:translate="label_bibliography_memberrefsupport">Member Reference Support</a>
+       </li>
+    </ul>
+
+    <div class="contentActions">
+      &nbsp;
+    </div>
+
+    <h1 i18n:translate="head_general_bibliography_setup">Bibliography Setup - General</h1>
+
+    <a href=""
+       class="link-parent"
+       tal:attributes="href string: $portal_url/plone_control_panel"
+       i18n:domain="plone"
+       i18n:translate="label_up_to_plone_setup">
+    Up to Plone Setup
+    </a>
+
+    <p i18n:translate="description_general_bibliography_setup">
+        Specify some general information required by the portal's bibliography product(s).
+    </p>
+
+    <form action=""
+          name="prefs_bibliography_general"
+          method="post"
+          tal:attributes="action string:${here/absolute_url}/${template/getId}">
+
+        <fieldset>
+            <legend i18n:translate="legend_bibliography_general">Bibliography General Setup</legend>
+
+            <div class="field"
+                 tal:define="bibFoldersTranslatable python:bib_tool.bibfolders_translatable;
+                             bibFoldersNotTranslatable python:not bib_tool.bibfolders_translatable;
+                             tabindex tabindex/next;">
+
+                <label i18n:translate="label_bibfolders_translatable">Translatable Bibliography Folders</label>
+
+                <p class="formHelp" i18n:translate="help_bibfolders_translatable">
+                For most portal scenarios translatable bibliography folders are not required and might only confuse the user.
+                Here you can disable the portal's translation feature (e.g. LinguaPlone) for bibliography folders. Voting for translatable
+                bibliography folders will automagically enable the translation feature for bibliographical entries below.
+                </p>
+
+                <input class="noborder"
+                       type="radio"
+                       name="bibfolders_translatable:int"
+                       id="bibrefitems_translatable_on"
+                       value="1"
+                       tabindex=""
+                       tal:attributes="checked bibFoldersTranslatable;
+                                       onClick string:javascript:selectRadio('bibrefitems_translatable:int', true);;;
+                                       tabindex tabindex;" />
+
+                <label for="show_bibfolders_translatable_on" i18n:translate="label_bibfolders_translatable_on">Allow translation of bibliography folders</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="bibfolders_translatable:int"
+                       id="bibfolders_translatable_off"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked bibFoldersNotTranslatable;
+                                       tabindex tabindex;" />
+
+                <label for="show_bibfolders_translatable_off" i18n:translate="label_bibfolders_translatable_off">Do not allow translation of bibliography folders</label>
+            </div>
+
+            <div class="field"
+                 tal:define="bibrefItemsTranslatable python:bib_tool.bibrefitems_translatable;
+                             bibrefItemsNotTranslatable python:not bib_tool.bibrefitems_translatable;
+                             tabindex tabindex/next;">
+
+                <label i18n:translate="label_bibrefitems_translatable">Translatable Bibliography Reference Items</label>
+
+                <p class="formHelp" i18n:translate="help_bibrefitems_translatable">
+                For most portal scenarios translatable bibliography entries are not required and might only confuse the user.
+                Here you can disable the portal's translation feature (e.g. LinguaPlone) for bibliographical entries.
+                If you decide to disable reference item translation here, the bibliography folder translation feature above will also be deactivated.
+                </p>
+
+                <input class="noborder"
+                       type="radio"
+                       name="bibrefitems_translatable:int"
+                       id="bibrefitems_translatable_on"
+                       value="1"
+                       tabindex=""
+                       tal:attributes="checked bibrefItemsTranslatable;
+                                       tabindex tabindex;" />
+
+                <label for="show_bibrefitems_translatable_on" i18n:translate="label_bibrefitems_translatable_on">Allow translation of reference items</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="bibrefitems_translatable:int"
+                       id="bibrefitems_translatable_off"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked bibrefItemsNotTranslatable;
+                                       onClick string:javascript:selectRadio('bibfolders_translatable:int', false);;;
+                                       tabindex tabindex;" />
+
+                <label for="show_bibrefitems_translatable_off" i18n:translate="label_bibrefitems_translatable_off">Do not allow translation of reference items</label>
+            </div>
+
+            <div class="field"
+                 tal:define="isSearchableBibFoldersChecked python:bib_tool.searchable_bibfolders;
+                             isSearchableBibFoldersNotChecked python:not bib_tool.searchable_bibfolders;
+                             tabindex tabindex/next;">
+
+                <label i18n:translate="label_searchable_bibfolders">Searchable Bibliography Folders</label>
+
+                <p class="formHelp" i18n:translate="help_searchable_bibfolders1">
+                You can explicitly exclude bibliographical entries of certain bibliography folders from the results of bibliography search requests.
+                The &raquo;searchable&laquo;-flag of bibliography folders has an impact
+                on requests made with the bibliography search form of CMFBibliographyAT. It also has an influence on other
+                bibliography products like ATBiblioTopic or ATBiblioList.
+                </p>
+
+                <p class="formHelp" i18n:translate="help_searchable_bibfolders2">
+                The settings specified here will be used as default for new bibliography folders.
+                </p>
+
+                <input class="noborder"
+                       type="radio"
+                       name="searchable_bibfolders:int"
+                       id="searchable_bibfolders_on"
+                       value="1"
+                       tabindex=""
+                       tal:attributes="checked isSearchableBibFoldersChecked;
+                                       tabindex tabindex" />
+
+                <label for="searchable_bibfolders_on"
+                       i18n:translate="label_searchable_bibfolders_on">Bibliography folders are searchable by default</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="searchable_bibfolders:int"
+                       id="searchable_bibfolders_off"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked isSearchableBibFoldersNotChecked;
+                                       tabindex tabindex;" />
+
+                <label for="searchable_bibfolders_off"
+                       i18n:translate="label_searchable_bibfolders_off">By default new bibliography folders are not searchable</label>
+            </div>
+
+            <div class="field"
+                 tal:define="isIntroChecked python:bib_tool.allow_folder_intro;
+                             isIntroNotChecked python:not bib_tool.allow_folder_intro;
+                             tabindex tabindex/next;">
+
+                <label i18n:translate="label_allow_intro_text">Intro Text for Bibliography Folders</label>
+
+                <p class="formHelp" i18n:translate="help_allow_intro_text">
+                Should the introductory text on the view pages of a bibliography folder be replaced by the content of the 'intro' field?
+                </p>
+
+                <input class="noborder"
+                       type="radio"
+                       name="allow_folder_intro:int"
+                       id="allow_folder_intro_on"
+                       value="1"
+                       tabindex=""
+                       tal:attributes="checked isIntroChecked;
+                                       tabindex tabindex" />
+
+                <label for="allow_folder_intro_on"
+                       i18n:translate="label_allow_folder_intro_on">Display intro text in bibliography folders' view page</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="allow_folder_intro:int"
+                       id="allow_folder_intro_off"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked isIntroNotChecked;
+                                       tabindex tabindex;" />
+
+                <label for="allow_folder_intro_off"
+                       i18n:translate="label_allow_folder_intro_off">Display default message</label>
+            </div>
+
+            <div class="field"
+                tal:define="allowPdfUploadPortalPolicyChecked python:bib_tool.allow_pdfupload_portal_policy;
+                            allowPdfUploadPortalPolicyNotChecked python:not bib_tool.allow_pdfupload_portal_policy;
+                            tabindex tabindex/next;">
+               <label i18n:translate="label_pdfupload_portal_policy">PDF Upload Portal Policy</label>
+
+               <p class="formHelp" i18n:translate="help_pdfupload_portal_policy">
+                 For each bibliographical reference you can optionally upload a PDF file.
+                 If PDF file upload of publications might cause copyright issues that you do not want to deal with, you might
+                 want to deactivate PDF file upload all over this site.
+               </p>
+
+               <input class="noborder"
+                      type="radio"
+                      name="allow_pdfupload_portal_policy:int"
+                      id="allow_pdfupload_portal_policy_enabled"
+                      value="1"
+                      tabindex=""
+                      tal:attributes="checked python: test (allowPdfUploadPortalPolicyChecked, 'checked', None);
+                                      tabindex tabindex;" />
+
+                <label tal:attributes="for python: 'allow_pdfupload_portal_policy_enabled'"
+                       i18n:translate="label_pdfupload_portal_policy_enabled">Allow the upload of publications in PDF format for the site</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="allow_pdfupload_portal_policy:int"
+                       id="allow_pdfupload_portal_policy_disabled"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked python: test (allowPdfUploadPortalPolicyNotChecked, 'checked', None);
+                                       tabindex tabindex;" />
+
+                <label tal:attributes="for python: 'allow_pdfupload_portal_policy_disabled'"
+                       i18n:translate="label_pdfupload_portal_policy_disabled">Upload of publications in PDF format is forbidden all over the portal</label>
+
+            </div>
+
+            <div class="field">
+
+                <label i18n:translate="label_pdfupload_policy_for_types">Allow PDF upload for selected bibliographical types (bibliography folder defaults)</label>
+
+                <p class="formHelp" i18n:translate="help_pdfupload_policy_for_types">
+                Select bibliographical reference types that shall support upload of publications in PDF format. The settings specified here will be
+                used as default for new bibliography folders.
+                </p>
+
+                    <select
+                       multiple="multiple"
+                       name="allow_pdfupload_for_types:list"
+                       width="100%"
+                       id="allow_pdfupload_for_types"
+                       tal:attributes="tabindex tabindex/next;">
+
+                        <option
+                            tal:repeat="bibref_type python: bib_tool.getReferenceTypes()"
+                            tal:attributes="value bibref_type;
+                                            selected python: test(bibref_type in bib_tool.allowPdfUploadForTypes(), 'selected', None);"
+                            tal:content="bibref_type"
+                            i18n:translate=""
+                            i18n:domain="plone"/>
+                    </select>
+
+            </div>
+
+            <div class="field"
+                tal:define="synchronizePdfFileAttributesChecked python:bib_tool.synchronize_pdffile_attributes;
+                            synchronizePdfFileAttributesNotChecked python:not bib_tool.synchronize_pdffile_attributes;
+                            tabindex tabindex/next;">
+               <label i18n:translate="label_synchronize_pdffiles">PDF File Synchronization</label>
+
+               <p class="formHelp" i18n:translate="help_synchronize_pdffiles1">
+               On upload of a PDF file the ID of
+               the uploaded PDF is derived from the filename of the uploaded file. The member that uploads the PDF
+               will be assigned as Owner (local role) and as Creator of the PDF File.
+               </p>
+               <p class="formHelp" i18n:translate="help_synchronize_pdffiles2">
+               However, it is also possible to keep IDs, local roles and the creators field
+               of uploaded PDF files in sync with their related bibliographical entry's ID resp. attributes.
+               </p>
+               <p class="formHelp" i18n:translate="help_synchronize_pdffiles3">
+               The settings specified here will be used as default for new bibliography folders.
+               </p>
+
+               <input class="noborder"
+                      type="radio"
+                      name="synchronize_pdffile_attributes:int"
+                      id="synchronize_pdffile_attributes_enabled"
+                      value="1"
+                      tabindex=""
+                      tal:attributes="checked python: test (synchronizePdfFileAttributesChecked, 'checked', None);
+                                      tabindex tabindex;" />
+
+                <label tal:attributes="for python: 'synchronize_pdffile_attributes_enabled'"
+                       i18n:translate="label_upload_pdffiles_enabled">Try to keep PDF file IDs in sync with IDs of bibliographical entries</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="synchronize_pdffile_attributes:int"
+                       id="synchronize_pdffile_attributes_disabled"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked python: test (synchronizePdfFileAttributesNotChecked, 'checked', None);
+                                       tabindex tabindex;" />
+
+                <label tal:attributes="for python: 'synchronize_pdffile_attributes_disabled'"
+                       i18n:translate="label_upload_pdffiles_disabled">Keep the filesystem filename as ID for uploaded PDF files</label>
+
+            </div>
+
+            <div class="field"
+                 tal:define="isbnLinkChecked python:bib_tool.show_isbn_link;
+                             isbnLinkNotChecked python:not bib_tool.show_isbn_link;
+                             tabindex tabindex/next;">
+
+                <label i18n:translate="label_isbn_link">ISBN Link</label>
+
+                <p class="formHelp" i18n:translate="help_isbn_link">
+                The site-wide default for the ISBN links that book references may offer if the ISBN number of the book is specified. This may be overridden by defining a 'show_isbn_link' property for an individual bibliography folder or even individual book reference.
+                </p>
+
+                <input class="noborder"
+                       type="radio"
+                       name="show_isbn_link:int"
+                       id="show_isbn_link_on"
+                       value="1"
+                       tabindex=""
+                       tal:attributes="checked isbnLinkChecked;
+                                       tabindex tabindex;" />
+
+                <label for="show_isbn_link_on" i18n:translate="label_show_isbn_link_on">Allow ISBN links to be displayed</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="show_isbn_link:int"
+                       id="show_isbn_link_off"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked isbnLinkNotChecked;
+                                       tabindex tabindex;" />
+
+                <label for="show_isbn_link_off" i18n:translate="label_show_isbn_link_off">Do not show ISBN links</label>
+            </div>
+
+           <div class="field"
+                tal:define="preprint_servers request/preprint_servers | bib_tool/preprint_servers;
+                            error errors/preprint_servers | nothing;">
+
+                <label i18n:translate="label_preprint_servers">Preprint Servers</label>
+
+                <p class="formHelp" i18n:translate="help_preprint_servers">
+                The preprint servers users can select from. The format has to be in the form 'server name:server url'. The URL may be omitted but the ':' still needs to be present then.
+                </p>
+
+                <textarea cols="30"
+                          rows="6"
+                          name="preprint_servers:lines"
+                          tabindex=""
+                          tal:attributes="tabindex tabindex/next"
+                          tal:content="python:'\n'.join(preprint_servers)">Preprint Servers</textarea>
+            </div>
+
+            <div class="formControls">
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.Save"
+                       value="Save"
+                       i18n:attributes="value label_save"
+                       i18n:domain="plone"
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+                <input class="standalone"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.Cancel"
+                       value="Cancel"
+                       i18n:attributes="value label_cancel"
+                       i18n:domain="plone"
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
+        </fieldset>
+
+        <input type="hidden" name="form.submitted" value="1" />
+
+    </form>
+
+</div>
+
+</body>
+</html>
+

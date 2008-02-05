@@ -1,0 +1,166 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/prefs_main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<div metal:fill-slot="prefs_configlet_main"
+     tal:define="errors options/state/getErrors;
+                 bib_tool here/portal_bibliography">
+
+    <ul class="contentViews">
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_docs"
+             i18n:translate="label_bibliography_docs">Documentation</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_general_form"
+             i18n:translate="label_bibliography_general">General</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_idcooking_form"
+             i18n:translate="label_bibliography_idcooking">ID Cooking</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_importexport_form"
+             i18n:translate="label_bibliography_importexport">Import / Export</a>
+       </li>
+       <li class="selected">
+          <a href=""
+             tal:attributes="href string:$here_url/$template_id"
+             i18n:translate="label_bibliography_duplicates">Duplicates Management</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_memberrefsupport_form"
+             i18n:translate="label_bibliography_memberrefsupport">Member Reference Support</a>
+       </li>
+    </ul>
+
+    <div class="contentActions">
+      &nbsp;
+    </div>
+
+    <h1 i18n:translate="head_duplicates_bibliography_setup">Bibliography Setup - Duplicates Management</h1>
+
+    <a href=""
+       class="link-parent"
+       tal:attributes="href string: $portal_url/plone_control_panel"
+       i18n:translate="label_up_to_plone_setup"
+       i18n:domain="plone">
+    Up to Plone Setup
+    </a>
+
+    <p i18n:translate="description_duplicates_bibliography_setup">
+        Specify some information on how to handle duplicate bibliographical references in bibliography folders.
+    </p>
+
+    <form action=""
+          name="prefs_bibliography_duplicates"
+          method="post"
+          tal:attributes="action string:${here/absolute_url}/${template/getId}">
+
+        <fieldset>
+            <legend i18n:translate="legend_bibliography_duplicates">Bibliography Duplicates Management</legend>
+
+           <div class="field"
+                tal:define="enableDuplicatesManagerChecked python:bib_tool.enable_duplicates_manager;
+                            enableDuplicatesManagerNotChecked python:not bib_tool.enable_duplicates_manager;
+                            tabindex tabindex/next;">
+               <label i18n:translate="label_enable_duplicates_manager">Enable Duplicates Management Engine</label>
+
+               <div class="formHelp" i18n:translate="help_enable_duplicates_manager">
+               Bibliography folders have an integrated Duplicates Management Engine that can handle duplicate bibliographical references. If you want to enable this
+               engine in every new bibliography folder (recommended) select this here.
+               </div>
+
+               <input class="noborder"
+                      type="radio"
+                      name="enable_duplicates_manager:int"
+                      id="enable_duplicates_manager_enabled"
+                      value="1"
+                      tabindex=""
+                      tal:attributes="checked python: test (enableDuplicatesManagerChecked, 'checked', None);
+                                      tabindex tabindex;" />
+
+                <label tal:attributes="for python: 'enable_duplicates_manager_enabled'"
+                       i18n:translate="label_enable_duplicates_manager_enabled">Use duplicates management as a default for new bibliography folders</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="enable_duplicates_manager:int"
+                       id="enable_duplicates_manager_disabled"
+                       value="0"
+                       tabindex=""
+                       tal:attributes="checked python: test (enableDuplicatesManagerNotChecked, 'checked', None);
+                                       tabindex tabindex;" />
+
+                <label tal:attributes="for python: 'enable_duplicates_manager_disabled'"
+                       i18n:translate="label_enable_duplicates_manager_disabled">No duplicates management shall be the default for new bibliography folders</label>
+
+            </div>
+            <input type="hidden" name="form.submitted" value="1" />
+            <div class="formControls">
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.Save"
+                       value="Save"
+                       i18n:attributes="value label_save"
+                       i18n:domain="plone"
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+                <input class="standalone"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.Cancel"
+                       value="Cancel"
+                       i18n:attributes="value label_cancel"
+                       i18n:domain="plone"
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
+        </fieldset>
+    </form>
+
+        <fieldset>
+
+            <legend i18n:translate="legend_bibliography_duplicatescriteria">Bibliography Duplicates Criteria</legend>
+
+            <div class="field"
+                 tal:define="criteria_object python: here.portal_bibliography;
+                             form_action string:prefs_bibliography_managecriteria;">
+
+                <div class="formHelp">
+                <p i18n:translate="help_duplicatescriteria_p1">The listing below shows the criteria
+                   that the duplicates engine of a bibliography folder can check on copy/cut+paste or
+                   import actions on bibliographical items. A bibliography folder's duplicate
+                   engine tries to find out if two different bibliographical entries refer
+                   to the same publication.</p>
+                <p i18n:translate="help_duplicatescriteria_p2">Criteria selected here will be used as default settings for the duplicate engine of
+                   new bibliography folders.
+                   To change a set of criteria for a bibliographical reference type, check the individual criteria of that type and click "Update All Duplicates Criteria" at the very bottom of this fieldset.</p>
+                </div>
+
+            <metal:duplicates-criteria  metal:use-macro="here/bibliography_managecriteria_macros/macros/duplicates_criteria" />
+
+            </div>
+
+        </fieldset>
+
+</div>
+
+</body>
+</html>
+

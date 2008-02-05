@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<div metal:fill-slot="main">
+
+<metal:macro metal:define-macro="body">
+    <div class="documentDescription"
+         tal:content="here/Description" />
+    <p class="discreet"
+       tal:condition="python:not here.portal_bibliography.allow_folder_intro or not here.getIntro()"
+       i18n:translate="description_bibliographyfolder">
+       This folder holds the following references to publications, sorted by year and author.</p>
+
+    <div tal:condition="python:here.getIntro() and here.portal_bibliography.allow_folder_intro"
+         style="padding-bottom: 4pt;">
+      <p tal:content="structure here/getIntro" />
+    </div>
+
+</metal:macro>
+
+<metal:macro metal:define-macro="folderlisting"
+       tal:define="style request/style|here/default_bibliography_style|here/portal_bibliostyles/default_bibliography_style|string:stl_default;
+                   raw_results python: here.getBibReferences(lazy=True);
+                   sort_on python:(('publication_year', 'cmp', 'desc'),
+                                   ('Authors', 'nocase', 'asc'));
+                   results python:sequence.sort(raw_results, sort_on);
+                   Batch python:modules['Products.CMFPlone'].Batch;
+                   DateTime python:modules['DateTime'].DateTime;
+                   b_start python:request.get('b_start',0);">
+
+    <p i18n:translate="info_items_in_bibfolder" tal:condition="python:len(results) > 1">There are <span i18n:name="count" tal:replace="python:len(results)">len(results)</span> references in this bibliography folder.</p>
+    <p i18n:translate="info_item_in_bibfolder" tal:condition="python:len(results) == 1">There is only a single reference in this bibliography folder.</p>
+    <p tal:condition="not: results" i18n:translate="no_refs_in_folder">
+      There are no bibliographic entries in this folder.</p>
+
+    <metal:block tal:condition="results"
+          tal:define="batch python:Batch(results, 25, int(b_start), orphan=1)">
+
+        <metal:style metal:use-macro="here/bibliography_view/macros/bibentries_style" />
+
+        <!-- Navigation -->
+        <div metal:use-macro="here/batch_macros/macros/navigation" />
+
+        <metal:list metal:use-macro="here/bibliography_view/macros/bibentries_view" />
+
+        <div class="spacer">&nbsp;</div>
+
+        <!-- Navigation -->
+        <div metal:use-macro="here/batch_macros/macros/navigation" />
+
+    </metal:block>
+
+</metal:macro>
+
+  </div>
+
+</html>

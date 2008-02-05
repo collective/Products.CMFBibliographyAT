@@ -1,0 +1,619 @@
+# Gettext Message File for CMFBibliographyAT.
+# Raphael Ritz <r.ritz@biologie.hu-berlin.de>, 2002-2006
+msgid ""
+msgstr ""
+"Project-Id-Version: CMFBibliographyAT 0.9\n"
+"Report-Msgid-Bugs-To: m.gabriel@sunweavers.net\n"
+"POT-Creation-Date: 2006-04-01 16:06+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Domain: cmfbibliographyat\n"
+
+#. Default: "Short Name"
+#: ./content/schemata.py
+msgid "label_shortname_cookid_warning"
+msgstr ""
+
+#. Default: "There is ID re-cooking (after every edit / paste action) enabled on this item's parent bibliography folder. You cannot manually edit this item's short name. Modifications in this field will be ignored."
+#: ./content/schemata.py
+msgid "help_shortname_cookid_warning"
+msgstr ""
+
+#. Default: "Authors"
+#: ./content/schemata.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_authors"
+msgstr ""
+
+#. Default: "If possible, always fill in the complete authors' / editors' names."
+#: ./content/schemata.py
+msgid "help_authors"
+msgstr ""
+
+#. Default: "Title"
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_title"
+msgstr ""
+
+#. Default: "Reference Type (Plone archetype name of content type)"
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_reference_type"
+msgstr ""
+
+#. Default: "Publication Year"
+#: ./content/schemata.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_publication_year"
+msgstr ""
+
+#. Default: "The year of publication. For unpublished works, please specify the year of composure. This field should contain a year number like '1984', but it can also process notes like &raquo;in print&laquo; etc."
+#: ./content/schemata.py
+msgid "help_publication_year"
+msgstr ""
+
+#. Default: "Abstract"
+#: ./content/schemata.py
+msgid "label_abstract"
+msgstr ""
+
+#. Default: "An abstract of the referenced publication. Please contact your portal's reviewers if unsure about the site's default language for abstracts in bibliographical references."
+#: ./content/schemata.py
+msgid "help_abstract"
+msgstr ""
+
+#.Default: "Online URL"
+#: ./content/schemata.py
+msgid "label_url"
+msgstr ""
+
+#. Default: "The (external) URL to get to an online version of the referenced resource."
+#: ./content/schemata.py
+msgid "help_url"
+msgstr ""
+
+#. Default: "PDF URL"
+#: ./content/schemata.py
+msgid "label_pdfref_url"
+msgstr ""
+
+#. Default: "The (external) URL to retrieve a printable version (PDF file) of the referenced resource from."
+#: ./content/schemata.py
+msgid "help_pdfref_url"
+msgstr ""
+
+#. Default: "AT Reference to Printable File (in PDF format)"
+#: ./content/schemata.py
+msgid "label_pdf_file"
+msgstr ""
+
+#. Default: "This is AT field is hidden to anyone but portal managers. It refers to the associated PDF document on this site (if any). Use it for repair if the PDF file association of this bibliographical entry is broken."
+#: ./content/schemata.py
+msgid "help_pdf_file"
+msgstr ""
+
+#. Default:  "Printable PDF File"
+#: ./content/schemata.py
+#: ./content/pdf.py
+msgid "label_upload_pdffile_from_bibrefitem"
+msgstr ""
+
+#. Default: "If not in conflict with any copyright issues, use this field to upload a printable version (PDF file) of the referenced resource."
+#: ./content/schemata.py
+#: ./content/pdf.py
+msgid "help_upload_pdffile_from_bibrefitem"
+msgstr ""
+
+#. Default: "Publication Month"
+#: ./content/schemata.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_publication_month"
+msgstr ""
+
+#. Default: "Month of publication (or writing, if not published)."
+#: ./content/schemata.py
+msgid "help_publication_month"
+msgstr ""
+
+#. Default: "Note"
+#: ./content/schemata.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_note"
+msgstr ""
+
+#. Default: "Any additional information that can help the reader. The first word should be capitalized."
+#: ./content/schemata.py
+msgid "help_note"
+msgstr ""
+
+#. Default: "The book's ISBN number."
+#: ./content/schemata.py
+msgid "help_isbn"
+msgstr ""
+
+#. Default: "Personal annotation"
+#: ./content/schemata.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_annote"
+msgstr ""
+
+#. Default: "Any annotation that you do not wish to appear in rendered (BibTeX) bibliographies."
+#: ./content/schemata.py
+msgid "help_annote"
+msgstr ""
+
+#. There are several ways to make reference to the original paper:
+#.
+#.      - A link to an online version
+#.
+#.      - A link to a printable (pdf) version
+#.
+#.      - Upload a printable (pdf) file
+#.
+#: ./content/schemata.py
+msgid "comment_explain_links"
+msgstr ""
+
+#. Default: "Journal"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_journal"
+msgstr ""
+
+#. Default: "A journal name (should be the full journal name)."
+#: ./content/fields.py
+msgid "help_journal"
+msgstr ""
+
+#. Default: "DOI"
+#: ./content/article.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_doi"
+msgstr ""
+
+#. Default: "The reference's Digital Object Identifier."
+#: ./content/article.py
+msgid "help_doi"
+msgstr ""
+
+#. Default: "ISBN Number"
+#: ./content/book.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_isbn"
+msgstr ""
+
+#. Default: "The book's ISBN number."
+#: ./content/book.py
+msgid "help_isbn"
+msgstr ""
+
+#. Default: "PubMed ID"
+#: ./content/article.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_pmid"
+msgstr ""
+
+#. Default: "The reference's number in the PubMed database."
+#: ./content/article.py
+msgid "help_pmid"
+msgstr ""
+
+#. Default: "Preprint Server"
+#: ./content/preprint.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_preprint_server"
+msgstr ""
+
+#. Default: "If the preprint is available from one of the following preprint servers, you can indicate that here. Contact the site's admin if you want a server to be added to the list."
+#: ./content/preprint.py
+msgid "help_preprint_server"
+msgstr ""
+
+#. Default: "Volume"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_volume"
+msgstr ""
+
+#. Default: "The volume of a journal, multivolume book work etc. In most cases it should suffice to use a simple number as the volume identifier."
+#: ./content/fields.py
+msgid "help_volume"
+msgstr ""
+
+#. Default: "Number"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_number"
+msgstr ""
+
+#. Default: "The number of a journal, proceedings, technical report etc. Issues of journals, proceedings etc. are usually identified by volume and number; however, issues of the same volume will often be numbered preceedingly which often makes the specification of a number optional. With technical reports, the issuing organization usually also gives it a number."
+#: ./content/fields.py
+msgid "help_number"
+msgstr ""
+
+#. Default: "Pages"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_pages"
+msgstr ""
+
+#. Default: "A page number or range of numbers such as '42-111'; you may also have several of these, separating them with commas: '7,41,73-97'."
+#: ./content/fields.py
+msgid "help_pages"
+msgstr ""
+
+#. Default: "How published"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_howpublished"
+msgstr ""
+
+#. Default: "For publications without a publisher. e.g., an 'Institute Report'."
+#: ./content/fields.py
+msgid "help_howpublished"
+msgstr ""
+
+#. Default: "Publisher"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_publisher"
+msgstr ""
+
+#. Default: "The publisher's name."
+#: ./content/fields.py
+msgid "help_publisher"
+msgstr ""
+
+#. Default: "Address"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_address"
+msgstr ""
+
+#. Default: "Publisher's address. For major publishing houses, just the city is given. For small publishers, you can help the reader by giving the complete address."
+#: ./content/fields.py
+msgid "help_address"
+msgstr ""
+
+#. Default: "Edition"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_edition"
+msgstr ""
+
+#. Default: "The edition of a book - for example: 'II', '2' or 'second', depending on your preference. Numbers will be turned into ordinal numerals."
+#: ./content/fields.py
+msgid "help_edition"
+msgstr ""
+
+#. Default: "Book Title"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_booktitle"
+msgstr ""
+
+#. Default: "Title of the book, collection or proceedings, that the cited resource is part of."
+#: ./content/fields.py
+msgid "help_booktitle"
+msgstr ""
+
+#. Default: "Editor"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_editor"
+msgstr ""
+
+#. Default: "Name(s) of editor(s). Opposed to the 'author' field, the 'editor' field should contain the editor of the book, collection or proceeding that the reference appears in."
+#: ./content/fields.py
+msgid "help_editor"
+msgstr ""
+
+#. Default: "Series"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_series"
+msgstr ""
+
+#. Default: "The name of a series or set of books. When citing an entire book, the 'title' field gives its title and this optional 'series' field gives the name of a series in which the book is published."
+#: ./content/fields.py
+msgid "help_series"
+msgstr ""
+
+#. Default: "Chapter"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_chapter"
+msgstr ""
+
+#. Default: "A chapter number."
+#: ./content/fields.py
+msgid "help_chapter"
+msgstr ""
+
+#. Default: "Organization"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_organization"
+msgstr ""
+
+#. Default: "The organization sponsoring a conference, issuing a technical report etc."
+#: ./content/fields.py
+msgid "help_organization"
+msgstr ""
+
+#. Default: "School"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_school"
+msgstr ""
+
+#. Default: "The name of the school (college, university etc.) where a thesis was written."
+#: ./content/fields.py
+msgid "help_school"
+msgstr ""
+
+#. Default: "Institution"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_institution"
+msgstr ""
+
+#. Default: "The institution that published the work."
+#: ./content/fields.py
+msgid "help_institution"
+msgstr ""
+
+#. Default: "Type"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_publication_type"
+msgstr ""
+
+#. Default: "The type of a technical report, PhD thesis etc. - for example, 'Research Note' or 'Doktorarbeit'."
+#: ./content/fields.py
+msgid "help_publication_type"
+msgstr ""
+
+#. Default: "Editor Flag"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_editor_flag"
+msgstr ""
+
+#. Default: "Check here if the author(s) specified above are actually the editor(s) of the referenced resource."
+#: ./content/fields.py
+msgid "help_editor_flag"
+msgstr ""
+
+#. Default: "A specific XML (MODS) intermediate renderer. The XML intermediate format is conform to the Library of Congress's Metadata Object Description Schema (MODS). This is a very flexible standard that should prove quite useful as the number of tools that directly interact with it increase."
+#: ./tool/renderers/xml.py
+msgid "help_renderer_xml_mods"
+msgstr ""
+
+#. Default: "A specific renderer that exports bibliographical references in RIS (Research Information Systems/Reference Manager) format."
+#: ./tool/renderers/ris.py
+msgid "help_renderer_ris"
+msgstr ""
+
+#. Default: "A specific renderer to export bibliographical references in BiBTeX format. Note: If the output encoding of the BiBTeX renderer is not unicode capable, all non-ASCII characters will be resolved to LaTeX entities."
+#: ./tool/renderers/bibtex.py
+msgid "help_renderer_bibtex"
+msgstr ""
+
+#. Default: "A renderer that produces a PDF document containing bibliographical references. The PDF export is rendered by PDFLaTeX."
+#: ./tool/renderers/pdf.py
+msgid "help_renderer_pdf"
+msgstr ""
+
+#. Default: "A specific EndNote renderer that exports bibliographical references in the EndNote text format."
+#: ./tool/renderers/endnote.py
+msgid "help_renderer_endnote"
+msgstr ""
+
+#. Default: "A specific parser to process input in BiBTeX-format."
+#: ./tool/parsers/bibtex.py
+msgid "help_parser_bibtex"
+msgstr ""
+
+#. Default: "A specific parser to process input in EndNote's text format."
+#: ./tool/parsers/endnote.py
+msgid "help_parser_endnote"
+msgstr ""
+
+#. Default: "A specific parser to process a list of ISBN numbers. Information will be retrieved from Amazon Webservices."
+#: ./tool/parsers/isbn.py
+msgid "help_parser_isbn"
+msgstr ""
+
+#. Default: "A specific parser to process input in BIDS (IBSS) format."
+#: ./tool/parsers/ibss.py
+msgid "help_parser_ibss"
+msgstr ""
+
+#. Default: "A specific parser to process input in Medline-format."
+#: ./tool/parsers/medline.py
+msgid "help_parser_medline"
+msgstr ""
+
+#. Default: "A specific parser to process input in XML(MODS)-format. The XML intermediate format is conform to the Library of Congress's Metadata Object Description Schema (MODS). This is a very flexible standard that should prove quite useful as the number of tools that directly interact with it increase."
+#: ./tool/parsers/xml.py
+msgid "help_parser_xml_mods"
+msgstr ""
+
+#. Default: "A specific parser to process input in RIS format (Research Information Systems/Reference Manager)."
+#: ./tool/parsers/ris.py
+msgid "help_parser_ris"
+msgstr ""
+
+#. Default: "A specific parser to process input in CitationManager format."
+#: ./tool/parsers/citationmanager.py
+msgid "help_parser_citationmanager"
+msgstr ""
+
+#. Default: "Abbreviation Bibliography ID Cooker"
+#: ./tool/idcookers/abbrev.py
+msgid "title_idcooker_abbrev"
+msgstr ""
+
+#. Default: "If a bibliographical reference item has one author, it takes the first three letters of the author's lastname plus publication year to cook the reference's ID. For more than one author, it uses the initials of all authors' lastnames plus publication year."
+#: ./tool/idcookers/abbrev.py
+msgid "help_idcooker_abbrev"
+msgstr ""
+
+#. Default: "EtAl Bibliography ID Cooker"
+#: ./tool/idcookers/etal.py
+msgid "title_idcooker_etal"
+msgstr ""
+
+#. Default: "If a bibliographical reference item has one or two authors, it uses the authorname(s) + publication year to cook a reference's ID. If an item has more than two authors, it uses the first author's name plus 'EtAl' plus the publication year."
+#: ./tool/idcookers/etal.py
+msgid "help_idcooker_etal"
+msgstr ""
+
+#. Default: "PLONE Default Bibliography ID Cooker"
+#: ./tool/idcookers/plone.py
+msgid "title_idcooker_plone"
+msgstr ""
+
+#. Default: "The ID is cooked from the bibliographical reference's title as a normalized string. That is the way Plone normally cooks object IDs."
+#: ./tool/idcookers/plone.py
+msgid "help_idcooker_plone"
+msgstr ""
+
+#. Default: "UID Bibliography ID Cooker"
+#: ./tool/idcookers/uid.py
+msgid "title_idcooker_uid"
+msgstr ""
+
+#. Default: "The ID is cooked from the bibliographical reference's UID (Archetypes' unique object identifier)."
+#: ./tool/idcookers/uid.py
+msgid "help_idcooker_uid"
+msgstr ""
+
+#. Default: "ID Cooking Method for Bibliographical Entries"
+#: ./content/folder.py
+msgid "label_bibfolder_idcooking"
+msgstr ""
+
+#. Default: "Specify the algorithm that shall be used to cook IDs for bibliographical items in this bibliography folder. If not sure what to say here, leave the default."
+#: ./content/folder.py
+msgid "help_bibfolder_idcooking"
+msgstr ""
+
+#. Default: "ID Cooking on Creation of a Bibliographical Entry"
+#: ./content/folder.py
+msgid "label_bibfolder_cookidsoncreation"
+msgstr ""
+
+#. Default: "Cook IDs for bibliographical entries when created TTW. For this to work, leave new IDs (auto-generated by Plone - if shown at all) untouched on creation of a bibliographical entry. If you change the entry's ID on creation, no ID cooking will be performed. If not sure what to say here, leave the default."
+#: ./content/folder.py
+msgid "help_bibfolder_cookidsoncreation"
+msgstr ""
+
+#. Default: "ID Re-Cooking after a Bibliographical Entry has been Edited"
+#: ./content/folder.py
+msgid "label_bibfolder_cookidsonedit"
+msgstr ""
+
+#. Default: "Re-cook IDs for bibliographical items after each edit action. This feature is useful, if you want to make sure, that bibliographical reference IDs always stay in sync with the entry's properties (author names, publication year etc. - depending on what properties are used for ID cooking). If not sure what to say here, leave the default."
+#: ./content/folder.py
+msgid "help_bibfolder_cookidsonedit"
+msgstr ""
+
+#. Default: "Use IDs from Import Files on Reference Import"
+#: ./content/folder.py
+msgid "label_bibfolder_usepidsonimport"
+msgstr ""
+
+#. Default: "On bibliography import some import formats already offer unique IDs for bibliographical entries. If you want to keep those IDs, tick here. If not sure what to say here, leave the default."
+#: ./content/folder.py
+msgid "help_bibfolder_usepidsonimport"
+msgstr ""
+
+#. Default: "Allow PDF Upload Only for Selected Types"
+#: ./content/folder.py
+msgid "label_bibfolder_allowpdfuploadfortypes"
+msgstr ""
+
+#. Default: "Bibliographical reference types of this bibliography folder will only support upload of publications in PDF format if selected here."
+#: ./content/folder.py
+msgid "help_bibfolder_allowpdfuploadfortypes"
+msgstr ""
+
+#. Default: "Synchronize PDF File Attributes"
+#: ./content/folder.py
+msgid "label_bibfolder_synchronizepdffileattributes"
+msgstr ""
+
+#. Default: "Synchronize some attributes of an uploaded PDF file with the attribute values of the referring bibliographical entry (currently supported: ID, Roles, Creator)."
+#: ./content/folder.py
+msgid "help_bibfolder_synchronizepdffileattributes"
+msgstr ""
+
+#. Default: "Enable Duplicates Management"
+#: ./content/folder.py
+msgid "label_bibfolder_enableduplicatemanager"
+msgstr ""
+
+#. Default: "Enable the Duplicates Management engine of this bibliography folder. If enabled (recommended) duplicate bibliographical references will be treated specially on import, cut, copy and paste."
+#: ./content/folder.py
+msgid "help_bibfolder_enableduplicatemanager"
+msgstr ""
+
+#. Default: "Duplicates Matching Policy"
+#: ./content/folder.py
+msgid "label_bibfolder_duplicatesmatchingpolicy"
+msgstr ""
+
+#. Default: "If duplicates management is enabled, this value will define the search span for matching objects."
+#: ./content/folder.py
+msgid "help_bibfolder_duplicatesmatchingpolicy"
+msgstr ""
+
+#. Default: "Intro Text"
+#: ./content/folder.py
+msgid "label_bibfolder_intro"
+msgstr ""
+
+#. Default: "Adding an introductory text at the  top of the folder listing."
+#: ./content/folder.py
+msgid "help_bibfolder_intro"
+msgstr ""
+
+#. Default: "Local search span"
+#: ./content/folder.py
+msgid "local_duplicates_matchingpolicy"
+msgstr ""
+
+#. Default: "Global search span"
+#: ./content/folder.py
+msgid "global_duplicates_matchingpolicy"																																																																						
+msgstr ""
+
+#: formattable names widget in author/editor field
+#. Default: "Firstnames"
+msgid "Firstnames"
+msgstr ""
+
+#: formattable names widget in author/editor field
+#. Default: "Lastname"
+msgid "Lastname"
+msgstr ""
+
+#: formattable names widget in author/editor field
+#. Default: "Home Page"
+msgid "Homepage"
+msgstr ""
+
+#. Default: "Searchable Bibliography Folder"
+#: ./content/folder.py
+msgid "label_bibfolder_searchable_bibfolder"
+msgstr ""
+
+#. Default: "Only if this option is enabled bibliographical entries in this bibliography folder will be found by site users using the bibliography search form. You can also use this option to hide this bibliography folder's bibliographical entries from &raquo;(Smart) Bibliography Lists&laquo; (if installed)."
+#: ./content/folder.py
+msgid "help_bibfolder_searchable_bibfolder"
+msgstr ""

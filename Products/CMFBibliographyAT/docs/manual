@@ -1,0 +1,43 @@
+Title: Manual
+Subject:
+Publisher: No publisher
+Description: The CMFBibliography Manual contains the User's Guide, the Administrator's Guide and the Developer's Guide.
+Contributors:
+Effective_date: None
+Expiration_date: None
+Type: Document
+Format: text/plain
+Language:
+Rights:
+SafetyBelt: 1070953599.45
+
+About CMFBibliography
+
+  CMFBibliography is an extension of Plone to allow for the handling
+  of references to (scientific) publications. It consists of a couple
+  of content types like the Bibliography Folder to hold the various
+  different reference types like Article References, Book References,
+  etc. (for a complete list see below). CMFBibliography comes with a
+  tool that enables import and export of bibliographic information in
+  a number of standard formats. The support of these formats is
+  realized by different parsers (for the import) and renderers (for
+  the export).
+
+  The development of CMFBibliography is hosted at SourceForge, so
+  everybody who would like to contribute to its development is invited
+  to do so.
+
+  This manual consists of three main parts, namely
+
+ 1. "**The User's Guide**":users explains the features and usage of
+    CMFBibliography from a users perspective. It covers the
+    functionality of the Bibliography Folder and the various entry
+    types.
+
+ 2. "**The Administrator's Guide**":admin addresses installing and
+    customizing CMFBibliography.
+
+ 3. "**The Developer's Guide**":devel contains information necessary
+    to understand CMFBibliography's approach in order to enable
+    further development from third parties. In particular, it contains
+    a documentation of the API and the various schemata used.

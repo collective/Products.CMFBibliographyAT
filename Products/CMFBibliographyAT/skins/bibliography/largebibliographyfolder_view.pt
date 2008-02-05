@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<div metal:fill-slot="main">
+
+<metal:macro metal:define-macro="body">
+    <div metal:use-macro="here/bibliographyfolder_view/macros/body" />
+</metal:macro>
+
+<metal:macro metal:define-macro="folderlisting">
+    <div metal:use-macro="here/bibliographyfolder_view/macros/folderlisting" />
+</metal:macro>
+
+  </div>
+
+</html>

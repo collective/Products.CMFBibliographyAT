@@ -1,0 +1,259 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<metal:head fill-slot="top_slot"
+            tal:define="dummy python:request.set('disable_border',1)" />
+
+<div metal:fill-slot="main">
+
+    <metal:bibliography-search-form define-macro="bibliography_search_form">
+    <h1 i18n:translate="search_heading_search">Bibliography Search Form</h1>
+
+    <p i18n:translate="search_description_search">
+    This search form enables you to find bibliographical entries on the site by
+    specifying one or more search terms. You can proceed here directly
+    <span i18n:name="search_bibview_link">
+    <a href=""
+      i18n:translate="search_bibview_link"
+      tal:attributes="href string:bibliography_view">to the portal's complete bibliography list</a></span>.
+    </p>
+
+        <form action="bibliography_search"
+          method="get"
+          name="bibliography_search_form"
+          tal:define="DateTime python:modules['DateTime'].DateTime">
+
+        <fieldset>
+
+            <legend i18n:domain="plone" i18n:translate="legend_search_terms">Search Terms</legend>
+
+            <div class="field">
+                <label for="SearchableText" i18n:domain="plone" i18n:translate="label_search_text">Search Text</label>
+
+                <div class="formHelp" i18n:translate="search_help_search_text">
+                For a simple text search, enter your search term
+                here. Multiple words may be found by combining
+                them with <strong>AND</strong> and <strong>OR</strong>.
+                The search term in this field will be matched with
+                any text field like title, abstracts, journal name, publisher, etc. of bibliographical entries.
+                </div>
+
+                <input type="text"
+                       id="SearchableText"
+                       name="SearchableText"
+                       size="25"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
+            <div class="field">
+                <label for="Title" i18n:domain="plone" i18n:translate="label_title">Title</label>
+
+                <div class="formHelp" i18n:translate="search_help_title">
+                Return bibliographical entries matching this title.
+                </div>
+
+                <input type="text"
+                       id="Title"
+                       name="Title"
+                       size="25"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
+            <div class="field">
+                <label for="getAuthors" i18n:translate="search_label_authors">Authors</label>
+
+                <div class="formHelp" i18n:translate="search_help_authors">
+                Enter one or several author names here.
+                Multiple words/names may be found by combining
+                them with <strong>AND</strong> and <strong>OR</strong>.
+                </div>
+
+                <input type="text"
+                       id="getAuthors"
+                       name="getAuthors"
+                       size="25"
+                       tabindex=""
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
+            <div class="visualClear" id="clear-space-before-author"><!-- --></div>
+
+            <div class="field">
+
+                <label for="" i18n:translate="search_label_publicationyear">Publication year</label>
+
+                <div class="formHelp" i18n:translate="search_help_publicationyear">
+                Narrow your search down by specifying a publication date span for referenced bibliographical items.
+                </div>
+
+                <tal:publicationyear define="today python: DateTime().earliestTime()">
+
+                    <input checked="checked" type="radio" name="publication_date_range:string" id="publication_date_range_none" value=""
+                           tal:attributes="value string:" />
+                    <label for="publication_date_range_none" i18n:translate="search_no_publicationyear">Do not use the publication date in search request</label>
+
+                    <br />
+
+                    <input type="radio" name="publication_date_range:string" id="publication_date_range_thisyear" value=""
+                           tal:attributes="value string:this-year" />
+                    <label for="publication_date_range_active-projects" i18n:translate="search_publications_thisyear">Search for publications published this year</label>
+
+                    <br />
+
+                    <input type="radio" name="publication_date_range:string" id="publication_date_range_lastyear" value=""
+                           tal:attributes="value string:last-year" />
+                    <label for="publication_date_range_closed-projects" i18n:translate="search_publications_lastyear">Search for publications published last year</label>
+
+                    <br />
+
+                    <input type="radio" name="publication_date_range:string" id="publication_date_range_last5years" value=""
+                           tal:attributes="value string:last-5-years" />
+                    <label for="publication_date_range_last-5-years" i18n:translate="search_publications_last5years">Search for publications published during the last five years</label>
+
+                    <br />
+
+                    <input type="radio" name="publication_date_range:string" id="publication_date_range_custom" value=""
+                           tal:attributes="value string:custom-range" />
+                    <label for="publication_date_custom" i18n:translate="search_publications_customrange">Use a specific publication year range as given below:</label>
+
+                    <fieldset>
+                    <legend i18n:translate="search_legend_publication_date_range">Published between</legend>
+
+                        <div style="padding-left: 2em; padding-top:0.5em;">
+                        <div style="float:left;">
+                        <tal:use-calendar-macro tal:define="id string:publication_date_range_start;
+                                                            formname string:bibliography_search_form;
+                                                            show_hm python: False;
+                                                            show_ymd python: True;
+                                                            inputname id;
+                                                            inputvalue python: today.Date();
+                                                            tabindex tabindex/next;">
+
+                        <metal:calendar-start metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox|here/calendar_slots/macros/calendarDatePickerBox" />
+                        </tal:use-calendar-macro>
+                        </div>
+                        <div style="float:left;">
+                        &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+                        </div>
+                        <div>
+                        <tal:use-calendar-macro tal:define="id string:publication_date_range_end;
+                                                            formname string:bibliography_search_form;
+                                                            show_hm python: False;
+                                                            show_ymd python: True;
+                                                            inputname id;
+                                                            inputvalue python: today.Date();
+                                                            tabindex tabindex/next;">
+
+                        <metal:calendar-start metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox|here/calendar_slots/macros/calendarDatePickerBox" />
+                        </tal:use-calendar-macro>
+                        </div>
+
+                        </div>
+                        <br />
+
+                    </fieldset>
+
+                </tal:publicationyear>
+
+            </div>
+
+            <div class="visualClear" id="clear-space-before-author"><!-- --></div>
+
+            <metal:bibliography-extended-schemata metal:define-slot="extended-schemata">
+            <!-- add support for CMFBibliographyAT_extended_schemata -->
+            </metal:bibliography-extended-schemata>
+
+            <div class="field" tal:define="portal_types portal/portal_types">
+                <label i18n:translate="search_label_reference_type">Bibliographical Reference Type</label>
+
+                <div class="formHelp" i18n:translate="search_help_item_type">
+                Return items of a certain bibliography type.
+                </div>
+
+                <div tal:define="allTypes python:putils.getUserFriendlyTypes(typesList=here.portal_bibliography.getReferenceTypes());">
+                    <tal:tabindex define="tabindex tabindex/next">
+                    <select multiple="multiple"
+                            name="portal_type:list"
+                            id="portal_type"
+                            tal:define="types python: [ (here.translate(domain='plone', msgid=portal_types.getTypeInfo(type).Title(), default=portal_types.getTypeInfo(type).Title()), type) for type in allTypes ];
+                                        dummy python: types.sort();"
+                            >
+                        <option
+                            tal:repeat="type types"
+                            value="#"
+                            class="noborder"
+                            selected="selected"
+                            tabindex=""
+                            tal:attributes="value python: type[1];
+                                            tabindex tabindex;
+                                            id python:'portal_type_%s' % type[1]">
+                        <span tal:content="python: type[0]"
+                          /> (<span tal:content="python: type[1]" />)
+                        </option>
+                    </select>
+                    <br />
+                    </tal:tabindex>
+                </div>
+            </div>
+
+            <div class="visualClear" id="clear-space-before-author"><!-- --></div>
+
+            <div class="field"
+                 i18n:domain="plone"
+                 tal:condition="python: not here.portal_membership.isAnonymousUser()">
+
+                <label for="review_state" i18n:translate="label_review_status">Review status</label>
+
+                <div class="formHelp" i18n:domain="plone" i18n:translate="help_search_review_status">
+                You may search for items based on their
+                review state. If you wish to constrain results to items
+                in certain states, select them from this list.
+                </div>
+
+                <tal:states define="navtree_props portal_properties/navtree_properties;
+                                    states python: here.portal_bibliography.listWfStatesForReferenceTypes();"
+                            repeat="state states">
+                    <input class="noborder"
+                           type="checkbox"
+                           name="review_state:list"
+                           checked="checked"
+                           tal:attributes="value python:state[1];
+                                           id python:normalizeString(state[1]);" />
+                    <label for=""
+                           tal:attributes="for python:normalizeString(state[1])"
+                           i18n:domain="plone"
+                           i18n:translate=""
+                           tal:content="python:state[0] or state[1]"
+                           />
+                    <br />
+                </tal:states>
+            </div>
+
+            <div class="visualClear" id="clear-space-before-submit"><!-- --></div>
+
+            <div class="formControls"
+                 i18n:domain="plone">
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="submit"
+                       value="Search"
+                       i18n:attributes="value label_search;"
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
+        </fieldset>
+
+    </form>
+    </metal:bibliography-search-form>
+</div>
+
+</html>

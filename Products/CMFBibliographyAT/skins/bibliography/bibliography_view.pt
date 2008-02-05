@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+  <div metal:fill-slot="main">
+  <metal:bibliography_view metal:define-macro="bibliograpy_view">
+  <div metal:define-slot="bibliography_view"
+       tal:define="navtool here/portal_properties/navtree_properties;
+                   reference_types python:container.portal_bibliography.getReferenceTypes();
+                   raw_results python: container.portal_catalog(meta_type=reference_types);
+                   raw_results python: container.portal_bibliography.filterOutBibEntriesFromNonSearchableBibFolders(raw_results);
+                   raw_results python: container.portal_bibliography.filterOutDupesByTitle(raw_results);
+                   raw_results python: [ result for result in raw_results if [ role for role in mtool.getAuthenticatedMember().getRolesInContext(result.getObject()) if role in ['Manager', 'BibManager', 'Reviewer', 'Owner'] ] or (navtool and result.review_state in navtool.getProperty('wf_states_to_show')) ];
+                   style request/style|here/default_bibliography_style|here/portal_bibliostyles/default_bibliography_style|string:stl_default;
+                   sort_on python:(('publication_year', 'cmp', 'desc'),
+                                   ('Authors', 'nocase', 'asc'));
+                   results python:sequence.sort(raw_results, sort_on);
+                   Batch python:modules['Products.CMFPlone'].Batch;
+                   DateTime python:modules['DateTime'].DateTime;
+                   b_start python:request.get('b_start',0);">
+
+    <h1 i18n:translate="heading_bibliography">Bibliography</h1>
+
+    <div i18n:translate="description_bibliography" class="documentDescription">References to publications,
+      sorted by year and author.</div>
+
+    <metal:bibliography-style metal:define-macro="bibentries_style">
+    <metal:bibliography-style-slot metal:define-slot="bibentries_style">
+
+        <div style="text-align:right; margin-right:1em;"
+             tal:define="has_atbibliostyles python: hasattr(here, 'portal_bibliostyles') and True or False;
+                         styles python: has_atbibliostyles and here.portal_bibliostyles.findBibrefStyles() or [];
+                         mq python: modules['ZTUtils'].make_query;"
+             tal:condition="has_atbibliostyles">
+
+        <form action="" name="setstyle" method="get">
+        <b i18n:translate="bib_style_selector">Select bibliography style:</b>&nbsp;
+        <select onChange=""
+                tal:attributes="onChange python: 'javascript: window.location.href = \'%s?%s\'.replace(/xxxxxxxx/, this.value)' % (request.get('URL'), mq(request.form, {'style': 'xxxxxxxx'}));"
+                name="style">
+
+            <option selected=""
+                    value=""
+                    tal:repeat="new_style styles"
+                    tal:attributes="value python: new_style[0];
+                                    selected python: test(new_style[0] == style, 'selected', None);">
+                <span tal:replace="python: new_style[1]" /></option>
+
+        </select>
+        </form>
+        </div>
+
+        <div class="spacer" />
+
+    </metal:bibliography-style-slot>
+    </metal:bibliography-style>
+
+    <form name="searchresults" action="" method="post"
+          tal:condition="results"
+          tal:define="batch python:Batch(results, 25, int(b_start), orphan=1)">
+
+      <!-- Navigation -->
+      <div metal:use-macro="here/batch_macros/macros/navigation" />
+
+      <metal:bibliography-view metal:define-macro="bibentries_view">
+      <metal:bibliography-view-slot metal:define-slot="bibentries_view"
+                                    tal:define="has_atbibliostyles python: hasattr(here, 'portal_bibliostyles') and True or False;">
+
+          <tal:not-bibliostyles tal:condition="not: has_atbibliostyles">
+          <metal:block tal:repeat="result batch">
+
+          <p class="body">
+
+            <span tal:replace="structure result/Authors" >Authors</span>
+              (<span tal:replace="result/publication_year">1900</span>).<br />
+
+            <a href="/view" tal:attributes="href result/getURL">
+                <b class=""
+                   tal:attributes="class python: 'state-%s' % result['review_state'];"
+                   tal:content="structure result/Title">Title</b></a><br />
+
+            <span tal:content="structure result/Source"
+                  tal:condition="result/Source" />
+            <span tal:condition="not:result/Source"
+                  i18n:translate="label_bibref_no_source">
+              No source specified</span>
+
+          </p>
+          </metal:block>
+          </tal:not-bibliostyles>
+
+          <tal:bibliostyles tal:condition="has_atbibliostyles">
+
+          <div tal:define="formatted_list python: here.portal_bibliostyles.formatList(batch, style, instance=None, title_link=True, title_link_only_if_owner=False, brains_object=True, sort=False);"
+               tal:repeat="ref formatted_list">
+            <span tal:replace="structure ref" />
+          </div>
+
+          </tal:bibliostyles>
+
+      </metal:bibliography-view-slot>
+      </metal:bibliography-view>
+
+      <div class="spacer">&nbsp;</div>
+
+      <!-- Navigation -->
+      <div metal:use-macro="here/batch_macros/macros/navigation" />
+
+    </form>
+
+    <p tal:condition="not: results" i18n:translate="no_refs">
+        There are no bibliographic entries on this site.
+    </p>
+
+    <div metal:use-macro="here/document_actions/macros/document_actions">
+        Document actions (print, sendto etc)
+    </div>
+
+  </div>
+  </metal:bibliography_view>
+  </div>
+
+</html>

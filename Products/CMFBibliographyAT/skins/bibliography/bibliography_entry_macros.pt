@@ -1,0 +1,111 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+<body>
+
+<metal:main fill-slot="main">
+
+    <tal:main-macro metal:define-macro="main">
+
+        <metal:bibliography-entry-view metal:define-macro="bibliography_entry_view">
+         <p><span tal:content="structure python:here.Authors(format='%F %m %L',withURL=1, context=here, methodname='getAuthorURL')">
+            Authors</span>
+            <span tal:condition="python: hasattr(here, 'getEditor_flag') and here.getEditor_flag()" i18n:translate="editor_abbreviated">(ed.)</span>
+            (<span tal:content="here/getPublication_year">1990</span>)
+         </p>
+
+        <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+          Title or id
+        </h1>
+
+         <p tal:content="structure here/Source"
+            tal:condition="here/Source" />
+         <p tal:condition="not:here/Source"
+            i18n:translate="label_bibref_no_source">
+            No source specified
+         </p>
+
+        <div class="field"
+             tal:condition="here/getAbstract">
+          <label i18n:translate="view_label_bibref_abstract">Abstract</label>
+          <div tal:content="structure python: here.getAbstract(html_format=True)" />
+        </div>
+
+        <div class="field"
+             tal:condition="python:here.Subject()">
+          <label i18n:translate="view_label_keywords">Categories</label>
+          <div tal:content="python:', '.join(here.Subject())" />
+        </div>
+
+        <div class="field"
+             tal:condition="python:here.getKeywords()">
+          <label i18n:translate="view_label_keywords">Keywords</label>
+          <div tal:content="python:', '.join(here.getKeywords())" />
+        </div>
+
+        <div class="field"
+             tal:condition="here/getNote">
+          <label i18n:translate="view_label_bibref_note">Note</label>
+          <div tal:content="here/getNote" />
+        </div>
+
+        <div class="field"
+             tal:condition="python:here.getURL(remote=True)">
+          <label i18n:translate="view_label_bibref_url">URL</label>
+          <a href=""
+             tal:attributes="href here/getURL">
+            <span tal:replace="here/getURL">full text (or more info)</span>
+          </a>
+        </div>
+
+        <div tal:condition="python: here.PMID() or (here.ISBN() and here.showISBNLink()) or (here.getAnnote() and ([ role for role in mtool.getAuthenticatedMember().getRolesInContext(here) if role in ('Owner',) ] or mtool.checkPermission('Modify portal content', here)))"
+             class="spacer">&nbsp;</div>
+
+        <div class="comment" align="right"
+             tal:condition="here/PMID">
+          <a href=""
+             tal:attributes="href here/getPubMedLink"
+             i18n:translate="bibref_pubmed_link">
+             Link to PubMed entry</a>
+        </div>
+
+        <div class="comment" align="right"
+             tal:condition="python:here.ISBN() and here.showISBNLink()">
+          <a href=""
+             i18n:translate="bibref_amazon_link"
+             tal:attributes="href python:here.getISBNLink(here.ISBN())[1];
+                             content python:here.getISBNLink(here.ISBN())[0]">
+             Link to Amazon</a>
+        </div>
+
+        <div class="field"
+             tal:condition="python: here.getAnnote() and ([ role for role in mtool.getAuthenticatedMember().getRolesInContext(here) if role in ('Owner',) ] or mtool.checkPermission('Modify portal content', here))">
+          <label i18n:translate="view_label_bibref_annote">Personal annotations</label>
+          <p class="discreet" i18n:translate="description_bibref_annote">Personal annotations are visible only for the authors / owners of this bibliographical entry. For site visitors this field is hidden.</p>
+          <div tal:content="here/getAnnote" />
+        </div>
+
+        </metal:bibliography-entry-view>
+
+        <metal:bibliography-entry-camefrom metal:define-macro="bibliography_entry_camefrom">
+        <div tal:define="came_from request/came_from | nothing;
+                         came_from_title request/came_from_title | nothing;
+                         came_from_description request/came_from_description | nothing;"
+             tal:condition="came_from">
+            <span i18n:translate="back_to">Back to</span>
+            <a href="" title=""
+               tal:attributes="href came_from;
+                               title string: ${came_from_title} (${came_from_description});">
+            <span tal:content="string: ${came_from_title} (${came_from_description})" />
+            </a>
+        </div>
+        </metal:bibliography-entry-camefrom>
+
+
+    </tal:main-macro>
+
+</metal:main>
+
+</body>
+</html>

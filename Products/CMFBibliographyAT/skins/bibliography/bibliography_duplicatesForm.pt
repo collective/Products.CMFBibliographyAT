@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<metal:block fill-slot="top_slot"/>
+
+    <metal:javascriptslot fill-slot="javascript_head_slot">
+      <script type="text/javascript">
+      //<!--
+        function setSingleValue(name){
+          for (var i = 0; (input = document.getElementsByTagName('input').item(i)); i++) {
+            if(input.name =='global' && input.checked){
+              input.checked = false;
+              break;}
+          }
+        }
+
+        function selectRadio(name){
+          for (var i = 0; (input = document.getElementsByTagName('input').item(i)); i++) {
+            if(input.value==name) input.checked = true;
+            else input.checked = false;}
+        }
+       //-->
+       </script>
+  </metal:javascriptslot>
+
+  <div metal:fill-slot="main"
+       tal:define="duplicates_exist python: here.duplicatesExist();
+                   duplicates python: duplicates_exist and here.getDuplicates() or [];
+                   reftypes python: here.portal_bibliography.getReferenceTypes();
+                   bibfolder_contents python: here.contentValues(filter={'portal_type': reftypes});">
+
+
+    <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+    <h1 class="documentFirstHeading"><span tal:content="here/Title" /> - <span i18n:translate="heading_manage_duplicate">Bibliographical Duplicates Management</span></h1>
+
+    <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+    <p class="documentDescription" tal:content="here/Description" />
+
+    <h2 i18n:translate="heading_manage_duplicate_bibrefs">Manage Duplicate Bibliography Entries</h2>
+
+    <tal:duplicates-exist tal:condition="duplicates_exist">
+
+    <form name="manage_duplicates" method="post"
+          tal:define="absolute_url here/absolute_url;
+                      bibfolder_contents_uids python: [ item.UID() for item in bibfolder_contents ];"
+          tal:attributes="action string:${absolute_url}/bibliography_duplicates_manage">
+
+    <fieldset>
+
+    <legend i18n:translate="duplicates_manage_existing">Bibliography Folder - Manage Existing Duplicates</legend>
+
+    <p class="formHelp"
+       i18n:translate="duplicates_find_matches_button">Members of your site may have added new bibliographical entries recently. To update the
+                        duplicate bibliographical entries' matching objects, use the "find matches" radio buttons. This
+                        is recommended before managing the listed duplicate bibliographical entries.</p>
+
+      <table class="listing" >
+        <thead>
+          <tr>
+            <th i18n:translate="title" i18n:domain="plone">Title</th>
+            <th>
+              <span title="do nothing for now"
+                    i18n:attributes="title bibliography_delay_title"
+                    i18n:translate="bibliography_delay">
+              delay</span>
+            </th>
+            <th>
+              <span title="find bibliographical items that match listed duplicates"
+                    i18n:attributes="title bibliography_find_title"
+                    i18n:translate="bibliography_find">
+              find&nbsp;matches</span>
+            </th>
+            <th>
+              <span title="remove items from the list of duplicates"
+                    i18n:translate="bibliography_skip"
+                    i18n:attributes="title bibliography_skip_title">
+              drop/skip</span>
+            </th>
+            <th>
+              <span title="replace item in bibliography folder with item in duplicates manager"
+                    i18n:attributes="title bibliography_replace_title"
+                    i18n:translate="bibliography_replace">
+              replace</span>
+            </th>
+            <th>
+              <span title="force items into bibliography folder without removing matching items"
+                    i18n:attributes="title bibliography_force_title"
+                    i18n:translate="bibliography_force">
+              add/force</span>
+            </th>
+            <th i18n:translate="bibliography_duplicates_local_matches">Local&nbsp;Matches</th>
+            <th i18n:translate="bibliography_duplicates_global_matches">Global&nbsp;Matches</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tal:repeat tal:repeat="result python: duplicates.keys()">
+          <tr tal:define="matched_local_uuids python: [ orig_obj.UID() for orig_obj in duplicates[result].getIs_duplicate_of() if orig_obj.UID() in bibfolder_contents_uids ];
+                          matched_global_uuids python: [ orig_obj.UID() for orig_obj in duplicates[result].getIs_duplicate_of() if orig_obj.UID() not in bibfolder_contents_uids];
+                          matched_uuids python: matched_local_uuids or matched_global_uuids"
+              tal:attributes="class python:test(repeat['result'].odd(), 'even', 'odd')" >
+            <td style="vertical-align:top; text-align:left;">
+              <p tal:define="authors python: duplicates[result].Authors() or 'no names specified';
+                             year python: duplicates[result].getPublication_year() or 'no publication year';
+                             url python: duplicates[result].absolute_url();
+                             title python: duplicates[result].Title() or 'no title';"
+                 tal:content="structure string:$authors ($year): &lt;a href='$url'&gt;$title&lt;/a&gt;">Authors (Year): Title</p>
+            </td>
+            <td style="vertical-align:top; text-align:center;">
+              <input type="radio" name="" value="delay" tal:attributes="name result"
+                     checked="" onClick="javascript:setSingleValue(this.value)" />
+            </td>
+            <td style="vertical-align:top; text-align:center;">
+              <input type="radio" name="" value="find" tal:attributes="name result"
+                     onClick="javascript:setSingleValue(this.value)" />
+            </td>
+            <td style="vertical-align:top; text-align:center;">
+              <input type="radio" name="" value="skip" tal:attributes="name result"
+                     onClick="javascript:setSingleValue(this.value)"   />
+            </td>
+            <td tal:condition="matched_local_uuids" style="vertical-align:top; text-align:center;">
+              <input type="radio" name="" value="replace" tal:attributes="name result"
+                     onClick="javascript:setSingleValue(this.value)" />
+            </td>
+            <td tal:condition="not: matched_local_uuids" style="vertical-align:top; text-align:center;">
+                -
+            </td>
+            <td style="vertical-align:top; text-align:center;">
+              <input type="radio" name="" value="force" tal:attributes="name result"
+                     onClick="javascript:setSingleValue(this.value)"  />
+            </td>
+            <td tal:condition="matched_local_uuids"
+                style="vertical-align:top; text-align:left;">
+              matches with <br />
+              <metal:block tal:repeat="uuid matched_local_uuids">
+                <a href=""
+                   tal:define="ref_object python: container.archetype_tool.lookupObject(uuid)"
+                   tal:attributes="href python:ref_object and ref_object.absolute_url()">
+                  <span tal:replace="python:ref_object and '%s' % ref_object.getId()">here</span></a><br />
+              </metal:block>
+            </td>
+            <td tal:condition="python: not matched_local_uuids and matched_global_uuids"
+                style="vertical-align:top; text-align:left;">
+                no local matches
+            </td>
+            <td tal:condition="matched_global_uuids"
+                style="vertical-align:top; text-align:left;">
+              matches with <br />
+              <metal:block tal:repeat="uuid matched_global_uuids">
+                <a href=""
+                   tal:define="ref_object python: container.archetype_tool.lookupObject(uuid)"
+                   tal:attributes="href python:ref_object and ref_object.absolute_url()">
+                  <span tal:replace="python:ref_object and '%s' % ref_object.getId()">here</span></a><br />
+              </metal:block>
+            </td>
+            <td tal:condition="python: matched_local_uuids and not matched_global_uuids"
+                i18n:translate="no_global_matches"
+                style="vertical-align:top; text-align:left;">
+                no global matches
+            </td>
+            <td colspan="2" tal:condition="python: not (matched_local_uuids or matched_global_uuids)"
+                i18n:translate="no_local_matches"
+                style="vertical-align:top; text-align:center;">
+                matches have vanished from site
+            </td>
+          </tr>
+          </tal:repeat>
+          <tr tal:condition="python:len(duplicates) > 1">
+            <td style="vertical-align:top; text-align:right;"><em i18n:translate="for_all_duplicated">for all duplicated</em></td>
+            <td style="vertical-align:top; text-align:center;"><input type="radio" name="global" value="delay" checked="checked" onClick="javasript:selectRadio(this.value)" /></td>
+            <td style="vertical-align:top; text-align:center;"><input type="radio" name="global" value="find"  onClick="javasript:selectRadio(this.value)" /></td>
+            <td style="vertical-align:top; text-align:center;"><input type="radio" name="global" value="skip" onClick="javasript:selectRadio(this.value)" /></td>
+            <td style="vertical-align:top; text-align:center;"><input type="radio" name="global" value="replace" onClick="javasript:selectRadio(this.value)" /></td>
+            <td style="vertical-align:top; text-align:center;"><input type="radio" name="global" value="force"   onClick="javasript:selectRadio(this.value)" /></td>
+            <td style="vertical-align:top; text-align:center;">&nbsp;</td>
+            <td style="vertical-align:top; text-align:center;">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="field">
+      <input class="context"
+             name="form.button.Manage"
+             type="submit"
+             value="Submit changes"
+             i18n:attributes="value" />
+      </div>
+
+      </fieldset>
+    </form>
+    </tal:duplicates-exist>
+
+    <form name="check_duplicates" method="post"
+          tal:define="absolute_url here/absolute_url;"
+          tal:attributes="action string:${absolute_url}/bibliography_duplicates_bibfolderscan">
+
+        <fieldset>
+
+        <legend i18n:translate="duplicates_bibfolderscan">Bibliography Folder - (Re-)scan for duplicate bibliographical entries</legend>
+
+        <p class="formHelp" i18n:translate="help_duplicates_bibfolderscan">In some cases you may want to (re-)scan this bibliography folder for duplicate entries. </p>
+
+        <div class="field">
+        <label i18n:translate="label_duplicates_bibfolderscan_order">Duplicates (re-)scanning Order</label>
+
+        <p class="formHelp" i18n:translate="help_duplicates_bibfolderscan_order">Specify the (re-)scanning order of duplicate entries in this bibliography folder.
+                            The order in that bibliographical entries are processed decides
+                            whether an entry is regarded as an original entry (first seen entry) or a duplicate.</p>
+
+        <div style="float:left; padding-right:2em;">
+        <select
+            width="100%"
+            tal:attributes="id string:sort_on;
+                            name string:sort_on:text;">
+
+            <tal:sort_on tal:repeat="index python: here.getSortIndexes()">
+            <option selected="" value=""
+                    tal:attributes="value index;
+                                    selected python: test(index == 'modified', 'selected', None);"
+                    i18n:translate="" i18n:domain="plone"><span tal:replace="index" /></option>
+            </tal:sort_on>
+        </select>
+        </div>
+
+        <div style="float:left;">
+            <input type="checkbox" name="sort_order_reverse:boolean" id="sort_order_reverse" />
+            <label for="sort_order_reverse" i18n:translate="duplicates_bibfolderscan_reverse">reverse</label>
+        </div>
+
+        <div style="clear:both;" />
+
+        </div>
+
+        <div class="field">
+        <label i18n:translate="label_duplicates_bibfolderscan_span">Duplicates (re-)scanning Search Span</label>
+
+        <p class="formHelp" i18n:translate="select_span_search">Select the search span for duplicate bibliographical entries.</p>
+
+            <input type="radio"
+                   name="span_of_search:text"
+                   id="span_of_search_local"
+                   checked=""
+                   value="local"
+                   tal:attributes="checked python: test(here.getDuplicatesMatchingPolicy() == 'local', 'checked', None)" />
+            <label for="span_of_search_local" i18n:translate="label_span_of_search_local">Compare entries of this Bibliography Folder to items in this Bibliography Folder only (local search span)</label>
+
+            <br />
+
+            <input type="radio"
+                   name="span_of_search:text"
+                   id="span_of_search_global"
+                   checked=""
+                   value="global"
+                   tal:attributes="checked python: test(here.getDuplicatesMatchingPolicy() == 'global', 'checked', None)" />
+            <label for="span_of_search_global" i18n:translate="label_span_of_search_global">Compare entries of this Bibliography Folder to items on the whole site (global search span)</label>
+        </div>
+
+        <div class="field">
+        <p i18n:translate="help_duplicates_bibfolder_empty_warning" tal:condition="not: bibfolder_contents">NOTE: This Bibliography Folder is currently empty. A (re-)scan for duplicate entries is pointless at this place.</p>
+
+        <p i18n:translate="help_duplicates_bibfolderscan_warning" tal:condition="bibfolder_contents">WARNING: On Bibliography Folders with many bibliographical entries inside a (re-)scan for
+                            duplicate entries can be very CPU consuming and time intensive.</p>
+
+        <input class="context"
+               name="form.button.Scan"
+               type="submit"
+               value="start duplicates scan"
+               i18n:attributes="value" />
+
+        </div>
+        </fieldset>
+
+
+    </form>
+
+    <tal:no-duplicates tal:condition="not: duplicates_exist">
+    <fieldset>
+
+    <legend i18n:translate="duplicates_manage_existing">Bibliography Folder - Manage Existing Duplicates</legend>
+    <p i18n:translate="no_duplicates_in_bibfolder">The duplicates management engine does not know about any duplicates in this Bibliography Folder. If you think that there should be duplicates you may want to (re-)scan your Bibliography Folder for duplicates.</p>
+
+    </fieldset>
+    </tal:no-duplicates>
+
+
+    <h2 i18n:translate="heading_manage_duplicates_criteria">Duplicates Criteria Management</h2>
+
+    <fieldset>
+    <legend i18n:translate="legend_bibliographyfolder_duplicatescriteria">Bibliography Folder - Duplicates Criteria</legend>
+
+    <div class="field"
+         tal:define="criteria_object python: here;
+                     form_action string:bibliographyfolder_managecriteria;">
+
+
+    <div class="formHelp">
+        <p i18n:translate="help_duplicatescriteria_bibfolder_p1">The listing below shows the criteria
+        that the duplicates engine of this bibliography folder checks on copy/cut+paste or
+        import actions on bibliographical items. This bibliography folder's duplicate
+        engine tries to find out if two different bibliographical entries refer
+        to the same publication.</p>
+        <p i18n:translate="help_duplicatescriteria_bibfolder_p2">
+        To change a set of criteria for a bibliographical reference type, check the individual criteria of that type and click "Update All Duplicates Criteria" at the very bottom of this fieldset.</p>
+    </div>
+
+    <metal:duplicates-criteria  metal:use-macro="here/bibliography_managecriteria_macros/macros/duplicates_criteria" />
+
+    </div>
+    </fieldset>
+
+  </div>
+
+</html>

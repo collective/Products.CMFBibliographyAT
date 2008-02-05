@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<object name="portal_catalog">
+ <index name="AuthorItems" meta_type="KeywordIndex">
+  <indexed_attr value="AuthorItems"/>
+ </index>
+ <index name="Authors" meta_type="FieldIndex">
+  <indexed_attr value="Authors"/>
+ </index>
+ <index name="publication_date" meta_type="DateIndex">
+  <property name="index_naive_time_as_local">True</property>
+ </index>
+ <index name="publication_year" meta_type="FieldIndex">
+  <indexed_attr value="publication_year"/>
+ </index>
+ <index name="getKeywords" meta_type="KeywordIndex">
+  <indexed_attr value="getKeywords"/>
+ </index>
+ <column value="Authors"/>
+ <column value="Source"/>
+ <column value="citationLabel"/>
+ <column value="publication_year"/>
+</object>

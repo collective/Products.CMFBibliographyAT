@@ -1,0 +1,137 @@
+Title: User's Guide
+Subject:
+Publisher: No publisher
+Description: CMFBibliography's User's Guide
+Contributors:
+Effective_date: None
+Expiration_date: None
+Type: Document
+Format: text/plain
+Language:
+Rights:
+SafetyBelt: 1070968669.54
+
+Basic Concept
+
+  CMFBibliography enables the handling of references to various types
+  of publications as they are used mainly in the context of scientific
+  publications. In order to allow for interoperability with other
+  applications that support reference handling, the information within
+  individual references is highly structured. The concrete schema used
+  depends on the kind of publication one wants to make reference to,
+  so there is a variety of different reference types to choose
+  from. The overall schema design follows closely BibTeX's approach, a
+  very flexible and powerfull reference management system that comes
+  with LaTeX.
+
+Creating References
+
+ The Bibliography Folder
+
+  For reasons that will become obvious as we proceed, references can
+  only be created within 'Bibliography Folders'. So in order to make a
+  reference object one first has to make such a folder which is just a
+  specialized content type that can (per default) be added to any
+  folderish object. Just select it from the drop down or add list,
+  give it an id and a title and then change into it. There is also a
+  variant of the 'Bibliography Folder' called 'Large Bibliography
+  Folder' which uses a 'BTreeFolder' as base class. Per default this
+  type is not enabled. Ask your site's administrator if you need it.
+
+  Now there are two different ways in which you can add references:
+  through the web or via import.
+
+ Adding References Through-the-Web
+
+  Through-the-Web entry of references is as straight forward as with
+  any other content type in Plone except maybe for the fact that there
+  are a lot of different fields in order to structure the data
+  appropriately.  If you are familiar with any other reference
+  management system, the meaning of these fields should be obvious. If
+  not, look at the examples that come with CMFBibliography to get a
+  feeling for how they are meant to be used.
+
+  Two fields, however, may deserve some further explanation: The
+  'authors' fields and the 'url' field. The naming convention with
+  respect to author names follows the one of BibTex where a full name
+  can consist of an arbitrary number of first or given names (first
+  field; separate names by blanks), a middle part to hold any
+  supplements that usually preceed the last name (e.g., titles like
+  *von*; second field), and the last or family name that can also
+  consist of as many parts as needed (third field). The last field
+  ('homepage') offers the possibility to provide a URL to the authors
+  personal web page or any other link that might be appropriate in
+  your context. If you have references where some authors appear
+  repeatedly, you can specify their homepage URL just once under
+  'folder defaults' (see below).
+
+  The 'URL' field is meant to hold any link that you see fit but its
+  most natural use is of course to provide a link to the full text
+  version of the refered to publication. This full text version can be
+  hosted anywhere including your site, a personal page somewhere else,
+  a preprint server, a journal's site or whatever. It is not the
+  intention of the reference entries, however, to also hold the full
+  text.
+
+ Importing References
+
+  An alternative to entering reference information through the web is
+  to import the entries from a file. In order to do so select the
+  Bibliography Folder's 'import' tab, type in the file name or select
+  it using the file browser, specify the appropriate format of the
+  file and press 'import'.  The references contained in the file will
+  be parsed and corresponding entries will be generated in the
+  folder. No care is taken to avoid double entries, so it is your
+  responsibility to control for that. Ids are generated from the first
+  author's last name plus the publication year plus, eventually, a
+  letter from the alphabet to make it unique.
+
+  As of this writing (December 2003 over Syberia on my way from Tokyo
+  to Paris ;-) only BibTeX and Medline imports are supported but more
+  will hopefully come (see the developer's guide if you want to know
+  how to contribute a parser).
+
+
+Further Features
+
+ Exporting References
+
+  If you want to use the references stored within a Bibliography
+  Folder in some other application (like for writing a paper) you can
+  export the references by selecting the folders 'export' tab and
+  specifying the format you want (currently, only BibTeX is
+  supported). This will generate a file holding all the information in
+  the appropriate format and you will be offered to save this file
+  locally on your machine (some versions of MSIE desperatly try to
+  open the file because they think they know better than you what you
+  want ...).
+
+ Default Author Homepages
+
+  If you are dealing with references where some authors appear
+  repeatedly you may want to provide their homepage URLs only once to
+  reduce the amount of typing as well as to be able to update it
+  conveniently if need be. In order to do so, the Bibliography Folder
+  provides a 'defaults' tab that takes you to a form that allows you
+  to associate author names with URLs. Whenever an entry is displayed
+  with author URLs, the lookup is done in the following way: first, it
+  is checked whether the author information within the particular
+  entry holds a URL and if so, this is used. If this is not the case,
+  the folder defaults are looked up where only the first first name
+  and the last name are used to look for a match. If this also fails
+  the system continues to see whether it can find a user within the
+  site where the full name matches and if this fails it looks for a
+  user/login name matching the lastname. In the latter cases a link to
+  the author's homepage within your site will be provided.
+
+ Ranking
+
+  Depending on your site's set up it may be that there are places
+  where selected references from a folder are displayed. In order to
+  control for this selection, you can rank the references by selecting
+  the Bibliography Folder's 'defaults' tab and then entering the ids
+  of the references you want to be representative one per line into
+  the 'Ranking' field.  You may enter as many as you like (including 0
+  - in this case the representative references will be ordered by
+  publication year backwards and then by author alphabetically). Ids
+  that don't occur in the folder are simply ignored.

@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="bibliography">
+
+  <genericsetup:registerProfile
+      name="default"
+      title="CMF Bibliography AT"
+      directory="profiles/default"
+      description="Extension profile for CMFBibliographyAT Product."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+</configure>

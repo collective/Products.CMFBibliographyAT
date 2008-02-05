@@ -1,0 +1,7 @@
+[default]
+title=Manage Duplicates Criteria of Bibliography Folders
+
+[actions]
+action.failure=traverse_to:string:bibliography_duplicatesForm
+action.success=redirect_to:string:bibliography_duplicatesForm
+

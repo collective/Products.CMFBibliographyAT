@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<object name="BookReference"
+   meta_type="Factory-based Type Information with dynamic views"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title">Book Reference</property>
+ <property name="description"> content type to make reference to a book.
+      </property>
+ <property name="content_icon">bibliography_entry.png</property>
+ <property name="content_meta_type">BookReference</property>
+ <property name="product">CMFBibliographyAT</property>
+ <property name="factory">addBookReference</property>
+ <property name="immediate_view">bibliography_entry_view</property>
+ <property name="global_allow">False</property>
+ <property name="filter_content_types">False</property>
+ <property name="allowed_content_types"/>
+ <property name="allow_discussion">False</property>
+ <property name="default_view">bibliography_entry_view</property>
+ <property name="view_methods">
+  <element value="bibliography_entry_view"/>
+  <element value="base_view"/>
+  <element value="table_view"/>
+ </property>
+ <property name="default_view_fallback">False</property>
+ <alias from="(Default)" to="(dynamic view)"/>
+ <alias from="edit" to="base_edit"/>
+ <alias from="index.html" to="(dynamic view)"/>
+ <alias from="properties" to="base_edit"/>
+ <alias from="view" to="(selected layout)"/>
+ <action title="View" action_id="view" category="object" condition_expr=""
+    url_expr="string:${object_url}/bibliography_entry_view" visible="True">
+  <permission value="View"/>
+ </action>
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
+    url_expr="string:${object_url}/edit" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+ <action title="Properties" action_id="metadata" category="object"
+    condition_expr="" url_expr="string:${object_url}/edit"
+    visible="False">
+  <permission value="Modify portal content"/>
+ </action>
+ <action title="References" action_id="references" category="object"
+    condition_expr="object/archetype_tool/has_graphviz"
+    url_expr="string:${object_url}/reference_graph" visible="True">
+  <permission value="Modify portal content"/>
+  <permission value="Review portal content"/>
+ </action>
+ <action title="Import Bibliography" action_id="import"
+    category="document_actions"
+    condition_expr="python: object.portal_membership.checkPermission(&quot;Add portal content&quot;, object.getBibFolder())"
+    url_expr="string:${folder_url}/bibliography_importForm" visible="True">
+  <permission value="Add portal content"/>
+ </action>
+ <action title="Printable file (PDF)" action_id="download_pdf"
+    category="document_actions" condition_expr="object/has_pdf"
+    url_expr="python:&quot;%s&quot; % object.download_pdf()" visible="True">
+  <permission value="View"/>
+ </action>
+ <action title="Set Details from Amazon" action_id="setDetails"
+    category="object"
+    condition_expr="python: (object.getIsbn() != &quot;&quot;) and getattr(portal, &quot;amazon_tool&quot;, None) and getattr(portal, &quot;amazon_tool&quot;).hasValidLicenseKey()"
+    url_expr="string:${object_url}/setDetailsFromISBN" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+</object>

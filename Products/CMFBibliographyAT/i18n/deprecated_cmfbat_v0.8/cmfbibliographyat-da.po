@@ -1,0 +1,608 @@
+# Gettext Message File for CMFBibliographyAT.
+# Raphael Ritz <r.ritz@biologie.hu-berlin.de>, 2002-2004
+msgid ""
+msgstr ""
+"Project-Id-Version: CMFBibliographyAT\n"
+"POT-Creation-Date: 2004-02-07 12:45+0000\n"
+"PO-Revision-Date: 2005-02-07 12:45-0300\n"
+"Last-Translator: Jonas Nielsen <jonasn@mail.tele.dk>\n"
+"Language-Team: CMFBibliographyAT i18n <r.ritz@biologie.hu-berlin.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language-code: da\n"
+"Language-name: Danish\n"
+"Domain: plone\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Preferred-encodings: latin1 utf-8\n"
+"X-Is-Fallback-For: da-dk\n"
+
+msgid "Bibliography"
+msgstr "Litteraturliste"
+
+#msgid "label_name"
+#msgstr ""
+
+#msgid "help_name"
+#msgstr ""
+
+#: BaseEntry.py
+msgid "label_publication_year"
+msgstr "Udgivelsesår"
+
+#: BaseEntry.py
+msgid "help_publication_year"
+msgstr "Det år hvor publikationen er udgivet. Hvis den ikke er udgivet skrives året hvor den blev skrevet. Skriv året som et tal."
+
+#: BaseEntry.py
+#: ./skins/bibliography/bibliography_entry_view.pt
+#.          <label i18n:translate="label_bibref_url">URL</label>
+msgid "label_bibref_url"
+msgstr "URL"
+
+#: BaseEntry.py
+msgid "help_bibref_url"
+msgstr "URLen til den refererede ressource."
+
+#: BaseEntry.py
+#: ./skins/bibliography/bibliography_entry_view.pt
+#.          <label i18n:translate="label_bibref_abstract">Abstract</label>
+msgid "label_bibref_abstract"
+msgstr "Abstract"
+
+#: BaseEntry.py
+msgid "help_bibref_abstract"
+msgstr "En abstract (dvs. en kort beskrivelse) af den refererede publikation."
+
+#: BaseEntry.py
+msgid "label_publication_month"
+msgstr "Publikationsmåned"
+
+#: BaseEntry.py
+msgid "help_publication_month"
+msgstr "Den måned hvor publikationen er udgivet eller, hvis det ikke er udgivet, måneden hvor det blev skrevet. Skriv måneden som et tal."
+
+#: BaseEntry.py
+#: ./skins/bibliography/bibliography_entry_view.pt
+#.          <label i18n:translate="label_bibref_note">Note</label>
+msgid "label_bibref_note"
+msgstr "Note"
+
+#: BaseEntry.py
+msgid "help_bibref_note"
+msgstr "Andet information der kan hjælpe læseren."
+
+
+#: bibtex_types/ArticleReference.py
+msgid "Article Reference"
+msgstr "Artikel"
+
+#: bibtex_types/ArticleReference.py
+msgid "label_source_journal"
+msgstr "Journal"
+
+#: bibtex_types/ArticleReference.py
+msgid "help_source_journal"
+msgstr "Journalens navn (helst dens standardforkortelse)."
+
+#: bibtex_types/ArticleReference.py
+#: bibtex_types/BookReference.py
+#: bibtex_types/ProceedingsReference.py
+msgid "label_source_volume"
+msgstr "Årgang (evt. bind)"
+
+#: bibtex_types/ArticleReference.py
+#: bibtex_types/BookReference.py
+#: bibtex_types/ProceedingsReference.py
+msgid "help_source_volume"
+msgstr "Nummeret på journalens årgang eller bogseriens bind."
+
+#: bibtex_types/ArticleReference.py
+#: bibtex_types/BookReference.py
+#: bibtex_types/ProceedingsReference.py
+#: bibtex_types/TechreportReference.py
+msgid "label_source_number"
+msgstr "Nummer"
+
+#: bibtex_types/ArticleReference.py
+#: bibtex_types/BookReference.py
+#: bibtex_types/ProceedingsReference.py
+#: bibtex_types/TechreportReference.py
+msgid "help_source_number"
+msgstr "Nummeret på en journal, et magasin, eller en teknisk rapport. En journal eller et magasins nummer skrives normalt vha. årgang og nummer; organisationen der udgiver en teknisk rapport giver den normalt et nummer."
+
+#: bibtex_types/ArticleReference.py
+#: bibtex_types/InbookReference.py
+msgid "label_source_pages"
+msgstr "Sider"
+
+#: bibtex_types/ArticleReference.py
+#: bibtex_types/InbookReference.py
+msgid "help_source_pages"
+msgstr "Et sidenummer eller interval af numre f.eks. '42--111'; Du kan også skrive flere og adskille dem vha. komma: '7,41,73--97'. En enkel bindestreg vil blive ændret til en dobbelt (for at følge standarden)."
+
+#: bibtex_types/ArticleReference.py
+msgid "label_source_pmid"
+msgstr "PMID"
+
+#: bibtex_types/ArticleReference.py
+msgid "help_source_pmid"
+msgstr "Publikationens PubMed ID. Dette skal kun udfyldes hvis publikationen er registreret i PubMed databasen."
+
+#: bibtex_types/ArticleReference.py
+msgid "label_editor_flag"
+msgstr "Editor Flag"
+
+#: bibtex_types/ArticleReference.py
+msgid "help_editor_flag"
+msgstr "Klik her hvis ovenstående forfattere er redaktører af bogen."
+
+#: bibtex_types/BookletReference.py
+msgid "Booklet Reference"
+msgstr "Booklet"
+
+#: bibtex_types/BookletReference.py
+#: bibtex_types/MiscReference.py
+msgid "label_source_howpublished"
+msgstr "Publiseringsmetode"
+
+#: bibtex_types/BookletReference.py
+#: bibtex_types/MiscReference.py
+msgid "help_source_howpublished"
+msgstr "Hvordan en ikke standardiseret publikation er publiseret (hovedsageligt til publikationer uden et forlag). Et eksempel er en 'institutrapport'."
+
+
+#: bibtex_types/BookReference.py
+msgid "Book Reference"
+msgstr "Bog"
+
+#: bibtex_types/BookReference.py
+#: bibtex_types/InbookReference.py
+#: bibtex_types/ProceedingsReference.py
+msgid "label_source_publisher"
+msgstr "Forlag"
+
+#: bibtex_types/BookReference.py
+#: bibtex_types/InbookReference.py
+#: bibtex_types/ProceedingsReference.py
+msgid "help_source_publisher"
+msgstr "Forlagets navn."
+
+#: bibtex_types/BookReference.py
+#: bibtex_types/InbookReference.py
+#: bibtex_types/ManualReference.py
+#: bibtex_types/MasterthesisReference.py
+#: bibtex_types/PhdthesisReference.py
+#: bibtex_types/ProceedingsReference.py
+#: bibtex_types/TechreportReference.py
+msgid "label_source_address"
+msgstr "Addresse"
+
+#: bibtex_types/BookReference.py
+#: bibtex_types/InbookReference.py
+#: bibtex_types/ManualReference.py
+#: bibtex_types/MasterthesisReference.py
+#: bibtex_types/PhdthesisReference.py
+#: bibtex_types/ProceedingsReference.py
+#: bibtex_types/TechreportReference.py
+msgid "help_source_address"
+msgstr "Forlagets adresse. Hvis det er et større forlag behøver man kun at indtaste byen. Hvis det er et mindre forlag, kan du hjælpe læseren ved at skrive den fuldstændige adresse."
+
+#: bibtex_types/BookReference.py
+#: bibtex_types/ManualReference.py
+msgid "label_source_edition"
+msgstr "Udgave"
+
+#: bibtex_types/BookReference.py
+#: bibtex_types/ManualReference.py
+msgid "help_source_edition"
+msgstr "Bogens udgave, f.eks. 'anden'."
+
+#: bibtex_types/InbookReference.py
+msgid "Inbook Reference"
+msgstr "Del af en bog"
+
+#: bibtex_types/InbookReference.py
+msgid "label_source_booktitle"
+msgstr "Bogens titel"
+
+#: bibtex_types/InbookReference.py
+msgid "help_source_booktitle"
+msgstr "Bogens hvor der er referet tils titel."
+
+#: bibtex_types/InbookReference.py
+msgid "label_source_editor"
+msgstr "Redaktør"
+
+#: bibtex_types/InbookReference.py
+msgid "help_source_editor"
+msgstr "Navn(e) på bogens redaktør(er). Hvis der et 'forfatter'-felt, så giver 'redaktør'-feltet, så angiver 'redaktør'-feltet bogens redaktør hvori reference fremkommer."
+
+#: bibtex_types/InbookReference.py
+msgid "label_source_chapter"
+msgstr "Kapitel"
+
+#: bibtex_types/InbookReference.py
+msgid "help_source_chapter"
+msgstr "Nummeret på et kapitel."
+
+#: bibtex_types/IncollectionReference.py
+msgid "Incollection Reference"
+msgstr "Del af en bog"
+
+#: bibtex_types/InproceedingsReference.py
+msgid "Inproceedings Reference"
+msgstr "Bidrag til konference"
+
+#: bibtex_types/ManualReference.py
+msgid "Manual Reference"
+msgstr "Brugervejledning"
+
+#: bibtex_types/ManualReference.py
+#: bibtex_types/ProceedingsReference.py
+msgid "label_source_organization"
+msgstr "Organisation"
+
+#: bibtex_types/ManualReference.py
+#: bibtex_types/ProceedingsReference.py
+msgid "help_source_organization"
+msgstr "Organisationen der sponsorerer konferencen."
+
+#: bibtex_types/MasterthesisReference.py
+msgid "Masterthesis Reference"
+msgstr "Speciale"
+
+#: bibtex_types/MasterthesisReference.py
+#: bibtex_types/PhdthesisReference.py
+msgid "label_source_school"
+msgstr "Universitet"
+
+#: bibtex_types/MasterthesisReference.py
+#: bibtex_types/PhdthesisReference.py
+msgid "help_source_school"
+msgstr "Navnet på det universitet hvor et specialet eller ph.d.-afhandlingen er skrevet"
+
+#: bibtex_types/MiscReference.py
+msgid "Misc Reference"
+msgstr "Andet"
+
+#: bibtex_types/PhdthesisReference.py
+msgid "Phdthesis Reference"
+msgstr "Ph.d.-afhandling"
+
+#: bibtex_types/PreprintReference.py
+msgid "Preprint Reference"
+msgstr "Publikation der ikke er udgivet"
+
+#: bibtex_types/PreprintReference.py
+msgid "label_source_preprint_server"
+msgstr "Preprint Server"
+
+#: bibtex_types/PreprintReference.py
+msgid "help_source_preprint_server"
+msgstr ""
+
+#: bibtex_types/ProceedingsReference.py
+msgid "Proceedings Reference"
+msgstr ""
+
+#: bibtex_types/ProceedingsReference.py
+msgid "label_source_series"
+msgstr "Series"
+
+#: bibtex_types/ProceedingsReference.py
+msgid "help_source_series"
+msgstr "Navnet på en serie eller et sæt af bøger. Når der refereres til en hel bog, så angiver 'titel'-feltet dens titel og 'serie'-feltet angiver så navnet på en evt. serie som bogen er en del af."
+
+#: bibtex_types/TechreportReference.py
+msgid "label_source_institution"
+msgstr "Institution"
+
+#: bibtex_types/TechreportReference.py
+msgid "help_source_institution"
+msgstr "Institution der publiceret værket."
+
+#: bibtex_types/TechreportReference.py
+msgid "label_source_type"
+msgstr "Type"
+
+#: bibtex_types/TechreportReference.py
+msgid "help_source_type"
+msgstr "En teknisk rapports type, f.eks., 'Forskningsnote'."
+
+#: bibtex_types/UnpublishedReference.py
+msgid "Unpublished Reference"
+msgstr "Upubliceret værk"
+
+#: bibtex_types/WebpublishedReference.py
+msgid "Webpublished Reference"
+msgstr "Værk publiceret på internettet"
+
+#: ./skins/bibliography/bibliography_exportForm.pt
+#.    <h1 i18n:translate="heading_pubref_export">Export Bibliographic Entries</h1>
+msgid "heading_pubref_export"
+msgstr "Hent Litteraturreferences"
+
+#: ./skins/bibliography/bibliography_exportForm.pt
+#.    <p i18n:translate="description_pubref_export">
+#.      Select the format from the drop-down list. Confirm by clicking
+#.      <stan i18n:name="export"><strong i18n:translate="">export</strong></span>.
+#.    </p>
+msgid "description_pubref_export"
+msgstr "Vælg formattet fra drop-down-listen. Bekræft ved at klikke ${export}."
+
+#: ./skins/bibliography/bibliography_exportForm.pt
+#.    <p i18n:translate="description_pubref_export">
+#.      Select the format from the drop-down list. Confirm by clicking
+#.      <stan i18n:name="export"><strong i18n:translate="">export</strong></span>.
+#.    </p>
+msgid "export"
+msgstr "hent"
+
+#: ./skins/bibliography/bibliography_exportForm.pt
+#.        <legend i18n:translate="label_bibliography_export">Export</legend>
+msgid "label_bibliography_export"
+msgstr "Hent / Eksporter"
+
+#: ./skins/bibliography/bibliography_exportForm.pt
+#.          <label i18n:translate="label_bibliography_export_format">Export Format</label>
+msgid "label_bibliography_export_format"
+msgstr "Format på det der hentes"
+
+#: ./skins/bibliography/bibliography_exportForm.pt
+#.          <div class="formHelp" i18n:translate="help_bibliography_export_format">
+#.            Please select the format.
+#.          </div>
+msgid "help_bibliography_export_format"
+msgstr "Vælg venligst formatet."
+
+#: ./skins/bibliography/bibliography_exportForm.pt
+#.          <input class="context"
+#.                 tabindex=""
+#.                 type="submit"
+#.                 name="submit"
+#.                 value="Export"
+#.                 i18n:attributes="value"
+#.                 tal:attributes="tabindex tabindex/next;" />
+msgid "Export"
+msgstr "Hent"
+
+#: ./skins/bibliography/bibliography_importForm.cpt
+#.    <h1 i18n:translate="heading_pubref_import">Import Bibliographic Entries</h1>
+msgid "heading_pubref_import"
+msgstr "Gem Literaturliste-elementer på sitet."
+
+#: ./skins/bibliography/bibliography_importForm.cpt
+#.    <p i18n:translate="description_pubref_import">
+#.      Enter the name of your source file or click <strong>browse</strong>
+#.      to get a file dialog box to select it. Then specify the format from
+#.      the drop-down list. Start by clicking
+#.      <span i18n:name="import"><strong i18n:translate="">import</strong></span>.
+#.    </p>
+msgid "description_pubref_import"
+msgstr "Skriv navnet på din lokale fil eller klik <strong>browse</strong> for at få en dialog box hvor filen kan vælges. Vælg derefter formatet fra drop-down listen. Start overførslen ved at klikke ${import}."
+
+#: ./skins/bibliography/bibliography_importForm.cpt
+#.    <p i18n:translate="description_pubref_import">
+#.      Enter the name of your source file or click <strong>browse</strong>
+#.      to get a file dialog box to select it. Then specify the format from
+#.      the drop-down list. Start by clicking
+#.      <span i18n:name="import"><strong i18n:translate="">import</strong></span>.
+#.    </p>
+msgid "import"
+msgstr "Gem på sitet"
+
+#: ./skins/bibliography/bibliography_importForm.cpt
+#.        <legend i18n:translate="legend_import_source">Import Source</legend>
+msgid "legend_import_source"
+msgstr "Gem kildekode på sitet"
+
+#: ./skins/bibliography/bibliography_importForm.cpt
+#.            <label for="file" i18n:translate="label_source_file">Source File</label>
+msgid "label_source_file"
+msgstr "Fil med kildekode"
+
+#: ./skins/bibliography/bibliography_importForm.cpt
+#.            <div class="formHelp" i18n:translate="help_bibliography_file_import">
+#.              Select the file to be imported by clicking the 'Browse' button.
+#.            </div>
+msgid "help_bibliography_file_import"
+msgstr "Vælg filen der skal importeres ved klikke på 'Browse'-knappen."
+
+#: ./skins/bibliography/bibliography_importForm.cpt
+#.            <span i18n:translate="no_file_imported"
+#.                  tal:define="file_size python:here.getObjSize(here)"
+#.                  tal:condition="not: file_size">
+#.              (No file has been imported yet)
+#.            </span>
+msgid "no_file_imported"
+msgstr "(Der er ikke importet nogen fil endnu)"
+
+#: ./skins/bibliography/bibliography_importForm.cpt
+#.          <label for="up_text" i18n:translate="label_source_text">Source Text</label>
+msgid "label_source_text"
+msgstr "Kildetekst"
+
+#: ./skins/bibliography/bibliography_importForm.cpt
+#.          <div class="formHelp" i18n:translate="help_bibliography_text_import">
+#.            You can paste here the import text (make sure it is correctly formatted regarding the parser you will choose below).
+#.          </div>
+msgid "help_bibliography_text_import"
+msgstr "Du kan sætte teksten der skal importeres ind her (det skal være korrekt formateret i forhold til den parser du vælger herunder)."
+
+#: ./skins/bibliography/bibliography_importForm.cpt
+#.          <label i18n:translate="label_bibliography_import_format">Import Format</label>
+msgid "label_bibliography_import_format"
+msgstr "Import Format"
+
+#: ./skins/bibliography/bibliography_importForm.cpt
+#.          <div class="formHelp" i18n:translate="help_bibliography_import_format">
+#.            Please select the format for the source file.
+#.          </div>
+msgid "help_bibliography_import_format"
+msgstr "Vælg venligst formatet for filen med kildekode."
+
+#: ./skins/bibliography/bibliography_importForm.cpt
+#.          <input class="context"
+#.                 tabindex=""
+#.                 type="submit"
+#.                 name="submit"
+#.                 value="Import File"
+#.                 i18n:attributes="value"
+#.                 tal:attributes="tabindex tabindex/next;" />
+msgid "Import File"
+msgstr ""
+
+#: ./skins/bibliography/authors_widget.pt
+#.            <th i18n:translate="header_first_name">First Name</th>
+msgid "header_first_name"
+msgstr "Fornavn"
+
+#: ./skins/bibliography/authors_widget.pt
+#.            <th i18n:translate="header_middle_name">Middle Name(s)</th>
+msgid "header_middle_name"
+msgstr "Mellemnavne(e)"
+
+#: ./skins/bibliography/authors_widget.pt
+#.            <th i18n:translate="header_last_name">Last Name</th>
+msgid "header_last_name"
+msgstr "Efternavn"
+
+#: ./skins/bibliography/authors_widget.pt
+#.            <th i18n:translate="header_homepage">Homepage</th>
+msgid "header_homepage"
+msgstr "Hjemmeside"
+
+#: ./skins/bibliography/authors_widget.pt
+#.          <input class="context"
+#.                 type="submit"
+#.                 tabindex=""
+#.                 name="more_authors"
+#.                 value="More Authors"
+#.                 i18n:attributes="value"
+#.                 tal:attributes="tabindex tabindex/next;" />
+msgid "More Authors"
+msgstr "Flere forfattere"
+
+#: ./skins/bibliography/bibliography_entry_view.pt
+#.         <p tal:condition="not:here/Source"
+#.            i18n:translate="label_bibref_no_source">
+#.            No source specified
+#.         </p>
+msgid "label_bibref_no_source"
+msgstr "Der er ikke angivet nogen kildekode."
+
+#: ./skins/bibliography/bibliography_folder_view.pt
+#.    <div i18n:translate="description_bibliography" class="description">
+#.     This folder holds the following references to publications, sorted by year and author:</div>
+msgid "description_bibliography"
+msgstr "Denne mappe indeholder følgende referencer til publikationer, sorteret efter år og forfatter:"
+
+#: ./skins/bibliography/bibliography_folder_view.pt
+#.    <p tal:condition="not: results" i18n:translate="no_refs_in_folder">
+#.      There are no bibliographic entries in this folder.</p>		
+msgid "no_refs_in_folder"
+msgstr "Der er ingen litteraturreferencer i denne mappe."
+
+#: ./skins/bibliography/bibliography_view.pt
+#.    <h1 i18n:translate="heading_bibliography">Bibliography</h1>
+msgid "heading_bibliography"
+msgstr "Litteraturliste"
+
+#: ./skins/bibliography/bibliography_view.pt
+#.    <div i18n:translate="description_bibliography" class="description">References to publications,
+#.      sorted by year and author.</div>
+msgid "description_bibliography"
+msgstr "Referencer til publikationer, sorteret efter år og forfatter"
+
+#: ./skins/bibliography/bibliography_view.pt
+#.    <p tal:condition="not: results" i18n:translate="no_refs">
+#.        There are no bibliographic entries on this site.
+#.    </p>
+msgid "no_refs"
+msgstr "Der er ingen litteraturliste-elementer på dette site."
+
+#: ./skins/bibliography/bibliography_defaultsForm.pt
+#.    <h1 i18n:translate="heading_pubref_defaults">Default Settings for Bibliographic Entries</h1>
+msgid "heading_pubref_defaults"
+msgstr "Forvalgte indstiller for litteraturliste-elementer"
+
+#: ./skins/bibliography/bibliography_defaultsForm.pt
+#.    <p i18n:translate="description_pubref_defaults">
+#.      Specify default settings for bibliographyic entries within this folder.
+#.    </p>
+msgid "description_pubref_defaults"
+msgstr "Angiv forvalgte indstillinger for litteraturliste-elementer i denne mappe."
+
+#: ./skins/bibliography/bibliography_defaultsForm.pt
+#.      <legend i18n:translate="legend_bibliography_default_settings">Default Settings</legend>
+msgid "legend_bibliography_default_settings"
+msgstr "Forvalgte indstillinger"
+
+#: ./skins/bibliography/bibliography_defaultsForm.pt
+#.        <label i18n:translate="label_default_homepage_links">Default Homepage Links</label>
+msgid "label_default_homepage_links"
+msgstr "Forvalgte links til hjemmesider"
+
+#: ./skins/bibliography/bibliography_defaultsForm.pt
+#.        <div class="formHelp" i18n:translate="help_default_homepage_links">
+#.            To provide default homepage links for authors enter their names (firstname
+#.            plus lastname as they are specified in the entries) and links (homepage URLs)
+#.            here.
+#.        </div>
+msgid "help_default_homepage_links"
+msgstr "For at angive forvalgte links til hjemmesider, skal du skrive deres navne (fornavn plus efternavn som de er specificeret i selve litteraturliste-elementet) og links (URL til hjemmeside) her."
+
+#: ./skins/bibliography/bibliography_defaultsForm.pt
+#.            <th i18n:translate="header_name">Name</th>
+msgid "header_name"
+msgstr "Navn"
+
+#: ./skins/bibliography/bibliography_defaultsForm.pt
+#.            <th i18n:translate="header_homepage">Homepage</th>
+msgid "header_homepage"
+msgstr "Hjemmeside"
+
+#: ./skins/bibliography/bibliography_defaultsForm.pt
+#.          <input class="context"
+#.                 tabindex=""
+#.                 type="submit"
+#.                 name="form.button.More"
+#.                 value="More Links"
+#.                 i18n:attributes="value"
+#.                 tal:attributes="tabindex tabindex/next;" />
+msgid "More Links"
+msgstr "Flere Links"
+
+#: ./skins/bibliography/bibliography_defaultsForm.pt
+#.          <label i18n:translate="label_publication_ranking">Ranking</label>
+msgid "label_publication_ranking"
+msgstr "Placering"
+
+#: ./skins/bibliography/bibliography_defaultsForm.pt
+#.          <div class="formHelp" i18n:translate="help_publication_ranking">
+#.            To rank the publications in this folder, enter their ids (their names as they
+#.            appear on the URLs) one per line in the order in which they should be ranked.
+#.          </div>
+msgid "help_publication_ranking"
+msgstr "For at vælge placering til publikationerne i denne mappe, kan du her skrive deres id'er (deres navne som de ses i URL'en) en per linie i den rækkefølge de skal placeres.."
+
+#: ./skins/bibliography/bibliography_defaultsForm.pt
+#.          <input class="context"
+#.                 tabindex=""
+#.                 type="submit"
+#.                 name="form.button.Save"
+#.                 value="Save"
+#.                 i18n:attributes="value"
+#.                 tal:attributes="tabindex tabindex/next;" />
+#msgid "Save"
+#msgstr ""
+
+msgid "Enter a value for Id"
+msgstr "Indtast en kort ID. ID'en bliver en del af indholdsobjektets web-adressen og bør være kort, beskrivende og ikke indeholde mellemrum, danske eller STORE bogstaver. Eksempel: »aars-rapport-2002«"
+
+msgid "Enter a value for Title"
+msgstr ""
+
+msgid "Enter a value for Authors"
+msgstr "Du kan vælge registrerede personer på LLD-sitet i nedenstående boks, eller du kan skrive andre forfattere i det næste tekstfelt."

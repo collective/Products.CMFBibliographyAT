@@ -1,0 +1,1918 @@
+# Gettext Message File for CMFBibliographyAT.
+# Raphael Ritz <r.ritz@biologie.hu-berlin.de>, 2002-2006
+msgid ""
+msgstr ""
+"Project-Id-Version: CMFBibliographyAT 0.9\n"
+"POT-Creation-Date: 2007-01-24 17:23+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: cmfbibliographyat\n"
+"Report-Msgid-Bugs-To: m.gabriel@sunweavers.net\n"
+
+#. Default: "Export"
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "Export"
+msgstr ""
+
+#. Default: "Firstnames"
+#: formattable names widget in author/editor field
+msgid "Firstnames"
+msgstr ""
+
+#. Default: "Home Page"
+#: formattable names widget in author/editor field
+msgid "Homepage"
+msgstr ""
+
+#. Default: "Import"
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "Import"
+msgstr ""
+
+#. Default: "Lastname"
+#: formattable names widget in author/editor field
+msgid "Lastname"
+msgstr ""
+
+#. Default: "More Authors"
+#: ./skins/bibliography/authors_widget.pt
+msgid "More Authors"
+msgstr ""
+
+#. Default: "More Links"
+#: ./skins/bibliography/bibliography_defaultsForm.cpt
+msgid "More Links"
+msgstr ""
+
+#. Default: "Submit changes"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "Submit changes"
+msgstr ""
+
+#. Default: "Update All Duplicates Criteria"
+#: ./skins/bibliography/bibliography_managecriteria_macros.pt
+msgid "Update All Duplicates Criteria"
+msgstr ""
+
+#. Default: "Back to"
+#: ./skins/bibliography/bibliography_entry_macros.pt
+msgid "back_to"
+msgstr ""
+
+#. Default: "Select bibliography style:"
+#: ./skins/bibliography/bibliography_view.pt
+msgid "bib_style_selector"
+msgstr ""
+
+#. Default: "delay"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "bibliography_delay"
+msgstr ""
+
+#. Default: "GlobalMatches"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "bibliography_duplicates_global_matches"
+msgstr ""
+
+#. Default: "LocalMatches"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "bibliography_duplicates_local_matches"
+msgstr ""
+
+#. Default: "findmatches"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "bibliography_find"
+msgstr ""
+
+#. Default: "add/force"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "bibliography_force"
+msgstr ""
+
+#. Default: "There are currently no member types selected."
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "bibliography_no_selected_member_types"
+msgstr ""
+
+#. Default: "replace"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "bibliography_replace"
+msgstr ""
+
+#. Default: "Currently selected member types:"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "bibliography_selected_member_types"
+msgstr ""
+
+#. Default: "drop/skip"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "bibliography_skip"
+msgstr ""
+
+#: ./skins/bibliography/prefs_bibliography_managecriteria.cpy:25
+msgid "bibliography_tool_update_criteriamanager_failed"
+msgstr ""
+
+#: ./skins/bibliography/prefs_bibliography_managecriteria.cpy:23
+msgid "bibliography_tool_updated_criteriamanager"
+msgstr ""
+
+#: ./skins/bibliography/prefs_bibliography_duplicates.cpy:14
+msgid "bibliography_tool_updated_duplicates"
+msgstr ""
+
+#: ./skins/bibliography/prefs_bibliography_general.cpy:14
+msgid "bibliography_tool_updated_general"
+msgstr ""
+
+#: ./skins/bibliography/prefs_bibliography_idcooking.cpy:31
+msgid "bibliography_tool_updated_idcooking"
+msgstr ""
+
+#: ./skins/bibliography/prefs_bibliography_importexport.cpy:48
+msgid "bibliography_tool_updated_importexport"
+msgstr ""
+
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport.cpy:16
+msgid "bibliography_tool_updated_memberreferencesupport"
+msgstr ""
+
+#. Default: "Link to Amazon"
+#: ./skins/bibliography/bibliography_entry_macros.pt
+msgid "bibref_amazon_link"
+msgstr ""
+
+#. Default: "Link to PubMed entry"
+#: ./skins/bibliography/bibliography_entry_macros.pt
+msgid "bibref_pubmed_link"
+msgstr ""
+
+#. There are several ways to make reference to the original paper:
+#.
+#. - A link to an online version
+#. - A link to a printable (pdf) version
+#. - Upload a printable (pdf) file
+#: ./content/schemata.py
+msgid "comment_explain_links"
+msgstr ""
+
+#. Default: "Default encoding:"
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "default_encoding"
+msgstr ""
+
+#. Default: "References to publications, sorted by year and author."
+#: ./skins/bibliography/bibliography_view.pt
+msgid "description_bibliography"
+msgstr ""
+
+#. Default: "This folder holds the following references to publications, sorted by year and author."
+#: ./skins/bibliography/bibliographyfolder_view.pt
+msgid "description_bibliographyfolder"
+msgstr ""
+
+#. Default: "Personal annotations are visible only for the authors / owners of this bibliographical entry. For site visitors this field is hidden."
+#: ./skins/bibliography/bibliography_entry_macros.pt
+msgid "description_bibref_annote"
+msgstr ""
+
+#. Default: "CMFBibliographyAT - A powerful Plone approach to bibliography administration."
+#: ./skins/bibliography/prefs_bibliography_docs.cpt
+msgid "description_docs_bibliography_setup"
+msgstr ""
+
+#. Default: "Specify some information on how to handle duplicate bibliographical references in bibliography folders."
+#: ./skins/bibliography/prefs_bibliography_duplicates_form.cpt
+msgid "description_duplicates_bibliography_setup"
+msgstr ""
+
+#. Default: "MS-DOS/Windows and UniX operating systems use a different ASCII sequence to indicate a line break. Depending on your favourite operating system, select your preferred end-of-line style here."
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "description_eol_style"
+msgstr ""
+
+#. Default: "Specify some general information required by the portal's bibliography product(s)."
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "description_general_bibliography_setup"
+msgstr ""
+
+#. Default: "Setup the functionality of the bibliographical reference ID cooking method."
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "description_idcooking_bibliography_setup"
+msgstr ""
+
+#. Default: "Configure the parsers and renderers registered with the bibliography tool."
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "description_importexport_bibliography_setup"
+msgstr ""
+
+#. Default: "Set up how authors / editors for bibliographical items can be referenced to member objects of your site."
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "description_memberrefsupport_bibliography_setup"
+msgstr ""
+
+#. Default: "Specify default settings for bibliographyic entries within this folder."
+#: ./skins/bibliography/bibliography_defaultsForm.cpt
+msgid "description_pubref_defaults"
+msgstr ""
+
+#. Default: "Select the format from the list below. Confirm by clicking ${export}."
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "description_pubref_export"
+msgstr ""
+
+#. Default: "Enter the name of your source file or click ${browse} to get a file dialog box to select it. Alternatively you can enter the source test directly. Then specify the format from the list below. Processing is started by clicking ${import}."
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "description_pubref_import"
+msgstr ""
+
+#. Default: "do nothing for now"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "do nothing for now"
+msgstr ""
+
+#. Default: "Bibliography Folder - (Re-)scan for duplicate bibliographical entries"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "duplicates_bibfolderscan"
+msgstr ""
+
+#. Default: "reverse"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "duplicates_bibfolderscan_reverse"
+msgstr ""
+
+#. Default: "Members of your site may have added new bibliographical entries recently. To update the duplicate bibliographical entries' matching objects, use the \"find matches\" radio buttons. This is recommended before managing the listed duplicate bibliographical entries."
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "duplicates_find_matches_button"
+msgstr ""
+
+#. Default: "Bibliography Folder - Manage Existing Duplicates"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "duplicates_manage_existing"
+msgstr ""
+
+#. Default: "(ed.)"
+#: ./skins/bibliography/bibliography_entry_macros.pt
+msgid "editor_abbreviated"
+msgstr ""
+
+#. Default: "Not available, check your site setup..."
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "filter_not_available"
+msgstr ""
+
+#. Default: "find bibliographical items that match listed duplicates"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "find bibliographical items that match listed duplicates"
+msgstr ""
+
+#. Default: "for all duplicated"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "for_all_duplicated"
+msgstr ""
+
+#. Default: "force items into bibliography folder without removing matching items"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "force items into bibliography folder without removing matching items"
+msgstr ""
+
+#. Default: "Global search span"
+#: ./content/folder.py
+msgid "global_duplicates_matchingpolicy"
+msgstr ""
+
+#. Default: "Bibliography Setup - Documentation"
+#: ./skins/bibliography/prefs_bibliography_docs.cpt
+msgid "head_docs_bibliography_setup"
+msgstr ""
+
+#. Default: "Bibliography Setup - Duplicates Management"
+#: ./skins/bibliography/prefs_bibliography_duplicates_form.cpt
+msgid "head_duplicates_bibliography_setup"
+msgstr ""
+
+#. Default: "Bibliography Setup - General"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "head_general_bibliography_setup"
+msgstr ""
+
+#. Default: "Bibliography Setup - Reference ID Cooking"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "head_idcooking_bibliography_setup"
+msgstr ""
+
+#. Default: "Bibliography Setup - Import / Export"
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "head_importexport_bibliography_setup"
+msgstr ""
+
+#. Default: "First Name"
+#: ./skins/bibliography/authors_widget.pt
+msgid "header_first_name"
+msgstr ""
+
+#. Default: "Homepage"
+#: ./skins/bibliography/authors_widget.pt
+#: ./skins/bibliography/bibliography_defaultsForm.cpt
+msgid "header_homepage"
+msgstr ""
+
+#. Default: "Last Name"
+#: ./skins/bibliography/authors_widget.pt
+msgid "header_last_name"
+msgstr ""
+
+#. Default: "Middle Name(s)"
+#: ./skins/bibliography/authors_widget.pt
+msgid "header_middle_name"
+msgstr ""
+
+#. Default: "Name"
+#: ./skins/bibliography/bibliography_defaultsForm.cpt
+msgid "header_name"
+msgstr ""
+
+#. Default: "Bibliography"
+#: ./skins/bibliography/bibliography_view.pt
+msgid "heading_bibliography"
+msgstr ""
+
+#. Default: "Bibliographical Duplicates Management"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "heading_manage_duplicate"
+msgstr ""
+
+#. Default: "Manage Duplicate Bibliography Entries"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "heading_manage_duplicate_bibrefs"
+msgstr ""
+
+#. Default: "Duplicates Criteria Management"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "heading_manage_duplicates_criteria"
+msgstr ""
+
+#. Default: "Bibliography Setup - Member Reference Support"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "heading_memberrefsupport_bibliography_setup"
+msgstr ""
+
+#. Default: "Default Settings for Bibliographic Entries"
+#: ./skins/bibliography/bibliography_defaultsForm.cpt
+msgid "heading_pubref_defaults"
+msgstr ""
+
+#. Default: "Export Bibliographical Entries"
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "heading_pubref_export"
+msgstr ""
+
+#. Default: "Import Bibliographical Entries"
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "heading_pubref_import"
+msgstr ""
+
+#. Default: "An abstract of the referenced publication. Please contact your portal's reviewers if unsure about the site's default language for abstracts in bibliographical references."
+#: ./content/schemata.py
+msgid "help_abstract"
+msgstr ""
+
+#. Default: "Publisher's address. For major publishing houses, just the city is given. For small publishers, you can help the reader by giving the complete address."
+#: ./content/fields.py
+msgid "help_address"
+msgstr ""
+
+#. Default: "Should the introductory text on the view pages of a bibliography folder be replaced by the content of the 'intro' field?"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "help_allow_intro_text"
+msgstr ""
+
+#. Default: "Any annotation that you do not wish to appear in rendered (BibTeX) bibliographies."
+#: ./content/schemata.py
+msgid "help_annote"
+msgstr ""
+
+#. Default: "This feature takes care of the metadata field 'creators'. It copies all referenceable authors' member IDs into the 'creators' metadata field."
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_authorofimpliescreator_text"
+msgstr ""
+
+#. Default: "With this feature you can make sure that authors will always be able to edit their own bibliographical entries."
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_authorofimpliesowner_text"
+msgstr ""
+
+#. Default: "If possible, always fill in the complete authors' / editors' names."
+#: ./content/schemata.py
+msgid "help_authors"
+msgstr ""
+
+#. Default: "Bibliographical reference types of this bibliography folder will only support upload of publications in PDF format if selected here."
+#: ./content/folder.py
+msgid "help_bibfolder_allowpdfuploadfortypes"
+msgstr ""
+
+#. Default: "Cook IDs for bibliographical entries when created TTW. For this to work, leave new IDs (auto-generated by Plone - if shown at all) untouched on creation of a bibliographical entry. If you change the entry's ID on creation, no ID cooking will be performed. If not sure what to say here, leave the default."
+#: ./content/folder.py
+msgid "help_bibfolder_cookidsoncreation"
+msgstr ""
+
+#. Default: "Re-cook IDs for bibliographical items after each edit action. This feature is useful, if you want to make sure, that bibliographical reference IDs always stay in sync with the entry's properties (author names, publication year etc. - depending on what properties are used for ID cooking). If not sure what to say here, leave the default."
+#: ./content/folder.py
+msgid "help_bibfolder_cookidsonedit"
+msgstr ""
+
+#. Default: "If duplicates management is enabled, this value will define the search span for matching objects."
+#: ./content/folder.py
+msgid "help_bibfolder_duplicatesmatchingpolicy"
+msgstr ""
+
+#. Default: "Enable the Duplicates Management engine of this bibliography folder. If enabled (recommended) duplicate bibliographical references will be treated specially on import, cut, copy and paste."
+#: ./content/folder.py
+msgid "help_bibfolder_enableduplicatemanager"
+msgstr ""
+
+#. Default: "Specify the algorithm that shall be used to cook IDs for bibliographical items in this bibliography folder. If not sure what to say here, leave the default."
+#: ./content/folder.py
+msgid "help_bibfolder_idcooking"
+msgstr ""
+
+#. Default: "Adding an introductory text at the  top of the folder listing."
+#: ./content/folder.py
+msgid "help_bibfolder_intro"
+msgstr ""
+
+#. Default: "Only if this option is enabled bibliographical entries in this bibliography folder will be found by site users using the bibliography search form. You can also use this option to hide this bibliography folder's bibliographical entries from &raquo;(Smart) Bibliography Lists&laquo; (if installed)."
+#: ./content/folder.py
+msgid "help_bibfolder_searchable_bibfolder"
+msgstr ""
+
+#. Default: "Synchronize some attributes of an uploaded PDF file with the attribute values of the referring bibliographical entry (currently supported: ID, Roles, Creator)."
+#: ./content/folder.py
+msgid "help_bibfolder_synchronizepdffileattributes"
+msgstr ""
+
+#. Default: "On bibliography import some import formats already offer unique IDs for bibliographical entries. If you want to keep those IDs, tick here. If not sure what to say here, leave the default."
+#: ./content/folder.py
+msgid "help_bibfolder_usepidsonimport"
+msgstr ""
+
+#. Default: "For most portal scenarios translatable bibliography folders are not required and might only confuse the user. Here you can disable the portal's translation feature (e.g. LinguaPlone) for bibliography folders. Voting for translatable bibliography folders will automagically enable the translation feature for bibliographical entries below."
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "help_bibfolders_translatable"
+msgstr ""
+
+#. Default: "Please select the file format for bibliography export."
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "help_bibliography_export_format"
+msgstr ""
+
+#. Default: "Select the file to be imported by clicking the 'Browse' button or enter the source text below."
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "help_bibliography_file_import"
+msgstr ""
+
+#. Default: "Please select the format for the source."
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "help_bibliography_import_format"
+msgstr ""
+
+#. Default: "Please select span of search for duplicates of references."
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "help_bibliography_import_span"
+msgstr ""
+
+#. Default: "You can paste here the import text (make sure it is correctly formatted regarding the parser you will choose below)."
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "help_bibliography_text_import"
+msgstr ""
+
+#. Default: "For most portal scenarios translatable bibliography entries are not required and might only confuse the user. Here you can disable the portal's translation feature (e.g. LinguaPlone) for bibliographical entries. If you decide to disable reference item translation here, the bibliography folder translation feature above will also be deactivated."
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "help_bibrefitems_translatable"
+msgstr ""
+
+#. Default: "Title of the book, collection or proceedings, that the cited resource is part of."
+#: ./content/fields.py
+msgid "help_booktitle"
+msgstr ""
+
+#. Default: "A chapter number."
+#: ./content/fields.py
+msgid "help_chapter"
+msgstr ""
+
+#. Default: "To provide default homepage links for authors enter their names (firstname plus lastname as they are specified in the entries) and links (homepage URLs) here."
+#: ./skins/bibliography/bibliography_defaultsForm.cpt
+msgid "help_default_homepage_links"
+msgstr ""
+
+#. Default: "Specify the default reference ID cooker for new bibliography folders."
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "help_default_idcooker"
+msgstr ""
+
+#. Default: "Here you can selectively enable or disable ID cooking methods for your site's bibliographical references. Disabled ID cookers will not be available to any bibliography folder of your portal. If you disable an ID cooker that is already in use with one or several bibliography folders, you will have to change the settings of those bibliography folders manually."
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "help_default_idcooker1"
+msgstr ""
+
+#. Default: "Note: you cannot disable the default ID cooke selected above."
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "help_default_idcooker2"
+msgstr ""
+
+#. Default: "The reference's Digital Object Identifier."
+#: ./content/article.py
+msgid "help_doi"
+msgstr ""
+
+#. Default: "NOTE: This Bibliography Folder is currently empty. A (re-)scan for duplicate entries is pointless at this place."
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "help_duplicates_bibfolder_empty_warning"
+msgstr ""
+
+#. Default: "In some cases you may want to (re-)scan this bibliography folder for duplicate entries."
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "help_duplicates_bibfolderscan"
+msgstr ""
+
+#. Default: "Specify the (re-)scanning order of duplicate entries in this bibliography folder. The order in that bibliographical entries are processed decides whether an entry is regarded as an original entry (first seen entry) or a duplicate."
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "help_duplicates_bibfolderscan_order"
+msgstr ""
+
+#. Default: "WARNING: On Bibliography Folders with many bibliographical entries inside a (re-)scan for duplicate entries can be very CPU consuming and time intensive."
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "help_duplicates_bibfolderscan_warning"
+msgstr ""
+
+#. Default: "The listing below shows the criteria that the duplicates engine of this bibliography folder checks on copy/cut+paste or import actions on bibliographical items. This bibliography folder's duplicate engine tries to find out if two different bibliographical entries refer to the same publication."
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "help_duplicatescriteria_bibfolder_p1"
+msgstr ""
+
+#. Default: "To change a set of criteria for a bibliographical reference type, check the individual criteria of that type and click \"Update All Duplicates Criteria\" at the very bottom of this fieldset."
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "help_duplicatescriteria_bibfolder_p2"
+msgstr ""
+
+#. Default: "The listing below shows the criteria that the duplicates engine of a bibliography folder can check on copy/cut+paste or import actions on bibliographical items. A bibliography folder's duplicate engine tries to find out if two different bibliographical entries refer to the same publication."
+#: ./skins/bibliography/prefs_bibliography_duplicates_form.cpt
+msgid "help_duplicatescriteria_p1"
+msgstr ""
+
+#. Default: "Criteria selected here will be used as default settings for the duplicate engine of new bibliography folders. To change a set of criteria for a bibliographical reference type, check the individual criteria of that type and click \"Update All Duplicates Criteria\" at the very bottom of this fieldset."
+#: ./skins/bibliography/prefs_bibliography_duplicates_form.cpt
+msgid "help_duplicatescriteria_p2"
+msgstr ""
+
+#. Default: "The edition of a book - for example: 'II', '2' or 'second', depending on your preference. Numbers will be turned into ordinal numerals."
+#: ./content/fields.py
+msgid "help_edition"
+msgstr ""
+
+#. Default: "Name(s) of editor(s). Opposed to the 'author' field, the 'editor' field should contain the editor of the book, collection or proceeding that the reference appears in."
+#: ./content/fields.py
+msgid "help_editor"
+msgstr ""
+
+#. Default: "Check here if the author(s) specified above are actually the editor(s) of the referenced resource."
+#: ./content/fields.py
+msgid "help_editor_flag"
+msgstr ""
+
+#. Default: "Bibliography folders have an integrated Duplicates Management Engine that can handle duplicate bibliographical references. If you want to enable this engine in every new bibliography folder (recommended) select this here."
+#: ./skins/bibliography/prefs_bibliography_duplicates_form.cpt
+msgid "help_enable_duplicates_manager"
+msgstr ""
+
+#. Default: "For publications without a publisher. e.g., an 'Institute Report'."
+#: ./content/fields.py
+msgid "help_howpublished"
+msgstr ""
+
+#. Default: "If a bibliographical reference item has one author, it takes the first three letters of the author's lastname plus publication year to cook the reference's ID. For more than one author, it uses the initials of all authors' lastnames plus publication year."
+#: ./tool/idcookers/abbrev.py
+msgid "help_idcooker_abbrev"
+msgstr ""
+
+#. Default: "On object creation Plone auto-generates a unique ID for each object. For each bibliography folder you can select if you want to keep the auto-generated IDs of newly created reference items or if you want to override the auto-generated IDs with more appropriately cooked bibliography IDs. This setting will be the default for all newly created bibliography folders."
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "help_idcooker_bibrefcreation"
+msgstr ""
+
+#. Default: "For bibliographical references there is a feature available that is uncommon in Plone. It is possible to re-cook bibliographical reference IDs after every edit. This assures that bibliographical reference items' IDs always stay in sync with the references properties that are used to cook the reference items' IDs. On the web this feature might not always be wanted, so use this carefully. Whatever you choose here will be the default for newly create bibliography folders."
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "help_idcooker_bibrefedit"
+msgstr ""
+
+#. Default: "If a bibliographical reference item has one or two authors, it uses the authorname(s) + publication year to cook a reference's ID. If an item has more than two authors, it uses the first author's name plus 'EtAl' plus the publication year."
+#: ./tool/idcookers/etal.py
+msgid "help_idcooker_etal"
+msgstr ""
+
+#. Default: "Some import formats already provide IDs for bibliographical reference items. Here you can choose if IDs of imported references shall be kept unchanged or if they should be re-cooked into IDs that are conform to the bibliography folders ID cooking policy. This setting will be the default for all newly created bibliography folders."
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "help_idcooker_parserids"
+msgstr ""
+
+#. Default: "The ID is cooked from the bibliographical reference's title as a normalized string. That is the way Plone normally cooks object IDs."
+#: ./tool/idcookers/plone.py
+msgid "help_idcooker_plone"
+msgstr ""
+
+#. Default: "The ID is cooked from the bibliographical reference's UID (Archetypes' unique object identifier)."
+#: ./tool/idcookers/uid.py
+msgid "help_idcooker_uid"
+msgstr ""
+
+#. Default: "The institution that published the work."
+#: ./content/fields.py
+msgid "help_institution"
+msgstr ""
+
+#. Default: "The book's ISBN number."
+#: ./content/book.py
+msgid "help_isbn"
+msgstr ""
+
+#. Default: "The site-wide default for the ISBN links that book references may offer if the ISBN number of the book is specified. This may be overridden by defining a 'show_isbn_link' property for an individual bibliography folder or even individual book reference."
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "help_isbn_link"
+msgstr ""
+
+#. Default: "A journal name (should be the full journal name)."
+#: ./content/fields.py
+msgid "help_journal"
+msgstr ""
+
+#. Default: "Should author names be automagically referred to member references after edit?"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_memberrefsafteredit_text"
+msgstr ""
+
+#. Default: "Should author names be automagically referred to member references after import?"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_memberrefsafterimport_text"
+msgstr ""
+
+#. Default: "Should it be allowed on all bibliographical reference items to relate authors / editors to portal members?"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_memberrefsupport_text"
+msgstr ""
+
+#. Default: "Specify a member type (i.e. a content type that provides information on portal members) here. With a member type you can create unique member objects; these member objects can be unequivocally assigned to authors / editors of publications. Member referencing of authors / editors lets you deal with the synonym (different people may have same name) as well as with the homonym (same person published under several names) problem in a satisfactory way."
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_memberrefsupport_text1"
+msgstr ""
+
+#. Default: "A member type is not shipped with CMFBibliographyAT, but will come from another product that has to be optionally installed to make the member reference support work (e.g. CMFMember or ATMemberInfo)."
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_memberrefsupport_text2"
+msgstr ""
+
+#. Default: "Make sure that this field exists equally in the above selected member types!!!"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_membersearchonattr_text2"
+msgstr ""
+
+#. Default: "Your member reference type needs a SearchableText field that contains a member's/author's fullname. Specify this field here. It will be searched on when trying to map authors to portal members. If unsure, try 'getAuthors' or 'Title'."
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_memberssearchonattr_text1"
+msgstr ""
+
+#. Default: "Any additional information that can help the reader. The first word should be capitalized."
+#: ./content/schemata.py
+msgid "help_note"
+msgstr ""
+
+#. Default: "The number of a journal, proceedings, technical report etc. Issues of journals, proceedings etc. are usually identified by volume and number; however, issues of the same volume will often be numbered preceedingly which often makes the specification of a number optional. With technical reports, the issuing organization usually also gives it a number."
+#: ./content/fields.py
+msgid "help_number"
+msgstr ""
+
+#. Default: "The organization sponsoring a conference, issuing a technical report etc."
+#: ./content/fields.py
+msgid "help_organization"
+msgstr ""
+
+#. Default: "A page number or range of numbers such as '42-111'; you may also have several of these, separating them with commas: '7,41,73-97'."
+#: ./content/fields.py
+msgid "help_pages"
+msgstr ""
+
+#. Default: "A specific parser to process input in BiBTeX-format."
+#: ./tool/parsers/bibtex.py
+msgid "help_parser_bibtex"
+msgstr ""
+
+#. Default: "A specific parser to process input in CitationManager format."
+#: ./tool/parsers/citationmanager.py
+msgid "help_parser_citationmanager"
+msgstr ""
+
+#. Default: "A specific parser to process input in EndNote's text format."
+#: ./tool/parsers/endnote.py
+msgid "help_parser_endnote"
+msgstr ""
+
+#. Default: "A specific parser to process input in BIDS (IBSS) format."
+#: ./tool/parsers/ibss.py
+msgid "help_parser_ibss"
+msgstr ""
+
+#. Default: "A specific parser to process a list of ISBN numbers. Information will be retrieved from Amazon Webservices."
+#: ./tool/parsers/isbn.py
+msgid "help_parser_isbn"
+msgstr ""
+
+#. Default: "A specific parser to process input in Medline-format."
+#: ./tool/parsers/medline.py
+msgid "help_parser_medline"
+msgstr ""
+
+#. Default: "A specific parser to process input in RIS format (Research Information Systems/Reference Manager)."
+#: ./tool/parsers/ris.py
+msgid "help_parser_ris"
+msgstr ""
+
+#. Default: "A specific parser to process input in XML(MODS)-format. The XML intermediate format is conform to the Library of Congress's Metadata Object Description Schema (MODS). This is a very flexible standard that should prove quite useful as the number of tools that directly interact with it increase."
+#: ./tool/parsers/xml.py
+msgid "help_parser_xml_mods"
+msgstr ""
+
+#. Default: "This is AT field is hidden to anyone but portal managers. It refers to the associated PDF document on this site (if any). Use it for repair if the PDF file association of this bibliographical entry is broken."
+#: ./content/schemata.py
+msgid "help_pdf_file"
+msgstr ""
+
+#. Default: "The (external) URL to retrieve a printable version (PDF file) of the referenced resource from."
+#: ./content/schemata.py
+msgid "help_pdfref_url"
+msgstr ""
+
+#. Default: "Select bibliographical reference types that shall support upload of publications in PDF format. The settings specified here will be used as default for new bibliography folders."
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "help_pdfupload_policy_for_types"
+msgstr ""
+
+#. Default: "For each bibliographical reference you can optionally upload a PDF file. If PDF file upload of publications might cause copyright issues that you do not want to deal with, you might want to deactivate PDF file upload all over this site."
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "help_pdfupload_portal_policy"
+msgstr ""
+
+#. Default: "The reference's number in the PubMed database."
+#: ./content/article.py
+msgid "help_pmid"
+msgstr ""
+
+#. Default: "If the preprint is available from one of the following preprint servers, you can indicate that here. Contact the site's admin if you want a server to be added to the list."
+#: ./content/preprint.py
+msgid "help_preprint_server"
+msgstr ""
+
+#. Default: "The preprint servers users can select from. The format has to be in the form 'server name:server url'. The URL may be omitted but the ':' still needs to be present then."
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "help_preprint_servers"
+msgstr ""
+
+#. Default: "Month of publication (or writing, if not published)."
+#: ./content/schemata.py
+msgid "help_publication_month"
+msgstr ""
+
+#. Default: "To rank the publications in this folder, enter their ids (their names as they appear on the URLs) one per line in the order in which they should be ranked."
+#: ./skins/bibliography/bibliography_defaultsForm.cpt
+msgid "help_publication_ranking"
+msgstr ""
+
+#. Default: "The type of a technical report, PhD thesis etc. - for example, 'Research Note' or 'Doktorarbeit'."
+#: ./content/fields.py
+msgid "help_publication_type"
+msgstr ""
+
+#. Default: "The year of publication. For unpublished works, please specify the year of composure. This field should contain a year number like '1984', but it can also process notes like &raquo;in print&laquo; etc."
+#: ./content/schemata.py
+msgid "help_publication_year"
+msgstr ""
+
+#. Default: "The publisher's name."
+#: ./content/fields.py
+msgid "help_publisher"
+msgstr ""
+
+#. Default: "A specific renderer to export bibliographical references in BiBTeX format. Note: If the output encoding of the BiBTeX renderer is not unicode capable, all non-ASCII characters will be resolved to LaTeX entities."
+#: ./tool/renderers/bibtex.py
+msgid "help_renderer_bibtex"
+msgstr ""
+
+#. Default: "A specific EndNote renderer that exports bibliographical references in the EndNote text format."
+#: ./tool/renderers/endnote.py
+msgid "help_renderer_endnote"
+msgstr ""
+
+#. Default: "A renderer that produces a PDF document containing bibliographical references. The PDF export is rendered by PDFLaTeX."
+#: ./tool/renderers/pdf.py
+msgid "help_renderer_pdf"
+msgstr ""
+
+#. Default: "A specific renderer that exports bibliographical references in RIS (Research Information Systems/Reference Manager) format."
+#: ./tool/renderers/ris.py
+msgid "help_renderer_ris"
+msgstr ""
+
+#. Default: "A specific XML (MODS) intermediate renderer. The XML intermediate format is conform to the Library of Congress's Metadata Object Description Schema (MODS). This is a very flexible standard that should prove quite useful as the number of tools that directly interact with it increase."
+#: ./tool/renderers/xml.py
+msgid "help_renderer_xml_mods"
+msgstr ""
+
+#. Default: "The name of the school (college, university etc.) where a thesis was written."
+#: ./content/fields.py
+msgid "help_school"
+msgstr ""
+
+#. Default: "You can explicitly exclude bibliographical entries of certain bibliography folders from the results of bibliography search requests. The searchable-flag of bibliography folders has an impact on requests made with the bibliography search form of CMFBibliographyAT. It also has an influence on other bibliography products like ATBiblioTopic or ATBiblioList."
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "help_searchable_bibfolders1"
+msgstr ""
+
+#. Default: "The settings specified here will be used as default for new bibliography folders."
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "help_searchable_bibfolders2"
+msgstr ""
+
+#. Default: "If the member type(s) specified above render(s) a list of unique author / editor names, you probably want to display the member name in the member reference selection subfield according to a certain pattern provided by the member reference object. Select the method / property that provides this display pattern here (recommended: 'Authors', if that does not work, try 'Title')."
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_selectmembersattr_text1"
+msgstr ""
+
+#. Default: "Again, make sure that this field exists equally in the above selected member types!!!"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_selectmembersattr_text2"
+msgstr ""
+
+#. Default: "The name of a series or set of books. When citing an entire book, the 'title' field gives its title and this optional 'series' field gives the name of a series in which the book is published."
+#: ./content/fields.py
+msgid "help_series"
+msgstr ""
+
+#. Default: "There is ID re-cooking (after every edit / paste action) enabled on this item's parent bibliography folder. You cannot manually edit this item's short name. Modifications in this field will be ignored."
+#: ./content/schemata.py
+msgid "help_shortname_cookid_warning"
+msgstr ""
+
+#. Default: "If the member type(s) specified above render a list of unique author / editor names, you probably want this list to be sorted. Select one of the portal catalogue's index fields to sort the unique member references on (recommended: 'Authors', if that does not work, try 'sortable_title')."
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_sortmemberson_text1"
+msgstr ""
+
+#. Default: "Again, make sure that this field exists equally in the above selected member types!!!"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "help_sortmemberson_text2"
+msgstr ""
+
+#. Default: "On upload of a PDF file the ID of the uploaded PDF is derived from the filename of the uploaded file. The member that uploads the PDF will be assigned as Owner (local role) and as Creator of the PDF File."
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "help_synchronize_pdffiles1"
+msgstr ""
+
+#. Default: "However, it is also possible to keep IDs, local roles and the creators field of uploaded PDF files in sync with their related bibliographical entry's ID resp. attributes."
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "help_synchronize_pdffiles2"
+msgstr ""
+
+#. Default: "The settings specified here will be used as default for new bibliography folders."
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "help_synchronize_pdffiles3"
+msgstr ""
+
+#. Default: "If not in conflict with any copyright issues, use this field to upload a printable version (PDF file) of the referenced resource."
+#: ./content/schemata.py
+#: ./content/pdf.py
+msgid "help_upload_pdffile_from_bibrefitem"
+msgstr ""
+
+#. Default: "The (external) URL to get to an online version of the referenced resource."
+#: ./content/schemata.py
+msgid "help_url"
+msgstr ""
+
+#. Default: "The volume of a journal, multivolume book work etc. In most cases it should suffice to use a simple number as the volume identifier."
+#: ./content/fields.py
+msgid "help_volume"
+msgstr ""
+
+#. Default: "There is only a single reference in this bibliography folder."
+#: ./skins/bibliography/bibliographyfolder_view.pt
+msgid "info_item_in_bibfolder"
+msgstr ""
+
+#. Default: "There are ${count} references in this bibliography folder."
+#: ./skins/bibliography/bibliographyfolder_view.pt
+msgid "info_items_in_bibfolder"
+msgstr ""
+
+#. Default: "Abstract"
+#: ./content/schemata.py
+msgid "label_abstract"
+msgstr ""
+
+#. Default: "Address"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_address"
+msgstr ""
+
+#. Default: "Display default message"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_allow_folder_intro_off"
+msgstr ""
+
+#. Default: "Display intro text in bibliography folders' view page"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_allow_folder_intro_on"
+msgstr ""
+
+#. Default: "Intro Text for Bibliography Folders"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_allow_intro_text"
+msgstr ""
+
+#. Default: "Personal annotation"
+#: ./content/schemata.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_annote"
+msgstr ""
+
+#. Default: "Make authors that can be referenced to a portal member creators (the metadata field) of their bibliographical entries"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_authorofimpliescreator_link"
+msgstr ""
+
+#. Default: "Do not touch the creators metadata field!!!"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_authorofimpliescreator_off"
+msgstr ""
+
+#. Default: "Make authors creators of their bibliographical entries"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_authorofimpliescreator_on"
+msgstr ""
+
+#. Default: "Make authors that can be referenced to a portal member owners of their bibliographical entries"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_authorofimpliesowner_link"
+msgstr ""
+
+#. Default: "Do not touch any local roles of bibliographical entries!!!"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_authorofimpliesowner_off"
+msgstr ""
+
+#. Default: "Make authors owners of their bibliographical entries"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_authorofimpliesowner_on"
+msgstr ""
+
+#. Default: "Authors"
+#: ./content/schemata.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_authors"
+msgstr ""
+
+#. Default: "Allow PDF Upload Only for Selected Types"
+#: ./content/folder.py
+msgid "label_bibfolder_allowpdfuploadfortypes"
+msgstr ""
+
+#. Default: "ID Cooking on Creation of a Bibliographical Entry"
+#: ./content/folder.py
+msgid "label_bibfolder_cookidsoncreation"
+msgstr ""
+
+#. Default: "ID Re-Cooking after a Bibliographical Entry has been Edited"
+#: ./content/folder.py
+msgid "label_bibfolder_cookidsonedit"
+msgstr ""
+
+#. Default: "Duplicates Matching Policy"
+#: ./content/folder.py
+msgid "label_bibfolder_duplicatesmatchingpolicy"
+msgstr ""
+
+#. Default: "Enable Duplicates Management"
+#: ./content/folder.py
+msgid "label_bibfolder_enableduplicatemanager"
+msgstr ""
+
+#. Default: "ID Cooking Method for Bibliographical Entries"
+#: ./content/folder.py
+msgid "label_bibfolder_idcooking"
+msgstr ""
+
+#. Default: "Intro Text"
+#: ./content/folder.py
+msgid "label_bibfolder_intro"
+msgstr ""
+
+#. Default: "Searchable Bibliography Folder"
+#: ./content/folder.py
+msgid "label_bibfolder_searchable_bibfolder"
+msgstr ""
+
+#. Default: "Synchronize PDF File Attributes"
+#: ./content/folder.py
+msgid "label_bibfolder_synchronizepdffileattributes"
+msgstr ""
+
+#. Default: "Use IDs from Import Files on Reference Import"
+#: ./content/folder.py
+msgid "label_bibfolder_usepidsonimport"
+msgstr ""
+
+#. Default: "Translatable Bibliography Folders"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_bibfolders_translatable"
+msgstr ""
+
+#. Default: "Do not allow translation of bibliography folders"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_bibfolders_translatable_off"
+msgstr ""
+
+#. Default: "Allow translation of bibliography folders"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_bibfolders_translatable_on"
+msgstr ""
+
+#. Default: "Documentation"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_bibliography_docs"
+msgstr ""
+
+#. Default: "Duplicates Management"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_bibliography_duplicates"
+msgstr ""
+
+#. Default: "Export"
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "label_bibliography_export"
+msgstr ""
+
+#. Default: "Export Format"
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "label_bibliography_export_format"
+msgstr ""
+
+#. Default: "General"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_bibliography_general"
+msgstr ""
+
+#. Default: "Global (all site)"
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "label_bibliography_global"
+msgstr ""
+
+#. Default: "ID Cooking"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_bibliography_idcooking"
+msgstr ""
+
+#. Default: "Source Format"
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "label_bibliography_import_format"
+msgstr ""
+
+#. Default: "Import duplicate search span"
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "label_bibliography_import_span"
+msgstr ""
+
+#. Default: "Import / Export"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_bibliography_importexport"
+msgstr ""
+
+#. Default: "Local (this folder)"
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "label_bibliography_local"
+msgstr ""
+
+#. Default: "Member Reference Support"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_bibliography_memberrefsupport"
+msgstr ""
+
+#. Default: "No source specified"
+#: ./skins/bibliography/bibliography_view.pt
+#: ./skins/bibliography/bibliography_entry_macros.pt
+msgid "label_bibref_no_source"
+msgstr ""
+
+#. Default: "Translatable Bibliography Reference Items"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_bibrefitems_translatable"
+msgstr ""
+
+#. Default: "Do not allow translation of reference items"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_bibrefitems_translatable_off"
+msgstr ""
+
+#. Default: "Allow translation of reference items"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_bibrefitems_translatable_on"
+msgstr ""
+
+#. Default: "Book Title"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_booktitle"
+msgstr ""
+
+#. Default: "Chapter"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_chapter"
+msgstr ""
+
+#. Default: "Default Homepage Links"
+#: ./skins/bibliography/bibliography_defaultsForm.cpt
+msgid "label_default_homepage_links"
+msgstr ""
+
+#. Default: "Bibliography Folders' default ID cooker:"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_default_idcooker"
+msgstr ""
+
+#. Default: "DOI"
+#: ./content/article.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_doi"
+msgstr ""
+
+#. Default: "Duplicates (re-)scanning Order"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "label_duplicates_bibfolderscan_order"
+msgstr ""
+
+#. Default: "Duplicates (re-)scanning Search Span"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "label_duplicates_bibfolderscan_span"
+msgstr ""
+
+#. Default: "Edition"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_edition"
+msgstr ""
+
+#. Default: "Editor"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_editor"
+msgstr ""
+
+#. Default: "Editor Flag"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_editor_flag"
+msgstr ""
+
+#. Default: "Enable Duplicates Management Engine"
+#: ./skins/bibliography/prefs_bibliography_duplicates_form.cpt
+msgid "label_enable_duplicates_manager"
+msgstr ""
+
+#. Default: "No duplicates management shall be the default for new bibliography folders"
+#: ./skins/bibliography/prefs_bibliography_duplicates_form.cpt
+msgid "label_enable_duplicates_manager_disabled"
+msgstr ""
+
+#. Default: "Use duplicates management as a default for new bibliography folders"
+#: ./skins/bibliography/prefs_bibliography_duplicates_form.cpt
+msgid "label_enable_duplicates_manager_enabled"
+msgstr ""
+
+#. Default: "End-Of-Line Style (for text file based exports)"
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "label_eol_style"
+msgstr ""
+
+#. Default: "Use MS-DOS / Windows end-of-line style (CR+LF)"
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "label_eol_style_msdos"
+msgstr ""
+
+#. Default: "Use UniX end-of-line style (LF only)"
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "label_eol_style_unix"
+msgstr ""
+
+#. Default: "${filter} - Export Filter"
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "label_exportfilter"
+msgstr ""
+
+#. Default: "How published"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_howpublished"
+msgstr ""
+
+#. Default: "Bibliographical Reference Item Creation and ID Cooking"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_idcooker_bibrefcreation"
+msgstr ""
+
+#. Default: "Keep Plone's auto-generated object IDs for bibliographical references"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_idcooker_bibrefcreation_disabled"
+msgstr ""
+
+#. Default: "Cook IDs for newly created bibliographical references"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_idcooker_bibrefcreation_enabled"
+msgstr ""
+
+#. Default: "Bibliographical Reference Item Editing and ID Cooking"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_idcooker_bibrefedit"
+msgstr ""
+
+#. Default: "Re-cooking of bibliographical reference IDs is very awful, i do not want this as a default for bibliography folders!!!"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_idcooker_bibrefedit_disabled"
+msgstr ""
+
+#. Default: "Re-Cook IDs after every bibliographical reference edit"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_idcooker_bibrefedit_enabled"
+msgstr ""
+
+#. Default: "disabled"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_idcooker_disabled"
+msgstr ""
+
+#. Default: "enabled"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_idcooker_enabled"
+msgstr ""
+
+#. Default: "Bibliography Import and ID Cooking"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_idcooker_parserids"
+msgstr ""
+
+#. Default: "On import use reference IDs from imported file"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_idcooker_usepids_enabled"
+msgstr ""
+
+#. Default: "Always cook IDs for imported reference items"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "label_idcooker_usepids_on_import_disabled"
+msgstr ""
+
+#. Default: "Import History"
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "label_import_history"
+msgstr ""
+
+#. Default: "Import Report"
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "label_import_report"
+msgstr ""
+
+#. Default: "${filter} - Import Filter"
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "label_importfilter"
+msgstr ""
+
+#. Default: "Institution"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_institution"
+msgstr ""
+
+#. Default: "ISBN Number"
+#: ./content/book.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_isbn"
+msgstr ""
+
+#. Default: "ISBN Link"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_isbn_link"
+msgstr ""
+
+#. Default: "Journal"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_journal"
+msgstr ""
+
+#. Default: "Leave the member reference field of authors / editors untouched"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefafteredit_off"
+msgstr ""
+
+#. Default: "Automatically infer authors to member references"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefafteredit_on"
+msgstr ""
+
+#. Default: "Leave the member reference field of authors / editors untouched"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefafterimport_off"
+msgstr ""
+
+#. Default: "Automatically infer authors to member references"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefafterimport_on"
+msgstr ""
+
+#. Default: "Infer author references after each edit of a bibliographical reference item"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefsafteredit_link"
+msgstr ""
+
+#. Default: "Infer author references after import of bibliographical reference items"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefsafterimport_link"
+msgstr ""
+
+#. Default: "Support Member References for the authors and editors fields"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefsupport_link"
+msgstr ""
+
+#. Default: "SearchableText Field in Member Reference that contains Author's fullname"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefsupport_memberssearchonattr"
+msgstr ""
+
+#. Default: "Content types that provide member information:"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefsupport_membertype"
+msgstr ""
+
+#. Default: "Just enter author / editor names into ordinary text fields"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefsupport_off"
+msgstr ""
+
+#. Default: "Support referencing authors / editors to portal members"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefsupport_on"
+msgstr ""
+
+#. Default: "Show contents of this field in the member reference selector:"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefsupport_selectmembersattr"
+msgstr ""
+
+#. Default: "Sort referenceable members on:"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "label_memberrefsupport_sortmemberson"
+msgstr ""
+
+#. Default: "Note"
+#: ./content/schemata.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_note"
+msgstr ""
+
+#. Default: "Number"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_number"
+msgstr ""
+
+#. Default: "Organization"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_organization"
+msgstr ""
+
+#. Default: "Text output encoding:"
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "label_output_encoding"
+msgstr ""
+
+#. Default: "Pages"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_pages"
+msgstr ""
+
+#. Default: "disabled"
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "label_parser_disabled"
+msgstr ""
+
+#. Default: "enabled"
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "label_parser_enabled"
+msgstr ""
+
+#. Default: "AT Reference to Printable File (in PDF format)"
+#: ./content/schemata.py
+msgid "label_pdf_file"
+msgstr ""
+
+#. Default: "PDF URL"
+#: ./content/schemata.py
+msgid "label_pdfref_url"
+msgstr ""
+
+#. Default: "Allow PDF upload for selected bibliographical types (bibliography folder defaults)"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_pdfupload_policy_for_types"
+msgstr ""
+
+#. Default: "PDF Upload Portal Policy"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_pdfupload_portal_policy"
+msgstr ""
+
+#. Default: "Upload of publications in PDF format is forbidden all over the portal"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_pdfupload_portal_policy_disabled"
+msgstr ""
+
+#. Default: "Allow the upload of publications in PDF format for the site"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_pdfupload_portal_policy_enabled"
+msgstr ""
+
+#. Default: "PubMed ID"
+#: ./content/article.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_pmid"
+msgstr ""
+
+#. Default: "Preprint Server"
+#: ./content/preprint.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_preprint_server"
+msgstr ""
+
+#. Default: "Preprint Servers"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_preprint_servers"
+msgstr ""
+
+#. Default: "Publication Month"
+#: ./content/schemata.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_publication_month"
+msgstr ""
+
+#. Default: "Ranking"
+#: ./skins/bibliography/bibliography_defaultsForm.cpt
+msgid "label_publication_ranking"
+msgstr ""
+
+#. Default: "Type"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_publication_type"
+msgstr ""
+
+#. Default: "Publication Year"
+#: ./content/schemata.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_publication_year"
+msgstr ""
+
+#. Default: "Publisher"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_publisher"
+msgstr ""
+
+#. Default: "Reference Type (Plone archetype name of content type)"
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_reference_type"
+msgstr ""
+
+#. Default: "disabled"
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "label_renderer_disabled"
+msgstr ""
+
+#. Default: "enabled"
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "label_renderer_enabled"
+msgstr ""
+
+#. Default: "School"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_school"
+msgstr ""
+
+#. Default: "Searchable Bibliography Folders"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_searchable_bibfolders"
+msgstr ""
+
+#. Default: "By default new bibliography folders are not searchable"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_searchable_bibfolders_off"
+msgstr ""
+
+#. Default: "Bibliography folders are searchable by default"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_searchable_bibfolders_on"
+msgstr ""
+
+#. Default: "Series"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_series"
+msgstr ""
+
+#. Default: "Short Name"
+#: ./content/schemata.py
+msgid "label_shortname_cookid_warning"
+msgstr ""
+
+#. Default: "Show import history."
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "label_show_import_history"
+msgstr ""
+
+#. Default: "Do not show ISBN links"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_show_isbn_link_off"
+msgstr ""
+
+#. Default: "Allow ISBN links to be displayed"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_show_isbn_link_on"
+msgstr ""
+
+#. Default: "Source File"
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "label_source_file"
+msgstr ""
+
+#. Default: "Source Text"
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "label_source_text"
+msgstr ""
+
+#. Default: "Compare entries of this Bibliography Folder to items on the whole site (global search span)"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "label_span_of_search_global"
+msgstr ""
+
+#. Default: "Compare entries of this Bibliography Folder to items in this Bibliography Folder only (local search span)"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "label_span_of_search_local"
+msgstr ""
+
+#. Default: "PDF File Synchronization"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_synchronize_pdffiles"
+msgstr ""
+
+#. Default: "Title"
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_title"
+msgstr ""
+
+#. Default:  "Printable PDF File"
+#: ./content/schemata.py
+#: ./content/pdf.py
+msgid "label_upload_pdffile_from_bibrefitem"
+msgstr ""
+
+#. Default: "Keep the filesystem filename as ID for uploaded PDF files"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_upload_pdffiles_disabled"
+msgstr ""
+
+#. Default: "Try to keep PDF file IDs in sync with IDs of bibliographical entries"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "label_upload_pdffiles_enabled"
+msgstr ""
+
+#. Default: "Online URL"
+#: ./content/schemata.py
+msgid "label_url"
+msgstr ""
+
+#. Default: "Volume"
+#: ./content/fields.py
+#: ./skins/bibliography/pref_bibliography_duplicates_form.pt
+msgid "label_volume"
+msgstr ""
+
+#. Default: "Default Settings"
+#: ./skins/bibliography/bibliography_defaultsForm.cpt
+msgid "legend_bibliography_default_settings"
+msgstr ""
+
+#. Default: "About CMFBibliographyAT"
+#: ./skins/bibliography/prefs_bibliography_docs.cpt
+msgid "legend_bibliography_docs"
+msgstr ""
+
+#. Default: "Bibliography Duplicates Management"
+#: ./skins/bibliography/prefs_bibliography_duplicates_form.cpt
+msgid "legend_bibliography_duplicates"
+msgstr ""
+
+#. Default: "Bibliography Duplicates Criteria"
+#: ./skins/bibliography/prefs_bibliography_duplicates_form.cpt
+msgid "legend_bibliography_duplicatescriteria"
+msgstr ""
+
+#. Default: "Bibliography General Setup"
+#: ./skins/bibliography/prefs_bibliography_general_form.cpt
+msgid "legend_bibliography_general"
+msgstr ""
+
+#. Default: "Bibliography Reference ID Cooking"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "legend_bibliography_idcooking"
+msgstr ""
+
+#. Default: "Bibliography Import / Export"
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "legend_bibliography_importexport"
+msgstr ""
+
+#. Default: "Member Referencing Details"
+#: ./skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt
+msgid "legend_bibliography_memberrefsupportdetails"
+msgstr ""
+
+#. Default: "Parsers (Bibliography Import)"
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "legend_bibliography_parsers"
+msgstr ""
+
+#. Default: "Renderers (Bibliography Export)"
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "legend_bibliography_renderers"
+msgstr ""
+
+#. Default: "Bibliography Folder - Duplicates Criteria"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "legend_bibliographyfolder_duplicatescriteria"
+msgstr ""
+
+#. Default: "Default Reference ID Cooking Policies"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "legend_default_idcooker"
+msgstr ""
+
+#. Default: "Enable / Disable Reference ID Cooking Methods"
+#: ./skins/bibliography/prefs_bibliography_idcooking_form.cpt
+msgid "legend_enabledisable_idcookers"
+msgstr ""
+
+#. Default: "Import Source"
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "legend_import_source"
+msgstr ""
+
+#. Default: "Local search span"
+#: ./content/folder.py
+msgid "local_duplicates_matchingpolicy"
+msgstr ""
+
+#. Default: "The duplicates management engine does not know about any duplicates in this Bibliography Folder. If you think that there should be duplicates you may want to (re-)scan your Bibliography Folder for duplicates."
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "no_duplicates_in_bibfolder"
+msgstr ""
+
+#. Default: "no global matches"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "no_global_matches"
+msgstr ""
+
+#. Default: "matches have vanished from site"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "no_local_matches"
+msgstr ""
+
+#. Default: "no output encoding needed"
+#: ./skins/bibliography/prefs_bibliography_importexport_form.cpt
+msgid "no_output_encoding_needed"
+msgstr ""
+
+#. Default: "There are no bibliographic entries on this site."
+#: ./skins/bibliography/bibliography_view.pt
+msgid "no_refs"
+msgstr ""
+
+#. Default: "There are no bibliographic entries in this folder."
+#: ./skins/bibliography/bibliographyfolder_view.pt
+msgid "no_refs_in_folder"
+msgstr ""
+
+#. Default: "remove items from the list of duplicates"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "remove items from the list of duplicates"
+msgstr ""
+
+#. Default: "replace item in bibliography folder with item in duplicates manager"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "replace item in bibliography folder with item in duplicates manager"
+msgstr ""
+
+#. Default: "to the portal's complete bibliography list"
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_bibview_link"
+msgstr ""
+
+#. Default: "No bibliographical entries matching your search criteria were found."
+#: ./skins/bibliography/bibliography_search.pt
+msgid "search_description_no_results_found"
+msgstr ""
+
+#. Default: "This search form enables you to find bibliographical entries on the site by specifying one or more search terms. You can proceed here directly ${search_bibview_link}."
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_description_search"
+msgstr ""
+
+#. Default: "Bibliography Search Form"
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_heading_search"
+msgstr ""
+
+#. Default: "Bibliography Search Results"
+#: ./skins/bibliography/bibliography_search.pt
+msgid "search_heading_search_results"
+msgstr ""
+
+#. Default: "Enter one or several author names here. Multiple words/names may be found by combining them with <strong>AND</strong> and <strong>OR</strong>."
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_help_authors"
+msgstr ""
+
+#. Default: "Return items of a certain bibliography type."
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_help_item_type"
+msgstr ""
+
+#. Default: "Narrow your search down by specifying a publication date span for referenced bibliographical items."
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_help_publicationyear"
+msgstr ""
+
+#. Default: "For a simple text search, enter your search term here. Multiple words may be found by combining them with <strong>AND</strong> and <strong>OR</strong>. The search term in this field will be matched with any text field like title, abstracts, journal name, publisher, etc. of bibliographical entries."
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_help_search_text"
+msgstr ""
+
+#. Default: "Return bibliographical entries matching this title."
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_help_title"
+msgstr ""
+
+#. Default: "Authors"
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_label_authors"
+msgstr ""
+
+#. Default: "Publication year"
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_label_publicationyear"
+msgstr ""
+
+#. Default: "Bibliographical Reference Type"
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_label_reference_type"
+msgstr ""
+
+#. Default: "Published between"
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_legend_publication_date_range"
+msgstr ""
+
+#. Default: "Do not use the publication date in search request"
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_no_publicationyear"
+msgstr ""
+
+#. Default: "Use a specific publication year range as given below:"
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_publications_customrange"
+msgstr ""
+
+#. Default: "Search for publications published during the last five years"
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_publications_last5years"
+msgstr ""
+
+#. Default: "Search for publications published last year"
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_publications_lastyear"
+msgstr ""
+
+#. Default: "Search for publications published this year"
+#: ./skins/bibliography/bibliography_search_form.pt
+msgid "search_publications_thisyear"
+msgstr ""
+
+#. Default: "&lt;Please select an export format first&gt;"
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "select_export_format"
+msgstr ""
+
+#. Default: "Select the search span for duplicate bibliographical entries."
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "select_span_search"
+msgstr ""
+
+#. Default: "start duplicates scan"
+#: ./skins/bibliography/bibliography_duplicatesForm.pt
+msgid "start duplicates scan"
+msgstr ""
+
+#. Default: "Export"
+#: ./skins/bibliography/bibliography_exportForm.pt
+msgid "strong_pubref_export"
+msgstr ""
+
+#. Default: "Import"
+#: ./skins/bibliography/bibliography_importForm.cpt
+msgid "strong_pudbref_import"
+msgstr ""
+
+#. Default: "Abbreviation Bibliography ID Cooker"
+#: ./tool/idcookers/abbrev.py
+msgid "title_idcooker_abbrev"
+msgstr ""
+
+#. Default: "EtAl Bibliography ID Cooker"
+#: ./tool/idcookers/etal.py
+msgid "title_idcooker_etal"
+msgstr ""
+
+#. Default: "PLONE Default Bibliography ID Cooker"
+#: ./tool/idcookers/plone.py
+msgid "title_idcooker_plone"
+msgstr ""
+
+#. Default: "UID Bibliography ID Cooker"
+#: ./tool/idcookers/uid.py
+msgid "title_idcooker_uid"
+msgstr ""
+
+#. Default: "Abstract"
+#: ./skins/bibliography/bibliography_entry_macros.pt
+msgid "view_label_bibref_abstract"
+msgstr ""
+
+#. Default: "Personal annotations"
+#: ./skins/bibliography/bibliography_entry_macros.pt
+msgid "view_label_bibref_annote"
+msgstr ""
+
+#. Default: "Note"
+#: ./skins/bibliography/bibliography_entry_macros.pt
+msgid "view_label_bibref_note"
+msgstr ""
+
+#. Default: "URL"
+#: ./skins/bibliography/bibliography_entry_macros.pt
+msgid "view_label_bibref_url"
+msgstr ""
+
+#. Default: "Keywords"
+#: ./skins/bibliography/bibliography_entry_macros.pt
+msgid "view_label_keywords"
+msgstr ""
+

@@ -1,0 +1,257 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/prefs_main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<div metal:fill-slot="prefs_configlet_main"
+     tal:define="errors options/state/getErrors;
+                 bib_tool here/portal_bibliography">
+
+    <ul class="contentViews">
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_docs"
+             i18n:translate="label_bibliography_docs">Documentation</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_general_form"
+             i18n:translate="label_bibliography_general">General</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_idcooking_form"
+             i18n:translate="label_bibliography_idcooking">ID Cooking</a>
+       </li>
+       <li class="selected">
+          <a href=""
+             tal:attributes="href string:$here_url/$template_id"
+             i18n:translate="label_bibliography_importexport">Import / Export</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_duplicates_form"
+             i18n:translate="label_bibliography_duplicates">Duplicates Management</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_memberrefsupport_form"
+             i18n:translate="label_bibliography_memberrefsupport">Member Reference Support</a>
+       </li>
+    </ul>
+
+    <div class="contentActions">
+      &nbsp;
+    </div>
+
+    <h1 i18n:translate="head_importexport_bibliography_setup">Bibliography Setup - Import / Export</h1>
+
+    <a href=""
+       class="link-parent"
+       tal:attributes="href string: $portal_url/plone_control_panel"
+       i18n:translate="label_up_to_plone_setup"
+       i18n:domain="plone">
+    Up to Plone Setup
+    </a>
+
+    <p i18n:translate="description_importexport_bibliography_setup">
+        Configure the parsers and renderers registered with the bibliography tool.
+    </p>
+
+    <form action=""
+          name="prefs_bibliography_importexport"
+          method="post"
+          tal:attributes="action string:${here/absolute_url}/${template/getId}">
+
+        <fieldset>
+            <legend i18n:translate="legend_bibliography_importexport">Bibliography Import / Export</legend>
+
+            <fieldset>
+                <legend i18n:translate="legend_bibliography_parsers">Parsers (Bibliography Import)</legend>
+                <tal:parsers tal:repeat="format python: bib_tool.getImportFormats(with_unavailables=True, with_disabled=True)">
+
+                <fieldset style="border: transparent 0px none;">
+                <div class="field"
+
+                     tal:define="name python: format[0];
+                                 normalized_name python: here.plone_utils.normalizeString(name);
+                                 description python: format[2];
+                                 extension python: format[1];
+                                 parser python: bib_tool.getParser(format=extension, with_unavailables=True, with_disabled=True);
+                                 isEnabled parser/isEnabled;
+                                 isDisabled not: parser/isEnabled;">
+
+                    <label i18n:translate="label_importfilter"><span i18n:name="filter" tal:content="string:${name}" /> - Import Filter</label>
+
+                    <div class="formHelp" tal:content="description" />
+
+                    <div style="color: red; font-weight: bold;"
+                         tal:condition="not: parser/isAvailable"
+                         i18n:translate="filter_not_available">Not available, check your site setup ...</div>
+
+                        <input class="noborder"
+                               type="radio"
+                               name=""
+                               id=""
+                               value="1"
+                               tabindex=""
+                               tal:attributes="name python: 'parser_enabled_%s:int' % name;
+                                               id python: 'parser_enabled_%s' % name;
+                                               checked isEnabled;
+                                               tabindex tabindex/next;" />
+
+                        <label tal:attributes="for python: 'parser_enabled_%s' % name;"
+                               i18n:translate="label_parser_enabled">enabled</label>
+                        <br />
+
+                        <input class="noborder"
+                                type="radio"
+                                name=""
+                                id=""
+                                value="0"
+                                tabindex=""
+                                tal:attributes="name python: 'parser_enabled_%s:int' % name;
+                                                id python: 'parser_disabled_%s' % name;
+                                                checked isDisabled;
+                                                tabindex tabindex/next;" />
+
+                        <label tal:attributes="for python: 'parser_disabled_%s' % name;"
+                               i18n:translate="label_parser_disabled">disabled</label>
+                        <br />
+
+
+
+                </div>
+                </fieldset>
+                </tal:parsers>
+
+
+            </fieldset>
+
+            <div style="clear: both;" />
+
+            <fieldset>
+                <legend i18n:translate="legend_bibliography_renderers">Renderers (Bibliography Export)</legend>
+                <tal:renderers tal:repeat="format python: bib_tool.getExportFormats(with_unavailables=True, with_disabled=True)">
+                <fieldset style="border: transparent 0px none;">
+                <div class="field"
+
+                     tal:define="name python: format[0];
+                                 normalized_name python: here.plone_utils.normalizeString(name);
+                                 description python: format[2];
+                                 extension python: format[1];
+                                 renderer python: bib_tool.getRenderer(format=extension, with_unavailables=True, with_disabled=True);
+                                 isEnabled renderer/isEnabled;
+                                 isDisabled not: renderer/isEnabled;">
+
+                    <label i18n:translate="label_exportfilter"><span i18n:name="filter" tal:content="string:${name}" /> - Export Filter</label>
+
+                    <div class="formHelp" tal:content="description" />
+
+                    <div style="color: red; font-weight: bold;"
+                         tal:condition="not: renderer/isAvailable"
+                         i18n:translate="filter_not_available">Not available, check your site setup ...</div>
+
+                        <div style="float:left; margin-right:3em;">
+                        <input class="noborder"
+                               type="radio"
+                               name=""
+                               id=""
+                               value="1"
+                               tabindex=""
+                               tal:attributes="name python: 'renderer_enabled_%s:int' % name;
+                                               id python: 'renderer_enabled_%s' % name;
+                                               checked isEnabled;
+                                               tabindex tabindex;" />
+
+                        <label tal:attributes="for python: 'renderer_enabled_%s' % name;"
+                               i18n:translate="label_renderer_enabled">enabled</label>
+                        <br />
+
+                        <input class="noborder"
+                                type="radio"
+                                name=""
+                                id=""
+                                value="0"
+                                tabindex=""
+                                tal:attributes="name python: 'renderer_enabled_%s:int' % name;
+                                                id python: 'renderer_disabled_%s' % name;
+                                                checked isDisabled;
+                                                tabindex tabindex;" />
+
+                        <label tal:attributes="for python: 'renderer_disabled_%s' % name;"
+                               i18n:translate="label_renderer_disabled">disabled</label>
+                        </div>
+                        <tal:noencoding tal:condition="not: renderer/getAvailableEncodings">
+                        <div style="float:left;">
+                            <label i18n:translate="default_encoding">Default encoding: </label>
+                            <span style="font-style: oblique;" i18n:translate="no_output_encoding_needed">no output encoding needed</span><br />
+                        </div>
+                        </tal:noencoding>
+                        <tal:encoding tal:condition="renderer/getAvailableEncodings">
+                        <div style="float:left;">
+                        <label i18n:translate="default_encoding">Default encoding: </label>
+                        <select name=""
+                                width="100%"
+                                id=""
+                                tabindex=""
+                                tal:attributes="id python: 'renderer_encoding_%s' % name;
+                                                tabindex tabindex/next;
+                                                name python: 'renderer_encoding_%s:text' % name;">
+
+                            <option tal:repeat="encoding python: renderer.getAvailableEncodings()"
+                                    tal:attributes="value encoding;
+                                                    selected python: test(encoding == renderer.getDefaultOutputEncoding(), 'selected', None);"
+                                    tal:content="encoding" />
+
+                        </select>
+                        </div>
+                        </tal:encoding>
+
+
+
+                </div>
+                </fieldset>
+                </tal:renderers>
+
+            </fieldset>
+
+            <div style="clear: both;" />
+
+            <div class="formControls">
+                <input class="context"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.Save"
+                       value="Save"
+                       i18n:attributes="value label_save"
+                       i18n:domain="plone"
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+                <input class="standalone"
+                       tabindex=""
+                       type="submit"
+                       name="form.button.Cancel"
+                       value="Cancel"
+                       i18n:attributes="value label_cancel"
+                       i18n:domain="plone"
+                       tal:attributes="tabindex tabindex/next;"
+                       />
+            </div>
+
+        </fieldset>
+
+        <input type="hidden" name="form.submitted" value="1" />
+
+    </form>
+
+</div>
+
+</body>
+</html>
+

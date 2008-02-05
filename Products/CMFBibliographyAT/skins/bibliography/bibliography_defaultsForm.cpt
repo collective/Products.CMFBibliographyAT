@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+    lang="en-US"
+    metal:use-macro="here/main_template/macros/master"
+    i18n:domain="cmfbibliographyat">
+
+<body>
+  <div metal:fill-slot="main"
+       tal:define="global props python:container.portal_properties;
+                   Iterator python:modules['Products.CMFPlone'].IndexIterator;
+                   tabindex python:Iterator();
+                   errors options/state/getErrors;">
+
+    <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+    <h1 class="documentFirstHeading" i18n:translate="heading_pubref_defaults">Default Settings for Bibliographic Entries</h1>
+
+    <p i18n:translate="description_pubref_defaults">
+      Specify default settings for bibliographic entries within this folder.
+    </p>
+
+    <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+    <form class="group"
+          name="defaults"
+          action="bibentry_defaults"
+          title="Default Settings for this folder"
+          method="post"
+          tal:attributes="action python:here.absolute_url()+'/'+template.getId()">
+
+    <fieldset>
+      <legend i18n:translate="legend_bibliography_default_settings">Default Settings</legend>
+
+      <div class="field">
+        <label i18n:translate="label_default_homepage_links">Default Homepage Links</label>
+
+        <div class="formHelp" i18n:translate="help_default_homepage_links">
+            To provide default homepage links for authors enter their names (firstname
+            plus lastname as they are specified in the entries) and links (homepage URLs)
+            here.
+        </div>
+
+        <table>
+          <tr>
+            <th i18n:translate="header_name">Name</th>
+            <th i18n:translate="header_homepage">Homepage</th>
+          </tr>
+          <div tal:condition="python:here.AuthorUrlList()"
+               tal:repeat="link python:request.get('links',here.AuthorUrlList())">
+            <div tal:define="key python:link.get('key','');
+                             value python:link.get('value','');">
+            <tr>
+              <td><input name="links.key:records:ignore_empty" size="25"
+                         tal:attributes="value key;" /></td>
+              <td><input name="links.value:records:ignore_empty" size="40"
+                         tal:attributes="value value;" /></td>
+            </tr>
+            </div>
+          </div>
+          <div>
+            <tr tal:define="link python:request.form.get('nextlink', {});
+                            key python:link.get('key','');
+                            value python:link.get('value','');">
+              <td><input name="nextlink.key:record:ignore_empty" size="25"
+                         tal:attributes="value key;
+                                         tabindex tabindex/next" /></td>
+              <td><input name="nextlink.value:record:ignore_empty" size="40"
+                         tal:attributes="value value;
+                                         tabindex tabindex/next" /></td>
+            </tr>
+          </div>
+        </table>
+        </div>
+
+        <div class="formControls">
+          <input class="context"
+                 tabindex=""
+                 type="submit"
+                 name="form.button.More"
+                 value="More Links"
+                 i18n:attributes="value"
+                 tal:attributes="tabindex tabindex/next;" />
+        </div>
+
+        <div class="field"
+             tal:define="prop_value python:[x.getId() for x in here.Top(explicit=1)];">
+          <label i18n:translate="label_publication_ranking">Ranking</label>
+
+          <div class="formHelp" i18n:translate="help_publication_ranking">
+            To rank the publications in this folder, enter their ids (their names as they
+            appear on the URLs) one per line in the order in which they should be ranked.
+          </div>
+
+          <textarea name="top:lines"
+                    rows="10"
+                    cols="25"
+                    tal:attributes="tabindex tabindex/next"
+                    tal:content="python:'\n'.join(prop_value)">
+          Some descriptive text</textarea>
+        </div>
+
+        <div class="formControls">
+          <input class="context"
+                 tabindex=""
+                 type="submit"
+                 name="form.button.Save"
+                 value="label_save"
+                 i18n:domain="plone"
+                 i18n:attributes="value"
+                 tal:attributes="tabindex tabindex/next;" />
+        </div>
+        <input type="hidden" name="form.submitted" value="1" />
+
+      </fieldset>
+
+    </form>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+[validators]
+validators=
+
+[actions]
+action.success..More = traverse_to:string:bibliography_defaultsForm
+action.success..Save = redirect_to_action:string:view
+action.success = redirect_to_action:string:view
+action.failure = traverse_to:string:bibliography_defaultsForm

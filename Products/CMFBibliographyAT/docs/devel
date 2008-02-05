@@ -1,0 +1,309 @@
+Title: Developer's Guide
+Subject:
+Publisher: No publisher
+Description: CMFBibliography's Developer's Guide covers a description of the underlying software design principles, a documentation of the API, the schema definition, and a brief explanation on how to support additional formats for import and export.
+Contributors:
+Effective_date: None
+Expiration_date: None
+Type: Document
+Format: text/plain
+Language:
+Rights:
+SafetyBelt: 1070967981.41
+
+Overview
+
+  The CMFBibliography package consists of the following components:
+
+ * BibliographyFolder: content type to hold references; supports import/export; allows some default settings
+
+ * LargeBibliographyFolder: same as above except it uses a BTreeFodler as
+base class
+
+ * BaseEntry: base class for the specific reference types; provides the part of the schema that is common to all reference types; provides multiple author support.
+
+ * BibliographyTool: for managing parsers and renderers; action provider (makes the 'bibliography' action available)
+
+ * BibliographyParser: base class for the specific parsers; defines the BibliographyParser interface
+
+ * BibliographyRenderer: base class for the specific renderers; defines the BibliographyRenderer interface
+
+ * Specific reference types: differentiate mainly with respect to the schema
+
+ * Specific parsers: may be independent units or relying on other parsers (i.e., via conversions); implement the BibliographyParser interface
+
+ * Specific renderes: may be independent units or relying on other renderers (i.e., through further processing of some other output format); implement the BibliographyRenderer interface
+
+ * Example files for import
+
+ * Documentation
+
+ * Anything else that is needed to be a Zope/CMF/Plone product
+
+
+Detailed Descriptions (Schemata and API)
+
+ (Large)BibliographyFolder:
+
+  Schema: ArcheTypes BaseFolderSchema
+
+  API::
+
+    processSingleImport(self, entry):
+        """ called for importing a single entry """
+
+    processImport(self, source, filename, format=None):
+        """ main routine to be called for importing entire files"""
+
+    AuthorURLs(self):
+        """ accessor of the folder's default author URL dictionary"""
+
+    getPublicationsByAuthors(self, search_list, and_flag = 0):
+        """
+        returns a filtered list of content values matching
+        the publications of the specified authors
+
+        authors MUST be specified by first initial plus lastname
+        like in 'J Foo' or ['J Foo', 'J Bar']
+
+        If 'and_flag' is set, all authors in the search_list have to
+        be coauthors on the publiaction.
+        """
+
+    Top(self, number=None, order=None, explicit=0):
+        """
+        Returns all ranked entries in order of their ranking.
+        If number is set, returns the top 'number' reference objects
+        (or all if 'number' is greater than the number of ranked
+        entries).
+
+        If 'explicit' is set, only returns the explicitly ranked
+        entries, otherwise the default ordering is used.
+
+        If no orer is specified,
+        (('publication_year', 'cmp', 'desc'),
+         ('Authors', 'nocase', 'asc'))
+        is used.
+        Order must be formated to match the
+        'DocumentTemplate.sequence' syntax.
+        """
+
+ BaseEntry
+
+  Schema: ArcheTypes BaseSchema plus the following fields
+
+   * 'publication_authors'
+
+   * 'publication_year'
+
+   * 'publication_url'
+
+   * 'abstract'
+
+   * 'publication_month'
+
+   * 'note'
+
+  API::
+
+    Source(self):
+        """
+        the default source format
+        """
+
+    getFieldValue(self, field_name):
+        """
+        get a field's value
+        """
+
+    getAuthors(self):
+        """
+        returns the list of author dictionaries for editing
+        assumes attribute storage for authors
+        """
+
+    setAuthors(self, authors=[], nextauthor={}):
+        """
+        authors mutator
+        stores authors as attribute right away
+        """
+
+    Authors(self, sep=', ', lastsep=', and ',
+                abbrev=1, lastnamefirst=1, withURL=0):
+        """
+        string formated author list
+        (maybe this should go in the skin folder?).
+        assumes attribute storage for authors
+
+        Arguments:
+
+        - sep: specifies the separator between authors
+               (exept for the last)
+               default: ', '
+
+        - lastsep: the last separator;
+                    default: ', and ' (the ',' is removed if there
+                    are only two authors)
+
+        - abbrev: if true, first names are abbreviated
+                    default: 1
+
+        - lastnamefirst: if true, the ordering is
+                    lastname, firstname, middlename
+                    otherwise it is firstname, middlename, lastname
+                    default: 1
+
+        - withURL: whether or not to embed the authorname in an
+                    anchor tag pointing to his homepage (if present)
+                    default: 0
+        """
+
+ BibliographyTool
+
+  Schema: n/a
+
+  API::
+
+    getReferenceTypes(self):
+        """
+        returns a list with the names (meta types) of the
+        currently allowed reference types of a BibliographyFolder
+        """
+
+    getImportFormatNames(self):
+        """
+        returns a list with the names of the supported import formats
+        """
+
+    getImportFormatExtensions(self):
+        """
+        returns a list with the file name extensions
+        of the supported import formats
+        """
+
+    getExportFormatNames(self):
+        """
+        returns a list with the names of the supported export formats
+        """
+
+    getExportFormatExtensions(self):
+        """
+        returns a list with the file name extensions
+        of the supported export formats
+        """
+
+    getExportFormats(self):
+        """
+        returns a list of (name, extension) tuples
+        of the supported export formats
+        """
+
+    render(self, entry, format):
+        """
+        renders a BibliographyEntry object in the specified format
+        """
+
+    getEntries(self, source, format, file_name=None):
+        """
+        main routine to be called from BibliographyFolders on import
+        returns a list with the parsed entries
+        """
+
+ BibliographyParser
+
+  Schema: n/a
+
+  API (here: the interface)::
+
+    IBibliographyParser(Interface):
+    """
+    Interface for the input parsers of the bibliography tool.
+    """
+    def getFormatName():
+        """
+        returns the name of the format
+        """
+
+    def getFormatExtension():
+        """
+        returns the filename extension of the format
+        """
+
+    def getDelimiter():
+        """
+        returns the delimiter used to split a list of entries into pieces
+        """
+
+    def getPattern():
+        """
+        returns the pattern used to parse a single entry
+        """
+
+    def setDelimiter(delimiter="\n\n", flags=None):
+        """
+        sets the delimiter used to split a list of entries into pieces
+        the 'delimiter' argument and the flags are passed to 're.compile'
+        """
+
+    def setPattern(pattern="\n", flags=None):
+        """
+        sets the pattern used to parse a single entry
+        the 'pattern' argument is passed to 're.compile')
+        """
+
+    def checkFormat(source):
+        """
+        checks whether source has the right format
+        returns true (1) if so and false (0) otherwise
+        """
+
+    def getEntries(source):
+        """
+        splits a (text) file with several entries
+        parses the entries
+        returns a list of the parsed entries
+        """
+
+    def splitSource(source):
+        """
+        splits a (text) file with several entries
+        returns a list of those entries
+        """
+
+    def parseEntry(entry):
+        """
+        parses a single entry
+
+        returns a dictionary to be passed to
+        BibliographyEntry's edit method
+        """
+
+ BibliographyRenderer
+
+  Schema: n/a
+
+  API (here: the interface)::
+
+    IBibliographyRenderer(Interface):
+    """
+    Interface for the output/export
+    renderers of the bibliography tool.
+    """
+    def getFormatName():
+        """
+        returns the name of the format
+        """
+
+    def getFormatExtension():
+        """
+        returns the filename extension of the format
+        """
+
+    def render(entry):
+        """
+        returns the rendered BibliographyEntry
+        """
+
+
+
+

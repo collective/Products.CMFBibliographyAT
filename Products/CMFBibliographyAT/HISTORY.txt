@@ -1,0 +1,45 @@
+1.0
+===
+
+* Factored out the author reference/link handling into adapters for
+  easy overrides [martior]
+
+* Refactored the tests to make better use of layers [rossp]
+
+* Generalized the handling of identifiers via the new 'identifiers' field.
+  This field manages a configurable list of arbitrarily many additional ids.
+  The 'old way' via the individual fields for ISBN, PMID, and DOI is still
+  supported but "hidden away" [raphael]
+
+* Add our own keyword field to get out of the way of DC Subject [raphael]
+
+* Add filterOutDupesByTitle() (used in bibliography_view for filtering
+  out identical documents by title comparison) [ajung]
+
+* Merging uyar's branch to make the content types ATCT-based plus several
+  schema adjustments [raphael]
+
+* Introducing marker interfaces for all content types and hooking them up.
+  [raphael]
+
+* Import IFileNameNormalizer from the new location and use a few viewlet
+  managers instead of macros in the bibitem_view. [raphael]
+
+* Renamed the Plone id cooker from 'plone.py' to 'ploneid.py'. This was
+  causing all sorts of problems because 'plone' is a top-level namespace
+  now and we don't want to mask that. [raphael]
+
+* CMFBibliographyAT is still far from being useable as a utility, so remove
+  the tool utility registration.
+
+* Correct test failures for bibliography folders.
+
+* Use the proper plone.i18n normalizer instead of plone_utils.normalizeString.
+
+* Change 'marc' to 'marcgt' in the expected test output: this has been 
+  changed in bibtex 3.1.
+
+
+=======
+
+older change notes are found in the now deprecated 'docs/ChangeLog'

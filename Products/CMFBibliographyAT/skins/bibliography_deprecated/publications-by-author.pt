@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<div metal:fill-slot="main">
+  <div tal:define="id request/id|member/getId|nothing">
+    <div tal:condition="id"
+         tal:define="publications python:here.getPublicationsByAuthor(id);
+                     memberdata python:here.portal_membership.getMemberById(id)">
+      <div class="label">Publications by <span tal:replace="memberdata/getFullname|id"/>:</div>
+      <div metal:use-macro="here/bibliographyfolder_view/macros/folderlisting" />
+    </div>
+  </div>
+</div>
+</html>

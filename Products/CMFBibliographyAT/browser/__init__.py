@@ -1,0 +1,1 @@
+# Init of browser package

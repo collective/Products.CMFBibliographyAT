@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+      lang="en-US"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<metal:head fill-slot="javascript_head_slot">
+
+    <metal:bibliography-export-js metal:define-macro="bibliography-export-js">
+    <script type="text/javascript">
+    // <!--
+    function changeAvailableEncodings(avail_encodings, def_encoding) {
+        var export_form = document.forms['export'];
+        var encoding_field = export_form['output_encoding'];
+        var options_array = avail_encodings.split('|');
+        var options_length = options_array.length;
+        encoding_field.options.length = 0;
+        for (var j=0; j < options_length; j++ ) {
+            var newOpt = new Option(options_array[j], options_array[j], false, false);
+            if ( options_array[j] == def_encoding ) {
+                newOpt.selected = true;
+            } else {
+                newOpt.selected = false;
+            }
+            newOpt.defaultSelected = false;
+            encoding_field.options[encoding_field.options.length] = newOpt;
+        }
+    }
+    // -->
+    </script>
+    </metal:bibliography-export-js>
+
+</metal:head>
+
+<body>
+
+  <div metal:fill-slot="main"
+       tal:define="global props python:container.portal_properties;
+                   Iterator python:modules['Products.CMFPlone'].IndexIterator;
+                   bib_tool here/portal_bibliography;
+                   bibliography_export_script string:bibliography_export;
+                   tabindex python:Iterator();">
+
+    <h1><span tal:content="python: '%s - ' %here.Title()" tal:condition="here/isPrincipiaFolderish" /><span i18n:translate="heading_pubref_export">Export Bibliographical Entries</span></h1>
+
+    <p class="documentDescription" tal:content="here/Description" tal:condition="here/isPrincipiaFolderish"/>
+
+
+    <metal:bibliography-export-macro metal:define-macro="bibliography-export">
+    <p i18n:translate="description_pubref_export">
+      Select the format from the list below. Confirm by clicking
+      <span i18n:name="export"><strong i18n:translate="strong_pubref_export">Export</strong></span>.
+    </p>
+
+
+    <form class="group"
+          name="export"
+          action="#"
+          method="post"
+          tal:define="absolute_url here/absolute_url"
+          tal:attributes="action string:${absolute_url}/${bibliography_export_script}">
+
+      <fieldset>
+
+        <legend i18n:translate="label_bibliography_export">Export</legend>
+
+        <div class="field">
+          <label i18n:translate="label_bibliography_export_format">Export Format</label>
+
+          <p i18n:translate="help_bibliography_export_format">
+            Please select the file format for bibliography export.
+          </p>
+          <fieldset>
+          <tal:formats repeat="format here/portal_bibliography/getExportFormats">
+            <div>
+            <input class="noborder" type="radio" name="format"
+                   onchange=""
+                   tal:define="value python:format[1];
+                               renderer python: bib_tool.getRenderer(format='%s' % format[0]);
+                               avail_encodings python: '|'.join(renderer.getAvailableEncodings()) or 'not needed for this export format';
+                               default_encoding python: renderer.getDefaultOutputEncoding();"
+                   tal:attributes="tabindex tabindex/next;
+                                   value value;
+                                   id string:bibexport_${value};
+                                   checked python:test(False, 'checked', None);
+                                   onchange python: 'javascript: changeAvailableEncodings(\'%s\', \'%s\')' % (avail_encodings, default_encoding);"
+                   id="bibexport_structuredtext" checked="checked" />
+            <label for="bibexport_structuredtext"
+                   tal:define="value python:format[1]"
+                   tal:content="python: format[0]"
+                   tal:attributes="for
+                    string:bibexport_${value}">dummy format</label> <br />
+            </div>
+            <div class="formHelp" tal:content="python: format[2]" />
+
+          </tal:formats>
+        </fieldset>
+
+          <div class="field">
+                <label i18n:translate="label_output_encoding">Text output encoding:&nbsp;</label>
+                <select
+                    width="100%"
+                    tal:attributes="id string:output_encoding;
+                                    tabindex tabindex/next;
+                                    name string:output_encoding:text;">
+
+                    <option value="" selected="" i18n:translate="select_export_format">&lt;Please select an export format first&gt;</option>
+                </select>
+          </div>
+
+          <div class="field">
+                <label i18n:translate="label_eol_style">End-Of-Line Style (for text file based exports)</label>
+                <div class="formHelp" i18n:translate="description_eol_style">
+                MS-DOS/Windows and UniX operating systems use a different ASCII sequence to indicate a line break.
+                Depending on your favourite operating system, select your preferred end-of-line style here.
+                </div>
+                <input class="noborder"
+                       type="radio"
+                       value="1"
+                       name="eol_style:int"
+                       id="eol_style_on"
+                       checked="checked"
+                       tal:attributes="tabindex tabindex/next;"/>
+                <label for="eol_style_on" i18n:translate="label_eol_style_msdos">Use MS-DOS / Windows end-of-line style (CR+LF)</label>
+
+                <br />
+
+                <input class="noborder"
+                       type="radio"
+                       name="eol_style:int"
+                       id="eol_style_off"
+                       value="0"
+                       tal:attributes="tabindex tabindex/next;" />
+                <label for="eol_style_off" i18n:translate="label_eol_style_unix">Use UniX end-of-line style (LF only)</label>
+
+          </div>
+
+        </div>
+
+        <div class="formControls">
+          <input class="context"
+                 tabindex=""
+                 type="submit"
+                 name="submit"
+                 value="Export"
+                 i18n:attributes="value"
+                 tal:attributes="tabindex tabindex/next;" />
+        </div>
+
+      </fieldset>
+
+    </form>
+    </metal:bibliography-export-macro>
+
+  </div>
+
+</body>
+
+</html>

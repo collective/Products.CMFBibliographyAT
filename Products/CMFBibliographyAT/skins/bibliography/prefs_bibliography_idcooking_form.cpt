@@ -1,0 +1,273 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/prefs_main_template/macros/master"
+      i18n:domain="cmfbibliographyat">
+
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+
+<body>
+
+<div metal:fill-slot="prefs_configlet_main"
+     tal:define="errors options/state/getErrors;
+                 bib_tool here/portal_bibliography">
+
+    <ul class="contentViews">
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_docs"
+             i18n:translate="label_bibliography_docs">Documentation</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_general_form"
+             i18n:translate="label_bibliography_general">General</a>
+       </li>
+       <li class="selected">
+          <a href=""
+             tal:attributes="href string:$here_url/$template_id"
+             i18n:translate="label_bibliography_idcooking">ID Cooking</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_importexport_form"
+             i18n:translate="label_bibliography_importexport">Import / Export</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_duplicates_form"
+             i18n:translate="label_bibliography_duplicates">Duplicates Management</a>
+       </li>
+       <li class="">
+          <a href=""
+             tal:attributes="href string:$here_url/prefs_bibliography_memberrefsupport_form"
+             i18n:translate="label_bibliography_memberrefsupport">Member Reference Support</a>
+       </li>
+    </ul>
+
+    <div class="contentActions">
+      &nbsp;
+    </div>
+
+    <h1 i18n:translate="head_idcooking_bibliography_setup">Bibliography Setup - Reference ID Cooking</h1>
+
+    <a href=""
+       class="link-parent"
+       tal:attributes="href string: $portal_url/plone_control_panel"
+       i18n:translate="label_up_to_plone_setup"
+       i18n:domain="plone">
+    Up to Plone Setup
+    </a>
+
+    <p i18n:translate="description_idcooking_bibliography_setup">
+        Setup the functionality of the bibliographical reference ID cooking method.
+    </p>
+
+    <form action=""
+          name="prefs_bibliography_idcooking"
+          method="post"
+          tal:attributes="action string:${here/absolute_url}/${template/getId}">
+
+        <fieldset>
+            <legend i18n:translate="legend_bibliography_idcooking">Bibliography Reference ID Cooking</legend>
+
+            <fieldset>
+            <legend i18n:translate="legend_default_idcooker">Default Reference ID Cooking Policies</legend>
+
+            <div class="field">
+            <p i18n:translate="help_default_idcooker">Specify the default reference ID cooker for new bibliography folders.</p>
+            <label i18n:translate="label_default_idcooker">Bibliography Folders' default ID cooker:&nbsp;</label>
+
+            <select name="default_idcooker_id:text"
+                    width="100%"
+                    id="default_idcooker_id"
+                    tabindex=""
+                    tal:attributes="tabindex tabindex/next;">
+
+                 <option tal:repeat="idcooker_id python: bib_tool.listIdCookers(with_disabled=True)"
+                         tal:attributes="value idcooker_id;
+                                         selected python: test(idcooker_id == bib_tool.getDefaultIdCooker().getId(), 'selected', None);"
+                         tal:content="python: bib_tool.getIdCooker(idcooker_id, with_disabled=True).Title()" />
+            </select>
+            </div>
+
+            <div class="field">
+            <label i18n:translate="label_idcooker_bibrefcreation">Bibliographical Reference Item Creation and ID Cooking</label>
+
+            <p class="formHelp" i18n:translate="help_idcooker_bibrefcreation">
+                On object creation Plone auto-generates a unique ID for each object. For each bibliography folder you can select if you want to keep the
+                auto-generated IDs of newly created reference items or if you want to override the auto-generated IDs with more appropriately cooked bibliography
+                IDs. This setting will be the default for all newly created bibliography folders.
+            </p>
+
+            <input class="noborder"
+                   type="radio"
+                   name="cook_ids_on_bibref_creation:int"
+                   id="cook_ids_on_bibref_creation_enabled"
+                   value="1"
+                   tabindex=""
+                   tal:attributes="checked python: test (here.portal_bibliography.cook_ids_on_bibref_creation, 'checked', None);
+                                   tabindex tabindex;" />
+            <label tal:attributes="for python: 'cook_ids_on_bibref_creation_enabled'"
+                                   i18n:translate="label_idcooker_bibrefcreation_enabled">Cook IDs for newly created bibliographical references</label>
+            <br />
+            <input class="noborder"
+                   type="radio"
+                   name="cook_ids_on_bibref_creation:int"
+                   id="cook_ids_on_bibref_creation_disabled"
+                   value="0"
+                   tabindex=""
+                   tal:attributes="checked python: test (not here.portal_bibliography.cook_ids_on_bibref_creation, 'checked', None);
+                                   tabindex tabindex;" />
+            <label tal:attributes="for python: 'cook_ids_on_bibref_creation_disabled'"
+                                   i18n:translate="label_idcooker_bibrefcreation_disabled">Keep Plone's auto-generated object IDs for bibliographical references</label>
+            </div>
+
+            <div class="field">
+            <label i18n:translate="label_idcooker_bibrefedit">Bibliographical Reference Item Editing and ID Cooking</label>
+
+            <p class="formHelp" i18n:translate="help_idcooker_bibrefedit">
+                For bibliographical references there is a feature available that is uncommon in Plone. It is possible to re-cook bibliographical reference IDs after
+                every edit. This assures that bibliographical reference items' IDs always stay in sync with the references properties that are used to cook
+                the reference items' IDs. On the web this feature might not always be wanted, so use this carefully. Whatever you choose here will be the default
+                for newly create bibliography folders.
+            </p>
+
+            <input class="noborder"
+                   type="radio"
+                   name="cook_ids_after_bibref_edit:int"
+                   id="cook_ids_after_bibref_edit_enabled"
+                   value="1"
+                   tabindex=""
+                   tal:attributes="checked python: test (here.portal_bibliography.cook_ids_after_bibref_edit, 'checked', None);
+                                   tabindex tabindex;" />
+            <label tal:attributes="for python: 'cook_ids_after_bibref_edit_enabled'"
+                                   i18n:translate="label_idcooker_bibrefedit_enabled">Re-Cook IDs after every bibliographical reference edit</label>
+            <br />
+            <input class="noborder"
+                   type="radio"
+                   name="cook_ids_after_bibref_edit:int"
+                   id="cook_ids_after_bibref_edit_disabled"
+                   value="0"
+                   tabindex=""
+                   tal:attributes="checked python: test (not here.portal_bibliography.cook_ids_after_bibref_edit, 'checked', None);
+                                   tabindex tabindex;" />
+            <label tal:attributes="for python: 'cook_ids_after_bibref_edit_disabled'"
+                                   i18n:translate="label_idcooker_bibrefedit_disabled">Re-cooking of bibliographical reference IDs is very awful, i do not want this as a default for bibliography folders!!!</label>
+            </div>
+
+            <div class="field">
+            <label i18n:translate="label_idcooker_parserids">Bibliography Import and ID Cooking</label>
+
+            <p class="formHelp" i18n:translate="help_idcooker_parserids">
+                Some import formats already provide IDs for bibliographical reference items. Here you can choose if IDs of imported references shall be kept unchanged
+                or if they should be re-cooked into IDs that are conform to the bibliography folders ID cooking policy. This setting will be the default for all newly
+                created bibliography folders.
+            </p>
+
+            <input class="noborder"
+                   type="radio"
+                   name="use_pids_on_import:int"
+                   id="use_pids_on_import_disabled"
+                   value="0"
+                   tabindex=""
+                   tal:attributes="checked python: test (not here.portal_bibliography.use_pids_on_import, 'checked', None);
+                                   tabindex tabindex;" />
+            <label tal:attributes="for python: 'use_pids_on_import_disabled'"
+                                   i18n:translate="label_idcooker_usepids_on_import_disabled">Always cook IDs for imported reference items</label>
+            <br />
+            <input class="noborder"
+                   type="radio"
+                   name="use_pids_on_import:int"
+                   id="use_pids_on_import_enabled"
+                   value="1"
+                   tabindex=""
+                   tal:attributes="checked python: test (here.portal_bibliography.use_pids_on_import, 'checked', None);
+                                   tabindex tabindex;" />
+            <label tal:attributes="for python: 'use_pids_on_import_enabled'"
+                                   i18n:translate="label_idcooker_usepids_enabled">On import use reference IDs from imported file</label>
+            </div>
+            </fieldset>
+
+            <fieldset>
+            <legend i18n:translate="legend_enabledisable_idcookers">Enable / Disable Reference ID Cooking Methods</legend>
+
+            <p i18n:translate="help_default_idcooker1">Here you can selectively enable or disable ID
+            cooking methods for your site's bibliographical references. Disabled ID cookers will not be available to any
+            bibliography folder of your portal. If you disable an ID cooker that is already in use
+            with one or several bibliography folders, you will have to change the settings of those bibliography
+            folders manually.</p>
+
+            <p i18n:translate="help_default_idcooker2">Note: you cannot disable the default ID cooke selected above.</p>
+
+            <tal:idcookers tal:repeat="idcooker_id python: bib_tool.listIdCookers(with_disabled=True)">
+            <tal:enabled tal:define="isEnabled  python: bib_tool.getIdCooker(idcooker_id=idcooker_id, with_disabled=True).isEnabled();
+                                     isDisabled not: isEnabled;">
+
+            <label tal:content="python: bib_tool.getIdCooker(idcooker_id=idcooker_id, with_disabled=True).Title()" />
+            <div class="formHelp" tal:content="python: bib_tool.getIdCooker(idcooker_id=idcooker_id, with_disabled=True).Description()" />
+
+            <div class="field">
+            <input class="noborder"
+                   type="radio"
+                   name=""
+                   id=""
+                   value="1"
+                   tabindex=""
+                   tal:attributes="name python: 'idcooker_enabled_%s:int' % idcooker_id;
+                                   id python: 'idcooker_enabled_%s' % idcooker_id;
+                                   checked isEnabled;
+                                   tabindex tabindex;" />
+            <label tal:attributes="for python: 'idcooker_enabled_%s' % idcooker_id;"
+                                   i18n:translate="label_idcooker_enabled">enabled</label>
+            <br />
+            <input class="noborder"
+                   type="radio"
+                   name=""
+                   id=""
+                   value="0"
+                   tabindex=""
+                   tal:attributes="name python: 'idcooker_enabled_%s:int' % idcooker_id;
+                   id python: 'idcooker_disabled_%s' % idcooker_id;
+                   checked isDisabled;
+                   tabindex tabindex;" />
+
+            <label tal:attributes="for python: 'idcooker_disabled_%s' % idcooker_id;"
+                   i18n:translate="label_idcooker_disabled">disabled</label>
+
+            </div>
+            </tal:enabled>
+            </tal:idcookers>
+            </fieldset>
+
+        <div class="formControls">
+            <input class="context"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.Save"
+                   value="Save"
+                   i18n:attributes="value label_save"
+                   i18n:domain="plone"
+                   tal:attributes="tabindex tabindex/next;"
+                   />
+            <input class="standalone"
+                   tabindex=""
+                   type="submit"
+                   name="form.button.Cancel"
+                   value="Cancel"
+                   i18n:attributes="value label_cancel"
+                   i18n:domain="plone"
+                   tal:attributes="tabindex tabindex/next;"
+                   />
+      </div>
+      </fieldset>
+
+      <input type="hidden" name="form.submitted" value="1" />
+
+    </form>
+
+</div>
+
+</body>
+</html>
+

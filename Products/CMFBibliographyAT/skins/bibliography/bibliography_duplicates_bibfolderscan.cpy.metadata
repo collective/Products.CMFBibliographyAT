@@ -1,0 +1,6 @@
+[default]
+title=Bibliography Folder - Scan for New Duplicates
+
+[actions]
+action.failure=traverse_to:string:bibliography_duplicatesForm
+action.success=redirect_to:string:bibliography_duplicatesForm

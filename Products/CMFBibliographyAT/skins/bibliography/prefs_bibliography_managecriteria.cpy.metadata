@@ -1,0 +1,8 @@
+[default]
+title=Manage Duplicates Criteria of the Bibliography Tool
+[validators]
+validators=
+
+[actions]
+action.failure=traverse_to:string:prefs_bibliography_duplicates_form
+action.success=redirect_to:string:prefs_bibliography_duplicates_form

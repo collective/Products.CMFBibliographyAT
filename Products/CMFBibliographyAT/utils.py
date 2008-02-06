@@ -3,6 +3,7 @@
 
 from types import UnicodeType
 from zLOG import LOG, INFO, BLATHER, PROBLEM, WARNING
+from urllib import urlencode
 
 from AccessControl import ModuleSecurityInfo
 security = ModuleSecurityInfo('Products.CMFBibliographyAT.utils')
@@ -31,3 +32,18 @@ def _decode(s, encoding=_default_encoding):
     except (TypeError, UnicodeDecodeError, ValueError):
         return s
 
+def _getCoinsString(self, coinsData):
+    """
+    Create a COinS microformat string.
+    """
+    
+    coinsString = "ctx_ver=Z39.88-2004"
+    for (key, value) in coinsData.items():
+        if value:
+            if type(value) == list:
+                for v in value:
+                    coinsString += "&%s" % urlencode({key: v})
+            else:
+                coinsString += "&%s" % urlencode({key: value})
+    
+    return coinsString

@@ -162,4 +162,19 @@ class ArticleReference(BaseEntry):
                 source += ':%s' % pages
             return source + '.'
 
+
+    security.declareProtected(View, 'getCoinsDict')
+    def getCoinsDict(self):
+        """ Select which values to display in the COinS tag for this item """
+        coinsData = BaseEntry.getCoinsDict(self)
+        coinsData['rft.part'] = self.getNumber()
+        coinsData['rft.volume'] = self.getVolume()
+        coinsData['rft.pages'] = self.getPages()
+        coinsData['rft.genre'] = "article"
+        coinsData['rft.atitle'] = self.Title()
+        coinsData['rft.jtitle'] = self.getJournal()
+
+        coinsData['rft_val_fmt'] = "info:ofi/fmt:kev:mtx:journal"
+        return coinsData
+
 registerType(ArticleReference, PROJECTNAME)

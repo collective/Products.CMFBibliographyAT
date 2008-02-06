@@ -122,5 +122,12 @@ class InproceedingsReference(InbookReference):
 
             return source
 
+    security.declareProtected(View, 'getCoinsDict')
+    def getCoinsDict(self):
+        """ Select which values to display in the COinS tag for this item """
+        coinsData = InbookReference.getCoinsDict(self)
+        coinsData['rft.genre'] = "proceeding"
+        coinsData['rft.aucorp'] = self.getOrganization()
+        return coinsData
 
 registerType(InproceedingsReference, PROJECTNAME)

@@ -109,5 +109,25 @@ class InbookReference(BaseEntry):
 
             return source
 
+    security.declareProtected(View, 'getCoinsDict')
+    def getCoinsDict(self):
+        """ Select which values to display in the COinS tag for this item """
 
+        coinsData = BaseEntry.getCoinsDict(self)
+        coinsData['rft.atitle'] = self.Title()
+        coinsData['rft.btitle'] = self.getBooktitle()
+        coinsData['rft.pages'] = self.getPages()
+        coinsData['rft.genre'] = "bookitem"
+        coinsData['rft.pub'] = self.getPublisher()
+        coinsData['rft.place'] = self.getAddress()
+        coinsData['rft.series'] = self.getSeries()
+        coinsData['rft_val_fmt'] = "info:ofi/fmt:kev:mtx:book"
+
+        # Why do we have fields in the superclass that aren't in the subclasses?
+        coinsData['rft.edition'] = hasattr(self, 'edition') and self.getEdition() or ""
+        coinsData['rft.chapter'] = hasattr(self, 'chapter') and self.getChapter() or ""
+
+        
+        return coinsData
+        
 registerType(InbookReference, PROJECTNAME)

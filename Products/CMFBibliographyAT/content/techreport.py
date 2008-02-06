@@ -85,5 +85,14 @@ class TechreportReference(BaseEntry):
 
             return source + '.'
 
+    security.declareProtected(View, 'getCoinsDict')
+    def getCoinsDict(self):
+        """ Select which values to display in the COinS tag for this item """
+        coinsData = BaseEntry.getCoinsDict(self)
+        coinsData['rft.genre'] = "report"
+        coinsData['rft.aucorp'] = self.getInstitution()
+        coinsData['rft.btitle'] = self.Title()
+        coinsData['rft_val_fmt'] = "info:ofi/fmt:kev:mtx:book"
+        return coinsData
 
 registerType(TechreportReference, PROJECTNAME)

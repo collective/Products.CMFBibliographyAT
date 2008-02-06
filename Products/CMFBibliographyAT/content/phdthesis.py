@@ -87,4 +87,14 @@ class PhdthesisReference(BaseEntry):
 
             return source
 
+    security.declareProtected(View, 'getCoinsDict')
+    def getCoinsDict(self):
+        """ Select which values to display in the COinS tag for this item """
+        coinsData = BaseEntry.getCoinsDict(self)
+        coinsData['rft.aucorp'] = self.getSchool()
+        coinsData['rft.genre'] = "document"
+        coinsData['rft.btitle'] = self.Title()
+        coinsData['rft_val_fmt'] = "info:ofi/fmt:kev:mtx:book"
+        return coinsData
+
 registerType(PhdthesisReference, PROJECTNAME)

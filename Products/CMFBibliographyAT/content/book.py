@@ -199,5 +199,17 @@ class BookReference(BaseEntry):
         if REQUEST is not None:
             self.REQUEST.RESPONSE.redirect(self.absolute_url())
 
+    security.declareProtected(View, 'getCoinsDict')
+    def getCoinsDict(self):
+        """ Select which values to display in the COinS tag for this item """
+        coinsData = BaseEntry.getCoinsDict(self)
+        coinsData['rft.pub'] = self.getPublisher()
+        coinsData['rft.place'] = self.getAddress()
+        coinsData['rft.edition'] = self.getEdition()
+        coinsData['rft.series'] = self.getSeries()
+        coinsData['rft.genre'] = "book"
+        coinsData['rft.btitle'] = self.Title()
+        coinsData['rft_val_fmt'] = "info:ofi/fmt:kev:mtx:book"
+        return coinsData
 
 registerType(BookReference, PROJECTNAME)

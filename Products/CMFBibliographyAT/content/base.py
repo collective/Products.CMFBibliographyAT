@@ -40,7 +40,7 @@ from Products.CMFBibliographyAT.interface import IBibAuthorMember
 from Products.CMFBibliographyAT.content.schemata \
     import HeaderSchema, AuthorSchema, CoreSchema, TrailingSchema
 
-from Products.CMFBibliographyAT.utils import _encode, _decode
+from Products.CMFBibliographyAT.utils import _encode, _decode, _getCoinsString
 
 BaseEntrySchema = HeaderSchema + \
                   AuthorSchema + \
@@ -735,4 +735,24 @@ class BaseEntry(BaseContent):
         """ return True if referencing of authors / editors to portal members is supported
         """
         return  IBibAuthorMember(self).showMemberAuthors()
+
+    security.declareProtected(View, 'getCoinsString')
+    def getCoinsString(self):
+        return _getCoinsString(self, self.getCoinsDict())
+
+    security.declareProtected(View, 'getCoinsDict')
+    def getCoinsDict(self):
+        coinsData = {}
+        coinsData['rfr_id'] = hasattr(self,'DOI') and self.DOI or self.absolute_url()
+        coinsData['rft.date'] = self.getPublication_year()
+        coinsData['rft.isbn'] = self.ISBN()
+        authorNames = []
+        for author in self.getAuthors():
+            # getAuthors returns the blank rows as well, skip over them.
+            if 'lastname' in author.keys():
+                authorNames.append("%s %s" % (author['firstname'], author['lastname']))
+        coinsData['rft.au'] = authorNames
         
+        return coinsData
+
+

@@ -8,6 +8,9 @@
 """Unpublished reference class"""
 
 from zope.interface import implements
+from AccessControl import ClassSecurityInfo
+from Products.CMFCore.permissions import View
+
 from Products.CMFBibliographyAT.interface import IUnpublishedReference
 
 from Products.CMFBibliographyAT.config import CMFBAT_USES_LINGUAPLONE
@@ -41,7 +44,17 @@ class UnpublishedReference(BaseEntry):
     __implements__ = (BaseEntry.__implements__,)
 
     archetype_name = "Unpublished Reference"
-    
+    security = ClassSecurityInfo()
+
     schema = UnpublishedSchema
+
+    security.declareProtected(View, 'getCoinsDict')
+    def getCoinsDict(self):
+        """ Select which values to display in the COinS tag for this item """
+        coinsData = BaseEntry.getCoinsDict(self)
+        coinsData['rft.genre'] = "document"
+        coinsData['rft.btitle'] = self.Title()
+        coinsData['rft_val_fmt'] = "info:ofi/fmt:kev:mtx:book"
+        return coinsData
 
 registerType(UnpublishedReference, PROJECTNAME)

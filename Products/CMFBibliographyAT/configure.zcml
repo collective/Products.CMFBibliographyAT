@@ -4,6 +4,7 @@
 
  <include package=".exportimport" />
  <include package=".adapters" />
+ <include package=".browser" />
  <include file="profiles.zcml" />
 
  <!-- Mark some deprecated stuff -->

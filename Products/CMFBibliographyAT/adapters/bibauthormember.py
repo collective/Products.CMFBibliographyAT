@@ -67,11 +67,7 @@ class BibAuthorMember:
         report = []
         authors = []
         a_modified = False
-        md = getToolByName(self.context,     'portal_memberdata')
-        m_tool = getToolByName(self.context, 'portal_membership')
-        membertypes = bib_tool.getMemberTypes() or \
-                      md.getAllowedMemberTypes()
-        catalog = getToolByName(self.context, 'portal_catalog')
+        pas=getToolByName(self.context, "acl_users")
         first_inferred_author = True
         for author in self.context.getAuthors():
             authors.append(author)
@@ -79,35 +75,14 @@ class BibAuthorMember:
             firstnames = author.get('firstnames', None)
             if lastname is None:
                 continue
-
-            raw_candidates = ()
-            search_order = (bib_tool.getMembersSearchOnAttr(), 'Title',)
-            for search_on in search_order:
-                if search_on:
-                    raw_candidates = catalog({'portal_type': membertypes,
-                                              '%(search_on)s': lastname})
-                    candidates = []
-                    for cand in raw_candidates:
-                        try:
-                            candidate_accessor = eval('cand.getObject().%s' % search_on)
-                            if callable(candidate_accessor):
-                                candidate_name = candidate_accessor()
-                            else:
-                                candidate_name = str(candidate_accessor)
-                            if candidate_name.find(', ') != -1:
-                                candidate_lastname = candidate_name.split(', ')[0]
-                                candidate_firstnames = ' '.join(candidate_name.split(', ')[1:])
-                            else:
-                                candidate_lastname = candidate_name.split(' ')[-1]
-                                candidate_firstnames = ' '.join(candidate_name.split(' ')[:-1])
-                            if (lastname == candidate_lastname) and (firstnames == candidate_firstnames):
-                                candidates.append(cand)
-                                break
-
-                        except AttributeError:
-                            # cand.getObject does not have the attribute requested in bib_tool.getSelectMembersAttr()
-                            # skip this candidate
-                            pass
+            raw_candidates = pas.searchUsers(fullname=lastname)
+            candidates = []
+            for cand in raw_candidates:
+                    candidate_name = cand['title']
+                    candidate_lastname = candidate_name.split(' ')[-1]
+                    candidate_firstnames = ' '.join(candidate_name.split(' ')[:-1])
+                    if (lastname == candidate_lastname) and (firstnames == candidate_firstnames):
+                        candidates.append(cand)
 
                     if candidates: break
 
@@ -121,107 +96,44 @@ class BibAuthorMember:
                     msg += " %s at %s," % (c.Title, c.getURL(relative=1))
                 report.append(msg)
             else:
-                select_attr = bib_tool.getSelectMembersAttr()
-                target = candidates[0].getObject()
+                target = candidates[0]
+                memberId = target['id']
+                name = target['title']
+                author['username'] = memberId
+                
+                if bib_tool.authorOfImpliesOwner:
+                    # assign the member ids as owner
+                    self.context.bibliography_entry_addOwnerToLocalRoles(memberId=memberId)
+                    if self.context.getBibFolder().getSynchronizePdfFileAttributes():
+                        self.bibliography_pdffile_addOwnerToLocalRoles(memberId=memberId)
 
-                # we will prefer the canonical if we have to deal with a translated object
-                if target.isTranslatable():
-                    target = target.getCanonical()
+                if bib_tool.authorOfImpliesCreator():
 
-                author['reference'] = target.UID()
-                self.context.addReference(target, 'authorOf')
+                    # also write the member ids to the creator metadata field.
+                    #try:
+                        if first_inferred_author:
+                            creators = []
+                            first_inferred_author = False
+                        else:
+                            creators = list(self.context.listCreators())
 
-                # obtain author data from privileged fields in the target object
-                data = self.context.getAuthorDataFromMember(target)
-                target_givenName = _encode(_decode(data['firstname']) + ' ' + _decode(data['middlename']))
-                target_lastName = _encode(_decode(data['lastname']))
+                        if memberId not in creators:
+                            creators.append(memberId)
 
-                # also prepare for a failure of getAuthorDataFromMember
-                select_attr_name = bib_tool.getSelectMembersAttr()
-                if select_attr_name:
-                    select_attr = getattr(target, select_attr_name, None)
-                else:
-                    select_attr = None
-                if callable(select_attr):
-                    name = select_attr() or target.Title()
-                else:
-                    name = select_attr or target.Title()
+                        self.context.setCreators(value=tuple(creators))
+                        pdf_file = self.context.getPdf_file()
+                        if pdf_file and self.context.getBibFolder().getSynchronizePdfFileAttributes():
 
-                # this is for member name information stored in explicit fields in
-                # the member target object
-                if \
-                   \
-                   (author['lastname'] == target_lastName) and \
-                   (target_givenName.startswith(author['firstname'])):
+                            pdf_file.setCreators(value=tuple(creators))
 
-                        # we have found a target / author match
-                        pass
-
-                # this for name pattern "FIRSTNAMES LASTNAME" \
-                elif \
-                     \
-                   (len(name.split(', ')) == 1) and \
-                   name.startswith(author.get('firstname')) and \
-                   name.endswith(author.get('lastname')):
-
-                        # we have found a target / author match
-                        pass
-
-                # this for name pattern "LASTNAME, FIRSTNAMES" \
-                elif \
-                     \
-                   (len(name.split(', ')) == 2) and \
-                   name.startswith(author.get('lastname')) and \
-                   ( name.endswith(author.get('firstname')) or \
-                     name.endswith(author.get('firstname') + ' ' + author.get('middlename'))):
-
-                        # we have found a target / author match
-                        pass
-
-                else:
-
-                    # bad luck, author / member_type data mismatch
-                    msg = "%s: no corresponding member found." % author()
-                    continue
-
-                if shasattr(target, 'getMemberId'): memberId = target.getMemberId()
-                else: memberId = target.getId()
-                if m_tool.getMemberInfo(memberId):
-
-                    if bib_tool.authorOfImpliesOwner:
-
-                        # assign the member ids as owner
-                        self.context.bibliography_entry_addOwnerToLocalRoles(memberId=memberId)
-                        if self.context.getBibFolder().getSynchronizePdfFileAttributes():
-                            self.bibliography_pdffile_addOwnerToLocalRoles(memberId=memberId)
-
-                    if bib_tool.authorOfImpliesCreator():
-
-                        # also write the member ids to the creator metadata field.
-                        #try:
-                            if first_inferred_author:
-                                creators = []
-                                first_inferred_author = False
-                            else:
-                                creators = list(self.context.listCreators())
-
-                            if memberId not in creators:
-                                creators.append(memberId)
-
-                            self.context.setCreators(value=tuple(creators))
-                            pdf_file = self.context.getPdf_file()
-                            if pdf_file and self.context.getBibFolder().getSynchronizePdfFileAttributes():
-
-                                pdf_file.setCreators(value=tuple(creators))
-
-                        #except AttributeError:
-                        #    pass
+                    #except AttributeError:
+                    #    pass
 
                 a_modified = True
                 msg = "%s: referring to %s at %s." \
                       % (author(),
                          name,
-                         target.absolute_url(relative=1),
+                         target['id'],
                          )
                 if report_mode == 'v':
                     report.append(msg)

@@ -30,6 +30,8 @@ if USE_EXTERNAL_STORAGE:
 else:
     from Products.Archetypes.Storage import AttributeStorage as Storage
 
+from Products.CMFBibliographyAT import CMFBibMessageFactory as _
+
 finalizeATCTSchema(ATBTreeFolderSchema, folderish=True, moveDiscussion=False)
 
 PdfFolderSchema = ATBTreeFolderSchema.copy()
@@ -52,11 +54,10 @@ PdfFileSchema = PdfBaseSchema + Schema((
               storage = Storage(),
               # validators = (('isNonEmptyFile', V_REQUIRED),),
               widget = FileWidget(
-                        label= "Printable File",
-                        label_msgid = "label_upload_pdffile_from_bibrefitem",
-                        description = "If not in conflict with any copyright issues, use this field to upload a printable version (PDF file) of the referenced resource.",
-                        description_msgid = "help_upload_pdffile_from_bibrefitem",
-                        i18n_domain = "cmfbibliographyat",
+                        label=_(u"label_upload_pdffile_from_bibrefitem",
+                                default=u"Printable File"),
+                        description=_(u"help_upload_pdffile_from_bibrefitem",
+                                      default=u"If not in conflict with any copyright issues, use this field to upload a printable version (PDF file) of the referenced resource."),
                         show_content_type = False,)),
     ) , marshall=PrimaryFieldMarshaller()
     )

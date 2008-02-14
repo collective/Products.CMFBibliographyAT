@@ -14,6 +14,12 @@ from Products.CMFCore.DirectoryView import registerDirectory
 
 from Products.Archetypes.public import process_types, listTypes
 
+from AccessControl import ModuleSecurityInfo
+from zope.i18nmessageid import MessageFactory
+
+CMFBibMessageFactory = MessageFactory("cmfbibliographyat")
+ModuleSecurityInfo("Products.CMFBibliographyAT").declarePublic("CMFBibMessageFactory")
+
 from config import SKINS_DIR, PROJECTNAME
 from config import ADD_CONTENT_PERMISSION, ENTRY_TYPES
 

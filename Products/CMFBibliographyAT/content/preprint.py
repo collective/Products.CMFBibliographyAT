@@ -33,18 +33,21 @@ from Products.CMFBibliographyAT.content.base import BaseEntry
 from Products.CMFBibliographyAT.content.schemata \
     import HeaderSchema, AuthorSchema, CoreSchema, TrailingSchema
 
+from Products.CMFBibliographyAT import CMFBibMessageFactory as _
+
 
 SourceSchema = Schema((
     StringField('preprint_server',
         searchable=1,
         required=0,
         vocabulary="PreprintServers",
-        widget=SelectionWidget(label="Preprint server",
-                label_msgid="label_preprint_server",
-                description="If the preprint is available from one of the following preprint servers, you can indicate that here. Contact the site's admin if you want a server to be added to the list.",
-                description_msgid="help_preprint_server",
-                i18n_domain="cmfbibliographyat",),
-                ),
+        widget=SelectionWidget(
+            label=_(u"label_preprint_server",
+                    default=u"Preprint server"),
+            description=_(u"help_preprint_server",
+                          default=u"If the preprint is available from one of the following preprint servers, you can indicate that here. Contact the site's admin if you want a server to be added to the list."),
+            ),
+        ),
     ))
 
 PreprintSchema = HeaderSchema.copy() + AuthorSchema.copy() + CoreSchema.copy() +  \

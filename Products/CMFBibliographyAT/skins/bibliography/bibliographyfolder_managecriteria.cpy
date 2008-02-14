@@ -8,6 +8,8 @@
 ##parameters=
 ##title=Reconfigure the Bibliography Tool
 
+from Products.CMFBibliographyAT import CMFBibMessageFactory as _
+
 REQUEST=context.REQUEST
 
 BIBFOLDER_TYPES = context.portal_bibliography.getBibFolderTypes()
@@ -20,7 +22,7 @@ try:
     for ref_type in context.portal_bibliography.getReferenceTypes():
         REQUEST.set('%s_reference_type' % ref_type, 1)
     criteria_object.manage_changeCriteria(REQUEST)
-    return state.set(portal_status_message=context.translate(domain='cmfbibliographyat', msgid='bibliography_tool_updated_criteriamanager', default='Updated Bibliography Settings - Duplicates Criteria Manager.'))
+    return state.set(portal_status_message=context.translate(_(u'bibliography_tool_updated_criteriamanager', default=u'Updated Bibliography Settings - Duplicates Criteria Manager.')))
 except:
-    return state.set(portal_status_message=context.translate(domain='cmfbibliographyat', msgid='bibliography_tool_update_criteriamanager_failed', default='Updated Bibliography Settings - Failure in update of Duplicates Criteria Manager.'))
+    return state.set(portal_status_message=context.translate(_(u'bibliography_tool_update_criteriamanager_failed', default=u'Updated Bibliography Settings - Failure in update of Duplicates Criteria Manager.')))
 

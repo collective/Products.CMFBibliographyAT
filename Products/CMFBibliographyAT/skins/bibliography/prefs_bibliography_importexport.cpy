@@ -8,6 +8,8 @@
 ##parameters=
 ##title=Reconfigure the Bibliography Tool
 
+from Products.CMFBibliographyAT import CMFBibMessageFactory as _
+
 REQUEST=context.REQUEST
 
 parser_enabled_settings = []
@@ -45,4 +47,4 @@ for setting in renderer_encoding_settings:
     renderer = context.portal_bibliography.getRenderer(format=renderer_name, with_unavailables=True, with_disabled=True)
     renderer.manage_changeProperties({renderer_property: REQUEST.get(setting),})
 
-return state.set(portal_status_message=context.translate(domain='cmfbibliographyat', msgid='bibliography_tool_updated_importexport', default='Updated Bibliography Settings - Import / Export.'))
+return state.set(portal_status_message=context.translate(_(u'bibliography_tool_updated_importexport', default=u'Updated Bibliography Settings - Import / Export.')))

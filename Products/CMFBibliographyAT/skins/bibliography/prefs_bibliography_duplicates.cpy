@@ -8,7 +8,9 @@
 ##parameters=
 ##title=Reconfigure the Bibliography Tool
 
+from Products.CMFBibliographyAT import CMFBibMessageFactory as _
+
 REQUEST=context.REQUEST
 context.portal_bibliography.manage_changeProperties(REQUEST)
 
-return state.set(portal_status_message=context.translate(domain='cmfbibliographyat', msgid='bibliography_tool_updated_duplicates', default='Updated Bibliography Settings - Duplicates Management.'))
+return state.set(portal_status_message=context.translate(_(u'bibliography_tool_updated_duplicates', default=u'Updated Bibliography Settings - Duplicates Management.')))

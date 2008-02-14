@@ -8,6 +8,8 @@
 ##parameters=
 ##title=Reconfigure the Bibliography Tool
 
+from Products.CMFBibliographyAT import CMFBibMessageFactory as _
+
 REQUEST=context.REQUEST
 context.portal_bibliography.manage_changeProperties(REQUEST)
 
@@ -28,4 +30,4 @@ for setting in idcookers_enabled_settings:
     else:
         idcooker.manage_changeProperties({idcooker_property: 1,})
 
-return state.set(portal_status_message=context.translate(domain='cmfbibliographyat', msgid='bibliography_tool_updated_idcooking', default='Updated Bibliography Settings - Reference ID Cooking.'))
+return state.set(portal_status_message=context.translate(_(u'bibliography_tool_updated_idcooking', default=u'Updated Bibliography Settings - Reference ID Cooking.')))

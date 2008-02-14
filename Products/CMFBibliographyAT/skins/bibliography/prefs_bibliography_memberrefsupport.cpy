@@ -8,9 +8,11 @@
 ##parameters=
 ##title=Reconfigure the Bibliography Tool
 
+from Products.CMFBibliographyAT import CMFBibMessageFactory as _
+
 REQUEST=context.REQUEST
 if not REQUEST.has_key('member_types'):
     REQUEST.set('member_types', ())
 context.portal_bibliography.manage_changeProperties(REQUEST)
 
-return state.set(portal_status_message=context.translate(domain='cmfbibliographyat', msgid='bibliography_tool_updated_memberreferencesupport', default='Updated Bibliography Settings - Member Referencing Support.'))
+return state.set(portal_status_message=context.translate(_(u'bibliography_tool_updated_memberreferencesupport', default=u'Updated Bibliography Settings - Member Referencing Support.')))

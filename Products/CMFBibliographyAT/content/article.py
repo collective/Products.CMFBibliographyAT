@@ -31,6 +31,8 @@ from Products.CMFBibliographyAT.content.schemata \
 from Products.CMFBibliographyAT.content.fields \
     import journalField, volumeField, numberField, pagesField
 
+from Products.CMFBibliographyAT import CMFBibMessageFactory as _
+
 
 SourceSchema = Schema((
     journalField,
@@ -39,22 +41,22 @@ SourceSchema = Schema((
     pagesField,
     StringField('pmid',
         is_duplicates_criterion=True,
-        widget=StringWidget(label="PubMed ID",
-            label_msgid="label_pmid",
-            description="The reference's number in the PubMed database.",
-            description_msgid="help_pmid",
-            i18n_domain="cmfbibliographyat",
+        widget=StringWidget(
+            label=_(u"label_pmid",
+                    default=u"PubMed ID"),
+            description=_(u"help_pmid",
+                          default=u"The reference's number in the PubMed database."),
             visible = {'view': 'invisible',
                        'edit': 'invisible', }
         ),
     ),
     StringField('DOI',
         is_duplicates_criterion=True,
-        widget=StringWidget(label="DOI",
-            label_msgid="label_doi",
-            description="The reference's digital object identifier.",
-            description_msgid="help_doi",
-            i18n_domain="cmfbibliographyat",
+        widget=StringWidget(
+            label=_(u"label_doi",
+                    default=u"DOI"),
+            description=_(u"help_doi",
+                          default=u"The reference's digital object identifier."),
             visible = {'view': 'invisible',
                        'edit': 'invisible', }
         ),

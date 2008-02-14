@@ -8,7 +8,9 @@
 ##parameters=
 ##title=Reconfigure the Bibliography Tool
 
+from Products.CMFBibliographyAT import CMFBibMessageFactory as _
+
 REQUEST=context.REQUEST
 context.portal_bibliography.manage_changeProperties(REQUEST)
 
-return state.set(portal_status_message=context.translate(domain='cmfbibliographyat', msgid='bibliography_tool_updated_general', default='Updated Bibliography Settings - General.'))
+return state.set(portal_status_message=context.translate(_(u'bibliography_tool_updated_general', default=u'Updated Bibliography Settings - General.')))

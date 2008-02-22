@@ -67,7 +67,10 @@ AuthorSchema = Schema((
         minimalSize = 2,
         subfields=('username','firstnames','lastname', 'homepage'),
         subfield_sizes={'firstnames':20, 'lastname':20, 'homepage':15},
-        subfield_labels={'username':'Site Members'},
+        subfield_labels={'username':_(u'label_site_members', default=u'Site Members'),
+                         'firstnames':_(u'label_firstnames', default=u'Firstnames'),
+                         'lastname':_(u'label_lastname', default=u'Lastname'),
+                         'homepage':_(u'label_homepage', default=u'Homepage')},
         subfield_vocabularies={'username':'getSiteMembers'},
         subfield_conditions={'username':'python:object.showMemberAuthors()'},
         subfield_maxlength={'homepage': 250,},
@@ -120,7 +123,7 @@ CoreSchema = Schema((
     # full text and printable versions
     CommentField('explain_links',
                  schemata="full text",
-                 comment = """\
+                 comment = _(u"comment_explain_links", default=u"""\
                  There are several ways to make reference to
                  the original paper:
 
@@ -128,12 +131,9 @@ CoreSchema = Schema((
 
                    - A link to a printable (pdf) version
 
-                   - Upload a printable (pdf) file""",
-                 comment_msgid="comment_explain_links",
+                   - Upload a printable (pdf) file"""),
                  comment_type = "text/structured",
-                 widget = CommentWidget(
-                    i18n_domain="cmfbibliographyat",
-                 ),
+                 widget = CommentWidget(),
     ),
     StringField('publication_url',
         schemata="full text",
@@ -216,7 +216,7 @@ TrailingSchema = Schema((
         languageIndependent=1,
         is_duplicates_criterion=False,
         subfields = ('label', 'value'),
-        subfield_labels ={'label':'Identifier'},
+        subfield_labels ={'label':_(u'Identifier'), 'value':_(u'Value')},
         subfield_vocabularies = {'label':'publicationIdentifiers',},      
         widget=RecordsWidget(
                 label=_(u"Identifiers"),

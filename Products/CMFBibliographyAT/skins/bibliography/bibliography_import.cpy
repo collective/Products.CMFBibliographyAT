@@ -8,8 +8,7 @@
 ##title=
 ##
 
-from Products.Archetypes import PloneMessageFactory as _
-from Products.Archetypes.utils import addStatusMessage
+from Products.CMFBibliographyAT import CMFBibMessageFactory as _
 from Products.CMFBibliographyAT.tool.bibliography import ImportParseError
 
 REQUEST = context.REQUEST
@@ -23,21 +22,19 @@ else:
     else:
         filename=getattr(file, 'filename', None)
     if not filename:
-        state.setError('file', 'You must import a file.')
-        addStatusMessage(REQUEST,_(u"Please correct the indicated errors."))
-        return state.set(status='failure',
-                         portal_status_message='Please correct the indicated errors.')
+        state.setError('file', _(u'You must import a file.'))
+        context.plone_utils.addPortalMessage(_(u"Please correct the indicated errors."))
+        return state.set(status='failure', context=context)
     # make sure the path entered in the field matches a file
     try:
         source = file.filename.read()
     except:
         source = file.read()
     if not source or not same_type(source,''):
-        msg = "Could not read the file '%s'." %file.filename
-        addStatusMessage(REQUEST,_(unicode(msg)))
+        context.plone_utils.addPortalMessage(_(u"Please correct the indicated errors."))
+        msg = "%s '%s'" % (_(u"Could not read the file"), file.filename)
         state.setError('file', msg)
-        return state.set(status='failure',
-                         portal_status_message='Please correct the indicated errors.')
+        return state.set(status='failure', context=context)
 
 # skip DOS line breaks
 source = source.replace('\r','')
@@ -51,20 +48,18 @@ try:
     else:
         entries = bibtool.getEntries(source, format)
 except ImportParseError:
-    state.setError('format', 'Select an appropriate format for your file.')
-    msg = """%s Parser's 'checkFormat' and guessing the format""" \
-          """ from the file name '%s' failed.""" % (format, file.filename)
-    addStatusMessage(REQUEST,_(unicode(msg)))
-    return state.set(status='failure',
-                     portal_status_message=msg)
+    context.plone_utils.addPortalMessage(_(u"Please correct the indicated errors."))
+    state.setError('format', _(u'Select an appropriate format for your file.'))
+    #msg = """%s Parser's 'checkFormat' and guessing the format""" \
+    #      """ from the file name '%s' failed.""" % (format, file.filename)
+    #context.plone_utils.addPortalMessage(_(unicode(msg)))
+    return state.set(status='failure', context=context)
 
 # debug message if entries is not a python list
 if not entries or not same_type(entries, []):
-    state.setError('file', "Here is what came as entries: %s." % entries)
-    msg = "There must be something wrong with the parser"
-    addStatusMessage(REQUEST,_(unicode(msg)))
-    return state.set(status='failure',
-                     portal_status_message=msg)
+    state.setError('file', _(u"Here is what came as entries:") + " %s." % entries)
+    context.plone_utils.addPortalMessage(_(u"There must be something wrong with the parser"))
+    return state.set(status='failure', context=context)
 
 # start building the report
 mtool  = context.portal_membership
@@ -101,16 +96,15 @@ context.logImportReport(tmp_report)
 msg = "Processed %i entries. There were %i errors. Import processed in %f seconds. See import report below." \
       %(processedEntries, importErrors, context.ZopeTime().timeTime()-start_time)
 
-addStatusMessage(REQUEST, _(unicode(msg)))
-state.set(portal_status_message=msg)
+# FIXME: that won't work
+context.plone_utils.addPortalMessage(_(unicode(msg)))
+state.set(context=context)
 
 # allow import report display in import form
 state.set(processed_import=1)
 
 if state.getErrors():
-    msg = 'Please correct the indicated errors.'
-    addStatusMessage(REQUEST, _(unicode(msg)))
-    return state.set(status='failure',
-                     portal_status_message=msg)
+    context.plone_utils.addPortalMessage(_('Please correct the indicated errors.'))
+    return state.set(status='failure', context=context)
 else:
     return state

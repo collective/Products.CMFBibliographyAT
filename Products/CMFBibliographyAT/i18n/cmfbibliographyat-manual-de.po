@@ -1,0 +1,126 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CMFBibliographyAT 0.9\n"
+"POT-Creation-Date: 2006-04-01 16:06+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: SuperUser <root@phoenix.ecology.uni-kiel.de>\n"
+"Language-Team: CMFBibliographyAT i18n <r.ritz@biologie.hu-berlin.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: cmfbibliographyat\n"
+"Report-Msgid-Bugs-To: m.gabriel@sunweavers.net\n"
+"Language-code: de\n"
+"Language-name: Deutsch\n"
+"Preferred-encodings: utf-8 latin-1\n"
+"X-Is-Fallback-For: de-at de-li de-lu de-ch de-de\n"
+
+#. Default: "If a bibliographical reference item has one author, it takes the first three letters of the author's lastname plus publication year to cook the reference's ID. For more than one author, it uses the initials of all authors' lastnames plus publication year."
+#: ./tool/idcookers/abbrev.py
+msgid "help_idcooker_abbrev"
+msgstr "Bei einem Literaturverweis mit einem Autor, werden die ersten drei Buchstaben des Nachnamens und das Veröffentlichungsjahr verwendet, um die ID zu generieren. Bei mehreren Autoren werden die Anfangsbuchstaben von allen Nachnamen und das Veröffentlichungsjahr verwendet."
+
+#. Default: "If a bibliographical reference item has one or two authors, it uses the authorname(s) + publication year to cook a reference's ID. If an item has more than two authors, it uses the first author's name plus 'EtAl' plus the publication year."
+#: ./tool/idcookers/etal.py
+msgid "help_idcooker_etal"
+msgstr "Für Literatureinträge mit ein oder zwei Autoren wird der Kurzname aus dem Autornamen bzw. aus den beide Autornamen plus dem Veröffentlichungsjahr generiert. Wenn ein Literatureintrag mehr als zwei Autoren besitzt, wird der Vorname des ersten Autors plus 'EtAl' plus  Veröffentlichungsjahr für den automatischen Kurznamen verwendet."
+
+#. Default: "The ID is cooked from the bibliographical reference's title as a normalized string. That is the way Plone normally cooks object IDs."
+#: ./tool/idcookers/plone.py
+msgid "help_idcooker_plone"
+msgstr "Der Kurzname wird als 'normalizedString' aus dem Titel des Literatureintrages generiert. Dies ist die Standardmethode, mit der in Plone Kurznamen für neue Objekten erstellt werden."
+
+#. Default: "The ID is cooked from the bibliographical reference's UID (Archetypes' unique object identifier)."
+#: ./tool/idcookers/uid.py
+msgid "help_idcooker_uid"
+msgstr "Als Kurzname wird die  UID (Unique Identifier von in Archetypes Objekten) des Literatureintrags verwendet."
+
+#. Default: "A specific parser to process input in BiBTeX-format."
+#: ./tool/parsers/bibtex.py
+msgid "help_parser_bibtex"
+msgstr "Ein Importfilter, um Eingaben im BiBTeX-Fomat zu importieren."
+
+#. Default: "A specific parser to process input in BIDS (IBSS) format."
+#: ./tool/parsers/ibss.py
+msgid "help_parser_bids"
+msgstr "Ein Importfilter, um Eingaben im BIDS(IBSS)-Format zu verarbeiten."
+
+#. Default: "A specific parser to process input in CitationManager format."
+#: ./tool/parsers/citationmanager.py
+msgid "help_parser_citationmanager"
+msgstr "Ein Importfilter, um Eingaben im CitationManager-Format zu verarbeiten."
+
+#. Default: "A specific parser to process input in EndNote's text format."
+#: ./tool/parsers/endnote.py
+msgid "help_parser_endnote"
+msgstr "Ein Importfilter, mit dem Sie Literatureinträge im Endnote-Textformat hochladen können."
+
+#. Default: "A specific parser to process a list of ISBN numbers. Information will be retrieved from Amazon Webservices."
+#: ./tool/parsers/isbn.py
+msgid "help_parser_isbn"
+msgstr "Ein Importfilter, mit dem man eine Liste von ISBN Nummern zu Bucheinträgen umwandeln kann. Die Informationen zu den eingelesenen ISBN-Nummern werden über Amazon Webservices bezogen."
+
+#. Default: "A specific parser to process input in Medline-format."
+#: ./tool/parsers/medline.py
+msgid "help_parser_medline"
+msgstr "Ein Importfilter, der Eingaben im Medline-Fomat (PubMed-Datenbank) importieren kann."
+
+#. Default: "A specific parser to process input in RIS format (Research Information Systems/Reference Manager)."
+#: ./tool/parsers/ris.py
+msgid "help_parser_ris"
+msgstr "Ein Importfilter, mit dem Sie Dateien im RIS-Format (Research Information Systems, verwendet im Programm 'Reference Manager') hochladen können."
+
+#. Default: "A specific parser to process input in XML(MODS)-format. The XML intermediate format is conform to the Library of Congress's Metadata Object Description Schema (MODS). This is a very flexible standard that should prove quite useful as the number of tools that directly interact with it increase."
+#: ./tool/parsers/xml.py
+msgid "help_parser_xml_mods"
+msgstr "Ein Importfilter, der Literatureinträge im XML(MODS)-Format einlesen kann. Das XML-Zwischenformat ist konform mit dem 'Congress's Metadata Object Description Schema' (MODS). Die Verwendung dieses sehr flexiblen Standards ist vor allem dann hilfreich, wenn Sie Literatureinträge aus diversen Quellen in einem einheitlichen Format zusammen tragen möchten."
+
+#. Default: "A specific renderer to export bibliographical references in BiBTeX format. Note: If the output encoding of the BiBTeX renderer is not unicode capable, all non-ASCII characters will be resolved to LaTeX entities."
+#: ./tool/renderers/bibtex.py
+msgid "help_renderer_bibtex"
+msgstr "Ein Exportfilter, der Literatureinträge in das BiBTeX-Format umwandelt. Bitte beachten Sie: Wenn die Textenkodierung des BiBTeX-Exportfilters nicht unicodefähig ist, werden alle nicht-ASCII Zeichen in LaTex-Kommandos umgewandelt."
+
+#. Default: "A specific EndNote renderer that exports bibliographical references in the EndNote text format."
+#: ./tool/renderers/endnote.py
+msgid "help_renderer_endnote"
+msgstr "Dieser Exportfilter gibt Literatureinträge im Endnote-Textformat aus."
+
+#. Default: "A renderer that produces a PDF document containing bibliographical references. The PDF export is rendered by PDFLaTeX."
+#: ./tool/renderers/pdf.py
+msgid "help_renderer_pdf"
+msgstr "Aus den Literatureinträgen wird ein Literaturverzeichnis im PDF-Format erzeugt."
+
+#. Default: "A specific renderer that exports bibliographical references in RIS (Research Information Systems/Reference Manager) format."
+#: ./tool/renderers/ris.py
+msgid "help_renderer_ris"
+msgstr "Ein Exportfilter der Ihre Literatureinträge in das RIS-Format (Research Information Systems, verwendet im Programm 'Reference Manager') umwandelt."
+
+#. Default: "A specific XML (MODS) intermediate renderer. The XML intermediate format is conform to the Library of Congress's Metadata Object Description Schema (MODS). This is a very flexible standard that should prove quite useful as the number of tools that directly interact with it increase."
+#: ./tool/renderers/xml.py
+msgid "help_renderer_xml_mods"
+msgstr "Ein Exportfilter, der Literatureinträge im XML(MODS)-Format ausgibt. Das XML-Zwischenformat ist konform mit dem 'Congress's Metadata Object Description Schema' (MODS). Die Verwendung dieses sehr flexiblen Standards ist vor allem dann hilfreich, wenn Ihre Literatureinträge mit diversen anderen Werkzeuge weiterverarbeitet werden sollen."
+
+#. Default: "Abbreviation Bibliography ID Cooker"
+#: ./tool/idcookers/abbrev.py
+msgid "title_idcooker_abbrev"
+msgstr "ABBREV Kurznamengenerator"
+
+#. Default: "EtAl Bibliography ID Cooker"
+#: ./tool/idcookers/etal.py
+msgid "title_idcooker_etal"
+msgstr "EtAl Kurznamengenerator"
+
+#. Default: "PLONE Default Bibliography ID Cooker"
+#: ./tool/idcookers/plone.py
+msgid "title_idcooker_plone"
+msgstr "PLONE-Standard Kurznamengenerator"
+
+#. Default: "UID Bibliography ID Cooker"
+#: ./tool/idcookers/uid.py
+msgid "title_idcooker_uid"
+msgstr "UID Kurznamengenerator"
+

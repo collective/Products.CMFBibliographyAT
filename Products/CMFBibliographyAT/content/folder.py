@@ -808,7 +808,10 @@ class BaseBibliographyDuplicatesManager(Acquirer):
 
     def listDuplicatesMatchingPolicies(self):
 
-        return DisplayList((('local', 'local_duplicates_matchingpolicy'), ('global', 'global_duplicates_matchingpolicy')))
+        return DisplayList((
+            ('local', _(u'local_duplicates_matchingpolicy', default=u'Local search span')),
+            ('global', _(u'global_duplicates_matchingpolicy', default=u'Global search span'))
+        ))
 
     def isDuplicate(self, bibref_item, span_of_search=None):
         """

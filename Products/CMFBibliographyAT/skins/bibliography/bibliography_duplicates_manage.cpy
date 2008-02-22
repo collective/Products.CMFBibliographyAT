@@ -11,4 +11,5 @@
 request = container.REQUEST
 logs = context.handleAction(REQUEST=request)
 
-return state.set(status='success', portal_status_message=logs)
+context.plone_utils.addPortalMessage(logs)
+return state.set(status='success', context=context)

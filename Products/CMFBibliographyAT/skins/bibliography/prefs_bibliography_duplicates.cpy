@@ -13,4 +13,6 @@ from Products.CMFBibliographyAT import CMFBibMessageFactory as _
 REQUEST=context.REQUEST
 context.portal_bibliography.manage_changeProperties(REQUEST)
 
-return state.set(portal_status_message=context.translate(_(u'bibliography_tool_updated_duplicates', default=u'Updated Bibliography Settings - Duplicates Management.')))
+context.plone_utils.addPortalMessage(_(u'bibliography_tool_updated_duplicates',
+                                       default=u'Updated Bibliography Settings - Duplicates Management.'))
+return state.set(context=context)

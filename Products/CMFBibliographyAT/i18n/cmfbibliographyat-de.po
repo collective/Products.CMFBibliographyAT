@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CMFBibliographyAT\n"
-"POT-Creation-Date: 2008-02-14 18:13+0000\n"
+"POT-Creation-Date: 2008-02-22 14:45+0000\n"
 "PO-Revision-Date: 2007-01-24 18:25+0100\n"
 "Last-Translator: SuperUser <root@phoenix.ecology.uni-kiel.de>\n"
 "Language-Team: CMFBibliographyAT i18n <r.ritz@biologie.hu-berlin.de>\n"
@@ -20,10 +20,26 @@ msgstr ""
 "Preferred-encodings: utf-8 latin-1\n"
 "X-Is-Fallback-For: de-at de-li de-lu de-ch de-de\n"
 
+#: ../skins/bibliography/bibliography_import.cpy:35
+msgid "Could not read the file"
+msgstr ""
+
+#: ../skins/bibliography/bibliography_defaults_edit.cpy:21
+msgid "Defaults updated"
+msgstr ""
+
 #. Default: "Export"
 #: ../skins/bibliography/bibliography_exportForm.pt:142
 msgid "Export"
 msgstr "Exportieren"
+
+#: ../skins/bibliography/bibliography_import.cpy:60
+msgid "Here is what came as entries:"
+msgstr ""
+
+#: ../content/schemata.py:219
+msgid "Identifier"
+msgstr ""
 
 #: ../content/schemata.py:222
 msgid "Identifiers"
@@ -39,8 +55,16 @@ msgstr "Importieren"
 msgid "More Links"
 msgstr "Weitere Links"
 
-#: ../skins/bibliography/bibliography_import.cpy:27
+#: ../skins/bibliography/bibliography_defaults_edit.cpy:25
+msgid "Next link enabled"
+msgstr ""
+
+#: ../skins/bibliography/bibliography_import.cpy:26
 msgid "Please correct the indicated errors."
+msgstr ""
+
+#: ../skins/bibliography/bibliography_import.cpy:52
+msgid "Select an appropriate format for your file."
 msgstr ""
 
 #. Default: "Submit changes"
@@ -48,10 +72,30 @@ msgstr ""
 msgid "Submit changes"
 msgstr "Änderungen übernehmen"
 
+#: ../skins/bibliography/bibliography_import.cpy:61
+msgid "There must be something wrong with the parser"
+msgstr ""
+
 #. Default: "Update All Duplicates Criteria"
 #: ../skins/bibliography/bibliography_managecriteria_macros.pt:48
 msgid "Update All Duplicates Criteria"
 msgstr "Alle Kriterien der Duplikatverwaltung aktualisieren"
+
+#: ../content/schemata.py:219
+msgid "Value"
+msgstr ""
+
+#: ../skins/bibliography/bibliography_import.cpy:25
+msgid "You must import a file."
+msgstr ""
+
+#: ../skins/bibliography/validate_bibliography_import.vpy:18
+msgid "You must upload a file."
+msgstr ""
+
+#: ../skins/bibliography/validate_bibliography_import.vpy:20
+msgid "You should import from clipboard OR file (not both)."
+msgstr ""
 
 #. Default: "Back to"
 #: ../skins/bibliography/bibliography_entry_macros.pt:98
@@ -75,19 +119,16 @@ msgstr ""
 
 #. Default: "Global&nbsp;Matches"
 #: ../skins/bibliography/bibliography_duplicatesForm.pt:98
-#, fuzzy
 msgid "bibliography_duplicates_global_matches"
 msgstr "Globale&nbsp;Übereinstimmungen"
 
 #. Default: "Local&nbsp;Matches"
 #: ../skins/bibliography/bibliography_duplicatesForm.pt:97
-#, fuzzy
 msgid "bibliography_duplicates_local_matches"
 msgstr "Lokale&nbsp;Übereinstimmungen"
 
 #. Default: "find&nbsp;matches"
 #: ../skins/bibliography/bibliography_duplicatesForm.pt:74
-#, fuzzy
 msgid "bibliography_find"
 msgstr "Suche&nbsp;Übereinstimmungen"
 
@@ -127,7 +168,7 @@ msgid "bibliography_skip_title"
 msgstr ""
 
 #. Default: "Updated Bibliography Settings - Failure in update of Duplicates Criteria Manager."
-#: ../skins/bibliography/bibliographyfolder_managecriteria.cpy:27
+#: ../skins/bibliography/bibliographyfolder_managecriteria.cpy:29
 msgid "bibliography_tool_update_criteriamanager_failed"
 msgstr "Fehler: Die Kriterien des Duplikatverwaltungssystems konnten nicht aktualisiert werden."
 
@@ -170,6 +211,18 @@ msgstr "Link zu Amazon"
 #: ../skins/bibliography/bibliography_entry_macros.pt:67
 msgid "bibref_pubmed_link"
 msgstr "Link zum PubMed Eintrag"
+
+#. Default: "                 There are several ways to make reference to\n                 the original paper:\n\n                   - A link to an online version\n\n                   - A link to a printable (pdf) version\n\n                   - Upload a printable (pdf) file"
+#: ../content/schemata.py:126
+msgid "comment_explain_links"
+msgstr ""
+"Es gibt verschiedene Möglichkeiten, um auf das Orignaldokument zu referenzieren:\n"
+"\n"
+"- Link zur Online-Version\n"
+"\n"
+"- Link zur druckbaren (PDF-)Version\n"
+"\n"
+"- Hochladen einer druckbaren (PDF-)Datei"
 
 #. Default: "Default encoding:"
 #: ../skins/bibliography/prefs_bibliography_importexport_form.cpt:192
@@ -228,7 +281,6 @@ msgstr "Konfigurieren Sie hier, wie Autoren / Herausgeber von Literatureinträge
 
 #. Default: "Specify default settings for bibliographic entries within this folder."
 #: ../skins/bibliography/bibliography_defaultsForm.cpt:19
-#, fuzzy
 msgid "description_pubref_defaults"
 msgstr "Hier können Sie Angaben zu Literatureinträgen in diesem Bibliographieordner machen."
 
@@ -269,7 +321,6 @@ msgstr "(Hrsg.)"
 
 #. Default: "Not available, check your site setup ..."
 #: ../skins/bibliography/prefs_bibliography_importexport_form.cpt:93
-#, fuzzy
 msgid "filter_not_available"
 msgstr "Nicht verfügbar - überprüfen Sie Ihre Portalkonfiguration..."
 
@@ -277,6 +328,11 @@ msgstr "Nicht verfügbar - überprüfen Sie Ihre Portalkonfiguration..."
 #: ../skins/bibliography/bibliography_duplicatesForm.pt:174
 msgid "for_all_duplicated"
 msgstr "für alle in der Duplikatverwaltung gelisteten Literatureinträge"
+
+#. Default: "Global search span"
+#: ../content/folder.py:813
+msgid "global_duplicates_matchingpolicy"
+msgstr "Global Suche nach doppelten Literatureinträgen (ganzes Portal)"
 
 #. Default: "Bibliography Setup - Documentation"
 #: ../skins/bibliography/prefs_bibliography_docs.cpt:52
@@ -354,7 +410,7 @@ msgid "heading_pubref_import"
 msgstr "Importieren von Literatureinträgen"
 
 #. Default: "An abstract of the referenced publication. Please contact your portal's reviewers if unsure about the site's default language for abstracts in bibliographical references."
-#: ../content/schemata.py:115
+#: ../content/schemata.py:118
 msgid "help_abstract"
 msgstr "Eine kurze Zusammenfassung des Inhalts der referenzierten Publikation. Wenn Sie sich nicht sicher über die Standardsprache bei Zusammenfassungen von Literatureinträgen sind, kontaktieren Sie bitte den Reviewer des Portals."
 
@@ -370,7 +426,6 @@ msgstr "Soll der individuelle Einleitungstext des 'Intro'-Feldes auf der 'anzeig
 
 #. Default: "Any annotation that you do not wish to appear in rendered (bibtex) bibliographies."
 #: ../content/schemata.py:267
-#, fuzzy
 msgid "help_annote"
 msgstr "Jegliche Anmerkungen, die nach Export nicht in erzeugten (BiBTeX) Bibliographien erscheinen sollen. "
 
@@ -385,7 +440,7 @@ msgid "help_authorofimpliesowner_text"
 msgstr "Diese Funktion ermöglicht es, dass Autoren stets ihre eigenen Literatureinträge bearbeiten können."
 
 #. Default: "If possible, always fill in the complete authors' / editors' names."
-#: ../content/schemata.py:78
+#: ../content/schemata.py:81
 msgid "help_authors"
 msgstr "Wenn möglich, geben Sie Autoren bzw. Herausgeber immer mit vollständigem Namen an."
 
@@ -416,7 +471,6 @@ msgstr "Aktiviert das Duplikatverwaltungssystem dieses Bibliographieordners. Wen
 
 #. Default: "Specify the algorithm that shall be used for bibliographical entry ID cooking in this bibliography folder. If not sure what to say here, leave the default."
 #: ../content/folder.py:64
-#, fuzzy
 msgid "help_bibfolder_idcooking"
 msgstr "Methode, die für die automatische Erstellung von Bibliographie-Kurznamen verwendet werden soll. Bei Unklarheiten, belassen Sie die Standardeinstellung."
 
@@ -507,7 +561,6 @@ msgstr "ANMERKUNG: Der für neue Bibliographieordner voreingestellte Kurznamenge
 
 #. Default: "The reference's digital object identifier."
 #: ../content/article.py:58
-#, fuzzy
 msgid "help_doi"
 msgstr "Der 'Digital Object Identifier' (DOI) des Artikels."
 
@@ -563,7 +616,6 @@ msgstr "Name(n) der Herausgeber. Im Gegensatz zum Autorenfeld sollte dieses Hera
 
 #. Default: "Check here if the author(s) specified above are actually the editor(s) of the book."
 #: ../content/fields.py:226
-#, fuzzy
 msgid "help_editor_flag"
 msgstr "Bitte markieren, falls die oben genannten Personen nicht Autoren, sondern Herausgeber der referenzierten Publikation sind."
 
@@ -599,9 +651,8 @@ msgstr "Die Institution, in der die Publikation erstellt wurde / in der sie ver�
 
 #. Default: "The ISBN number of this publication."
 #: ../content/fields.py:238
-#, fuzzy
 msgid "help_isbn"
-msgstr "Die ISBN-Nummer eines Buches."
+msgstr "Die ISBN-Nummer der Publikation."
 
 #. Default: "The site-wide default for the ISBN links that book references may offer if the ISBN number of the book is specified. This may be overridden by defining a 'show_isbn_link' property for an individual bibliography folder or even individual book reference."
 #: ../skins/bibliography/prefs_bibliography_general_form.cpt:376
@@ -704,8 +755,7 @@ msgid "help_publication_type"
 msgstr "Angaben zum Typ eines Technischen Berichts, einer PhD These etc. - z. Bsp.: 'Forschungsbericht' oder 'Doktorarbeit'."
 
 #. Default: "The year of publication. For unpublished works, please specify the year of composure. This field should contain a year number like '1984', but it can also process notes like 'in print' etc."
-#: ../content/schemata.py:96
-#, fuzzy
+#: ../content/schemata.py:99
 msgid "help_publication_year"
 msgstr "Das Erscheinungsjahr der Publikation. Bei unveröffentlichten Werken, das Jahr in dem sie verfasst wurden. Dieses Feld sollte eine Jahreszahl enthalten, kann aber auch für Einträge wie 'im Druck' verwendet werden."
 
@@ -721,7 +771,6 @@ msgstr "Der Name der Bildungseintrichtung (Universität, Fachhochschule, etc.), 
 
 #. Default: "You can explicitly exclude bibliographical entries of certain bibliography folders from the results of bibliography search requests. The &raquo;searchable&laquo;-flag of bibliography folders has an impact on requests made with the bibliography search form of CMFBibliographyAT. It also has an influence on other bibliography products like ATBiblioTopic or ATBiblioList."
 #: ../skins/bibliography/prefs_bibliography_general_form.cpt:179
-#, fuzzy
 msgid "help_searchable_bibfolders1"
 msgstr "Es ist möglich, Literatureinträge einzelner Bibliographieordner aus den Suchergebnissen der Bibliographiesuche im Portal auszuschließen. Nicht-durchsuchbare Bibliographieordner werden einerseits bei Suchanfragen mittels der Bibliographiesuchmaske in CMFBibliographyAT ignoriert (also Literatureinträge darin nicht unter den Suchergebnissen mit aufgeführt). Andererseits werden aber auch nicht-durchsuchbare Bibliographieordner von weiteren Bibliographieprodukten wie z. Bsp. ATBiblioTopic oder ATBiblioList berücksichtigt. "
 
@@ -781,7 +830,7 @@ msgid "info_items_in_bibfolder"
 msgstr "Es befinden sich ${count} Einträge in diesem Literaturverzeichnis."
 
 #. Default: "Abstract"
-#: ../content/schemata.py:113
+#: ../content/schemata.py:116
 msgid "label_abstract"
 msgstr "Zusammenfassung"
 
@@ -807,7 +856,6 @@ msgstr "Einleitungstext für Bibliographieordner"
 
 #. Default: "Annote"
 #: ../content/schemata.py:265
-#, fuzzy
 msgid "label_annote"
 msgstr "Persönliche Anmerkungen"
 
@@ -842,7 +890,7 @@ msgid "label_authorofimpliesowner_on"
 msgstr "Autoren werden zu Besitzern ihrer Literatureinträge"
 
 #. Default: "Authors"
-#: ../content/schemata.py:76
+#: ../content/schemata.py:79
 msgid "label_authors"
 msgstr "Autoren"
 
@@ -1008,7 +1056,6 @@ msgstr "Voreingestellte Links auf Homepages"
 
 #. Default: "Bibliography Folders' default ID cooker:&nbsp;"
 #: ../skins/bibliography/prefs_bibliography_idcooking_form.cpt:79
-#, fuzzy
 msgid "label_default_idcooker"
 msgstr "Bibliographieordner - voreingestellter Kurznamengenerator:"
 
@@ -1076,6 +1123,16 @@ msgstr "Verwende UniX Zeilenende-Stil (nur &lt;LF&gt;)"
 #: ../skins/bibliography/prefs_bibliography_importexport_form.cpt:152
 msgid "label_exportfilter"
 msgstr "${filter} - Exportfilter"
+
+#. Default: "Firstnames"
+#: ../content/schemata.py:71
+msgid "label_firstnames"
+msgstr "Vorname(n)"
+
+#. Default: "Homepage"
+#: ../content/schemata.py:73
+msgid "label_homepage"
+msgstr "Homepage"
 
 #. Default: "How published"
 #: ../content/fields.py:69
@@ -1175,7 +1232,12 @@ msgstr "Zeitschrift"
 #. Default: "Keywords"
 #: ../content/schemata.py:232
 msgid "label_keywords"
-msgstr ""
+msgstr "Stichwörter"
+
+#. Default: "Lastname"
+#: ../content/schemata.py:72
+msgid "label_lastname"
+msgstr "Nachname"
 
 #. Default: "Leave the member reference field of authors / editors untouched"
 #: ../skins/bibliography/prefs_bibliography_memberrefsupport_form.cpt:147
@@ -1239,7 +1301,6 @@ msgstr "Organisation"
 
 #. Default: "Text output encoding:&nbsp;"
 #: ../skins/bibliography/bibliography_exportForm.pt:101
-#, fuzzy
 msgid "label_output_encoding"
 msgstr "Textenkodierung:"
 
@@ -1260,7 +1321,6 @@ msgstr "aktiviert"
 
 #. Default: "AT Reference to Printable File (PDF Format)"
 #: ../content/schemata.py:172
-#, fuzzy
 msgid "label_pdf_file"
 msgstr "AT Verweis auf druckbare Datei (PDF)"
 
@@ -1296,7 +1356,6 @@ msgstr "PubMed ID"
 
 #. Default: "Preprint server"
 #: ../content/preprint.py:45
-#, fuzzy
 msgid "label_preprint_server"
 msgstr "Vorabdruck Server"
 
@@ -1321,7 +1380,7 @@ msgid "label_publication_type"
 msgstr "Typ"
 
 #. Default: "Publication Year"
-#: ../content/schemata.py:94
+#: ../content/schemata.py:97
 msgid "label_publication_year"
 msgstr "Publikationsjahr"
 
@@ -1385,6 +1444,11 @@ msgstr "ISBN-Verweise können nicht angezeigt werden"
 msgid "label_show_isbn_link_on"
 msgstr "ISBN-Verweise können angezeigt werden"
 
+#. Default: "Site Members"
+#: ../content/schemata.py:70
+msgid "label_site_members"
+msgstr ""
+
 #. Default: "Source File"
 #: ../skins/bibliography/bibliography_importForm.cpt:38
 msgid "label_source_file"
@@ -1412,7 +1476,6 @@ msgstr "Synchronisieren von PDF-Dateiattributen"
 
 #. Default: "Printable File"
 #: ../content/pdf.py:57
-#, fuzzy
 msgid "label_upload_pdffile_from_bibrefitem"
 msgstr "Druckbare PDF-Datei"
 
@@ -1505,6 +1568,11 @@ msgstr "Aktiviert / Deaktiviert automatische Kurznamen für Literatureinträge"
 #: ../skins/bibliography/bibliography_importForm.cpt:32
 msgid "legend_import_source"
 msgstr "Literatureinträge importieren"
+
+#. Default: "Local search span"
+#: ../content/folder.py:812
+msgid "local_duplicates_matchingpolicy"
+msgstr "Lokale Suche nach doppelten Literatureinträgen (nur dieser Bibliographieordner)"
 
 #. Default: "The duplicates management engine does not know about any duplicates in this Bibliography Folder. If you think that there should be duplicates you may want to (re-)scan your Bibliography Folder for duplicates."
 #: ../skins/bibliography/bibliography_duplicatesForm.pt:284
@@ -1678,7 +1746,6 @@ msgstr "URL"
 
 #. Default: "Categories"
 #: ../skins/bibliography/bibliography_entry_macros.pt:37
-#, fuzzy
 msgid "view_label_keywords"
 msgstr "Stichwörter"
 

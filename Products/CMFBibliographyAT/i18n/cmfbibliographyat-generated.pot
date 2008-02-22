@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2008-02-14 18:13+0000\n"
+"POT-Creation-Date: 2008-02-22 14:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,9 +17,25 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: cmfbibliographyat\n"
 
+#: ../skins/bibliography/bibliography_import.cpy:35
+msgid "Could not read the file"
+msgstr ""
+
+#: ../skins/bibliography/bibliography_defaults_edit.cpy:21
+msgid "Defaults updated"
+msgstr ""
+
 #. Default: "Export"
 #: ../skins/bibliography/bibliography_exportForm.pt:142
 msgid "Export"
+msgstr ""
+
+#: ../skins/bibliography/bibliography_import.cpy:60
+msgid "Here is what came as entries:"
+msgstr ""
+
+#: ../content/schemata.py:219
+msgid "Identifier"
 msgstr ""
 
 #: ../content/schemata.py:222
@@ -36,8 +52,16 @@ msgstr ""
 msgid "More Links"
 msgstr ""
 
-#: ../skins/bibliography/bibliography_import.cpy:27
+#: ../skins/bibliography/bibliography_defaults_edit.cpy:25
+msgid "Next link enabled"
+msgstr ""
+
+#: ../skins/bibliography/bibliography_import.cpy:26
 msgid "Please correct the indicated errors."
+msgstr ""
+
+#: ../skins/bibliography/bibliography_import.cpy:52
+msgid "Select an appropriate format for your file."
 msgstr ""
 
 #. Default: "Submit changes"
@@ -45,9 +69,29 @@ msgstr ""
 msgid "Submit changes"
 msgstr ""
 
+#: ../skins/bibliography/bibliography_import.cpy:61
+msgid "There must be something wrong with the parser"
+msgstr ""
+
 #. Default: "Update All Duplicates Criteria"
 #: ../skins/bibliography/bibliography_managecriteria_macros.pt:48
 msgid "Update All Duplicates Criteria"
+msgstr ""
+
+#: ../content/schemata.py:219
+msgid "Value"
+msgstr ""
+
+#: ../skins/bibliography/bibliography_import.cpy:25
+msgid "You must import a file."
+msgstr ""
+
+#: ../skins/bibliography/validate_bibliography_import.vpy:18
+msgid "You must upload a file."
+msgstr ""
+
+#: ../skins/bibliography/validate_bibliography_import.vpy:20
+msgid "You should import from clipboard OR file (not both)."
 msgstr ""
 
 #. Default: "Back to"
@@ -121,7 +165,7 @@ msgid "bibliography_skip_title"
 msgstr ""
 
 #. Default: "Updated Bibliography Settings - Failure in update of Duplicates Criteria Manager."
-#: ../skins/bibliography/bibliographyfolder_managecriteria.cpy:27
+#: ../skins/bibliography/bibliographyfolder_managecriteria.cpy:29
 msgid "bibliography_tool_update_criteriamanager_failed"
 msgstr ""
 
@@ -163,6 +207,11 @@ msgstr ""
 #. Default: "Link to PubMed entry"
 #: ../skins/bibliography/bibliography_entry_macros.pt:67
 msgid "bibref_pubmed_link"
+msgstr ""
+
+#. Default: "                 There are several ways to make reference to\n                 the original paper:\n\n                   - A link to an online version\n\n                   - A link to a printable (pdf) version\n\n                   - Upload a printable (pdf) file"
+#: ../content/schemata.py:126
+msgid "comment_explain_links"
 msgstr ""
 
 #. Default: "Default encoding:"
@@ -270,6 +319,11 @@ msgstr ""
 msgid "for_all_duplicated"
 msgstr ""
 
+#. Default: "Global search span"
+#: ../content/folder.py:813
+msgid "global_duplicates_matchingpolicy"
+msgstr ""
+
 #. Default: "Bibliography Setup - Documentation"
 #: ../skins/bibliography/prefs_bibliography_docs.cpt:52
 msgid "head_docs_bibliography_setup"
@@ -346,7 +400,7 @@ msgid "heading_pubref_import"
 msgstr ""
 
 #. Default: "An abstract of the referenced publication. Please contact your portal's reviewers if unsure about the site's default language for abstracts in bibliographical references."
-#: ../content/schemata.py:115
+#: ../content/schemata.py:118
 msgid "help_abstract"
 msgstr ""
 
@@ -376,7 +430,7 @@ msgid "help_authorofimpliesowner_text"
 msgstr ""
 
 #. Default: "If possible, always fill in the complete authors' / editors' names."
-#: ../content/schemata.py:78
+#: ../content/schemata.py:81
 msgid "help_authors"
 msgstr ""
 
@@ -691,7 +745,7 @@ msgid "help_publication_type"
 msgstr ""
 
 #. Default: "The year of publication. For unpublished works, please specify the year of composure. This field should contain a year number like '1984', but it can also process notes like 'in print' etc."
-#: ../content/schemata.py:96
+#: ../content/schemata.py:99
 msgid "help_publication_year"
 msgstr ""
 
@@ -766,7 +820,7 @@ msgid "info_items_in_bibfolder"
 msgstr ""
 
 #. Default: "Abstract"
-#: ../content/schemata.py:113
+#: ../content/schemata.py:116
 msgid "label_abstract"
 msgstr ""
 
@@ -826,7 +880,7 @@ msgid "label_authorofimpliesowner_on"
 msgstr ""
 
 #. Default: "Authors"
-#: ../content/schemata.py:76
+#: ../content/schemata.py:79
 msgid "label_authors"
 msgstr ""
 
@@ -1060,6 +1114,16 @@ msgstr ""
 msgid "label_exportfilter"
 msgstr ""
 
+#. Default: "Firstnames"
+#: ../content/schemata.py:71
+msgid "label_firstnames"
+msgstr ""
+
+#. Default: "Homepage"
+#: ../content/schemata.py:73
+msgid "label_homepage"
+msgstr ""
+
 #. Default: "How published"
 #: ../content/fields.py:69
 msgid "label_howpublished"
@@ -1158,6 +1222,11 @@ msgstr ""
 #. Default: "Keywords"
 #: ../content/schemata.py:232
 msgid "label_keywords"
+msgstr ""
+
+#. Default: "Lastname"
+#: ../content/schemata.py:72
+msgid "label_lastname"
 msgstr ""
 
 #. Default: "Leave the member reference field of authors / editors untouched"
@@ -1301,7 +1370,7 @@ msgid "label_publication_type"
 msgstr ""
 
 #. Default: "Publication Year"
-#: ../content/schemata.py:94
+#: ../content/schemata.py:97
 msgid "label_publication_year"
 msgstr ""
 
@@ -1363,6 +1432,11 @@ msgstr ""
 #. Default: "Allow ISBN links to be displayed"
 #: ../skins/bibliography/prefs_bibliography_general_form.cpt:389
 msgid "label_show_isbn_link_on"
+msgstr ""
+
+#. Default: "Site Members"
+#: ../content/schemata.py:70
+msgid "label_site_members"
 msgstr ""
 
 #. Default: "Source File"
@@ -1483,6 +1557,11 @@ msgstr ""
 #. Default: "Import Source"
 #: ../skins/bibliography/bibliography_importForm.cpt:32
 msgid "legend_import_source"
+msgstr ""
+
+#. Default: "Local search span"
+#: ../content/folder.py:812
+msgid "local_duplicates_matchingpolicy"
 msgstr ""
 
 #. Default: "The duplicates management engine does not know about any duplicates in this Bibliography Folder. If you think that there should be duplicates you may want to (re-)scan your Bibliography Folder for duplicates."

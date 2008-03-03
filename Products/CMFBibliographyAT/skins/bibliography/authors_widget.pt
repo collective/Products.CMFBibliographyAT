@@ -27,9 +27,9 @@
              delete</span>
 	</td>
 	</tr>
-	<tr tal:repeat="idx python:range(field.getEditSize(here))">
+	<tr tal:repeat="idx python:range(field.getEditSize(here))" class="authorline">
 	<tal:keys tal:repeat="key python:field.getSubfields()">
-        <td tal:condition="python:field.testSubfieldCondition(key,here,portal,template)">
+        <td tal:condition="python:field.testSubfieldCondition(key,here,portal,template)" tal:attributes="class string:autherfield-${key}">
 	<tal:block define="type python:field.getSubfieldType(key)">
 	<tal:string condition="python: type == 'string' and not field.isSelection(key)">
 	<input type="text"

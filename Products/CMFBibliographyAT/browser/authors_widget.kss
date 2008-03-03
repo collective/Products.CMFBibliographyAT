@@ -1,4 +1,10 @@
-/*
-Css for authors widget
-
-*/
+.autherfield-lastname input:livesearch-searchbox(martiniscool) {
+    evt-livesearch-searchbox-submit: true;
+    evt-livesearch-searchbox-complete: true;
+    evt-livesearch-searchbox-rowClass: KacRow;
+    evt-livesearch-searchbox-highlightId: LSKacHighlight;
+    evt-livesearch-searchbox-useSeparator: true;
+    action-server: getDemoSearchResults;
+    getDemoSearchResults-q: pass(q);
+    getDemoSearchResults-limit: 5;
+}

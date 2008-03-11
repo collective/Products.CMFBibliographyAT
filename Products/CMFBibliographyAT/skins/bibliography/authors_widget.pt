@@ -27,7 +27,7 @@
              delete</span>
 	</td>
 	</tr>
-	<tr tal:repeat="idx python:range(field.getEditSize(here))" class="authorline">
+	<tr tal:repeat="idx python:range(field.getEditSize(here))" class="authorline" tal:attributes="class string:authorline">
 	<tal:keys tal:repeat="key python:field.getSubfields()">
         <td tal:condition="python:field.testSubfieldCondition(key,here,portal,template)" tal:attributes="class string:autherfield-${key}">
 	<tal:block define="type python:field.getSubfieldType(key)">
@@ -38,6 +38,8 @@
 	       size="30"
 	       tabindex="#"
 	       tal:attributes="name string:${fieldName}.${key}:records:ignore_empty;
+	       class string:${key} kssattr-${key}-${idx};
+	       id string:kssattr-${key}-${idx};
 	       value python:field.getSubfieldValue(values, idx, key);
 	       size python:field.getSubfieldSize(key);
 	       maxlength python:field.getSubfieldMaxlength(key); 

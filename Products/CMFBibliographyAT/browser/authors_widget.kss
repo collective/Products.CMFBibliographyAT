@@ -1,10 +1,10 @@
-.autherfield-lastname input:livesearch-searchbox(martiniscool) {
+.authorline input.firstnames:livesearch-searchbox(kssAttr(firstnames)){
     evt-livesearch-searchbox-submit: true;
     evt-livesearch-searchbox-complete: true;
-    evt-livesearch-searchbox-rowClass: KacRow;
+    evt-livesearch-searchbox-rowClass: authorline;
     evt-livesearch-searchbox-highlightId: LSKacHighlight;
     evt-livesearch-searchbox-useSeparator: true;
-    action-server: getDemoSearchResults;
-    getDemoSearchResults-q: pass(q);
-    getDemoSearchResults-limit: 5;
+    action-server: getAuthorSearchResults;
+    getAuthorSearchResults-q: pass(q);
+    getAuthorSearchResults-limit: 5;
 }

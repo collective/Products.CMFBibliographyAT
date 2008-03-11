@@ -7,4 +7,11 @@
         file="authors_widget.kss"
         />
 
+    <browser:page
+        for="*"
+        class=".authors_livesearch.AuthorListView"
+        name="getAuthorSearchResults"
+        permission="zope2.View"
+        />
+
 </configure>

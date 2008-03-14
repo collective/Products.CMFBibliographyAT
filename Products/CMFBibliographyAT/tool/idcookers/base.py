@@ -139,7 +139,7 @@ class BibliographyIdCooker(SimpleItem, PropertyManager):
         if isReferenceObject:
             ref = self._object2ref(ref)
         new_id = 'nobody1000'
-        if use_pid_on_import and ref.has_key('pid') and ref['pid']:
+        if use_pid_on_import and ref.get('pid'):
             new_id = ref['pid']
         else:
             new_id = self._cookIdCore(ref, new_id=new_id)

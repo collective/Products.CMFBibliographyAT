@@ -18,6 +18,7 @@ from App.Dialogs import MessageDialog
 from Products.CMFCore.utils import getToolByName
 from Products.CMFBibliographyAT.tool.parsers.base \
      import IBibliographyParser, BibliographyParser
+from Products.CMFBibliographyAT.tool.parsers.base import isTransformable
 
 try:
     import _bibtex
@@ -55,7 +56,7 @@ class EndNoteParser(BaseParser):
         """ test if transforming from Endnote to BibTex is possible...
         """
         bib_tool = getToolByName(self, 'portal_bibliography')
-        return bib_tool.isTransformable('end', 'bib')
+        return isTransformable('end', 'bib')
 
     def checkFormat(self, source):
         """

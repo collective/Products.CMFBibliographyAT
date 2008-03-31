@@ -5,4 +5,9 @@
     <adapter for="..interface.IBibliographicItem"
                 factory=".bibauthormember.BibAuthorMember"
                 provides="..interface.IBibAuthorMember" />
+                
+    <adapter for="..interface.IBibliographicItem"
+                factory=".export.BiliographicExportAdapter"
+                provides="bibliograph.core.interfaces.IBibrenderable" />
+                
 </configure>

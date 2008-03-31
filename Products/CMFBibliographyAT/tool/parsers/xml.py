@@ -11,10 +11,14 @@
 import re, os
 
 # Zope stuff
+from zope.component import getUtility
+
 from Globals import InitializeClass
 from App.Dialogs import MessageDialog
 
 # Bibliography stuff
+from bibliograph.rendering.interfaces import IBibTransformUtility
+
 from Products.CMFCore.utils import getToolByName
 from Products.CMFBibliographyAT.tool.parsers.base \
      import IBibliographyParser, BibliographyParser
@@ -57,7 +61,6 @@ class XMLParser(BaseParser):
     def isAvailable(self):
         """ test if transforming from XML to BibTex is possible...
         """
-        bib_tool = getToolByName(self, 'portal_bibliography')
         return isTransformable('xml', 'bib')
 
     def checkFormat(self, source):
@@ -76,23 +79,8 @@ class XMLParser(BaseParser):
         """
         convert XML to BibTeX
         """
-        tool = getToolByName(self, 'portal_bibliography')
+        tool = getUtility(IBibTransformUtility, name=u"external")
         return tool.transform(source, 'xml', 'bib')
-
-##         # open a pipe
-##         (fi, fo, fe) = os.popen3('xml2bib ', 't')
-##         # provide the input
-##         fi.write(source)
-##         fi.close()
-##         # get the output
-##         bibtex = fo.read()
-##         fo.close()
-##         # get the staus/error message
-##         # (this isn't used but we don't want it in the output)
-##         error = fe.read()
-##         fe.close()
-##         # done
-##         return bibtex
 
     # all the rest we inherit from our parent BibTeX(!) parser
 

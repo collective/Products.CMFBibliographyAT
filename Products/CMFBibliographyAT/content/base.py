@@ -135,6 +135,7 @@ class BaseEntry(BaseContent):
         self.setDescription(plain.getData().replace('\r\n', ' ').replace('\n\r', ' ').replace('\r', ' ').replace('\n', ' ').strip())
         self.Schema().getField('abstract').set(self, value=val, **kw)
 
+
     # helper method for direct attribute access
     # !! Should not be called anymore since Archetypes
     # !! builds automatic getFieldName() methods
@@ -757,9 +758,3 @@ class BaseEntry(BaseContent):
         coinsData['rft.au'] = authorNames
         
         return coinsData
-
-    @property
-    def publication_type(self):
-        return unicode(self.meta_type[:-9])
-    
-    

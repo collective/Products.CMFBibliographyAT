@@ -5,7 +5,6 @@
  <include package=".exportimport" />
  <include package=".adapters" />
  <include package=".browser" />
- <include package=".content" />
  <include file="profiles.zcml" />
  
  <include package="bibliograph.rendering" />

@@ -11,10 +11,14 @@
 import os
 
 # Zope stuff
+from zope.component import getUtility
+
 from Globals import InitializeClass
 from App.Dialogs import MessageDialog
 
 # Bibliography stuff
+from bibliograph.rendering.interfaces import IBibTransformUtility
+
 from Products.CMFCore.utils import getToolByName
 from Products.CMFBibliographyAT.tool.parsers.base \
      import IBibliographyParser, BibliographyParser
@@ -87,7 +91,6 @@ class RISParser(BaseParser):
     def isAvailable(self):
         """ test if transforming from RIS format to BibTex is possible...
         """
-        bib_tool = getToolByName(self, 'portal_bibliography')
         return isTransformable('ris', 'bib')
 
     def checkFormat(self, source):
@@ -108,7 +111,7 @@ class RISParser(BaseParser):
         """
         convert RIS to BibTeX
         """
-        tool = getToolByName(self, 'portal_bibliography')
+        tool = getUtility(IBibTransformUtility, name=u"external")
         return tool.transform(source, 'ris', 'bib')
 
     def parseEntry(self, entry):

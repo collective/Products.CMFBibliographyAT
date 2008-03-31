@@ -12,8 +12,15 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
+from zope.component import getUtility
+
 from Testing import ZopeTestCase
+
 from Products.CMFPlone.tests import PloneTestCase
+
+from bibliograph.rendering.interfaces import IBibliographyExporter
+from bibliograph.rendering.utility import BibtexExport
+
 from Products.CMFBibliographyAT.tests import setup
 
 class TestCMFBibliographyATInstall(PloneTestCase.PloneTestCase):
@@ -37,8 +44,10 @@ class TestCMFBibliographyATInstall(PloneTestCase.PloneTestCase):
         self.failUnless('Parsers' in bibtool.objectIds())
 
     def testRendererFolderInstallation(self):
-        bibtool = self.portal.portal_bibliography
-        self.failUnless('Renderers' in bibtool.objectIds())
+        pass
+        # not used any longer
+        #bibtool = self.portal.portal_bibliography
+        #self.failUnless('Renderers' in bibtool.objectIds())
 
     def testBibtexParserInstallation(self):
         parsers = self.portal.portal_bibliography.Parsers
@@ -49,8 +58,9 @@ class TestCMFBibliographyATInstall(PloneTestCase.PloneTestCase):
         self.failUnless('medline' in parsers.objectIds())
 
     def testBibtexRendererInstallation(self):
-        renderers = self.portal.portal_bibliography.Renderers
-        self.failUnless('bibtex' in renderers.objectIds())
+        util = getUtility(IBibliographyExporter, name='bibtex')
+        self.failUnless(isinstance(util, BibtexExport))        
+        
 
     def testBibFolderInstallation(self):
         ttool = self.portal.portal_types

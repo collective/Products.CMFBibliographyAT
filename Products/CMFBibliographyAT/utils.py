@@ -17,21 +17,6 @@ def log(msg, severity=INFO, detail='', error=None):
 
 # added some more routines...
 
-## a poor-mans approach to fixing unicode issues :-(
-_default_encoding = 'utf-8'
-
-def _encode(s, encoding=_default_encoding):
-    try:
-        return s.encode(encoding)
-    except (TypeError, UnicodeDecodeError, ValueError):
-        return s
-
-def _decode(s, encoding=_default_encoding):
-    try:
-        return unicode(s, encoding)
-    except (TypeError, UnicodeDecodeError, ValueError):
-        return s
-
 def _getCoinsString(self, coinsData):
     """
     Create a COinS microformat string.

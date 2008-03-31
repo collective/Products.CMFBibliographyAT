@@ -40,7 +40,10 @@ from Products.CMFBibliographyAT.interface import IBibAuthorMember
 from Products.CMFBibliographyAT.content.schemata \
     import HeaderSchema, AuthorSchema, CoreSchema, TrailingSchema
 
-from Products.CMFBibliographyAT.utils import _encode, _decode, _getCoinsString
+from Products.CMFBibliographyAT.utils import _getCoinsString
+
+from bibliograph.core.utils import _encode, _decode
+
 
 BaseEntrySchema = HeaderSchema + \
                   AuthorSchema + \
@@ -755,4 +758,8 @@ class BaseEntry(BaseContent):
         
         return coinsData
 
-
+    @property
+    def publication_type(self):
+        return unicode(self.meta_type[:-9])
+    
+    

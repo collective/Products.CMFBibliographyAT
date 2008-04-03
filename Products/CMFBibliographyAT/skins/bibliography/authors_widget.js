@@ -56,7 +56,7 @@ function handleKeyPress (e) {
 
         tr.parentNode.appendChild(newtr);
         // Update ordering after adding, the DOM tree moves in mysterous ways
-        updateOrderIndex(tbody)
+        // updateOrderIndex(tbody)
 
     } else {
 	// Handle all other keypress entries, like cursor keys
@@ -98,7 +98,7 @@ function moveRowDown(node){
     if ((idx != null) && (rows.length > (idx+2))) {
         var nextRow = rows.item(idx+1)
         shiftRow(nextRow, row)
-        updateOrderIndex(tbody)
+        //updateOrderIndex(tbody)
         //if (nextRow && (rows.length != (nextRow.rowIndex))){
         //    shiftRow(nextRow, row)
         //}
@@ -120,7 +120,7 @@ function moveRowUp(node){
     if ((idx != null) && (idx > 0)) {
         previousRow = rows.item(idx-1)
         shiftRow(row, previousRow)
-        updateOrderIndex(tbody)
+        //updateOrderIndex(tbody)
     }
 
     //row = getParentElement(node, "TR")

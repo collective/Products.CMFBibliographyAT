@@ -100,10 +100,6 @@
 	</td>
   </tal:keys>
 	<td>
-		     <input type="hidden"
-                    tal:attributes="name string:${fieldName}.orderindex:records;
-                                    id string:orderindex_${idx};
-                                    value repeat/idx/number;" />
              <img src=""
                   tal:attributes="src string:${portal_url}/arrowUp.gif"
                   alt="Move up"

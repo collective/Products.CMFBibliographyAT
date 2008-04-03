@@ -41,27 +41,22 @@ class BiliographicExportAdapter(object):
 
     @property
     def source_fields(self):
-        if shasattr(self.context, 'source_fields') and \
-           self.context.source_fields:
-            return list(self.context.source_fields)
-        return []
-                      
-    @property
-    def field_values(self):
         context = self.context
-        field_values = []
+        source_fields = []
         if shasattr(context, 'source_fields') and context.source_fields:
             for key in context.source_fields:
                 if key == 'publication_type':
-                    field_values.append('type')
+                    value = 'type'
                 elif key in context.Schema():
-                    field_values.append(context.getFieldValue(key))
+                    value = context.getFieldValue(key)
                 elif callable(context[key]):
-                    field_values.append(context[key]())
+                    value = context[key]()
                 else:
-                    field_values.append(getattr(context, key, None))
-        return field_values     
-        
+                    value = getattr(context, key, None)
+                source_fields.append((key, value))                
+                
+        return source_fields
+                             
     @property    
     def publication_type(self):
         return unicode(self.context.meta_type[:-9])

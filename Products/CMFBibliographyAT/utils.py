@@ -32,3 +32,13 @@ def _getCoinsString(self, coinsData):
                 coinsString += "&%s" % urlencode({key: value})
     
     return coinsString
+
+import zope.deferredimport
+zope.deferredimport.deprecated(
+    'Utility methods were factored out to bibliograph.core.utils. Import from here may become '
+    'unsupported',
+    _encode='bibliograph.core',
+    _decode='bibliograph.core',
+    _default_encoding='bibliograph.core',
+    )
+

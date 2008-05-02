@@ -6,18 +6,16 @@
 ##########################################################################
 
 """BibliographyTool main class"""
-import os
-
 # Python stuff
 import re, string
 
 
 # Zope stuff
 from zope.interface import implements
-from Globals import InitializeClass, MessageDialog
+from zope import component
+from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo, ModuleSecurityInfo
 from OFS.Folder import Folder
-from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from persistent.mapping import PersistentMapping
 
 try:
@@ -28,14 +26,12 @@ except ImportError:
 # CMF stuff
 from Products.CMFCore.permissions import View, ManagePortal
 from Products.CMFCore.utils import UniqueObject
-
-from Products.Archetypes.ArchetypeTool import ArchetypeTool
+from Products.Archetypes.atapi import DisplayList
 
 # My stuff ;-)
 from Products.CMFCore.utils import getToolByName
 from Products.CMFBibliographyAT.interface import IBibliographyTool
 from Products.CMFBibliographyAT.tool.parsers.base import ParserFolder
-from Products.CMFBibliographyAT.tool.renderers.base import RendererFolder
 from Products.CMFBibliographyAT.tool.idcookers.base import IdCookerFolder
 from Products.CMFBibliographyAT.DuplicatesCriteria import \
      DuplicatesCriteriaManager
@@ -44,9 +40,8 @@ from Products.CMFBibliographyAT.config import FOLDER_TYPES as BIBFOLDER_TYPES
 from Products.CMFBibliographyAT.config import ZOPE_TEXTINDEXES
 from Products.CMFBibliographyAT import permissions
 
-from Products.CMFBibliographyAT.utils import _encode, _decode
-
-from bibutils import BibUtils
+from bibliograph.core.utils import _encode, _decode
+from bibliograph.rendering.interfaces import IBibliographyExporter
 
 # citation patterns
 citations = re.compile(r'\\?cite{([\w, ]*)}')
@@ -67,7 +62,7 @@ security.declarePublic('ImportParseError')
 
 
 class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
-                       DuplicatesCriteriaManager, BibUtils):
+                       DuplicatesCriteriaManager):
 
     """Tool for managing import and export functionality
        as well as some resources of the BibliographyFolders
@@ -218,7 +213,6 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
 
     def __init__(self):
         self._setObject('Parsers', ParserFolder('Parsers', ''))
-        self._setObject('Renderers', RendererFolder('Renderers', ''))
         self._setObject('IdCookers', IdCookerFolder('IdCookers', ''))
         DuplicatesCriteriaManager.__init__(self)
         # Add the local reference types registry
@@ -330,8 +324,10 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         """
         returns a list with the names of the supported export formats
         """
-        return [renderer.getFormatName() \
-                for renderer in self.Renderers.objectValues() if (renderer.isAvailable() or with_unavailables) and (renderer.isEnabled() or with_disabled) ]
+        utils = component.getAllUtilitiesRegisteredFor(IBibliographyExporter)
+        return [ renderer.__name__ for renderer in utils 
+                 if (renderer.available or with_unavailables) and 
+                    (renderer.enabled or with_disabled) ]
 
     security.declarePublic('getExportFormatExtensions')
     def getExportFormatExtensions(self, with_unavailables=False, with_disabled=False):
@@ -339,16 +335,20 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         returns a list with the file name extensions
         of the supported export formats
         """
-        return [renderer.getFormatExtension() \
-                for renderer in self.Renderers.objectValues() if (renderer.isAvailable() or with_unavailables) and (renderer.isEnabled() or with_disabled) ]
+        utils = component.getAllUtilitiesRegisteredFor(IBibliographyExporter)        
+        return [ renderer.target_format for renderer in utils
+                 if (renderer.available or with_unavailables) and 
+                    (renderer.enabled or with_disabled) ]
 
     def getExportFormatDescriptions(self, with_unavailables=False, with_disabled=False):
         """
         returns a list with the description texts
         of the supported export formats
         """
-        return [renderer.Description() \
-                for renderer in self.Renderers.objectValues() if (renderer.isAvailable() or with_unavailables) and (renderer.isEnabled() or with_disabled) ]
+        utils = component.getAllUtilitiesRegisteredFor(IBibliographyExporter)        
+        return [ renderer.description for renderer in utils
+                 if (renderer.available or with_unavailables) and
+                    (renderer.enabled or with_disabled) ]
 
     security.declarePublic('getExportFormats')
     def getExportFormats(self, with_unavailables=False, with_disabled=False):
@@ -356,9 +356,13 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         returns a list of (name, extension, description) tuples
         of the supported export formats
         """
-        export_formats = zip(self.getExportFormatNames(with_unavailables=with_unavailables, with_disabled=with_disabled),
-                             self.getExportFormatExtensions(with_unavailables=with_unavailables, with_disabled=with_disabled),
-                             self.getExportFormatDescriptions(with_unavailables=with_unavailables, with_disabled=with_disabled))
+        export_formats = zip(
+            self.getExportFormatNames(with_unavailables=with_unavailables,
+                                      with_disabled=with_disabled),
+            self.getExportFormatExtensions(with_unavailables=with_unavailables,
+                                           with_disabled=with_disabled),
+            self.getExportFormatDescriptions(with_unavailables=with_unavailables,
+                                            with_disabled=with_disabled))
         export_formats.sort()
         return export_formats
 
@@ -373,7 +377,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
                                 self.getImportFormatDescriptions(with_unavailables=with_unavailables, with_disabled=with_disabled))
         supported_parsers.sort()
         return supported_parsers
-
+ 
     security.declareProtected(View, 'render')
     def render(self, entry, format='', output_encoding=None, **kw):
         """
@@ -392,14 +396,17 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         first looks for a renderer with the 'format' name
         next looks for a renderer with the 'format' extension
         """
-        for renderer in self.Renderers.objectValues():
-            if (renderer.isAvailable() or with_unavailables) and (renderer.isEnabled() or with_disabled):
-                if format.lower() == renderer.getFormatName().lower():
-                    return renderer
-                if format.lower() == renderer.getFormatExtension().lower():
-                    return renderer
+        utils = component.getAllUtilitiesRegisteredFor(IBibliographyExporter)
+        for renderer in utils:
+            if (renderer.available or with_unavailables) and \
+               (renderer.enabled or with_disabled):
+                if format.lower() == renderer.__name__.lower():
+                    return renderer.__of__(self)
+                if format.lower() == renderer.target_format.lower():
+                    return renderer.__of__(self)
         return None
 
+ 
     security.declareProtected(View, 'getEntries')
     def getEntries(self, source, format, file_name=None):
         """

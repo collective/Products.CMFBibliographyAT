@@ -14,10 +14,11 @@ import Products
 
 # PLONE things
 from Products.CMFCore.utils import getToolByName
-from Products.CMFBibliographyAT.utils import _decode, _encode
 from Products.CMFBibliographyAT.interface import \
      IBibliographyIdCooker as z3IBibliographyIdCooker
 from Products.CMFBibliographyAT.interface import IBibliographyIdCookerFolder
+
+from bibliograph.core.utils import _encode, _decode
 
 class IBibliographyIdCooker(Interface):
     """

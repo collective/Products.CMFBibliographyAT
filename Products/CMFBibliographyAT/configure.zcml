@@ -6,6 +6,8 @@
  <include package=".adapters" />
  <include package=".browser" />
  <include file="profiles.zcml" />
+ 
+ <include package="bibliograph.rendering" />
 
  <!-- Mark some deprecated stuff -->
 

@@ -18,8 +18,8 @@ from App.Dialogs import MessageDialog
 from Products.CMFBibliographyAT.tool.parsers.base \
      import IBibliographyParser, BibliographyParser
 
-from Products.CMFBibliographyAT.utils import _encode, _decode
-from Products.CMFBibliographyAT.encodings import _latex2utf8enc_mapping
+from bibliograph.core.utils import _encode, _decode
+from bibliograph.core.encodings import _latex2utf8enc_mapping
 
 # our custom entity converter
 from entities import Convert

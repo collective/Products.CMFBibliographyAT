@@ -41,11 +41,3 @@ from Products.CMFBibliographyAT.tool.parsers.pyblbibtex \
     import PyBlBibtexParser
 from Products.CMFBibliographyAT.tool.parsers.ris import RISParser
 from Products.CMFBibliographyAT.tool.parsers.xml import XMLParser
-
-from Products.CMFBibliographyAT.tool.renderers.base \
-    import BibliographyRenderer
-from Products.CMFBibliographyAT.tool.renderers.bibtex import BibtexRenderer
-from Products.CMFBibliographyAT.tool.renderers.endnote import EndRenderer
-from Products.CMFBibliographyAT.tool.renderers.pdf import PDFRenderer
-from Products.CMFBibliographyAT.tool.renderers.ris import RISRenderer
-from Products.CMFBibliographyAT.tool.renderers.xml import XMLRenderer

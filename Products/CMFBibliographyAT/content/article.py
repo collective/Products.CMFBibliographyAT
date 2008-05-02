@@ -85,7 +85,7 @@ class ArticleReference(BaseEntry):
 
     security = ClassSecurityInfo()
     archetype_name = "Article Reference"
-    source_fields = ('journal', 'volume', 'number', 'pages', 'pmid',)
+    source_fields = ('journal', 'volume', 'number', 'pages', 'PMID',)
 
     schema = ArticleSchema
 

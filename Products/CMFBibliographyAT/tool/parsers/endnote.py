@@ -11,13 +11,18 @@
 import os
 
 # Zope stuff
+from zope.component import getUtility 
+
 from Globals import InitializeClass
 from App.Dialogs import MessageDialog
 
 # Bibliography stuff
+from bibliograph.rendering.interfaces import IBibTransformUtility
+
 from Products.CMFCore.utils import getToolByName
 from Products.CMFBibliographyAT.tool.parsers.base \
      import IBibliographyParser, BibliographyParser
+from Products.CMFBibliographyAT.tool.parsers.base import isTransformable
 
 try:
     import _bibtex
@@ -55,7 +60,7 @@ class EndNoteParser(BaseParser):
         """ test if transforming from Endnote to BibTex is possible...
         """
         bib_tool = getToolByName(self, 'portal_bibliography')
-        return bib_tool.isTransformable('end', 'bib')
+        return isTransformable('end', 'bib')
 
     def checkFormat(self, source):
         """
@@ -74,7 +79,7 @@ class EndNoteParser(BaseParser):
         """
         convert EndNote to BibTeX
         """
-        tool = getToolByName(self, 'portal_bibliography')
+        tool = getUtility(IBibTransformUtility, name=u"external")
         return tool.transform(source, 'end', 'bib')
 
     # all the rest we inherit from our parent BibTeX(!) parser

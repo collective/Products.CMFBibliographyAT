@@ -40,7 +40,10 @@ from Products.CMFBibliographyAT.interface import IBibAuthorMember
 from Products.CMFBibliographyAT.content.schemata \
     import HeaderSchema, AuthorSchema, CoreSchema, TrailingSchema
 
-from Products.CMFBibliographyAT.utils import _encode, _decode, _getCoinsString
+from Products.CMFBibliographyAT.utils import _getCoinsString
+
+from bibliograph.core.utils import _encode, _decode
+
 
 BaseEntrySchema = HeaderSchema + \
                   AuthorSchema + \
@@ -131,6 +134,7 @@ class BaseEntry(BaseContent):
         plain = tr_tool.convertTo('text/plain', val)
         self.setDescription(plain.getData().replace('\r\n', ' ').replace('\n\r', ' ').replace('\r', ' ').replace('\n', ' ').strip())
         self.Schema().getField('abstract').set(self, value=val, **kw)
+
 
     # helper method for direct attribute access
     # !! Should not be called anymore since Archetypes
@@ -754,5 +758,3 @@ class BaseEntry(BaseContent):
         coinsData['rft.au'] = authorNames
         
         return coinsData
-
-

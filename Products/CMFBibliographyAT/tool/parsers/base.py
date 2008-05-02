@@ -21,6 +21,9 @@ from OFS.SimpleItem import SimpleItem
 from Acquisition import Implicit
 import Products
 
+from bibliograph.rendering.utility import _getKey
+from bibliograph.rendering.utility import commands
+
 from Products.CMFBibliographyAT.interface import \
      IBibliographyParser as z3IBibliographyParser
 from Products.CMFBibliographyAT.interface import IBibliographyParserFolder
@@ -295,5 +298,24 @@ class EntryParseError(Implicit):
             return self.description
         else:
             return 'EntryParseError'
+
+def isTransformable(source_format, target_format):
+    """
+    test if a transform from source_format to target_format.
+    would be feasible
+    """
+    key = _getKey(source_format, target_format)
+    command = commands.get(key, None)
+    if command is None:
+        return False
+    commandlist = [ c.strip() for c in command.split('|') ]
+
+    # open each command once
+    transformable = True
+    for c in commandlist:
+
+        pass
+
+    return transformable
 
 InitializeClass(EntryParseError)

@@ -5,7 +5,7 @@ from Products.Archetypes.utils import DisplayList
 from Products.Archetypes.utils import shasattr
 
 from Products.CMFBibliographyAT.interface import IBibAuthorMember
-from Products.CMFBibliographyAT.utils import _encode, _decode
+from bibliograph.core.utils import _encode, _decode
 
 class BibAuthorMember:
 

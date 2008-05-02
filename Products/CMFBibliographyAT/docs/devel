@@ -22,7 +22,7 @@ base class
 
  * BaseEntry: base class for the specific reference types; provides the part of the schema that is common to all reference types; provides multiple author support.
 
- * BibliographyTool: for managing parsers and renderers; action provider (makes the 'bibliography' action available)
+ * BibliographyTool: for managing parsers; action provider (makes the 'bibliography' action available)
 
  * BibliographyParser: base class for the specific parsers; defines the BibliographyParser interface
 

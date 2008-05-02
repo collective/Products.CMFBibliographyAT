@@ -2,10 +2,8 @@ from tool import IBibliographyTool
 from tool import IBibliographyToolFolder
 from tool import IBibliographyToolComponent
 from tool import IBibliographyParser
-from tool import IBibliographyRenderer
 from tool import IBibliographyIdCooker
 from tool import IBibliographyParserFolder
-from tool import IBibliographyRendererFolder
 from tool import IBibliographyIdCookerFolder
 
 from content import IBibliographyFolder

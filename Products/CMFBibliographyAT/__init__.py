@@ -18,7 +18,7 @@ from config import SKINS_DIR, PROJECTNAME
 from config import ADD_CONTENT_PERMISSION, ENTRY_TYPES
 
 import content
-from tool import bibliography, parsers, renderers, idcookers
+from tool import bibliography, parsers, idcookers
 
 tools = ( bibliography.BibliographyTool, )
 
@@ -42,7 +42,6 @@ def initialize(context):
         icon='bibliography_tool.png',
         ).initialize(context)
     parsers.initialize(context)
-    renderers.initialize(context)
     idcookers.initialize(context)
 
 # module aliases for backward compatibility
@@ -81,8 +80,6 @@ from tool import bibliography
 sys.modules['Products.CMFBibliographyAT.BibliographyTool'] = bibliography
 from tool.parsers import base
 sys.modules['Products.CMFBibliographyAT.BibliographyParser'] = base
-from tool.renderers import base
-sys.modules['Products.CMFBibliographyAT.BibliographyRenderer'] = base
 
 from tool import parsers
 sys.modules['Products.CMFBibliographyAT.parsers'] = parsers
@@ -97,14 +94,4 @@ sys.modules[old_path + 'MedlineParser'] = medline
 sys.modules[old_path + 'PyBlBibtexParser'] = pyblbibtex
 sys.modules[old_path + 'RISParser'] = ris
 sys.modules[old_path + 'XMLParser'] = xml
-
-from tool import renderers
-sys.modules['Products.CMFBibliographyAT.renderers'] = renderers
-old_path = 'Products.CMFBibliographyAT.renderers.'
-from tool.renderers import bibtex, endnote, pdf, ris, xml
-sys.modules[old_path + 'BibtexRenderer'] = bibtex
-sys.modules[old_path + 'EndRenderer'] = endnote
-sys.modules[old_path + 'PDFRenderer'] = pdf
-sys.modules[old_path + 'RISRenderer'] = ris
-sys.modules[old_path + 'XMLRenderer'] = xml
 

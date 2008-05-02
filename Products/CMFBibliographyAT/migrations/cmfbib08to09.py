@@ -12,7 +12,7 @@ from Products.CMFBibliographyAT.config import FOLDER_TYPES as BIBFOLDER_TYPES
 from Products.CMFBibliographyAT.tool.parsers.citationmanager import \
      CitationManagerParser
 
-from Products.CMFBibliographyAT.utils import _encode, _decode
+from bibliograph.core.utils import _encode, _decode
 
 import copy
 

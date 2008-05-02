@@ -11,44 +11,47 @@
 
 __revision__ = '$Id:  $'
 
-from zope.interface import implements
-from Products.CMFBibliographyAT.interface import IBibliographyFolder
-from Products.CMFBibliographyAT.interface import ILargeBibliographyFolder
-
-import sys
-from types import StringType
+# Python imports
 from operator import and_
+from types import StringType
+import sys
 
-from OFS.Folder import Folder
-from Globals import PersistentMapping
-from DocumentTemplate import sequence
-
+# Zope imports
 from AccessControl import ClassSecurityInfo
 from Acquisition import Acquirer
+from DocumentTemplate import sequence
+from Globals import PersistentMapping
+from OFS.Folder import Folder
+from Products.ATContentTypes.content.base import ATCTOrderedFolder
+from Products.ATContentTypes.content.folder import ATBTreeFolder
+from Products.ATContentTypes.content.folder import ATBTreeFolderSchema
+from Products.ATContentTypes.content.schemata import finalizeATCTSchema
+from zope.interface import implements
+
+# CMF imports
+from Products.Archetypes.utils import shasattr
 from Products.CMFCore.permissions import View, ModifyPortalContent, AddPortalContent, ManageProperties
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
-from Products.Archetypes.utils import shasattr
+
+# My imports ;-)
+from bibliograph.core.utils import _encode, _decode
+from bibliograph.core.interfaces import IBibliographyExport
+
+from Products.CMFBibliographyAT.DuplicatesCriteria import DuplicatesCriteriaManager
 from Products.CMFBibliographyAT.config import CMFBAT_USES_LINGUAPLONE
+from Products.CMFBibliographyAT.config import REFERENCE_TYPES, PROJECTNAME, \
+     FOLDER_TYPES
+from Products.CMFBibliographyAT.interface import IBibliographyFolder
+from Products.CMFBibliographyAT.interface import ILargeBibliographyFolder
+from Products.CMFBibliographyAT.tool.parsers.base import EntryParseError
+from Products.CMFBibliographyAT.utils import log
+
 if CMFBAT_USES_LINGUAPLONE:
     from Products.LinguaPlone.public import *
 else:
     from Products.Archetypes.public import *
 
-from Products.ATContentTypes.content.base import ATCTOrderedFolder
-from Products.ATContentTypes.content.folder import ATBTreeFolder
-from Products.ATContentTypes.content.folder import ATBTreeFolderSchema
-from Products.ATContentTypes.content.schemata import finalizeATCTSchema
-
-from Products.CMFBibliographyAT.config import REFERENCE_TYPES, PROJECTNAME, \
-     FOLDER_TYPES
-from Products.CMFBibliographyAT.interfaces import IBibliographyExport
-
-from Products.CMFBibliographyAT.tool.parsers.base import EntryParseError
-from Products.CMFBibliographyAT.DuplicatesCriteria import DuplicatesCriteriaManager
-from Products.CMFBibliographyAT.utils import log
-
-from Products.CMFBibliographyAT.utils import _encode, _decode
 
 BibFolderIdCookingSchema = Schema((
     BooleanField('cookIdsOnBibRefCreation',
@@ -238,7 +241,7 @@ class BaseBibliographyFolder(Acquirer):
 
     schema = BibFolderSchema
     _at_rename_after_creation = True
-    __implements__ = (IBibliographyExport, )
+    implements(IBibliographyExport)
 
     security.declareProtected(View, 'isTranslatable')
     def isTranslatable(self):
@@ -1259,8 +1262,7 @@ class BibliographyFolder(BaseBibliographyIdCookerManager,
 
     implements(IBibliographyFolder)
 
-    __implements__ = BaseBibliographyFolder.__implements__ + \
-                     ATCTOrderedFolder.__implements__
+    __implements__ = ATCTOrderedFolder.__implements__
 
     import_report = ''
     _properties= ATCTOrderedFolder._properties + \
@@ -1298,8 +1300,7 @@ class LargeBibliographyFolder(BaseBibliographyIdCookerManager,
 
     implements(ILargeBibliographyFolder)
 
-    __implements__ = BaseBibliographyFolder.__implements__ + \
-                     ATBTreeFolder.__implements__
+    __implements__ = ATBTreeFolder.__implements__
 
     import_report = ''
     _properties= ATBTreeFolder._properties + \

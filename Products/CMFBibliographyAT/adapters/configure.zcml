@@ -3,11 +3,12 @@
     xmlns:five="http://namespaces.zope.org/five">
 
     <adapter for="..interface.IBibliographicItem"
-                factory=".bibauthormember.BibAuthorMember"
-                provides="..interface.IBibAuthorMember" />
-                
+             factory=".bibauthormember.BibAuthorMember"
+             provides="..interface.IBibAuthorMember" />
+
     <adapter for="..interface.IBibliographicItem"
-                factory=".export.BiliographicExportAdapter"
-                provides="bibliograph.core.interfaces.IBibrenderable" />
-                
+             factory=".export.BiliographicExportAdapter"
+             provides="bibliograph.core.interfaces.IBibliographicReference"
+             />
+
 </configure>

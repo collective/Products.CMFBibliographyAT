@@ -2,11 +2,11 @@ from zope.interface import implements
 
 from Products.Archetypes.utils import shasattr
 
-from bibliograph.core.interfaces import IBibrenderable
+from bibliograph.core.interfaces import IBibliographicReference
 
 class BiliographicExportAdapter(object):
     
-    implements(IBibrenderable)
+    implements(IBibliographicReference)
     
     def __init__(self, context):
         self.context = context

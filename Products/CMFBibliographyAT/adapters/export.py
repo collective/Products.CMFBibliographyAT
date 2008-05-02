@@ -3,6 +3,7 @@ from zope.interface import implements
 from Products.Archetypes.utils import shasattr
 
 from bibliograph.core.interfaces import IBibliographicReference
+from bibliograph.core.utils import _decode
 
 class BiliographicExportAdapter(object):
     
@@ -12,12 +13,12 @@ class BiliographicExportAdapter(object):
         self.context = context
         
         self.__name__ = self.context.getId()
-        self.title = self.context.Title()
+        self.title = _decode(self.context.Title())
         self.publication_year = self.context.publication_year
-        self.abstract = self.context.getAbstract()
-        self.subject = self.context.subject
-        self.note = self.context.note
-        self.annote = self.context.annote
+        self.abstract = _decode(self.context.getAbstract())
+        self.subject = _decode(self.context.subject)
+        self.note = _decode(self.context.note)
+        self.annote = _decode(self.context.annote)
         self.url = self.context.aq_base.getURL()
         
         # Authors as a FormattableNames structure

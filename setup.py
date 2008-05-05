@@ -30,6 +30,8 @@ setup(name='Products.CMFBibliographyAT',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'bibliograph.core',
+          'bibliograph.rendering',
           #'Products.CMFPlone',
           #'Products.ATExtensions',
           # -*- Extra requirements: -*-

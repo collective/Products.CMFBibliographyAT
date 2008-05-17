@@ -44,7 +44,7 @@ from Products.CMFBibliographyAT.config import REFERENCE_TYPES, PROJECTNAME, \
      FOLDER_TYPES
 from Products.CMFBibliographyAT.interface import IBibliographyFolder
 from Products.CMFBibliographyAT.interface import ILargeBibliographyFolder
-from Products.CMFBibliographyAT.tool.parsers.base import EntryParseError
+from bibliograph.parsing.parsers.base import EntryParseError
 from Products.CMFBibliographyAT.utils import log
 
 if CMFBAT_USES_LINGUAPLONE:

@@ -18,7 +18,8 @@ from config import SKINS_DIR, PROJECTNAME
 from config import ADD_CONTENT_PERMISSION, ENTRY_TYPES
 
 import content
-from tool import bibliography, parsers, idcookers
+from tool import bibliography, idcookers
+from bibliograph.parsing import parsers
 
 tools = ( bibliography.BibliographyTool, )
 
@@ -78,14 +79,17 @@ sys.modules[old_path + 'WebpublishedReference'] = webpublished
 
 from tool import bibliography
 sys.modules['Products.CMFBibliographyAT.BibliographyTool'] = bibliography
-from tool.parsers import base
+from bibliograph.parsing.parsers import base
 sys.modules['Products.CMFBibliographyAT.BibliographyParser'] = base
+sys.modules['Products.CMFBibliographyAT.tool.parsers.base'] = base
 
-from tool import parsers
+from bibliograph.parsing import parsers
 sys.modules['Products.CMFBibliographyAT.parsers'] = parsers
+sys.modules['Products.CMFBibliographyAT.tool.parsers'] = parsers
 old_path = 'Products.CMFBibliographyAT.parsers.'
-from tool.parsers import bibtex, endnote, ibss, isbn, medline, pyblbibtex, \
-     ris, xml
+mid_path = 'Products.CMFBibliographyAT.tool.parsers.'
+from bibliograph.parsing.parsers import bibtex, endnote, ibss, isbn, medline, \
+     pyblbibtex, ris, xml
 sys.modules[old_path + 'BibtexParser'] = bibtex
 sys.modules[old_path + 'EndNoteParser'] = endnote
 sys.modules[old_path + 'IBSSParser'] = ibss
@@ -94,4 +98,12 @@ sys.modules[old_path + 'MedlineParser'] = medline
 sys.modules[old_path + 'PyBlBibtexParser'] = pyblbibtex
 sys.modules[old_path + 'RISParser'] = ris
 sys.modules[old_path + 'XMLParser'] = xml
+sys.modules[mid_path + 'BibtexParser'] = bibtex
+sys.modules[mid_path + 'EndNoteParser'] = endnote
+sys.modules[mid_path + 'IBSSParser'] = ibss
+sys.modules[mid_path + 'ISBNParser'] = isbn
+sys.modules[mid_path + 'MedlineParser'] = medline
+sys.modules[mid_path + 'PyBlBibtexParser'] = pyblbibtex
+sys.modules[mid_path + 'RISParser'] = ris
+sys.modules[mid_path + 'XMLParser'] = xml
 

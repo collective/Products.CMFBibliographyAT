@@ -31,7 +31,7 @@ from Products.Archetypes.atapi import DisplayList
 # My stuff ;-)
 from Products.CMFCore.utils import getToolByName
 from Products.CMFBibliographyAT.interface import IBibliographyTool
-from Products.CMFBibliographyAT.tool.parsers.base import ParserFolder
+from bibliograph.parsing.parsers.base import ParserFolder
 from Products.CMFBibliographyAT.tool.idcookers.base import IdCookerFolder
 from Products.CMFBibliographyAT.DuplicatesCriteria import \
      DuplicatesCriteriaManager

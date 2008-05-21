@@ -33,7 +33,7 @@ setup(name='Products.CMFBibliographyAT',
           'bibliograph.core',
           'bibliograph.rendering',
           #'Products.CMFPlone',
-          #'Products.ATExtensions',
+          'Products.ATExtensions',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

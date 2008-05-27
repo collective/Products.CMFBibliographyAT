@@ -7,4 +7,11 @@
         file="authors_widget.kss"
         />
 
+    <browser:view
+        for="*"
+        name="isBibliographyExportable"
+        permission="zope.Public"
+        class=".isBibliographyExportable"
+        />
+
 </configure>

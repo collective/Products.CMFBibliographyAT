@@ -3,7 +3,7 @@
  <action-provider name="portal_actions">
   <action title="Export Bibliography" action_id="exportBib"
      category="document_actions"
-     condition_expr="python:portal.isBibliographyExportable(object)"
+     condition_expr="object/@@isBibliographyExportable"
      url_expr="string:${object_url}/bibliography_exportForm" visible="True">
    <permission>View</permission>
   </action>

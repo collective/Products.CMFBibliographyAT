@@ -11,4 +11,14 @@
              provides="bibliograph.core.interfaces.IBibliographicReference"
              />
 
+    <adapter for="..interface.content.IBibliographyFolder"
+             factory=".export.CMFFolderAdapter"
+             provides="bibliograph.core.interfaces.IBibContainerIterator"
+             />
+
+    <adapter for="..interface.content.ILargeBibliographyFolder"
+             factory=".export.BTreeFolderAdapter"
+             provides="bibliograph.core.interfaces.IBibContainerIterator"
+             />
+
 </configure>

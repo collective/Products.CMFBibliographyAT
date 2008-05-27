@@ -1,9 +1,44 @@
+from Acquisition import aq_inner
+
 from zope.interface import implements
 
 from Products.Archetypes.utils import shasattr
 
 from bibliograph.core.interfaces import IBibliographicReference
 from bibliograph.core.utils import _decode
+
+from bibliograph.rendering.adapter import Zope2FolderAdapter
+
+###############################################################################
+
+class CMFFolderAdapter(Zope2FolderAdapter):
+    
+    def __iter__(self):
+        return iter(self.context.contentValues())
+        
+class BTreeFolderAdapter(Zope2FolderAdapter):
+
+    def __iter__(self):
+        return self.context._tree.itervalues()
+    
+    def prehook(self, entry):
+         # _tree.itervalues() returns unwrapped objects,
+         # but the renderer needs
+         # context-aware objects, so we wrap it.
+         # Check to see if the object has been changed (elsewhere in the
+         # current transaction/request.
+        changed = getattr(entry, '_p_changed', False)
+        self.deactivate = not changed
+        return entry.__of__(aq_inner(self.context))
+    
+    def posthook(self, entry):
+        # We now 'unload' the entry from the ZODB object cache to
+        # reclaim its memory.
+        # See http://wiki.zope.org/ZODB/UnloadingObjects for details.
+        if self.deactivate:
+            entry._p_deactivate()   
+
+###############################################################################
 
 class BiliographicExportAdapter(object):
     

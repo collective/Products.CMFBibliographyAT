@@ -1,5 +1,3 @@
-import os
-
 from setuptools import setup, find_packages
 
 version = '1.0'
@@ -7,9 +5,7 @@ version = '1.0'
 setup(name='Products.CMFBibliographyAT',
       version=version,
       description="Bibliographic references in Plone",
-      long_description=open(os.path.join(
-          os.path.dirname(__file__), 'Products', 'CMFBibliographyAT',
-          'README.txt')).read(),
+      long_description=open("Products/CMFBibliographyAT/README.txt").read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",
@@ -33,7 +29,7 @@ setup(name='Products.CMFBibliographyAT',
           'bibliograph.core',
           'bibliograph.rendering',
           #'Products.CMFPlone',
-          #'Products.ATExtensions',
+          'Products.ATExtensions',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

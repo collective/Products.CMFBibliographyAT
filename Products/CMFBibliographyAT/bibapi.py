@@ -31,13 +31,13 @@ from Products.CMFBibliographyAT.content.unpublished \
 from Products.CMFBibliographyAT.content.webpublished \
     import WebpublishedReference
 
-from Products.CMFBibliographyAT.tool.parsers.base import BibliographyParser
-from Products.CMFBibliographyAT.tool.parsers.bibtex import BibtexParser
-from Products.CMFBibliographyAT.tool.parsers.endnote import EndNoteParser
-from Products.CMFBibliographyAT.tool.parsers.ibss import IBSSParser
-from Products.CMFBibliographyAT.tool.parsers.isbn import ISBNParser
-from Products.CMFBibliographyAT.tool.parsers.medline import MedlineParser
-from Products.CMFBibliographyAT.tool.parsers.pyblbibtex \
+from bibliograph.parsing.parsers.base import BibliographyParser
+from bibliograph.parsing.parsers.bibtex import BibtexParser
+from bibliograph.parsing.parsers.endnote import EndNoteParser
+from bibliograph.parsing.parsers.ibss import IBSSParser
+from bibliograph.parsing.parsers.isbn import ISBNParser
+from bibliograph.parsing.parsers.medline import MedlineParser
+from bibliograph.parsing.parsers.pyblbibtex \
     import PyBlBibtexParser
-from Products.CMFBibliographyAT.tool.parsers.ris import RISParser
-from Products.CMFBibliographyAT.tool.parsers.xml import XMLParser
+from bibliograph.parsing.parsers.ris import RISParser
+from bibliograph.parsing.parsers.xml import XMLParser

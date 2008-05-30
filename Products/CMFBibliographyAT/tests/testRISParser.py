@@ -16,7 +16,7 @@ from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFBibliographyAT.tests import setup
 
-from Products.CMFBibliographyAT.tool.parsers.ris import \
+from bibliograph.parsing.parsers.ris import \
      RISParser
 
 class TestRISParser(PloneTestCase.PloneTestCase):

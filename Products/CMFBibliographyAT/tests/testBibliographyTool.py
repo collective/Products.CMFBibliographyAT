@@ -15,6 +15,8 @@ if __name__ == '__main__':
 from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFBibliographyAT.tests import setup
+from bibliograph.rendering.utility import _hasCommands
+# import bin_search
 
 class TestBibliographyTool(PloneTestCase.PloneTestCase):
     '''Test the reference types'''
@@ -51,10 +53,23 @@ class TestBibliographyTool(PloneTestCase.PloneTestCase):
         bibtool = self.portal.portal_bibliography
         names = bibtool.getExportFormatNames()
         names.sort()
-        expected_names = ['BibTeX', 'EndNote', 'PDF', 'RIS', 'XML (MODS)']
         extensions = bibtool.getExportFormatExtensions()
         extensions.sort()
-        expected_extensions = ['bib', 'end', 'pdf', 'ris', 'xml']
+
+        # Most tools are optional, only BibTeX is sure to be avaialable.
+        expected_names = ['BibTeX']
+        expected_extensions = ['bib']
+        optional = ( {'tool':'end2xml', 'name':'EndNote', 'ext':'end'},
+                     {'tool':'pdflatex', 'name':'PDF', 'ext':'pdf'},
+                     {'tool':'ris2xml', 'name':'RIS', 'ext':'ris'},
+                     {'tool':'bib2xml', 'name':'XML (MODS)', 'ext':'xml'},
+                   )
+
+        for t in optional:
+            if _hasCommands(t['tool']):
+                expected_names.append(t['name'])
+                expected_extensions.append(t['ext'])
+
         self.assertEqual(names, expected_names)
         self.assertEqual(extensions, expected_extensions)
 

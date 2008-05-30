@@ -16,6 +16,7 @@ from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFBibliographyAT.tests import setup
 
+from bibliograph.core.utils import bin_search
 from bibliograph.parsing.parsers.ris import \
      RISParser
 
@@ -57,7 +58,12 @@ class TestRISParser(PloneTestCase.PloneTestCase):
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
-    suite.addTest(makeSuite(TestRISParser))
+    if bin_search('ris2xml', False) is False:
+        print 'ris2xml not found!'
+        print 'please make sure bibutils is installed to run all tests.'
+        print '-' * 20
+    else:
+        suite.addTest(makeSuite(TestRISParser))
     return suite
 
 if __name__ == '__main__':

@@ -49,14 +49,11 @@ class TestBibliographyTool(PloneTestCase.PloneTestCase):
 
     def testExportFormats(self):
         bibtool = self.portal.portal_bibliography
-        names = bibtool.getExportFormatNames()
-        names.sort()
-        expected_names = ['BibTeX', 'EndNote', 'PDF', 'RIS', 'XML (MODS)']
-        extensions = bibtool.getExportFormatExtensions()
-        extensions.sort()
-        expected_extensions = ['bib', 'end', 'pdf', 'ris', 'xml']
-        self.assertEqual(names, expected_names)
-        self.assertEqual(extensions, expected_extensions)
+
+        # bibtex is always available, all others are optional
+        assert 'BibTeX' in bibtool.getExportFormatNames()
+        assert 'bib' in bibtool.getExportFormatExtensions()
+
 
     # end of the individual tests
 

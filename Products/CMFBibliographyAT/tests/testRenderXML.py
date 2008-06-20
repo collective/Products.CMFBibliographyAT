@@ -16,6 +16,8 @@ from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFCore.utils import getToolByName
 
+from bibliograph.rendering.utility import _getCommand
+
 from Products.CMFBibliographyAT.tests import setup
 from Products.CMFBibliographyAT import testing
 
@@ -54,7 +56,8 @@ class TestRenderXML(PloneTestCase.PloneTestCase):
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
-    suite.addTest(makeSuite(TestRenderXML))
+    if _getCommand('bib', 'xml', False):
+        suite.addTest(makeSuite(TestRenderXML))
     return suite
 
 if __name__ == '__main__':

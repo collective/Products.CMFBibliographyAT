@@ -34,7 +34,6 @@ from Products.CMFBibliographyAT.content.webpublished \
 from bibliograph.parsing.parsers.base import BibliographyParser
 from bibliograph.parsing.parsers.bibtex import BibtexParser
 from bibliograph.parsing.parsers.endnote import EndNoteParser
-from bibliograph.parsing.parsers.ibss import IBSSParser
 from bibliograph.parsing.parsers.isbn import ISBNParser
 from bibliograph.parsing.parsers.medline import MedlineParser
 from bibliograph.parsing.parsers.ris import RISParser

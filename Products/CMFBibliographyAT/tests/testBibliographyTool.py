@@ -38,7 +38,7 @@ class TestBibliographyTool(PloneTestCase.PloneTestCase):
         expected_names = ['BibTeX', 'Medline']
         names = bibtool.getImportFormatNames()
         # This makes sure we only check for the required types
-        # IBSS, ISBN, PyBl might be present aswell
+        # ISBN might be present aswell
         names = [name for name in expected_names if name in names]
         names.sort()
         self.assertEqual(names, expected_names)

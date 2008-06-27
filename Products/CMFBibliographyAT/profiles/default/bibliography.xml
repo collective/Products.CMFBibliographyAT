@@ -66,10 +66,6 @@
    <property name="title">BibTeX parser</property>
    <property name="parser_enabled">True</property>
   </object>
-  <object name="bids" meta_type="IBSS Parser">
-   <property name="title">IBSS parser</property>
-   <property name="parser_enabled">True</property>
-  </object>
   <object name="citationmanager" meta_type="CitationManager Parser">
    <property name="title">CitationManager parser</property>
    <property name="parser_enabled">True</property>

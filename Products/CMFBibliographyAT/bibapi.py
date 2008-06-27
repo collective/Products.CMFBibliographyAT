@@ -37,7 +37,5 @@ from bibliograph.parsing.parsers.endnote import EndNoteParser
 from bibliograph.parsing.parsers.ibss import IBSSParser
 from bibliograph.parsing.parsers.isbn import ISBNParser
 from bibliograph.parsing.parsers.medline import MedlineParser
-from bibliograph.parsing.parsers.pyblbibtex \
-    import PyBlBibtexParser
 from bibliograph.parsing.parsers.ris import RISParser
 from bibliograph.parsing.parsers.xml import XMLParser

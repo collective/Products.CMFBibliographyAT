@@ -88,14 +88,12 @@ sys.modules['Products.CMFBibliographyAT.parsers'] = parsers
 sys.modules['Products.CMFBibliographyAT.tool.parsers'] = parsers
 old_path = 'Products.CMFBibliographyAT.parsers.'
 mid_path = 'Products.CMFBibliographyAT.tool.parsers.'
-from bibliograph.parsing.parsers import bibtex, endnote, ibss, isbn, medline, \
-     pyblbibtex, ris, xml
+from bibliograph.parsing.parsers import bibtex, endnote, ibss, isbn, medline, ris, xml
 sys.modules[old_path + 'BibtexParser'] = bibtex
 sys.modules[old_path + 'EndNoteParser'] = endnote
 sys.modules[old_path + 'IBSSParser'] = ibss
 sys.modules[old_path + 'ISBNParser'] = isbn
 sys.modules[old_path + 'MedlineParser'] = medline
-sys.modules[old_path + 'PyBlBibtexParser'] = pyblbibtex
 sys.modules[old_path + 'RISParser'] = ris
 sys.modules[old_path + 'XMLParser'] = xml
 sys.modules[mid_path + 'BibtexParser'] = bibtex
@@ -103,7 +101,6 @@ sys.modules[mid_path + 'EndNoteParser'] = endnote
 sys.modules[mid_path + 'IBSSParser'] = ibss
 sys.modules[mid_path + 'ISBNParser'] = isbn
 sys.modules[mid_path + 'MedlineParser'] = medline
-sys.modules[mid_path + 'PyBlBibtexParser'] = pyblbibtex
 sys.modules[mid_path + 'RISParser'] = ris
 sys.modules[mid_path + 'XMLParser'] = xml
 

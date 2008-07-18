@@ -19,7 +19,6 @@ from config import ADD_CONTENT_PERMISSION, ENTRY_TYPES
 
 import content
 from tool import bibliography, idcookers
-from bibliograph.parsing import parsers
 
 tools = ( bibliography.BibliographyTool, )
 
@@ -42,7 +41,6 @@ def initialize(context):
         tools=tools,
         icon='bibliography_tool.png',
         ).initialize(context)
-    parsers.initialize(context)
     idcookers.initialize(context)
 
 # module aliases for backward compatibility
@@ -79,26 +77,3 @@ sys.modules[old_path + 'WebpublishedReference'] = webpublished
 
 from tool import bibliography
 sys.modules['Products.CMFBibliographyAT.BibliographyTool'] = bibliography
-from bibliograph.parsing.parsers import base
-sys.modules['Products.CMFBibliographyAT.BibliographyParser'] = base
-sys.modules['Products.CMFBibliographyAT.tool.parsers.base'] = base
-
-from bibliograph.parsing import parsers
-sys.modules['Products.CMFBibliographyAT.parsers'] = parsers
-sys.modules['Products.CMFBibliographyAT.tool.parsers'] = parsers
-old_path = 'Products.CMFBibliographyAT.parsers.'
-mid_path = 'Products.CMFBibliographyAT.tool.parsers.'
-from bibliograph.parsing.parsers import bibtex, endnote, isbn, medline, ris, xml
-sys.modules[old_path + 'BibtexParser'] = bibtex
-sys.modules[old_path + 'EndNoteParser'] = endnote
-sys.modules[old_path + 'ISBNParser'] = isbn
-sys.modules[old_path + 'MedlineParser'] = medline
-sys.modules[old_path + 'RISParser'] = ris
-sys.modules[old_path + 'XMLParser'] = xml
-sys.modules[mid_path + 'BibtexParser'] = bibtex
-sys.modules[mid_path + 'EndNoteParser'] = endnote
-sys.modules[mid_path + 'ISBNParser'] = isbn
-sys.modules[mid_path + 'MedlineParser'] = medline
-sys.modules[mid_path + 'RISParser'] = ris
-sys.modules[mid_path + 'XMLParser'] = xml
-

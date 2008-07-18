@@ -44,7 +44,7 @@ class TestRISParser(PloneTestCase.PloneTestCase):
         self.failUnless( entries[0]['authors'][1]['firstname'] == 'Martin' )
         self.failUnless( entries[0]['authors'][1]['middlename'] == '' )
         self.failUnless( entries[0]['volume'] == '114' )
-        self.failUnless( entries[0]['number'] == '1-2' )
+        self.failUnless( entries[0]['number'] == '1 - 2' )
         self.failUnless( entries[0]['publication_year'] == '2003' )
         self.failUnless( entries[0]['journal'] == 'Public Choice' )
         # XXX This test could be adjusted if the parser got smarter about

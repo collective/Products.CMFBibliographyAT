@@ -28,11 +28,7 @@ class TestRISParser(PloneTestCase.PloneTestCase):
     def test_Parser(self):
         source = open(setup.RIS_SOURCE, 'r').read()
         p = RISParser()
-        # We need to wrap the parser in an acquisition context because it
-        # actually looks up behaviour with getToolByName
-        p = p.__of__(self.portal.portal_bibliography)
         entries = p.getEntries(source)
-        #raise Exception(entries)
         self.failUnless( len(entries) == 1 )
         self.failUnless( entries[0]['title'] == 'Markets and Municipalities: A Study of the Behavior of the Danish Municipalities' )
         self.failUnless( entries[0]['pages'] == '79--102' )

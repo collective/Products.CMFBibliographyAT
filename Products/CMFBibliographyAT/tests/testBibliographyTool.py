@@ -15,8 +15,6 @@ if __name__ == '__main__':
 from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFBibliographyAT.tests import setup
-from bibliograph.rendering.utility import _hasCommands
-# import bin_search
 
 class TestBibliographyTool(PloneTestCase.PloneTestCase):
     '''Test the reference types'''
@@ -38,7 +36,7 @@ class TestBibliographyTool(PloneTestCase.PloneTestCase):
         expected_names = ['BibTeX', 'Medline']
         names = bibtool.getImportFormatNames()
         # This makes sure we only check for the required types
-        # ISBN might be present aswell
+        # IBSS, ISBN, PyBl might be present aswell
         names = [name for name in expected_names if name in names]
         names.sort()
         self.assertEqual(names, expected_names)
@@ -51,27 +49,11 @@ class TestBibliographyTool(PloneTestCase.PloneTestCase):
 
     def testExportFormats(self):
         bibtool = self.portal.portal_bibliography
-        names = bibtool.getExportFormatNames()
-        names.sort()
-        extensions = bibtool.getExportFormatExtensions()
-        extensions.sort()
 
-        # Most tools are optional, only BibTeX is sure to be avaialable.
-        expected_names = ['BibTeX']
-        expected_extensions = ['bib']
-        optional = ( {'tool':'end2xml', 'name':'EndNote', 'ext':'end'},
-                     {'tool':'pdflatex', 'name':'PDF', 'ext':'pdf'},
-                     {'tool':'ris2xml', 'name':'RIS', 'ext':'ris'},
-                     {'tool':'bib2xml', 'name':'XML (MODS)', 'ext':'xml'},
-                   )
+        # bibtex is always available, all others are optional
+        assert 'BibTeX' in bibtool.getExportFormatNames()
+        assert 'bib' in bibtool.getExportFormatExtensions()
 
-        for t in optional:
-            if _hasCommands(t['tool']):
-                expected_names.append(t['name'])
-                expected_extensions.append(t['ext'])
-
-        self.assertEqual(names, expected_names)
-        self.assertEqual(extensions, expected_extensions)
 
     # end of the individual tests
 

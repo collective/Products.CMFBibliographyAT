@@ -146,15 +146,15 @@
                                  description python: format[2];
                                  extension python: format[1];
                                  renderer python: bib_tool.getRenderer(format=extension, with_unavailables=True, with_disabled=True);
-                                 isEnabled renderer/isEnabled;
-                                 isDisabled not: renderer/isEnabled;">
+                                 isEnabled renderer/enabled;
+                                 isDisabled not: renderer/enabled;">
 
                     <label i18n:translate="label_exportfilter"><span i18n:name="filter" tal:content="string:${name}" /> - Export Filter</label>
 
                     <div class="formHelp" tal:content="description" />
 
                     <div style="color: red; font-weight: bold;"
-                         tal:condition="not: renderer/isAvailable"
+                         tal:condition="not: renderer/available"
                          i18n:translate="filter_not_available">Not available, check your site setup ...</div>
 
                         <div style="float:left; margin-right:3em;">
@@ -187,13 +187,13 @@
                         <label tal:attributes="for python: 'renderer_disabled_%s' % name;"
                                i18n:translate="label_renderer_disabled">disabled</label>
                         </div>
-                        <tal:noencoding tal:condition="not: renderer/getAvailableEncodings">
+                        <tal:noencoding tal:condition="not: renderer/available_encodings">
                         <div style="float:left;">
                             <label i18n:translate="default_encoding">Default encoding: </label>
                             <span style="font-style: oblique;" i18n:translate="no_output_encoding_needed">no output encoding needed</span><br />
                         </div>
                         </tal:noencoding>
-                        <tal:encoding tal:condition="renderer/getAvailableEncodings">
+                        <tal:encoding tal:condition="renderer/available_encodings">
                         <div style="float:left;">
                         <label i18n:translate="default_encoding">Default encoding: </label>
                         <select name=""
@@ -204,9 +204,9 @@
                                                 tabindex tabindex/next;
                                                 name python: 'renderer_encoding_%s:text' % name;">
 
-                            <option tal:repeat="encoding python: renderer.getAvailableEncodings()"
+                            <option tal:repeat="encoding renderer/available_encodings"
                                     tal:attributes="value encoding;
-                                                    selected python: test(encoding == renderer.getDefaultOutputEncoding(), 'selected', None);"
+                                                    selected python: test(encoding == renderer.default_encoding, 'selected', None);"
                                     tal:content="encoding" />
 
                         </select>
@@ -254,4 +254,3 @@
 
 </body>
 </html>
-

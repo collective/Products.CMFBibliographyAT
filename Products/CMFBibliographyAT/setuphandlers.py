@@ -72,6 +72,7 @@ def autoMigrate(self, out):
     migrations = (
         cmfbib07to08.Migration(self, out),
         cmfbib08to09.Migration(self, out),
+        cmfbib09to10.Migration(self, out),
     )
     for migration in migrations:
         migration.migrate()

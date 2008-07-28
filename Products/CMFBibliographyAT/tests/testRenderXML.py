@@ -16,9 +16,10 @@ from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFCore.utils import getToolByName
 
+from bibliograph.rendering.utility import _getCommand
+
 from Products.CMFBibliographyAT.tests import setup
 from Products.CMFBibliographyAT import testing
-from bibliograph.core.utils import bin_search
 
 class TestRenderXML(PloneTestCase.PloneTestCase):
     """Test rendering to XML.
@@ -55,11 +56,7 @@ class TestRenderXML(PloneTestCase.PloneTestCase):
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
-    if bin_search('bib2xml', False) is False:
-        print 'bib2xml not found!'
-        print 'please make sure bibutils is installed to run all tests.'
-        print '-' * 20
-    else:
+    if _getCommand('bib', 'xml', False):
         suite.addTest(makeSuite(TestRenderXML))
     return suite
 

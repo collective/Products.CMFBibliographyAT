@@ -1,7 +1,5 @@
 from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
-from Products.Five import fiveconfigure, zcml
-from Products.PloneTestCase.layer import onsetup
 
 # Make sure the dummy types are registered
 from Products.CMFBibliographyAT.tests import dummy
@@ -16,19 +14,10 @@ profile_registry.registerProfile('test_types',
     'Products.CMFBibliographyAT',
     EXTENSION)
 
-@onsetup
-def setup_bibilograph_parsing():
-    import bibliograph.parsing
-    fiveconfigure.debug_mode = True
-    zcml.load_config('configure.zcml', bibliograph.parsing)
-    zcml.load_site()
-    fiveconfigure.debug_mode = False
-
 ZopeTestCase.installProduct('CMFBibliographyAT')
 PROFILES = ['Products.CMFBibliographyAT:default',
             'Products.CMFBibliographyAT:test_types',]
 PloneTestCase.setupPloneSite(extension_profiles=PROFILES)
-setup_bibilograph_parsing()
 
 
 # This is so we can find our own files

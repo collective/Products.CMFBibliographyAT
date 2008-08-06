@@ -75,7 +75,7 @@ AuthorSchema = Schema((
         widget=FormattableNamesWidget(label="Authors",
             label_msgid="label_authors",
             macro_edit = "authors_widget",
-            helper_js = ('authors_widget.js',),	
+            helper_js = ('jquery.autocomplete.js','authors_widget.js',),	
             description="If possible, always fill in the complete authors' / editors' names.",
             description_msgid="help_authors",
             i18n_domain="cmfbibliographyat",

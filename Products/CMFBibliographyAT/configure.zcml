@@ -6,6 +6,7 @@
  <include package=".adapters" />
  <include package=".browser" />
  <include file="profiles.zcml" />
+ <include package="kss.plugin.livesearch" />
 
  <!-- Mark some deprecated stuff -->
 

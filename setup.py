@@ -30,6 +30,7 @@ setup(name='Products.CMFBibliographyAT',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'kss.plugin.livesearch',
           #'Products.CMFPlone',
           #'Products.ATExtensions',
           # -*- Extra requirements: -*-

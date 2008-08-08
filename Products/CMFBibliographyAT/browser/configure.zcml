@@ -2,11 +2,6 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser">
 
-    <browser:resource
-        name="authors_widget.kss"
-        file="authors_widget.kss"
-        />
-
     <browser:page
         for="*"
         class=".authors_livesearch.AuthorListView"

@@ -177,3 +177,7 @@ function authorbrowser_setReference(fieldId, uid, label, fname, lname)
     //if (lastname.value == '') {lastname.value=lname;}
     lastname.value=lname;
 }
+jQuery(document).ready(function(){
+
+jQuery("#kssattr-lastname-0").autocomplete("getAuthorSearchResults");
+  });

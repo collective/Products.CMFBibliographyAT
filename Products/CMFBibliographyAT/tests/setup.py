@@ -46,5 +46,4 @@ BIBTEX_TEST_TYPEFIELD = join(PACKAGE_HOME,
                                  'bibtex_test_typefield.bib')
 BIBTEX_TEST_CITE_KEY = join(PACKAGE_HOME,
                             'bibtex_test_cite_key.bib')
-CITATION_MANAGER_SOURCE = join(PACKAGE_HOME, 'citationmanager_test.txt')
 RIS_SOURCE = join(PACKAGE_HOME, 'ris_test.ris')

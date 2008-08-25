@@ -9,8 +9,6 @@ from Products.Archetypes.utils import shasattr
 from Products.CMFCore.utils import getToolByName
 from Products.CMFBibliographyAT.config import REFERENCE_TYPES
 from Products.CMFBibliographyAT.config import FOLDER_TYPES as BIBFOLDER_TYPES
-from Products.CMFBibliographyAT.tool.parsers.citationmanager import \
-     CitationManagerParser
 
 from bibliograph.core.utils import _encode, _decode
 

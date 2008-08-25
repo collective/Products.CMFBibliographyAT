@@ -31,7 +31,6 @@ from Products.Archetypes.atapi import DisplayList
 # My stuff ;-)
 from Products.CMFCore.utils import getToolByName
 from Products.CMFBibliographyAT.interface import IBibliographyTool
-from Products.CMFBibliographyAT.tool.parsers.base import ParserFolder
 from Products.CMFBibliographyAT.tool.idcookers.base import IdCookerFolder
 from Products.CMFBibliographyAT.DuplicatesCriteria import \
      DuplicatesCriteriaManager
@@ -41,6 +40,7 @@ from Products.CMFBibliographyAT.config import ZOPE_TEXTINDEXES
 from Products.CMFBibliographyAT import permissions
 
 from bibliograph.core.utils import _encode, _decode
+from bibliograph.parsing.interfaces import IBibliographyParser
 from bibliograph.rendering.interfaces import IBibliographyExporter
 
 # citation patterns
@@ -212,7 +212,6 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
     _default_criteria = ('bibliography type',)
 
     def __init__(self):
-        self._setObject('Parsers', ParserFolder('Parsers', ''))
         self._setObject('IdCookers', IdCookerFolder('IdCookers', ''))
         DuplicatesCriteriaManager.__init__(self)
         # Add the local reference types registry
@@ -299,8 +298,9 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         """
         returns a list with the names of the supported import formats
         """
+        parsers = component.getAllUtilitiesRegisteredFor(IBibliographyParser)
         return [parser.getFormatName() \
-                for parser in self.Parsers.objectValues() if (parser.isAvailable() or with_unavailables) and (parser.isEnabled() or with_disabled) ]
+                for parser in parsers if (parser.isAvailable() or with_unavailables) and (parser.isEnabled() or with_disabled) ]
 
     security.declarePublic('getImportFormatExtensions')
     def getImportFormatExtensions(self, with_unavailables=False, with_disabled=False):
@@ -308,16 +308,18 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         returns a list with the file name extensions
         of the supported import formats
         """
+        parsers = component.getAllUtilitiesRegisteredFor(IBibliographyParser)
         return [parser.getFormatExtension() \
-                for parser in self.Parsers.objectValues() if (parser.isAvailable() or with_unavailables) and (parser.isEnabled() or with_disabled)]
+                for parser in parsers if (parser.isAvailable() or with_unavailables) and (parser.isEnabled() or with_disabled)]
 
     def getImportFormatDescriptions(self, with_unavailables=False, with_disabled=False):
         """
         returns a list with the description texts
         of the supported import formats
         """
+        parsers = component.getAllUtilitiesRegisteredFor(IBibliographyParser)
         return [parser.Description() \
-                for parser in self.Parsers.objectValues() if (parser.isAvailable() or with_unavailables) and (parser.isEnabled() or with_disabled) ]
+                for parser in parsers if (parser.isAvailable() or with_unavailables) and (parser.isEnabled() or with_disabled) ]
 
     security.declarePublic('getExportFormatNames')
     def getExportFormatNames(self, with_unavailables=False, with_disabled=False):
@@ -431,7 +433,8 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         first looks for a parser with the 'format' name
         next looks for a parser with the 'format' extension
         """
-        for parser in self.Parsers.objectValues():
+        parsers = component.getAllUtilitiesRegisteredFor(IBibliographyParser)
+        for parser in parsers:
             if (parser.isAvailable() or with_unavailables) and (parser.isEnabled() or with_disabled):
                 if format.lower() == parser.getFormatName().lower():
                     return parser
@@ -611,6 +614,9 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         if format:
             parser = self.getParser(format)
             ok = parser.checkFormat(source)
+        # TODO: This should be changed!  If the user requests a format, and it
+        # doesn't match, we should report that error back to the user.  Guessing
+        # results in ambiguous results.
         if not ok and file_name:
             format = self.guessFormat(file_name)
         if format:
@@ -629,9 +635,10 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         returns None otherwise
         """
         extension = file_name.split('.')[-1].lower()
+        parsers = component.getAllUtilitiesRegisteredFor(IBibliographyParser)
         if extension in [ext.lower()
                          for ext in self.getImportFormatExtensions()]:
-            for parser in self.Parsers.objectValues():
+            for parser in parsers:
                 if extension == parser.getFormatExtension().lower():
                     return parser.getFormatName()
         return None

@@ -32,7 +32,7 @@ class Migration(object):
         # registered reference types on the tool.
         print >> self.out, u'BibliographyTool migration:'
         print >> self.out, u'---------------------------'
-        persistent_components = ['Renderers']
+        persistent_components = ['Renderers', 'Parsers']
         REMOVED_COMPONENT = False
         for pcid in persistent_components:
             if pcid in bibtool.objectIds():

@@ -16,7 +16,8 @@ from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFBibliographyAT.tests import setup
 
-from Products.CMFBibliographyAT.tool.parsers.ris import \
+from bibliograph.core.utils import bin_search
+from bibliograph.parsing.parsers.ris import \
      RISParser
 
 class TestRISParser(PloneTestCase.PloneTestCase):
@@ -27,11 +28,7 @@ class TestRISParser(PloneTestCase.PloneTestCase):
     def test_Parser(self):
         source = open(setup.RIS_SOURCE, 'r').read()
         p = RISParser()
-        # We need to wrap the parser in an acquisition context because it
-        # actually looks up behaviour with getToolByName
-        p = p.__of__(self.portal.portal_bibliography)
         entries = p.getEntries(source)
-        #raise Exception(entries)
         self.failUnless( len(entries) == 1 )
         self.failUnless( entries[0]['title'] == 'Markets and Municipalities: A Study of the Behavior of the Danish Municipalities' )
         self.failUnless( entries[0]['pages'] == '79--102' )
@@ -43,7 +40,7 @@ class TestRISParser(PloneTestCase.PloneTestCase):
         self.failUnless( entries[0]['authors'][1]['firstname'] == 'Martin' )
         self.failUnless( entries[0]['authors'][1]['middlename'] == '' )
         self.failUnless( entries[0]['volume'] == '114' )
-        self.failUnless( entries[0]['number'] == '1-2' )
+        self.failUnless( entries[0]['number'] == '1 - 2' )
         self.failUnless( entries[0]['publication_year'] == '2003' )
         self.failUnless( entries[0]['journal'] == 'Public Choice' )
         # XXX This test could be adjusted if the parser got smarter about
@@ -57,7 +54,12 @@ class TestRISParser(PloneTestCase.PloneTestCase):
 def test_suite():
     from unittest import TestSuite, makeSuite
     suite = TestSuite()
-    suite.addTest(makeSuite(TestRISParser))
+    if bin_search('ris2xml', False) is False:
+        print 'ris2xml not found!'
+        print 'please make sure bibutils is installed to run all tests.'
+        print '-' * 20
+    else:
+        suite.addTest(makeSuite(TestRISParser))
     return suite
 
 if __name__ == '__main__':

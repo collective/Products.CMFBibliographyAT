@@ -59,32 +59,5 @@
    <property name="title">UID Bibliography ID Cooker</property>
    <property name="idcooker_enabled">True</property>
   </object>
- </object>
- <object name="Parsers" meta_type="Parser Folder">
-  <property name="title">BibliographyTool's parser folder</property>
-  <object name="bibtex" meta_type="Bibtex Parser">
-   <property name="title">BibTeX parser</property>
-   <property name="parser_enabled">True</property>
-  </object>
-  <object name="bids" meta_type="IBSS Parser">
-   <property name="title">IBSS parser</property>
-   <property name="parser_enabled">True</property>
-  </object>
-  <object name="citationmanager" meta_type="CitationManager Parser">
-   <property name="title">CitationManager parser</property>
-   <property name="parser_enabled">True</property>
-  </object>
-  <object name="endnote" meta_type="EndNote Parser">
-   <property name="title">EndNote's text format parser</property>
-   <property name="parser_enabled">True</property>
-  </object>
-  <object name="medline" meta_type="Medline Parser">
-   <property name="title">Medline parser</property>
-   <property name="parser_enabled">True</property>
-  </object>
-  <object name="xml_mods" meta_type="XML (MODS) Parser">
-   <property name="title">XML(MODS) parser</property>
-   <property name="parser_enabled">True</property>
-  </object>
  </object> 
 </object>

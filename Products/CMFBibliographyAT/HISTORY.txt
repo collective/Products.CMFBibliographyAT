@@ -39,6 +39,8 @@
 * Change 'marc' to 'marcgt' in the expected test output: this has been 
   changed in bibtex 3.1.
 
+* Refactored all parsers into utilities located in the new bibliograph.parsing
+  package.
 
 =======
 

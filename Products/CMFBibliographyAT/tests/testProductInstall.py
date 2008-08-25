@@ -18,6 +18,10 @@ from Testing import ZopeTestCase
 
 from Products.CMFPlone.tests import PloneTestCase
 
+from bibliograph.parsing.interfaces import IBibliographyParser
+from bibliograph.parsing.parsers.bibtex import BibtexParser
+from bibliograph.parsing.parsers.medline import MedlineParser
+
 from bibliograph.rendering.interfaces import IBibliographyExporter
 from bibliograph.rendering.utility import BibtexExport
 
@@ -40,8 +44,10 @@ class TestCMFBibliographyATInstall(PloneTestCase.PloneTestCase):
         self.failUnless('portal_bibliography' in root.objectIds())
 
     def testParserFolderInstallation(self):
-        bibtool = self.portal.portal_bibliography
-        self.failUnless('Parsers' in bibtool.objectIds())
+        pass
+        # not used any longer - parsers now registered as utilites
+        #bibtool = self.portal.portal_bibliography
+        #self.failUnless('Parsers' in bibtool.objectIds())
 
     def testRendererFolderInstallation(self):
         pass
@@ -50,12 +56,12 @@ class TestCMFBibliographyATInstall(PloneTestCase.PloneTestCase):
         #self.failUnless('Renderers' in bibtool.objectIds())
 
     def testBibtexParserInstallation(self):
-        parsers = self.portal.portal_bibliography.Parsers
-        self.failUnless('bibtex' in parsers.objectIds())
+        parser = getUtility(IBibliographyParser, name='bibtex')
+        self.failUnless(isinstance(parser, BibtexParser))
 
     def testMedlineParserInstallation(self):
-        parsers = self.portal.portal_bibliography.Parsers
-        self.failUnless('medline' in parsers.objectIds())
+        parser = getUtility(IBibliographyParser, name='medline')
+        self.failUnless(isinstance(parser, MedlineParser))
 
     def testBibtexRendererInstallation(self):
         util = getUtility(IBibliographyExporter, name='bibtex')

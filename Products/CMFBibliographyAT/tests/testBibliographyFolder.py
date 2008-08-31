@@ -69,7 +69,8 @@ class TestBibliographyFolder(PloneTestCase.PloneTestCase):
 
     def test_BibtexExport(self):
         bf = self.getPopulatedBibFolder()
-        bib_source = bf.bibliography_export(format='BibTeX').strip()
+        #bib_source = bf.bibliography_export(format='BibTeX').strip()
+        bib_source = bf.restrictedTraverse('@@export').export(format='BibTeX').strip()
         expected_source = open(setup.MEDLINE_TEST_BIB, 'r').read().strip()
 ##         # just in case we need to debug that again
 ##         l1 = bib_source.splitlines(1)
@@ -82,7 +83,8 @@ class TestBibliographyFolder(PloneTestCase.PloneTestCase):
 
     def test_BibtexExportCiteKeys(self):
         bf = self.getPopulatedBibFolder(setup.BIBTEX_TEST_CITE_KEY, 'bib')
-        bib_source = bf.bibliography_export(format='BibTeX').strip()
+        #bib_source = bf.bibliography_export(format='BibTeX').strip()
+        bib_source = bf.restrictedTraverse('@@export').export(format='BibTeX').strip()
         #expected_source = open(setup.BIBTEX_TEST_CITE_KEY, 'r').read().strip()
         self.failUnless(bib_source.startswith('@Book{Esping-Andersen1985'))
 
@@ -181,7 +183,8 @@ class TestLargeBibliographyFolder(TestBibliographyFolder):
         # folder we can not rely on the order, which means we can not compare
         # against fixed output. So we test for the ids directly.
         bf = self.getPopulatedBibFolder()
-        bib_source = bf.bibliography_export(format='BibTeX').strip()
+        #bib_source = bf.bibliography_export(format='BibTeX').strip()
+        bib_source = bf.restrictedTraverse('@@export').export(format='BibTeX').strip()
         self.failUnless("AlibardiThompson2003" in bib_source)
         self.failUnless("CokeEtAl2003" in bib_source)
         self.failUnless("GrootEtAl2003" in bib_source)
@@ -197,7 +200,8 @@ class TestMedlineBibliographyFolder(PloneTestCase.PloneTestCase):
     def test_BibtexExportIgnoresNonBibrefItems(self):
         bf = self.folder.bib_folder
         bf.getPdfFolder() # non-bibref item
-        bib_source = bf.bibliography_export(format='BibTeX').strip()
+        #bib_source = bf.bibliography_export(format='BibTeX').strip()
+        bib_source = bf.restrictedTraverse('@@export').export(format='BibTeX').strip()
         self.failIf("pdfs" in bib_source.lower())
 
     def test_getPublicationsByAuthors(self):

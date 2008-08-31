@@ -56,10 +56,9 @@
 
     <form class="group"
           name="export"
-          action="#"
+          action="@@export"
           method="post"
-          tal:define="absolute_url here/absolute_url"
-          tal:attributes="action string:${absolute_url}/${bibliography_export_script}">
+          tal:define="absolute_url here/absolute_url">
 
       <fieldset>
 
@@ -73,7 +72,7 @@
           </p>
           <fieldset>
           <tal:formats repeat="format here/portal_bibliography/getExportFormats">
-          
+
             <div>
             <input class="noborder" type="radio" name="format"
                    onchange=""

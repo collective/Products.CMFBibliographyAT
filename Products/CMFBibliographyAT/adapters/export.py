@@ -5,48 +5,30 @@ from zope.interface import implements
 from Products.Archetypes.utils import shasattr
 
 from bibliograph.core.interfaces import IBibliographicReference
+from bibliograph.core.interfaces import IAuthor
 from bibliograph.core.utils import _decode
 
-from bibliograph.rendering.adapter import Zope2FolderAdapter
 
-###############################################################################
+class Author(object):
+    """
+    """
 
-class CMFFolderAdapter(Zope2FolderAdapter):
-    
-    def __iter__(self):
-        return iter(self.context.contentValues())
-        
-class BTreeFolderAdapter(Zope2FolderAdapter):
+    implements(IAuthor)
 
-    def __iter__(self):
-        return self.context._tree.itervalues()
-    
-    def prehook(self, entry):
-         # _tree.itervalues() returns unwrapped objects,
-         # but the renderer needs
-         # context-aware objects, so we wrap it.
-         # Check to see if the object has been changed (elsewhere in the
-         # current transaction/request.
-        changed = getattr(entry, '_p_changed', False)
-        self.deactivate = not changed
-        return entry.__of__(aq_inner(self.context))
-    
-    def posthook(self, entry):
-        # We now 'unload' the entry from the ZODB object cache to
-        # reclaim its memory.
-        # See http://wiki.zope.org/ZODB/UnloadingObjects for details.
-        if self.deactivate:
-            entry._p_deactivate()   
+    def __init__(self, title, firstname, middlename, lastname):
+        self.title = title
+        self.firstname = firstname
+        self.middlename = middlename
+        self.lastname = lastname
 
-###############################################################################
 
 class BiliographicExportAdapter(object):
-    
+
     implements(IBibliographicReference)
-    
+
     def __init__(self, context):
         self.context = context
-        
+
         self.__name__ = self.context.getId()
         self.title = _decode(self.context.Title())
         self.publication_year = self.context.publication_year
@@ -55,7 +37,7 @@ class BiliographicExportAdapter(object):
         self.note = _decode(self.context.note)
         self.annote = _decode(self.context.annote)
         self.url = self.context.aq_base.getURL()
-        
+
         # Authors as a FormattableNames structure
         self.getAuthors = self.context.getAuthors
 
@@ -75,6 +57,19 @@ class BiliographicExportAdapter(object):
             authors = unicode(authors, 'utf-8')
         return authors
 
+    def getAuthors(self):
+        """A sequence of IAuthor objects.
+        """
+        authors = []
+        for each in self.context.getAuthors():
+            title = each['title']
+            firstname = each['firstname']
+            middlename = each['middlename']
+            lastname = each['lastname']
+            author = Author(title, firstname, middlename, lastname)
+            authors.append(author)
+        return authors
+
     @property
     def source_fields(self):
         context = self.context
@@ -89,11 +84,11 @@ class BiliographicExportAdapter(object):
                     value = context[key]()
                 else:
                     value = getattr(context, key, None)
-                source_fields.append((key, value))                
-                
+                source_fields.append((key, value))
+
         return source_fields
-                             
-    @property    
+
+    @property
     def publication_type(self):
         return unicode(self.context.meta_type[:-9])
-        
+

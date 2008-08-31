@@ -14,4 +14,11 @@
         class=".isBibliographyExportable"
         />
 
+    <browser:view
+        for="bibliograph.core.interfaces.IBibliography"
+        name="export"
+        permission="zope.Public"
+        class=".export.BibliographyExportView"
+        />
+
 </configure>

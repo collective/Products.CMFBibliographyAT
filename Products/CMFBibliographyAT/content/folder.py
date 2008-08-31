@@ -36,6 +36,7 @@ from Products.CMFCore.utils import getToolByName
 
 # My imports ;-)
 from bibliograph.core.utils import _encode, _decode
+from bibliograph.core.interfaces import IBibliography
 from bibliograph.core.interfaces import IBibliographyExport
 
 from Products.CMFBibliographyAT.DuplicatesCriteria import DuplicatesCriteriaManager
@@ -241,7 +242,24 @@ class BaseBibliographyFolder(Acquirer):
 
     schema = BibFolderSchema
     _at_rename_after_creation = True
-    implements(IBibliographyExport)
+    implements(IBibliographyExport, IBibliography)
+
+    def __iter__(self):
+        """XXX[fill me in]
+        """
+        return self.iterkeys()
+
+    def iterkeys(self):
+        """XXX[fill me in]
+        """
+        for each in self.objectIds():
+            yield each
+
+    def itervalues(self):
+        """XXX[fill me in]
+        """
+        for each in self.objectValues():
+            yield each
 
     security.declareProtected(View, 'isTranslatable')
     def isTranslatable(self):
@@ -689,8 +707,7 @@ class BaseBibliographyImportManager(Acquirer):
                     obj = getattr(self, newid)
                     obj.edit(**entry)
                     url = obj.absolute_url()
-                    if obj.showMemberAuthors() \
-                           and infer_references:
+                    if obj.showMemberAuthors() and infer_references:
                         relations = obj.inferAuthorReferences()
 
             if self.getEnableDuplicatesManager():
@@ -1256,7 +1273,6 @@ class BibliographyFolder(BaseBibliographyIdCookerManager,
         self._base_folder_class.__init__(self, id, **kwargs)
         DuplicatesCriteriaManager.__init__(self)
 
-
     schema = BibFolderSchema
     archetype_name = "Bibliography Folder"
 
@@ -1273,6 +1289,7 @@ class BibliographyFolder(BaseBibliographyIdCookerManager,
         + DuplicatesCriteriaManager.manage_options
         + ATCTOrderedFolder.manage_options[2:]
         )
+
 
 class LargeBibliographyFolder(BaseBibliographyIdCookerManager,
                               BaseBibliographyPdfFolderManager,
@@ -1312,23 +1329,29 @@ class LargeBibliographyFolder(BaseBibliographyIdCookerManager,
         + ATBTreeFolder.manage_options[2:]
         )
 
-    def listDAVObjects(self):
-        """This may have unpleasant side-effects!  Turn this into a
-        generator that deactivates objects after they have been yield-ed.
+    def itervalues(self):
+        """XXX[fill me in]
         """
         for obj in self._tree.itervalues():
             # Wrap the object for security checks and returning...
             obj = obj.__of__(self)
             # Check to see if the object has been changed (elsewhere in the
             # current transaction/request.
-            changed = getattr(obj, '_p_changed', False)
-            deactivate = not changed
+            changed1 = getattr(obj, '_p_changed', False)
             if _checkPermission(View, obj):
                 yield obj
             # Only deactivate (and retrieve memory) if the object hasn't been
-            # changed.
+            # changed, either before this method was called, or during it.
+            changed2 = getattr(obj, '_p_changed', False)
+            deactivate = not changed1 and not changed2
             if deactivate:
                 obj._p_deactivate()
+
+    def listDAVObjects(self):
+        """This may have unpleasant side-effects!  Turn this into a
+        generator that deactivates objects after they have been yield-ed.
+        """
+        return self.itervalues()
 
 
 class DuplicatesBibliographyFolder(BaseBibliographyIdCookerManager,

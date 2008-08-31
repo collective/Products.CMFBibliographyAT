@@ -39,9 +39,12 @@ from Products.CMFBibliographyAT.config import FOLDER_TYPES as BIBFOLDER_TYPES
 from Products.CMFBibliographyAT.config import ZOPE_TEXTINDEXES
 from Products.CMFBibliographyAT import permissions
 
-from bibliograph.core.utils import _encode, _decode
+from bibliograph.core.utils import _encode
+from bibliograph.core.utils import _decode
+from bibliograph.rendering.interfaces import IBibliographyRenderer
 from bibliograph.parsing.interfaces import IBibliographyParser
-from bibliograph.rendering.interfaces import IBibliographyExporter
+
+
 
 # citation patterns
 citations = re.compile(r'\\?cite{([\w, ]*)}')
@@ -70,7 +73,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
     """
 
     implements(IBibliographyTool)
-    
+
     __allow_access_to_unprotected_subobjects__ = 1
 
     id = 'portal_bibliography'
@@ -326,9 +329,9 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         """
         returns a list with the names of the supported export formats
         """
-        utils = component.getAllUtilitiesRegisteredFor(IBibliographyExporter)
-        return [ renderer.__name__ for renderer in utils 
-                 if (renderer.available or with_unavailables) and 
+        utils = component.getAllUtilitiesRegisteredFor(IBibliographyRenderer)
+        return [ renderer.__name__ for renderer in utils
+                 if (renderer.available or with_unavailables) and
                     (renderer.enabled or with_disabled) ]
 
     security.declarePublic('getExportFormatExtensions')
@@ -337,9 +340,9 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         returns a list with the file name extensions
         of the supported export formats
         """
-        utils = component.getAllUtilitiesRegisteredFor(IBibliographyExporter)        
+        utils = component.getAllUtilitiesRegisteredFor(IBibliographyRenderer)
         return [ renderer.target_format for renderer in utils
-                 if (renderer.available or with_unavailables) and 
+                 if (renderer.available or with_unavailables) and
                     (renderer.enabled or with_disabled) ]
 
     def getExportFormatDescriptions(self, with_unavailables=False, with_disabled=False):
@@ -347,7 +350,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         returns a list with the description texts
         of the supported export formats
         """
-        utils = component.getAllUtilitiesRegisteredFor(IBibliographyExporter)        
+        utils = component.getAllUtilitiesRegisteredFor(IBibliographyRenderer)
         return [ renderer.description for renderer in utils
                  if (renderer.available or with_unavailables) and
                     (renderer.enabled or with_disabled) ]
@@ -379,7 +382,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
                                 self.getImportFormatDescriptions(with_unavailables=with_unavailables, with_disabled=with_disabled))
         supported_parsers.sort()
         return supported_parsers
- 
+
     security.declareProtected(View, 'render')
     def render(self, entry, format='', output_encoding=None, **kw):
         """
@@ -398,7 +401,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         first looks for a renderer with the 'format' name
         next looks for a renderer with the 'format' extension
         """
-        utils = component.getAllUtilitiesRegisteredFor(IBibliographyExporter)
+        utils = component.getAllUtilitiesRegisteredFor(IBibliographyRenderer)
         for renderer in utils:
             if (renderer.available or with_unavailables) and \
                (renderer.enabled or with_disabled):
@@ -408,7 +411,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
                     return renderer.__of__(self)
         return None
 
- 
+
     security.declareProtected(View, 'getEntries')
     def getEntries(self, source, format, file_name=None):
         """

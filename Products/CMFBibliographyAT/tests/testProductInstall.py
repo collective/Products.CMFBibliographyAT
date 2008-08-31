@@ -18,14 +18,14 @@ from Testing import ZopeTestCase
 
 from Products.CMFPlone.tests import PloneTestCase
 
+from bibliograph.rendering.interfaces import IBibliographyRenderer
+from bibliograph.rendering.utility import BibtexRenderer
 from bibliograph.parsing.interfaces import IBibliographyParser
 from bibliograph.parsing.parsers.bibtex import BibtexParser
 from bibliograph.parsing.parsers.medline import MedlineParser
 
-from bibliograph.rendering.interfaces import IBibliographyExporter
-from bibliograph.rendering.utility import BibtexExport
-
 from Products.CMFBibliographyAT.tests import setup
+
 
 class TestCMFBibliographyATInstall(PloneTestCase.PloneTestCase):
     '''Test the CMFBibliographyAT installation'''
@@ -64,9 +64,9 @@ class TestCMFBibliographyATInstall(PloneTestCase.PloneTestCase):
         self.failUnless(isinstance(parser, MedlineParser))
 
     def testBibtexRendererInstallation(self):
-        util = getUtility(IBibliographyExporter, name='bibtex')
-        self.failUnless(isinstance(util, BibtexExport))        
-        
+        util = getUtility(IBibliographyRenderer, name='bibtex')
+        self.failUnless(isinstance(util, BibtexRenderer))
+
 
     def testBibFolderInstallation(self):
         ttool = self.portal.portal_types

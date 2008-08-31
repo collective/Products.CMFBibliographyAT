@@ -27,6 +27,7 @@ setup(name='Products.CMFBibliographyAT',
       install_requires=[
           'setuptools',
           'bibliograph.core',
+          'bibliograph.parsing',
           'bibliograph.rendering',
           #'Products.CMFPlone',
           'Products.ATExtensions',

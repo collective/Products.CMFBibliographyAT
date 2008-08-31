@@ -16,7 +16,7 @@ from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFCore.utils import getToolByName
 
-from bibliograph.rendering.utility import _getCommand
+from bibliograph.core.bibutils import _getCommand
 
 from Products.CMFBibliographyAT.tests import setup
 from Products.CMFBibliographyAT import testing

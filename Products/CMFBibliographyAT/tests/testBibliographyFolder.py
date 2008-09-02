@@ -12,9 +12,14 @@ import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
+from zope.interface import verify
+from zope.interface.common.mapping import IIterableMapping
+
 from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFCore.utils import getToolByName
+
+from bibliograph.core.interfaces import IBibliography
 
 from Products.CMFBibliographyAT.tests import setup
 from Products.CMFBibliographyAT import testing
@@ -141,6 +146,9 @@ class TestBibliographyFolder(PloneTestCase.PloneTestCase):
         id2 = bf.cookId(ref_dict2)
         self.assertEqual(id2, 'HicksEtAl2006')
 
+    def test_interfaces(self):
+        assert verify.verifyObject(IBibliography, self.folder.bib_folder)
+        assert IIterableMapping.providedBy(self.folder.bib_folder)
     # end of the individual tests
 
 

@@ -261,6 +261,12 @@ class BaseBibliographyFolder(Acquirer):
         for each in self.objectValues():
             yield each
 
+    def iteritems(self):
+        """ Fullfil zope.interface.common.mapping.IIterableMapping contract
+        """
+        for each in self.objectItems():
+            yield each
+
     security.declareProtected(View, 'isTranslatable')
     def isTranslatable(self):
 

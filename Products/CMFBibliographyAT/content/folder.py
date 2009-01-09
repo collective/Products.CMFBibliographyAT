@@ -468,7 +468,8 @@ class BaseBibliographyIdCookerManager(Acquirer):
     def getSiteDefaultIdCookerId(self):
 
         bib_tool = getToolByName(self, 'portal_bibliography')
-        return bib_tool.getDefaultIdCooker(with_disabled=False).getId()
+        if bib_tool.getDefaultIdCooker(with_disabled=False):
+            return bib_tool.getDefaultIdCooker(with_disabled=False).getId()
 
     security.declarePublic(View, 'getSiteDefaultUseParserIdsOnImport')
     def getSiteDefaultUseParserIdsOnImport(self):

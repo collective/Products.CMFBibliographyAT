@@ -38,9 +38,10 @@
  <property name="infer_author_references_after_import">True</property>
  <property name="authorof_implies_owner">False</property>
  <property name="authorof_implies_creator">False</property>
- <property name="show_isbn_link">False</property>
+ <property name="show_isbn_link">False</property> 
  <property name="preprint_servers"/>
  <property name="searchable_bibfolders">True</property>
+ <property name="author_lookup_marker_interface_id"></property>
  <object name="IdCookers" meta_type="IdCooker Folder">
   <property name="title">BibliographyTool's id cooker folder</property>
   <object name="abbrev" meta_type="Abbreviation Bibliography ID Cooker">

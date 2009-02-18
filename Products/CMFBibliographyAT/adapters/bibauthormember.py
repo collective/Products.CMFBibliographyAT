@@ -55,6 +55,19 @@ class BibAuthorMember:
         bib_tool = getToolByName(self.context, 'portal_bibliography')
         return bib_tool.getProperty('support_member_references')
     
+    def matchCandidate(self, candidate_name, lastname, firstnames):
+        """ Check whether the a portal object is a potential candidate.
+        
+        Adaptes can override this method for custom logic
+        """
+        #candidate_name = cand['title']
+        candidate_lastname = candidate_name.split(' ')[-1]
+        candidate_firstnames = ' '.join(candidate_name.split(' ')[:-1])
+        if (lastname == candidate_lastname) and (firstnames == candidate_firstnames):
+            return True
+        
+        return False
+                
     #zzz todo: fix inferAuthorReferences so it works with usernames and not references for members
     def inferAuthorReferences(self, report_mode='v', is_new_object=False):
         """
@@ -73,6 +86,7 @@ class BibAuthorMember:
         - 'c': conflicts only; conflicts occur if several potential
                target members are found
         """
+
         bib_tool = getToolByName(self.context, 'portal_bibliography')
         if not self.showMemberAuthors():
             return "No inference attempted"
@@ -89,14 +103,12 @@ class BibAuthorMember:
                 continue
             raw_candidates = self.matchAuthors(lastname)
             candidates = []
-            for cand in raw_candidates:
-                    candidate_name = cand['title']
-                    candidate_lastname = candidate_name.split(' ')[-1]
-                    candidate_firstnames = ' '.join(candidate_name.split(' ')[:-1])
-                    if (lastname == candidate_lastname) and (firstnames == candidate_firstnames):
-                        candidates.append(cand)
 
-                    if candidates: break
+            for cand in raw_candidates:
+                if self.matchCandidate(cand['title'], lastname, firstnames):
+                    candidates.append(cand)
+
+                if candidates: break
 
             if not candidates:
                 msg = "%s: no corresponding member found." % author()
@@ -200,6 +212,9 @@ class ContentTypeBasedBibAuthorMember(BibAuthorMember):
     a marker interface whose name is declared in portal_bibliography settings.
     
     Use portal path as the id of the content and content title for author keys.
+    
+    Portal type "Title" is assumed to match the bibliography author.
+    Title should be in form "Firstname1 [Firstname2] Lastname".
     """
     
     
@@ -208,12 +223,16 @@ class ContentTypeBasedBibAuthorMember(BibAuthorMember):
         catalog = getToolByName(self.context, 'portal_catalog')
             
         bib_tool = getToolByName(self.context, 'portal_bibliography')
+        
+        # Get our marker interface name
         marker_if = bib_tool.getProperty('author_lookup_marker_interface_id') 
+        if marker_if == None or marker_if == "":
+            raise RuntimeError("author_lookup_marker_interface_id property must be defined in portal.portal_bibliograpgy tool")
         
         # Should do partial Title matching,
         # ZCTextIndex docs have no examples
-        results=catalog(object_provides=marker_if, **kwargs)
-        
+        results=catalog.searchResults(object_provides=marker_if, **kwargs)
+                
         def mangle(r):
             """  Translate search results to data expected by CMFBibliographyAT """
             return { "title" : r["Title"], 

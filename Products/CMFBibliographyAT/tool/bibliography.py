@@ -210,6 +210,10 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
          'type':'boolean',
          'mode':'w',
          },
+         {'id':'author_lookup_marker_interface_id',
+         'type':'string',
+         'mode':'w',
+         },         
         )
     _match_criteria = {}
     _default_criteria = ('bibliography type',)

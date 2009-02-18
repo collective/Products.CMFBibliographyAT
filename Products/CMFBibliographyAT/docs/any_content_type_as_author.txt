@@ -1,0 +1,63 @@
+Any content type as author
+==========================
+
+Sometimes it is desired to have any portal pages as the "author" of the
+bibliograpgy item. This has been possible before, but not any more.
+
+The support is (re)added in miohtama-custom-author-portaltype-support development
+branch. The branch provides two alternative adapters for author to member mapping:
+
+	- Products.CMFBibliographyAT.adapters.bibauthmember.UserBasedBibAuthorMember
+
+	- Products.CMFBibliographyAT.adapters.bibauthmember.ContentTypeBasedBibAuthorMember
+	
+The former is the default CMFBibliographyAT behavior and doesn't need any changes.
+The latter needs little customization and is described in this document.
+
+This work also serves as base for other automatic author-portal item mappings.
+
+
+Installation
+------------
+
+1. Change IBibAuthorMember adapter in your site overrides.zcml::
+
+	<configure
+	    xmlns="http://namespaces.zope.org/zope"
+	    xmlns:five="http://namespaces.zope.org/five">
+	
+    	<adapter for="Products.CMFBibliographyAT.interface.IBibliographicItem"
+             factory="Products.CMFBibliographyAT.adapters.bibauthormember.ContentTypeBasedBibAuthorMember"
+             provides="Products.CMFBibliographyAT.interface.IBibAuthorMember" />
+	
+	</configure>
+
+2. Zope needs restart
+
+3. Set marker interface name in ZMI, in portal_bibliography properties.
+
+     author_lookup_marker_interface_id = Products.MyProduct.interfaces.MyContentTypeMarkerInterface
+
+Unit tests
+----------
+
+Executing unit tests (no configuration modifications needed):
+
+	bin/instance test -s Products.CMFBibliographyAT -t TestMemberAuthors
+
+Content type matching
+---------------------
+
+	All content items on the site are queried.
+	
+	Content types are matched by marker interface name defined in 
+	portal_bibliography.author_lookup_marker_interface_id
+	
+	Content title must be "Firstnames Lastname" of author.
+	
+	Matched content objects are limited based on View permission 
+	of the current user.
+
+Source code:
+
+	https://svn.plone.org/svn/collective/Products.CMFBibliographyAT/branches/miohtama-custom-author-portaltype-support

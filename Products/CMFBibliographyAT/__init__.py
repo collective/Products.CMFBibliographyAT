@@ -77,3 +77,4 @@ sys.modules[old_path + 'WebpublishedReference'] = webpublished
 
 from tool import bibliography
 sys.modules['Products.CMFBibliographyAT.BibliographyTool'] = bibliography
+

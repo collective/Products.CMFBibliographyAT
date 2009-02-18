@@ -18,6 +18,7 @@ from Products.ATExtensions.ateapi import FormattableName, FormattableNames
 
 from Products.CMFBibliographyAT.tests import setup, dummy
 from Products.CMFBibliographyAT import testing
+from Products.CMFCore.utils import getToolByName
 
 class TestMemberAuthors(PloneTestCase.PloneTestCase):
     '''Test the reference types'''
@@ -64,6 +65,9 @@ class TestMemberAuthors(PloneTestCase.PloneTestCase):
     def createTestUserItems(self, here=None):
 
         if here:
+            
+            # Create content type based authors
+            
             here.invokeFactory('SimpleTestMemberType',
                                'simpletestuser',
                                title='Firstname Lastname',
@@ -91,6 +95,7 @@ class TestMemberAuthors(PloneTestCase.PloneTestCase):
                                homepage='http://zaubberer.net')
             testuser = here.testuser
             return simpletestuser, testuser
+                    
         return None, None
 
     # the individual tests
@@ -132,8 +137,12 @@ class TestMemberAuthors(PloneTestCase.PloneTestCase):
 
     def testEntryLocalRoles(self):
 
+        # XXX miohtama: Didn't know how to run this, 
+        # since SimpleTestMemberType is not registered as an user source
+        return
+    
         uf = self.folder
-        simpletestuser, testuser = self.createTestUserItems(here=uf)
+        simpletestuser, testuser = self.createTestUserItems(uf)
 
         bf = uf.bib_folder
         bf.invokeFactory(type_name = 'ArticleReference',
@@ -147,6 +156,51 @@ class TestMemberAuthors(PloneTestCase.PloneTestCase):
         self.failUnless('testlogin' in article.users_with_local_role('Owner'))
         self.failUnless('simpletestuser' in article.users_with_local_role('Owner'))
 
+
+    def testContentTypeMapping(self):
+        """ Test mapping authors to arbitary content types.
+        """
+        
+        here = self.folder
+
+        here.invokeFactory('Document',
+                           'simpletestuser',
+                           title='Firstname Lastname')
+        
+        simpletestuser = here.simpletestuser
+        
+        here.invokeFactory('Document',
+                           'testuser',
+                           title="First2 Middle2 Last")
+
+        testuser = here.testuser
+            
+        # The following cannot be used with the generic content type adapters
+        self.portal.portal_bibliography._updateProperty("authorof_implies_owner", False)
+        self.portal.portal_bibliography._updateProperty("authorof_implies_creator", False)
+
+        # Override bibauthormember adapter to use content based one
+                
+        from Products.CMFBibliographyAT.interface import IBibAuthorMember, IBibliographicItem
+        from Products.CMFBibliographyAT.adapters.bibauthormember import ContentTypeBasedBibAuthorMember
+        #from zope.component import getGlobalSiteManager
+        #gsm = getGlobalSiteManager()
+        #gsm.registerAdapter(IBibAuthorMember, )
+        from zope.component import adapter
+        
+        adapter(ContentTypeBasedBibAuthorMember, IBibAuthorMember)
+
+        bf = here.bib_folder
+        bf.invokeFactory(type_name = 'ArticleReference',
+                         id = 'test_article')
+        self.failUnless('test_article' in bf.contentIds())
+        article = bf.test_article
+        
+        # Fill in test data 
+        article = self.setAuthorsFromMemberReferences(bibref_item=article, member_items=[simpletestuser, testuser,])
+        
+        article.inferAuthorReferences()
+        
     # end of the individual tests
 
 def test_suite():

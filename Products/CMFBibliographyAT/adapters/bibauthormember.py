@@ -233,12 +233,18 @@ class ContentTypeBasedBibAuthorMember(BibAuthorMember):
         # ZCTextIndex docs have no examples
         results=catalog.searchResults(object_provides=marker_if, **kwargs)
                 
-        def mangle(r):
+        def xxx_mangle(r):
             """  Translate search results to data expected by CMFBibliographyAT """
             return { "title" : r["Title"], 
                      "id" : "/".join(r.getPhysicalPath()[1:]) # path relative to portal root
                      }
-            
+        
+        def mangle(r):
+            """  Translate search results to data expected by CMFBibliographyAT """
+            return { "title" : r["Title"], 
+                     "id" : r["UID"]
+                     }
+                    
         return [ mangle(r) for r in results ]
                     
     def matchAuthors(self, lastname):
@@ -246,7 +252,15 @@ class ContentTypeBasedBibAuthorMember(BibAuthorMember):
         
         @return: List of dicts having keys: username, firstnames, lastname, homepage
         """
-        return self.query(Title=lastname)
+        
+        
+        # Which search attribute we use to match findings,
+        # by default it's "Title"
+        bib_tool = getToolByName(self.context, 'portal_bibliography')
+        search_attr = bib_tool.members_search_on_attr
+        args = { search_attr : lastname }
+        
+        return self.query(**args)
                     
     def getPossibleAuthors(self, *args, **kw):
         """

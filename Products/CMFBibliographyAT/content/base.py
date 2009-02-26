@@ -732,7 +732,7 @@ class BaseEntry(BaseContent):
         Alternative to 'getMembers' if 'no reference' must not be empty
         (to work around a bug in the 'Records' packager)
         """
-        return IBibAuthorMember(self).getSiteMembers( *args, **kw)
+        return IBibAuthorMember(self).getPossibleAuthors( *args, **kw)
 
     security.declareProtected(View, 'showMemberAuthors')
     def showMemberAuthors(self):

@@ -1155,9 +1155,10 @@ class BaseBibliographyPdfFolderManager(Acquirer):
         """
         Returns a folder for storing files
         Creates it if needed
+        Remark :i think that using a volatile attribute here is a bad idea
+        why not a hidden reference field for the bibliography folder ?
         """
-        at_tool = getToolByName(self, 'archetype_tool')
-
+        
         if self._assoc_pdf_folder is None:
             if not self.hasObject(id):
                 tt = getToolByName(self, 'portal_types')
@@ -1169,18 +1170,27 @@ class BaseBibliographyPdfFolderManager(Acquirer):
                                    )
                 self[id].setTitle('PDFs')
                 fti.allowed_content_types = allowed_types
+                pdf_folder = self[id]
                 self._assoc_pdf_folder = self[id].UID()
-        pdf_folder = at_tool.lookupObject(self._assoc_pdf_folder)
+            else :
+                pdf_folder = self[id]
+                self._assoc_pdf_folder = self[id].UID()
+        else :
+            at_tool = getToolByName(self, 'archetype_tool')
+            pdf_folder = at_tool.lookupObject(self._assoc_pdf_folder) 
+            
+        if  pdf_folder is not None :                               
+            if pdf_folder.getPhysicalPath()[:-1] == self.getPhysicalPath():
+                return pdf_folder
+            else :
+                # bad pdf folder reference - strange
+                self._assoc_pdf_folder = None
+                return self.getPdfFolder(self, id = 'pdfs')    
+        else :
+            # pdf folder has been deleted or renamed
+            # since volatile attribute _assoc_pdf_folder is not None
+            raise "Error : recreate your pdf folder with the good ID 'pdfs'"    
 
-        # test, if the returned object really is the pdf folder:
-        if pdf_folder.getPhysicalPath()[:-1] == self.getPhysicalPath():
-            return pdf_folder
-        else:
-            # BULLSHIT, reference to PDF folder broken.
-            pdf_folder = eval('self.%s' % id)
-            try: self._assoc_pdf_folder = pdf_folder.UID()
-            except: pass
-            return pdf_folder
 
     security.declarePublic(View, 'getSiteDefaultSynchronizePdfFileAttributes')
     def getSiteDefaultSynchronizePdfFileAttributes(self):

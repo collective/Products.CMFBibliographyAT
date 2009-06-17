@@ -102,7 +102,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
     searchable_bibfolders = True
     preprint_servers = []
     allow_additional_fields = False
-    additional_fields = ['howpublished','recommended_by']  # just an example
+    additional_fields = ['howpublished','recommendedby']  # just an example
 
     security = ClassSecurityInfo()
     security.declareObjectProtected(View)

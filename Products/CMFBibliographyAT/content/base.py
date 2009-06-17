@@ -238,6 +238,31 @@ class BaseEntry(BaseContent):
         """
         return getDisplayList(self, 'publication_identifiers')
 
+    security.declareProtected(View, 'additionalFields')
+    def additionalFields(self, instance=None):
+        """
+        list of additional field keys for publications
+        used as vocabulary for the 'additional' field
+        Managed as property on the bibliography tool
+        """
+        bibtool = getToolByName(self, 'portal_bibliography', None)
+        if bibtool is not None:
+            values = bibtool.getProperty('additional_fields',[])
+            select = ('','Select')
+            dlist = [(value,value) for value in values]
+            return DisplayList([select]+dlist)
+        return []
+
+    def allowAdditionalFields(self):
+        """
+        returns the flag set on the bibliography tool controlling
+        the availability of additional fields
+        """
+        bibtool = getToolByName(self, 'portal_bibliography', None)
+        if bibtool is not None:
+            return bibtool.getProperty('allow_additional_fields',False)
+        return False
+
     security.declareProtected(View, 'pre_validate')
     def pre_validate(self, REQUEST, errors):
 

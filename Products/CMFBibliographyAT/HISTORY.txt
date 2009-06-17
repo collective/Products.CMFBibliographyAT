@@ -1,6 +1,12 @@
 1.0
 ===
 
+* Add support for additional fields configurable via the tool.
+  The tool grew two new properties: a boolean 'allow_additional_fields'
+  (default:False) and a list 'additional_fields' (default: ['howpublished',
+  'recommended_by'] - just for example) to enable the portal manager to 
+  define further custom (string-type) fields on bibitems [raphael]
+
 * Factored out the author reference/link handling into adapters for
   easy overrides [martior]
 

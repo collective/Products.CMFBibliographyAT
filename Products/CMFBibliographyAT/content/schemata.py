@@ -277,5 +277,20 @@ TrailingSchema = Schema((
             i18n_domain="cmfbibliographyat",
             ),
         ),
+    RecordsField('additional',
+        searchable=0,
+        required=0,
+        languageIndependent=0,
+        is_duplicates_criterion=False,
+        subfields = ('key', 'value'),
+        subfield_vocabularies = {'key':'additionalFields',},  
+        innerJoin = ': ',
+        outerJoin = '<br />',
+        widget=RecordsWidget(
+                i18n_domain = "cmfbibliographyat",
+                label = u"Additional Fields",
+                condition="object/allowAdditionalFields",
+                ),
+        ),
     ), marshall = BibtexMarshaller())
 

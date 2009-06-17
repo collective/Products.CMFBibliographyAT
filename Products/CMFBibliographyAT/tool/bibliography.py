@@ -26,10 +26,10 @@ except ImportError:
 # CMF stuff
 from Products.CMFCore.permissions import View, ManagePortal
 from Products.CMFCore.utils import UniqueObject
+from Products.CMFCore.utils import getToolByName
 from Products.Archetypes.atapi import DisplayList
 
 # My stuff ;-)
-from Products.CMFCore.utils import getToolByName
 from Products.CMFBibliographyAT.interface import IBibliographyTool
 from Products.CMFBibliographyAT.tool.idcookers.base import IdCookerFolder
 from Products.CMFBibliographyAT.DuplicatesCriteria import \
@@ -101,6 +101,8 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
     allow_pdfupload_for_types = REFERENCE_TYPES
     searchable_bibfolders = True
     preprint_servers = []
+    allow_additional_fields = False
+    additional_fields = ['howpublished','recommended_by']  # just an example
 
     security = ClassSecurityInfo()
     security.declareObjectProtected(View)
@@ -208,6 +210,14 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
          },
         {'id':'searchable_bibfolders',
          'type':'boolean',
+         'mode':'w',
+         },
+        {'id':'allow_additional_fields',
+         'type':'boolean',
+         'mode':'w',
+         },
+        {'id':'additional_fields',
+         'type':'lines',
          'mode':'w',
          },
         )

@@ -58,7 +58,9 @@
                 <span tal:replace="here/getURL">full text (or more info)</span>
               </a>
             </div>
-    
+
+	    <div metal:use-macro="python:here.widget('additional')" />
+
             <div tal:condition="python: here.PMID() or (here.ISBN() and here.showISBNLink()) or (here.getAnnote() and ([ role for role in mtool.getAuthenticatedMember().getRolesInContext(here) if role in ('Owner',) ] or mtool.checkPermission('Modify portal content', here)))"
                  class="spacer">&nbsp;</div>
     

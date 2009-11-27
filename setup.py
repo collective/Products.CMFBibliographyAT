@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '0.9.3'
+version = '0.9.3.1'
 
 setup(name='Products.CMFBibliographyAT',
       version=version,
@@ -26,7 +26,6 @@ setup(name='Products.CMFBibliographyAT',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'Products.DataGridField',
           'Products.ATExtensions',
           # -*- Extra requirements: -*-
       ],

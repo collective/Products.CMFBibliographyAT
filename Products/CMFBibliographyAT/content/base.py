@@ -654,7 +654,9 @@ class BaseEntry(BaseContent):
         """ Identifier verification: types can only be used once """
 
         if data['label'] == 'ISBN':
-            isbn = data['value']
+            isbn = data.get('value')
+            if not isbn:
+                return
             try:
                 isbn_ok = pyisbn.validate(isbn)
             except ValueError, e:

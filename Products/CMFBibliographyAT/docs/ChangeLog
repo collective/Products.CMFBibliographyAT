@@ -3,6 +3,8 @@
     * added 'pyisbn' dependency
 	* added ISBN validation support to the 'identifiers' field
 	* made orginal 'isbn' field invisible
+	* added 0.9 -> 1.0 migration code for copying the 'isbn' field
+	  value into the 'identifiers' field
 
 2006-01-05  Mike Gabriel <m.gabriel@sunweavers.net>
 

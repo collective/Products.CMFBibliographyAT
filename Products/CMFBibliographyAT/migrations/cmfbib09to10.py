@@ -24,6 +24,7 @@ class Migration(object):
         print >> self.out, u"Migrating CMFBibliographyAT 0.9 -> 1.0"
         bibtool = getToolByName(self.site, 'portal_bibliography')
         self.migrateTool(bibtool)
+        self.migrateIsbn()
 
     def migrateTool(self, bibtool):
         """Migrate the bibtool.
@@ -43,5 +44,27 @@ class Migration(object):
         if not REMOVED_COMPONENT:
             print >> self.out, u'    Tool is up-to-date'
         print >> self.out
+
+    def migrateIsbn(self):
+        """ Migrate ISBN numbers to identifiers """
+
+        from Products.CMFBibliographyAT.config import REFERENCE_TYPES
+
+        for brain in self.site.portal_catalog(portal_type=REFERENCE_TYPES):
+            ref = brain.getObject()
+            old_isbn = ref.getIsbnOld()
+            new_isbn = ref.ISBN()
+
+            # check for old ISBN and see if the object has already been migrated
+            if old_isbn and not getattr(ref, '_migrated_isbn', None):
+                print >>self.out, u'Migrating ISBN number of ', ref.absolute_url(1)
+
+                # replace ISBN
+                ids = [d for d in ref.getIdentifiers() if d['label'] != 'ISBN']
+                ids.append({'label' : 'ISBN', 'value' : new_isbn})
+                ref.setIdentifiers(ids)
+                ref._migrated_isbn = True
+
+        print >>self.out
 
 

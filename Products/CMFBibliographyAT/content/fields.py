@@ -213,11 +213,13 @@ editor_flagField = BooleanField('editor_flag',
 isbnField = StringField('isbn',
                 searchable=1,
                 default='',
+                accessor='getIsbnOld',
                 is_duplicates_criterion=True,
                 widget=StringWidget(
                     label="ISBN Number",
                     label_msgid="label_isbn",
                     description="The ISBN number of this publication.",
                     description_msgid="help_isbn",
+                    visible={'edit': 'visible', 'view': 'invisible',}, # invisible because of the 'identifiers' field
                     i18n_domain="cmfbibliographyat",)
                 )

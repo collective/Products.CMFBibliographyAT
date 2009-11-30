@@ -645,6 +645,13 @@ class BaseEntry(BaseContent):
         """Used by the download printable action condition"""
         return self.download_pdf() and True or False
 
+    security.declareProtected(View, 'getIsbn')
+    def getIsbn(self):
+        """ Get hold of the ISBN from the identifiers field """
+        for  d in self.getIdentifiers():
+            if d['label'] == 'ISBN':
+                return d['value']
+        return ''
 
     security.declareProtected(View, 'validate_identifier')
     def validate_identifiers(self, data={}):
@@ -758,14 +765,14 @@ class BaseEntry(BaseContent):
     #     Adapted methods                                                      #
     #                                                                          #
     ############################################################################
-    
+
     security.declareProtected(ModifyPortalContent, 'inferAuthorReferences')
     def inferAuthorReferences(self, report_mode='v', is_new_object=False):
         """
         Try to set author references, e.g., after uploads
         """
         return IBibAuthorMember(self).inferAuthorReferences(report_mode, is_new_object)
-        
+
     security.declareProtected(View, 'getSiteMembers')
     def getSiteMembers(self, *args, **kw):
         """
@@ -797,5 +804,5 @@ class BaseEntry(BaseContent):
             if 'lastname' in author.keys():
                 authorNames.append("%s %s" % (author['firstname'], author['lastname']))
         coinsData['rft.au'] = authorNames
-        
+
         return coinsData

@@ -1,3 +1,9 @@
+2009-10-30  Andreas Jung <info@zopyx.com>
+
+    * added 'pyisbn' dependency
+	* added ISBN validation support to the 'identifiers' field
+	* made orginal 'isbn' field invisible
+
 2006-01-05  Mike Gabriel <m.gabriel@sunweavers.net>
 
     * i18n files for de/en are done and should be always co-maintained

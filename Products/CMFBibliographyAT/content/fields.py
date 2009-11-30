@@ -220,6 +220,6 @@ isbnField = StringField('isbn',
                     label_msgid="label_isbn",
                     description="The ISBN number of this publication.",
                     description_msgid="help_isbn",
-                    visible={'edit': 'visible', 'view': 'invisible',}, # invisible because of the 'identifiers' field
+                    visible={'edit': 'invisible', 'view': 'invisible',}, # invisible because of the 'identifiers' field
                     i18n_domain="cmfbibliographyat",)
                 )

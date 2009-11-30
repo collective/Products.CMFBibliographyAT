@@ -52,6 +52,8 @@ class Migration(object):
 
         for brain in self.site.portal_catalog(portal_type=REFERENCE_TYPES):
             ref = brain.getObject()
+            if not 'isbn' in ref.Schema().keys():
+                continue
             old_isbn = ref.getIsbnOld()
             new_isbn = ref.ISBN()
 

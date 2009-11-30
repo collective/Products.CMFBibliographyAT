@@ -9,6 +9,7 @@
 defines the common schema elements and provides some
 basic functionality """
 
+import pyisbn
 from zope.interface import implements
 
 from DateTime import DateTime
@@ -643,6 +644,21 @@ class BaseEntry(BaseContent):
     def has_pdf(self):
         """Used by the download printable action condition"""
         return self.download_pdf() and True or False
+
+
+    security.declareProtected(View, 'validate_identifier')
+    def validate_identifiers(self, data={}):
+        """ Identifier verification: types can only be used once """
+
+        if data['label'] == 'ISBN':
+            isbn = data['value']
+            try:
+                isbn_ok = pyisbn.validate(isbn)
+            except ValueError, e:
+                isbn_ok = False
+
+            if not isbn_ok:
+                return 'Invalid ISBN %s' % isbn
 
     security.declareProtected(View, 'post_validate')
     def post_validate(self, REQUEST=None, errors=None):

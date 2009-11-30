@@ -231,6 +231,10 @@ class BaseEntry(BaseContent):
         """
         return self._getIdentifier('ISBN')
 
+    # original accessor of the ISBN field
+    security.declareProtected(View, 'getIsbn')
+    getIsbn = ISBN
+
     security.declareProtected(View, 'publicationIdentifiers')
     def publicationIdentifiers(self, instance=None):
         """
@@ -644,14 +648,6 @@ class BaseEntry(BaseContent):
     def has_pdf(self):
         """Used by the download printable action condition"""
         return self.download_pdf() and True or False
-
-    security.declareProtected(View, 'getIsbn')
-    def getIsbn(self):
-        """ Get hold of the ISBN from the identifiers field """
-        for  d in self.getIdentifiers():
-            if d['label'] == 'ISBN':
-                return d['value']
-        return ''
 
     security.declareProtected(View, 'validate_identifier')
     def validate_identifiers(self, data={}):

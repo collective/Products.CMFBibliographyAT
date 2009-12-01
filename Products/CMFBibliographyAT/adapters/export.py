@@ -38,6 +38,13 @@ class BiliographicExportAdapter(object):
         self.annote = _decode(self.context.annote)
         self.url = self.context.aq_base.getURL()
 
+        # identifiers
+        identifiers = dict()
+        for d in self.getIdentifiers():
+            if d['value']:
+                identifiers[d['label']] = d['value']
+        self.identifiers = identifiers
+
         # Authors as a FormattableNames structure
         self.getAuthors = self.context.getAuthors
 

@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.0'
+version = '1.0.0a1'
 
 setup(name='Products.CMFBibliographyAT',
       version=version,

@@ -1,4 +1,7 @@
-2009-10-30  Andreas Jung <info@zopyx.com>
+2009-12-03  Andreas Jung <info@zopyx.com>
+    * 1.0.0 alpha 1
+
+2009-11-30  Andreas Jung <info@zopyx.com>
 
     * added 'pyisbn' dependency
 	* added ISBN validation support to the 'identifiers' field

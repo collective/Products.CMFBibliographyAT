@@ -649,7 +649,7 @@ class BaseEntry(BaseContent):
         """Used by the download printable action condition"""
         return self.download_pdf() and True or False
 
-    security.declareProtected(View, 'validate_identifier')
+    security.declareProtected(View, 'validate_identifiers')
     def validate_identifiers(self, data={}):
         """ Identifier verification: types can only be used once """
 

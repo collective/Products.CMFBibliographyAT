@@ -29,8 +29,8 @@ setup(name='Products.CMFBibliographyAT',
           'bibliograph.core',
           'bibliograph.parsing',
           'bibliograph.rendering',
-          #'Products.CMFPlone',
           'Products.ATExtensions',
+          'pyisbn',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

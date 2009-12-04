@@ -9,6 +9,7 @@
 defines the common schema elements and provides some
 basic functionality """
 
+import pyisbn
 from zope.interface import implements
 
 from DateTime import DateTime
@@ -229,6 +230,10 @@ class BaseEntry(BaseContent):
         overwritten by books
         """
         return self._getIdentifier('ISBN')
+
+    # original accessor of the ISBN field
+    security.declareProtected(View, 'getIsbn')
+    getIsbn = ISBN
 
     security.declareProtected(View, 'publicationIdentifiers')
     def publicationIdentifiers(self, instance=None):
@@ -644,6 +649,22 @@ class BaseEntry(BaseContent):
         """Used by the download printable action condition"""
         return self.download_pdf() and True or False
 
+    security.declareProtected(View, 'validate_identifier')
+    def validate_identifiers(self, data={}):
+        """ Identifier verification: types can only be used once """
+
+        if data['label'] == 'ISBN':
+            isbn = data.get('value')
+            if not isbn:
+                return
+            try:
+                isbn_ok = pyisbn.validate(isbn)
+            except ValueError, e:
+                isbn_ok = False
+
+            if not isbn_ok:
+                return 'Invalid ISBN %s' % isbn
+
     security.declareProtected(View, 'post_validate')
     def post_validate(self, REQUEST=None, errors=None):
         """Make sure our dependend gets cataloged as well"""
@@ -742,14 +763,14 @@ class BaseEntry(BaseContent):
     #     Adapted methods                                                      #
     #                                                                          #
     ############################################################################
-    
+
     security.declareProtected(ModifyPortalContent, 'inferAuthorReferences')
     def inferAuthorReferences(self, report_mode='v', is_new_object=False):
         """
         Try to set author references, e.g., after uploads
         """
         return IBibAuthorMember(self).inferAuthorReferences(report_mode, is_new_object)
-        
+
     security.declareProtected(View, 'getSiteMembers')
     def getSiteMembers(self, *args, **kw):
         """
@@ -781,5 +802,5 @@ class BaseEntry(BaseContent):
             if 'lastname' in author.keys():
                 authorNames.append("%s %s" % (author['firstname'], author['lastname']))
         coinsData['rft.au'] = authorNames
-        
+
         return coinsData

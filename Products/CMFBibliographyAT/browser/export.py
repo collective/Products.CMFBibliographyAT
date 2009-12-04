@@ -5,27 +5,25 @@ from bibliograph.rendering.interfaces import IBibliographyRenderer
 
 
 class BibliographyExportView(object):
-    """
-    """
-
+    """ """
 
     def __init__(self, context, request):
         self.context = context
         self.request = request
 
     def __call__(self):
-        """
-        """
+        """ """
+
         format = self.request.get('format', 'bibtex')
         response = self.request.response
+        renderer = self._getRenderer(format)
         response.setHeader('Content-Type', 'application/octet-stream')
         response.setHeader('Content-Disposition',
-                           'attachment; filename=%s' % self.__name__)
+                           'attachment; filename=%s.%s' % (self.__name__, renderer.target_format))
         return self.export(format)
 
     def export(self, format):
-        """
-        """
+        """ """
         renderer = self._getRenderer(format)
         return renderer.render(self.context)
 

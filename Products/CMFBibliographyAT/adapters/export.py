@@ -33,10 +33,17 @@ class BiliographicExportAdapter(object):
         self.title = _decode(self.context.Title())
         self.publication_year = self.context.publication_year
         self.abstract = _decode(self.context.getAbstract())
-        self.subject = _decode(self.context.subject)
+        self.subject = _decode(self.context.getKeywords())
         self.note = _decode(self.context.note)
         self.annote = _decode(self.context.annote)
         self.url = self.context.aq_base.getURL()
+
+        # identifiers
+        identifiers = dict()
+        for d in self.context.getIdentifiers():
+            if d.get('value'):
+                identifiers[d['label']] = d['value']
+        self.identifiers = identifiers
 
         # Authors as a FormattableNames structure
         self.getAuthors = self.context.getAuthors

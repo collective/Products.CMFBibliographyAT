@@ -88,7 +88,6 @@ Dependencies
 Extensions
 ----------
 
-
 * ATBiblioList: An add-on to CMFBibliographyAT that lets organise
   bibliographical references into selection lists and have them
   printed in a "ready to publish" style.
@@ -96,4 +95,10 @@ Extensions
 * AmazonTool: Supports import of bibliographic data from Amazon's
   database by calling their web service per ISBN provided.
 
+Resources
+---------
+
+* Bugtracker: http://plone.org/products/cmfbibliographyat/issues
+* For questions or for giving feedback: please ask on the plone-biblio
+  mailing list: https://mail.das-netzwerkteam.de/mailman/listinfo/plone-biblio
 

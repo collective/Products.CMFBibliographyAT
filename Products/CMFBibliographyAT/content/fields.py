@@ -76,6 +76,7 @@ publisherField = StringField('publisher',
                     label_msgid="label_publisher",
                     description="The publisher's name.",
                     description_msgid="help_publisher",
+                    size=60,
                     i18n_domain="cmfbibliographyat",),
                 )
 
@@ -88,6 +89,7 @@ addressField = StringField('address',
                     label_msgid="label_address",
                     description="Publisher's address. For major publishing houses, just the city is given. For small publishers, you can help the reader by giving the complete address.",
                     description_msgid="help_address",
+                    size=60,
                     i18n_domain="cmfbibliographyat",),
                 )
 
@@ -100,6 +102,7 @@ editionField = StringField('edition',
                     label_msgid="label_edition",
                     description="The edition of a book - for example: 'II', '2' or 'second', depending on your preference. Numbers will be turned into ordinal numerals.",
                     description_msgid="help_edition",
+                    size=60,
                     i18n_domain="cmfbibliographyat",),
                 )
 

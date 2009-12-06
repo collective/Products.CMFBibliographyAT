@@ -52,20 +52,35 @@ class Migration(object):
 
         for brain in self.site.portal_catalog(portal_type=REFERENCE_TYPES):
             ref = brain.getObject()
-            if not 'isbn' in ref.Schema().keys():
-                continue
-            old_isbn = ref.getIsbnOld()
-            new_isbn = ref.ISBN()
+            if 'isbn' in ref.Schema().keys():
 
-            # check for old ISBN and see if the object has already been migrated
-            if old_isbn and not getattr(ref, '_migrated_isbn', None):
-                print >>self.out, u'Migrating ISBN number of ', ref.absolute_url(1)
+                old_isbn = ref.getIsbnOld()
+                new_isbn = ref.ISBN()
 
-                # replace ISBN
-                ids = [d for d in ref.getIdentifiers() if d['label'] != 'ISBN']
-                ids.append({'label' : 'ISBN', 'value' : new_isbn})
-                ref.setIdentifiers(ids)
-                ref._migrated_isbn = True
+                # check for old ISBN and see if the object has already been migrated
+                if old_isbn and not getattr(ref, '_migrated_isbn', None):
+                    print >>self.out, u'Migrating ISBN number of ', ref.absolute_url(1)
+
+                    # replace ISBN
+                    ids = [d for d in ref.getIdentifiers() if d['label'] != 'ISBN']
+                    ids.append({'label' : 'ISBN', 'value' : new_isbn})
+                    ref.setIdentifiers(ids)
+                    ref._migrated_isbn = True
+
+            if 'pmid' in ref.Schema().keys():
+
+                old_pmid = ref.pmid()
+                new_pmid = ref.PMID()
+
+                # check for old PMID and see if the object has already been migrated
+                if old_pmid and not getattr(ref, '_migrated_pmid', None):
+                    print >>self.out, u'Migrating PMID number of ', ref.absolute_url(1)
+
+                    # replace PMID
+                    ids = [d for d in ref.getIdentifiers() if d['label'] != 'PMID']
+                    ids.append({'label' : 'PMID', 'value' : new_pmid})
+                    ref.setIdentifiers(ids)
+                    ref._migrated_pmid = True
 
         print >>self.out
 

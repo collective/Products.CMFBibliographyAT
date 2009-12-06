@@ -40,6 +40,9 @@ class TestRenderXML(PloneTestCase.PloneTestCase):
     def testRenderXML(self):
         bf = self.getPopulatedBibFolder()
         xml_source = bf.restrictedTraverse('@@export').export(format='xml').strip()
+        # chop of BOM
+        pos = xml_source.find('<?xml')
+        xml_source = xml_source[pos:] 
         # Need to remove Windows carriage returns for when tests run on Windows.
         xml_source = xml_source.replace('\r', '')
         expected_source = open(setup.MEDLINE_TEST_XML, 'r').read().strip()

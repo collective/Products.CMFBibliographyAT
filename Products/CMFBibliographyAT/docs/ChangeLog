@@ -1,4 +1,4 @@
-unreleased Andreas Jung <info@zopyx.com>
+2009-12-06  Andreas Jung <info@zopyx.com>
 	* increased the length of some string fields for better usability
 	* migration code for PMID
 	* relaxed some test due to test failures (XML BOM)

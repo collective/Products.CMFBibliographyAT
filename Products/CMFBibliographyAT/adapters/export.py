@@ -32,7 +32,7 @@ class BiliographicExportAdapter(object):
         self.__name__ = self.context.getId()
         self.title = _decode(self.context.Title())
         self.publication_year = self.context.getPublication_year()
-        self.publication_month = self.getPublication_month()
+        self.publication_month = self.context.getPublication_month()
         self.abstract = _decode(self.context.getAbstract())
         self.subject = _decode(self.context.getKeywords())
         self.note = _decode(self.context.note)

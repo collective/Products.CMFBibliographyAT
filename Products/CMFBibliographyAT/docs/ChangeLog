@@ -1,3 +1,7 @@
+2009-12-12 Andreas Jung <info@zopyx.com>
+	* support for publication_month within export adapter
+	* turned widget for publication_month into a selection widget
+
 2009-12-06  Andreas Jung <info@zopyx.com>
 	* increased the length of some string fields for better usability
 	* migration code for PMID

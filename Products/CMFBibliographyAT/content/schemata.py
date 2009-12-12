@@ -8,6 +8,7 @@ if CMFBAT_USES_LINGUAPLONE:
     from Products.LinguaPlone.public import FileWidget
     from Products.LinguaPlone.public import RichWidget, StringWidget
     from Products.LinguaPlone.public import KeywordWidget
+    from Products.LinguaPlone.public import SelectionWidget
 else:
     from Products.Archetypes.public import Schema
     from Products.Archetypes.public import StringField, TextField, LinesField
@@ -17,6 +18,7 @@ else:
     from Products.Archetypes.public import FileWidget
     from Products.Archetypes.public import RichWidget, StringWidget
     from Products.Archetypes.public import KeywordWidget
+    from Products.Archetypes.public import SelectionWidget
 
 from Products.Archetypes import PloneMessageFactory as _
 from Products.ATContentTypes.content.schemata \
@@ -59,6 +61,22 @@ HeaderSchema.addField(CookIdWarningField)
 tmp_title = HeaderSchema['title']
 tmp_title.is_duplicates_criterion=True
 del HeaderSchema['title']
+
+MONTH_VOCABULARY = ((
+     (u'', u'Select'),
+     (u'Jan', u'January'),
+     (u'Feb', u'February'),
+     (u'Mar', u'March'),
+     (u'Apr', u'April'),
+     (u'May', u'May'),
+     (u'Jun', u'June'),
+     (u'Jul', u'July'),
+     (u'Aug', u'August'),
+     (u'Sep', u'September'),
+     (u'Oct', u'October'),
+     (u'Nov', u'November'),
+     (u'Dec', u'December'),
+))
 
 AuthorSchema = Schema((
     FormattableNamesField('authors', # was 'publication_authors',
@@ -247,9 +265,11 @@ TrailingSchema = Schema((
     StringField('publication_month',
         searchable=1,
         required=0,
+        default='',
         languageIndependent=1,
         is_duplicates_criterion=True,
-        widget=StringWidget(
+        vocabulary=MONTH_VOCABULARY,
+        widget=SelectionWidget(
             label="Publication Month",
             label_msgid="label_publication_month",
             description_msgid="help_publication_month",

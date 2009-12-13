@@ -72,6 +72,14 @@ class TestBibliographyFolder(PloneTestCase.PloneTestCase):
         # Test the annote handling
         self.failUnless(bf['McKay2003'].getAnnote() == 'I really like it.')
 
+        # check publication year and month
+        lutz = bf['Lutz2001']
+        self.assertEqual(lutz.getPublication_year(), '2001')
+        self.assertEqual(lutz.getPublication_month(), '')
+        mckay = bf['McKay2003']
+        self.assertEqual(mckay.getPublication_year(), '2003')
+        self.assertEqual(mckay.getPublication_month(), 'Feb')
+
     def test_BibtexExport(self):
         bf = self.getPopulatedBibFolder()
         #bib_source = bf.bibliography_export(format='BibTeX').strip()

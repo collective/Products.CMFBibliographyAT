@@ -24,7 +24,7 @@ class Migration(object):
         print >> self.out, u"Migrating CMFBibliographyAT 0.9 -> 1.0"
         bibtool = getToolByName(self.site, 'portal_bibliography')
         self.migrateTool(bibtool)
-        self.migrateIsbn()
+        self.migrateIdentifiers()
 
     def migrateTool(self, bibtool):
         """Migrate the bibtool.
@@ -45,8 +45,8 @@ class Migration(object):
             print >> self.out, u'    Tool is up-to-date'
         print >> self.out
 
-    def migrateIsbn(self):
-        """ Migrate ISBN numbers to identifiers """
+    def migrateIdentifiers(self):
+        """ Migrate numbers to identifiers """
 
         from Products.CMFBibliographyAT.config import REFERENCE_TYPES
 

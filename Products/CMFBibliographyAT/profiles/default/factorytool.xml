@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<object name="portal_factory" meta_type="Plone Factory Tool">
+ <factorytypes>
+  <type portal_type="BibliographyFolder"/>
+  <type portal_type="BookReference"/>
+  <type portal_type="BookletReference"/>
+  <type portal_type="ConferenceReference"/>
+  <type portal_type="InbookReference"/>
+  <type portal_type="IncollectionReference"/>
+  <type portal_type="InproceedingsReference"/>
+  <type portal_type="ManualReference"/>
+  <type portal_type="MastersthesisReference"/>
+  <type portal_type="MiscReference"/>
+  <type portal_type="PhdtesisReference"/>
+  <type portal_type="PreprintReference"/>
+  <type portal_type="ProceedingsReference"/>
+  <type portal_type="TechreportReference"/>
+  <type portal_type="UnpublishedReference"/>
+  <type portal_type="WebpublishedReference"/>
+ </factorytypes>
+</object>

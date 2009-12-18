@@ -1,3 +1,7 @@
+2009-12-18  Andreas Jung <info@zopyx.com>
+	* fixed bug in PMI migration code
+    * 1.0.0 alpha 3
+
 2009-12-06  Andreas Jung <info@zopyx.com>
 	* increased the length of some string fields for better usability
 	* migration code for PMID

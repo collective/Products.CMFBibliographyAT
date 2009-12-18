@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <metadata>
-  <version>svn/1.0 (build 0029)</version>
+  <version>1.0.0a3</version>
   <dependencies>
     <dependency>profile-Products.ATExtensions:default</dependency>
   </dependencies>

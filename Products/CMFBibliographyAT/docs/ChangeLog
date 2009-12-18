@@ -1,4 +1,8 @@
 2009-12-18  Andreas Jung <info@zopyx.com>
+	* fixed Amazon link for ISBN-13 numbers
+    * 1.0.0 alpha 5
+
+2009-12-18  Andreas Jung <info@zopyx.com>
 	* BibTeX export adapter did not provide 'publication_month' 
     * 1.0.0 alpha 4
 

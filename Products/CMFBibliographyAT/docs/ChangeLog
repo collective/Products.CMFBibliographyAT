@@ -1,4 +1,8 @@
 2009-12-18  Andreas Jung <info@zopyx.com>
+	* BibTeX export adapter did not provide 'publication_month' 
+    * 1.0.0 alpha 4
+
+2009-12-18  Andreas Jung <info@zopyx.com>
 	* fixed bug in PMI migration code
     * 1.0.0 alpha 3
 

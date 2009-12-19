@@ -29,11 +29,11 @@ What it does
 
 CMFBibliography provides various new content types:
 
-o Bibliography Entries: Highly structured content objects to
+* Bibliography Entries: Highly structured content objects to
   hold bibliographic data referencing a publication. The schema
   is derived from BibTeX (LaTeX's bibliography handling modul).
 
-o Bibliography Folder: Enhanced 'Skinned Folder' with some
+* Bibliography Folder: Enhanced 'Skinned Folder' with some
   import/import functionality (available through the 'import' tab).
 
 Allowed content types are restricted to reference types.

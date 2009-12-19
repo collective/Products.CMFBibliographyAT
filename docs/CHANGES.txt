@@ -1,4 +1,4 @@
-1.0.0a6 (unreleased)
+1.0.0a6 (2009-12-19)
 --------------------
 
 * added support for using portal_factory

@@ -7,7 +7,7 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 desc = read('Products', 'CMFBibliographyAT', 'README.txt')
-changes = read('Products', 'CMFBibliographyAT', 'docs', 'CHANGES.txt')
+changes = read('docs', 'CHANGES.txt')
 long_desc = desc + '\n\nChanges\n=======\n\n' + changes
 
 setup(name='Products.CMFBibliographyAT',

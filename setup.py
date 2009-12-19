@@ -1,11 +1,19 @@
+import os
 from setuptools import setup, find_packages
 
-version = '1.0.0a5'
+version = '1.0.0a6'
+
+def read(*rnames):
+    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+
+desc = read('Products', 'CMFBibliographyAT', 'README.txt')
+changes = read('Products', 'CMFBibliographyAT', 'docs', 'CHANGES.txt')
+long_desc = desc + '\n\nChanges\n=======\n\n' + changes
 
 setup(name='Products.CMFBibliographyAT',
       version=version,
       description="Bibliographic references in Plone",
-      long_description=open("Products/CMFBibliographyAT/README.txt").read(),
+      long_description=long_desc,
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[
         "Framework :: Plone",

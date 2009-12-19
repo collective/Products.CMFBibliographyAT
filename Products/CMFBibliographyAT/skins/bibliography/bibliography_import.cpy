@@ -85,6 +85,13 @@ else:
 processedEntries = 0
 importErrors = 0
 for entry in entries:
+
+    # Workaround for #36 where an entry represents
+    # an error from parser instead of a dict containing
+    # importable data
+    if not same_type(entry, {}):
+        continue
+
     if entry.get('title'):
         upload = context.processSingleImport(entry,
                                              span_of_search=span_of_search)

@@ -292,3 +292,6 @@ msgstr "Publikation im PDF-Format"
 #. Default: "Bibliography Search"
 msgid "Bibliography Search"
 msgstr "Bibliographiesuche"
+
+msgid "back_to_search_form"
+msgstr "Zurück zum Suchformular"

@@ -1895,3 +1895,5 @@ msgstr "URL"
 msgid "view_label_keywords"
 msgstr "Stichwörter"
 
+msgid "back_to_search_form"
+msgstr "Zur&uuml;ck zum Suchformular"

@@ -63,18 +63,13 @@ Known issues
 ------------
 
 * There is no migration path from the old CMFBibliography (not
-  AT based) to the new one (AT based; CMFBibliographyAT) yet.
+  AT based) to the new one (AT based; CMFBibliographyAT) yet 
+  (and there won't be one)
 
 * If you upgrade to Archetypes 1.3.x you should also upgrade
   CMFBibliographyAT to a version newer than Mai 25th 2004
   (from the CVS 0.4 version) or the meta and portal types
   might be wrong.
-
-* CMFBibliographyAT is known not to work with Plone's
-  'portal_factory' due to the way in which the 'More Authors'
-  feature is implemented (you will lose the author information
-  if you use 'portal_factory' - XXX: I think this was fixed by
-  moving to ATExtensions for the authors field.
 
 
 Dependencies

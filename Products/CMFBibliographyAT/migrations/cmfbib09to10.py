@@ -69,7 +69,7 @@ class Migration(object):
 
             if 'pmid' in ref.Schema().keys():
 
-                old_pmid = ref.pmid()
+                old_pmid = ref.pmid
                 new_pmid = ref.PMID()
 
                 # check for old PMID and see if the object has already been migrated

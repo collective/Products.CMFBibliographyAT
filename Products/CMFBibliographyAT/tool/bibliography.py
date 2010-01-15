@@ -93,7 +93,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
     sort_members_on = ''
     select_members_attr = ''
     members_search_on_attr = ''
-    infer_author_references_after_edit = False
+    infer_author_references_after_edit = True
     infer_author_references_after_import = True
     authorof_implies_owner = False
     authorof_implies_creator = False

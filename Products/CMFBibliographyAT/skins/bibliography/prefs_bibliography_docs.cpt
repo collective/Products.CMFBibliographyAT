@@ -10,7 +10,9 @@
 
 <div metal:fill-slot="prefs_configlet_main"
      tal:define="errors options/state/getErrors;
-                 bib_tool here/portal_bibliography">
+                 bib_tool here/portal_bibliography;
+                 template_id template/getId;
+                 here_url context/@@plone_context_state/object_url;">
 
     <ul class="contentViews">
        <li class="selected">

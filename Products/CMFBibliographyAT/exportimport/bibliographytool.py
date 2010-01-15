@@ -120,10 +120,14 @@ def importBibliographyTool(context):
     """Import bibliography tool and contained parser, renderer and id-cooker
     definitions from XML files.
     """
-    site = context.getSite()
-    tool = getToolByName(site, "portal_bibliography")
+    # Only run step if a flag file is present
+    if context.readDataFile('cmfbib-tool.txt') is None:
+        return
 
-    importObjects(tool, '', context)
+    site = context.getSite()
+    tool = getToolByName(site, "portal_bibliography", None)
+    if tool is not None:
+        importObjects(tool, '', context)
 
 def exportBibliographyTool(context):
     """Export bibliography tool and contained parser, renderer and id-cooker

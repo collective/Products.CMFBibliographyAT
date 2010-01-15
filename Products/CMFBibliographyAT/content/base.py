@@ -55,7 +55,7 @@ class BaseEntry(BaseContent):
     """Base content for bibliographical references content types
     """
 
-    implements(IBibliographicItem)
+    implements(IBibliographicItem,IBibliographyExport)
 
     global_allow = 0
     content_icon = 'bibliography_entry.png'
@@ -69,9 +69,7 @@ class BaseEntry(BaseContent):
     schema = BaseEntrySchema
     _at_rename_after_creation = True
 
-    __implements__ = (BaseContent.__implements__,
-                      IBibliographyExport,
-                     )
+
     security = ClassSecurityInfo()
 
     # the default source

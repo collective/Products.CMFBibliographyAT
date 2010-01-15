@@ -1284,7 +1284,6 @@ class BibliographyFolder(BaseBibliographyIdCookerManager,
 
     implements(IBibliographyFolder)
 
-    __implements__ = ATCTOrderedFolder.__implements__
 
     import_report = ''
     _properties= ATCTOrderedFolder._properties + \
@@ -1323,7 +1322,6 @@ class LargeBibliographyFolder(BaseBibliographyIdCookerManager,
 
     implements(ILargeBibliographyFolder)
 
-    __implements__ = ATBTreeFolder.__implements__
 
     import_report = ''
     _properties= ATBTreeFolder._properties + \
@@ -1386,7 +1384,6 @@ class DuplicatesBibliographyFolder(BaseBibliographyIdCookerManager,
     schema = DuplicatesBibFolderSchema
 
     _at_rename_after_creation = True
-    __implements__ = ATCTOrderedFolder.__implements__
 
     _assoc_bibliography_folder = None
 

@@ -71,7 +71,7 @@ class BookReference(BaseEntry):
     """
 
     implements(IBookReference)
-    __implements__ = (BaseEntry.__implements__,)
+
 
     archetype_name = "Book Reference"
     source_fields = ('publisher', 'address', 'edition',

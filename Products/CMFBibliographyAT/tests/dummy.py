@@ -63,7 +63,7 @@ class SimpleTestMemberType(BaseContent):
 
     security = ClassSecurityInfo()
 
-registerType(SimpleTestMemberType)
+registerType(SimpleTestMemberType,"")
 
 class TestMemberType(BaseContent):
     """A test type"""
@@ -82,4 +82,4 @@ class TestMemberType(BaseContent):
 
     getAuthors = ComputedAttribute('Authors')
 
-registerType(TestMemberType)
+registerType(TestMemberType, "")

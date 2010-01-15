@@ -4,7 +4,7 @@ import re
 
 # Zope stuff
 from zope.interface import implements
-from Interface import Interface
+from zope.interface import Interface
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
@@ -54,7 +54,7 @@ class BibliographyIdCooker(SimpleItem, PropertyManager):
     """
     Base class for the id cookers of the bibliography tool.
     """
-    __implements__ = (IBibliographyIdCooker ,)
+
     implements(z3IBibliographyIdCooker)
 
     meta_type = 'Bibliography IdCooker'

@@ -19,7 +19,7 @@ class AbbrevIdCooker(BibliographyIdCooker):
     year.
     """
 
-    __implements__ = (IBibliographyIdCooker ,)
+
 
     meta_type = "Abbreviation Bibliography ID Cooker"
 

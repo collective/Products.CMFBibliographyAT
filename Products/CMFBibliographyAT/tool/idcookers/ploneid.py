@@ -20,7 +20,7 @@ class PloneIdCooker(BibliographyIdCooker):
     The ID is cooked from the bibliographical reference's title as a normalized string. That is the way Plone normally cooks object IDs.
     """
 
-    __implements__ = (IBibliographyIdCooker ,)
+
 
     meta_type = "PLONE Default Bibliography ID Cooker"
 

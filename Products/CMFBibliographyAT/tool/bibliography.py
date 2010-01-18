@@ -610,7 +610,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
                    or 'utf-8'
         fallbackEncoding = mimetypesTool and \
                            hasattr (mimetypesTool, 'fallbackEncoding') and \
-                           mimetypesTool.fallbackEncoding or 'latin1'
+                           mimetypesTool.fallbackEncoding or 'iso-8859-15'
         try:
             source = unicode(source, encoding)
         except UnicodeDecodeError:

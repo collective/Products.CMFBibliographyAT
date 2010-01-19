@@ -7,4 +7,6 @@
    <element value="PMID"/>
   </property>
  </object>
+ <object name="cmfbibat_properties">
+ </object>
 </object>

@@ -25,22 +25,22 @@ for key in REQUEST.keys():
 # enabled / disabled
 for setting in parser_enabled_settings:
 
-    parser_name = string.split(setting, '_')[-1]
-    parser_property = '_'.join(string.split(setting, '_')[:-1])
+    parser_name = setting.split('_')[-1]
+    parser_property = '_'.join(setting.split('_')[:-1])
     parser = context.portal_bibliography.getParser(format=parser_name, with_unavailables=True, with_disabled=True)
     parser.manage_changeProperties({parser_property: REQUEST.get(setting),})
 
 for setting in renderer_enabled_settings:
 
-    renderer_name = string.split(setting, '_')[-1]
-    renderer_property = '_'.join(string.split(setting, '_')[:-1])
+    renderer_name = setting.split('_')[-1]
+    renderer_property = '_'.join(setting.split('_')[:-1])
     renderer = context.portal_bibliography.getRenderer(format=renderer_name, with_unavailables=True, with_disabled=True)
     renderer.manage_changeProperties({renderer_property: REQUEST.get(setting),})
 
 # output encodings
 for setting in renderer_encoding_settings:
 
-    renderer_name = string.split(setting, '_')[-1]
+    renderer_name = setting.split('_')[-1]
     renderer_property = 'default_output_encoding'
     renderer = context.portal_bibliography.getRenderer(format=renderer_name, with_unavailables=True, with_disabled=True)
     renderer.manage_changeProperties({renderer_property: REQUEST.get(setting),})

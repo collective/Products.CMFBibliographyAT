@@ -2,6 +2,8 @@
 --------------------
 
 * removed "docs" tab from configuration panel (since it was empty)
+* added portal_properties/cmfbibat_properties as replacement for persistent 
+  perferences for parsers/renderers
 
 1.0.0b1 (2010-01-10)
 --------------------

@@ -1,3 +1,8 @@
+1.0.0b2 (unreleased)
+--------------------
+
+* removed "docs" tab from configuration panel (since it was empty)
+
 1.0.0b1 (2010-01-10)
 --------------------
 

@@ -43,18 +43,6 @@ class TestCMFBibliographyATInstall(PloneTestCase.PloneTestCase):
         root = self.portal
         self.failUnless('portal_bibliography' in root.objectIds())
 
-    def testParserFolderInstallation(self):
-        pass
-        # not used any longer - parsers now registered as utilites
-        #bibtool = self.portal.portal_bibliography
-        #self.failUnless('Parsers' in bibtool.objectIds())
-
-    def testRendererFolderInstallation(self):
-        pass
-        # not used any longer
-        #bibtool = self.portal.portal_bibliography
-        #self.failUnless('Renderers' in bibtool.objectIds())
-
     def testBibtexParserInstallation(self):
         parser = getUtility(IBibliographyParser, name='bibtex')
         self.failUnless(isinstance(parser, BibtexParser))

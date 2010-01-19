@@ -2,7 +2,7 @@
 <object name="portal_controlpanel">
  <configlet title="Bibliography Setup" action_id="BibliographySetup"
     appId="CMFBibliographyAT" category="Products" condition_expr=""
-    url_expr="string:${portal_url}/prefs_bibliography_docs" visible="True">
+    url_expr="string:${portal_url}/prefs_bibliography_general_form" visible="True">
   <permission>Manage portal</permission>
  </configlet>
 </object>

@@ -79,7 +79,7 @@
                    tal:define="value python:format[1];
                                renderer python: bib_tool.getRenderer(format='%s' % format[0]);
                                avail_encodings python: '|'.join(renderer.available_encodings) or 'not needed for this export format';
-                               default_encoding python: renderer.default_encoding;"
+                               default_encoding python: bib_tool.getProperty(format[0], 'default_output_encoding')"
                    tal:attributes="tabindex tabindex/next;
                                    value value;
                                    id string:bibexport_${value};

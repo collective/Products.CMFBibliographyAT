@@ -324,7 +324,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         """
         parsers = component.getAllUtilitiesRegisteredFor(IBibliographyParser)
         return [parser.getFormatExtension() \
-                for parser in parsers if (parser.isAvailable() or with_unavailables) and (parser.isEnabled() or with_disabled)]
+                for parser in parsers if (parser.isAvailable() or with_unavailables) and (self.isParserEnabled(parser.getFormatName()) or with_disabled)]
 
     def getImportFormatDescriptions(self, with_unavailables=False, with_disabled=False):
         """
@@ -343,7 +343,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         utils = component.getAllUtilitiesRegisteredFor(IBibliographyRenderer)
         return [ renderer.__name__ for renderer in utils
                  if (renderer.available or with_unavailables) and
-                    (renderer.enabled or with_disabled) ]
+                    (self.isRendererEnabled(renderer.__name__) or with_disabled) ]
 
     security.declarePublic('getExportFormatExtensions')
     def getExportFormatExtensions(self, with_unavailables=False, with_disabled=False):
@@ -354,7 +354,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         utils = component.getAllUtilitiesRegisteredFor(IBibliographyRenderer)
         return [ renderer.target_format for renderer in utils
                  if (renderer.available or with_unavailables) and
-                    (renderer.enabled or with_disabled) ]
+                    (self.isRendererEnabled(renderer.__name__) or with_disabled) ]
 
     def getExportFormatDescriptions(self, with_unavailables=False, with_disabled=False):
         """
@@ -364,7 +364,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         utils = component.getAllUtilitiesRegisteredFor(IBibliographyRenderer)
         return [ renderer.description for renderer in utils
                  if (renderer.available or with_unavailables) and
-                    (renderer.enabled or with_disabled) ]
+                    (self.isRendererEnabled(renderer.__name__) or with_disabled) ]
 
     security.declarePublic('getExportFormats')
     def getExportFormats(self, with_unavailables=False, with_disabled=False):
@@ -404,6 +404,16 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
             return renderer.render(entry, output_encoding=output_encoding, **kw)
         else:
             return None
+
+    security.declareProtected(View, 'isParserEnabled')
+    def isParserEnabled(self, name):
+        """ Check cmfbibat propertysheet """
+        return self.getProperty(name, 'parser_enabled')
+
+    security.declareProtected(View, 'isRendererEnabled')
+    def isRendererEnabled(self, name):
+        """ Check cmfbibat propertysheet """
+        return self.getProperty(name, 'renderer_enabled')
 
     security.declareProtected(View, 'getRenderer')
     def getRenderer(self, format, with_unavailables=False, with_disabled=False, **kw):

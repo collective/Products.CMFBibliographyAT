@@ -112,6 +112,16 @@ class TestCMFBibliographyATInstall(PloneTestCase.PloneTestCase):
         action_ids = [a.id for a in acttool.listActions()]
         self.failUnless('bibliography_search' in action_ids)
 
+    def testExistencePropertySheet(self):
+        pp = self.portal.portal_properties
+        self.assertEqual('cmfbibat_properties' in pp.objectIds(), True)
+
+    def testDefaultValuesInPropertySheet(self):
+        bib_tool = self.portal.portal_bibliography
+        self.assertEqual(bib_tool.getSheetProperty('BibTeX', 'parser_enabled'), True)
+        self.assertEqual(bib_tool.getSheetProperty('BibTeX', 'renderer_enabled'), True)
+        self.assertEqual(bib_tool.getSheetProperty('BibTeX', 'default_output_encoding'), 'ascii')
+
     # end of the individual tests
 
 def test_suite():

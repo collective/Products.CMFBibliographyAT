@@ -14,12 +14,7 @@ parser_enabled_settings = []
 renderer_enabled_settings = []
 renderer_encoding_settings = []
 
-pps = context.portal_properties.cmfbibat_properties
-
-def updateProperty(prefix, property, value):
-    name = '%s_%s' % (prefix, property)
-    context.plone_log((prefix, property, value))
-    pps.manage_changeProperties(**{name:value})
+bib_tool = context.portal_bibliography
 
 
 for key in REQUEST.keys():
@@ -35,19 +30,19 @@ for setting in parser_enabled_settings:
 
     parser_name = setting.split('_')[-1]
     parser_property = '_'.join(setting.split('_')[:-1])
-    updateProperty(parser_name, parser_property, bool(REQUEST.get(setting)))
+    bib_tool.updateProperty(parser_name, parser_property, bool(REQUEST.get(setting)))
 
 for setting in renderer_enabled_settings:
 
     renderer_name = setting.split('_')[-1]
     renderer_property = '_'.join(setting.split('_')[:-1])
-    updateProperty(renderer_name, renderer_property, bool(REQUEST.get(setting)))
+    bib_tool.updateProperty(renderer_name, renderer_property, bool(REQUEST.get(setting)))
 
 # output encodings
 for setting in renderer_encoding_settings:
 
     renderer_name = setting.split('_')[-1]
     renderer_property = 'default_output_encoding'
-    updateProperty(renderer_name, renderer_property, REQUEST.get(setting))
+    bib_tool.updateProperty(renderer_name, renderer_property, REQUEST.get(setting))
 
 return state.set(portal_status_message=context.translate(domain='cmfbibliographyat', msgid='bibliography_tool_updated_importexport', default='Updated Bibliography Settings - Import / Export.'))

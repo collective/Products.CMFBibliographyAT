@@ -3,7 +3,7 @@
 
 * removed "docs" tab from configuration panel (since it was empty)
 * added portal_properties/cmfbibat_properties as replacement for persistent 
-  perferences for parsers/renderers
+  perferences for parsers/renderers (#82)
 * added updateProperty(), getProperty(), isParserEnabled(), isRendererEnabled()
   methods to portal_bibliography
 * fixed several forms dealing with the parser/renderer preferences

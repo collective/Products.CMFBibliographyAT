@@ -408,12 +408,12 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
     security.declareProtected(View, 'isParserEnabled')
     def isParserEnabled(self, name):
         """ Check cmfbibat propertysheet """
-        return self.getProperty(name, 'parser_enabled')
+        return self.getSheetProperty(name, 'parser_enabled')
 
     security.declareProtected(View, 'isRendererEnabled')
     def isRendererEnabled(self, name):
         """ Check cmfbibat propertysheet """
-        return self.getProperty(name, 'renderer_enabled')
+        return self.getSheetProperty(name, 'renderer_enabled')
 
     security.declareProtected(View, 'getRenderer')
     def getRenderer(self, format, with_unavailables=False, with_disabled=False, **kw):
@@ -812,8 +812,8 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         return quickinstaller.isProductInstalled('CMFMember')
 
 
-    security.declareProtected(ManagePortal, 'updateProperty')
-    def updateProperty(self, prefix, property, value):
+    security.declareProtected(ManagePortal, 'updateSheetProperty')
+    def updateSheetProperty(self, prefix, property, value):
         """ Update cmfbibat propertysheet """
         ps = getToolByName(self, 'portal_properties').cmfbibat_properties
         prop_name = '%s_%s' % (prefix, property)
@@ -821,8 +821,8 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         ps.manage_changeProperties(**{prop_name:value})
 
 
-    security.declareProtected(View, 'getProperty')
-    def getProperty(self, prefix, property):
+    security.declareProtected(View, 'getSheetProperty')
+    def getSheetProperty(self, prefix, property):
         """ return property from cmfbibat propertysheet """
         ps = getToolByName(self, 'portal_properties').cmfbibat_properties
         prop_name = '%s_%s' % (prefix, property)

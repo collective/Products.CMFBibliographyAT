@@ -83,7 +83,7 @@
                                  description python: format[2];
                                  extension python: format[1];
                                  parser python: bib_tool.getParser(format=extension, with_unavailables=True, with_disabled=True);
-                                 isEnabled python: bib_tool.getProperty(name, 'parser_enabled');
+                                 isEnabled python: bib_tool.getSheetProperty(name, 'parser_enabled');
                                  isDisabled not: isEnabled">
 
                     <label i18n:translate="label_importfilter"><span i18n:name="filter" tal:content="string:${name}" /> - Import Filter</label>
@@ -146,7 +146,7 @@
                                  description python: format[2];
                                  extension python: format[1];
                                  renderer python: bib_tool.getRenderer(format=extension, with_unavailables=True, with_disabled=True);
-                                 isEnabled python: bib_tool.getProperty(name, 'renderer_enabled');
+                                 isEnabled python: bib_tool.getSheetProperty(name, 'renderer_enabled');
                                  isDisabled not: isEnabled;">
 
                     <label i18n:translate="label_exportfilter"><span i18n:name="filter" tal:content="string:${name}" /> - Export Filter</label>
@@ -206,7 +206,7 @@
 
                             <option tal:repeat="encoding renderer/available_encodings"
                                     tal:attributes="value encoding;
-                                                    selected python: test(encoding == bib_tool.getProperty(name, 'default_output_encoding'), 'selected', None);"
+                                                    selected python: test(encoding == bib_tool.getSheetProperty(name, 'default_output_encoding'), 'selected', None);"
                                     tal:content="encoding" />
 
                         </select>

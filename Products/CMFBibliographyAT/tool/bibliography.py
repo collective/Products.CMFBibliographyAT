@@ -811,6 +811,10 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         quickinstaller = getToolByName(self, 'portal_quickinstaller')
         return quickinstaller.isProductInstalled('CMFMember')
 
+    # The cmfbibat_properties property sheet is used to store render and
+    # parser related preferences. The 'prefix' refers to the name of
+    # the renderer or parser. Parser/Renderer names are normalized
+    # (compare with propertiestool.xml)
 
     security.declareProtected(ManagePortal, 'updateSheetProperty')
     def updateSheetProperty(self, prefix, property, value):

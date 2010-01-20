@@ -12,12 +12,15 @@
     <property name="EndNote_parser_enabled" type="boolean">True</property>
     <property name="Medline_parser_enabled" type="boolean">True</property>
     <property name="RIS_parser_enabled" type="boolean">True</property>
+    <property name="XMLMODS_parser_enabled" type="boolean">True</property>
     <property name="BibTeX_renderer_enabled" type="boolean">True</property>
     <property name="EndNote_renderer_enabled" type="boolean">True</property>
     <property name="PDF_renderer_enabled" type="boolean">True</property>
     <property name="RIS_renderer_enabled" type="boolean">True</property>
+    <property name="XMLMODS_renderer_enabled" type="boolean">True</property>
     <property name="BibTeX_default_output_encoding" type="string" >ascii</property>
     <property name="EndNote_default_output_encoding" type="string">ascii</property> 
     <property name="RIS_default_output_encoding" type="string">ascii</property> 
+    <property name="XMLMODS_default_output_encoding" type="string">ascii</property> 
  </object>
 </object>

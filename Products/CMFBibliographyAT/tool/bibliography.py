@@ -63,6 +63,7 @@ module_path = 'Products.CMFBibliographyAT.tool.bibliography'
 security = ModuleSecurityInfo(module_path)
 security.declarePublic('ImportParseError')
 
+from OFS.PropertySheets import PropertySheets
 
 class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
                        DuplicatesCriteriaManager):
@@ -799,6 +800,25 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
     def usesCMFMember(self):
         quickinstaller = getToolByName(self, 'portal_quickinstaller')
         return quickinstaller.isProductInstalled('CMFMember')
+
+
+    security.declareProtected(ManagePortal, 'updateProperty')
+    def updateProperty(self, prefix, property, value):
+        """ Update cmfbibat propertysheet """
+        ps = getToolByName(self, 'portal_properties').cmfbibat_properties
+        prop_name = '%s_%s' % (prefix, property)
+        prop_name = ''.join([c for c in prop_name if c.lower() in string.letters + '_'])
+        ps.manage_changeProperties(**{prop_name:value})
+
+
+    security.declareProtected(View, 'getProperty')
+    def getProperty(self, prefix, property):
+        """ return property from cmfbibat propertysheet """
+        ps = getToolByName(self, 'portal_properties').cmfbibat_properties
+        prop_name = '%s_%s' % (prefix, property)
+        prop_name = ''.join([c for c in prop_name if c.lower() in string.letters + '_'])
+        return ps.getProperty(prop_name)
+
 
     security.declarePrivate('getEntryDict')
     def getEntryDict(self, bibref_item, instance=None, title_link=False, title_link_only_if_owner=False, ):

@@ -106,6 +106,9 @@ class BibliographyIdCooker(SimpleItem, PropertyManager):
     def _cleanId(self, text):
         """remove all charcaters not allowed in Zope ids"""
         putils = getToolByName(self, 'plone_utils')
+        # BBB: this should be replaced with a normalizer from plone.i18n
+        # (however there is no out-of-the-box normalizer available implementing
+        # the relaxed mode without breaking existing tests)
         text = putils.normalizeString(text, relaxed=True)
         # 'relaxed' is a bit too relaxed, not removing spaces.
         text = text.replace(' ', '')

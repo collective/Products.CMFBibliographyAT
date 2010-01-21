@@ -10,10 +10,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFBibliographyAT.tool.idcookers.base \
      import IBibliographyIdCooker, BibliographyIdCooker
 
-try:
-    from plone.i18n.normalizer.interfaces import IFileNameNormalizer
-except ImportError:
-    from Products.CMFPlone.utils import IFileNameNormalizer
+from plone.i18n.normalizer.interfaces import IFileNameNormalizer
 
 class PloneIdCooker(BibliographyIdCooker):
     """

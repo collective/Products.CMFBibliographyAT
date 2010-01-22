@@ -123,7 +123,7 @@
              <label i18n:translate="label_bibliography_global">Global (all site)</label>
         </div>
 
-        <div class="warning"> 
+        <div class="input-encoding-note"> 
             <strong i18n:translate="label_bibliography_encoding_notes">Encoding notes</strong>:
             <ul>    
                 <li i18n:translate="ris_input_encoding">RIS input data must be UTF-8 encoded</li>

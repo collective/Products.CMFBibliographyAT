@@ -127,6 +127,7 @@
             <strong i18n:translate="label_bibliography_encoding_notes">Encoding notes</strong>:
             <ul>    
                 <li i18n:translate="ris_input_encoding">RIS input data must be UTF-8 encoded</li>
+                <li i18n:translate="endnote_input_encoding">Endnote input data must be UTF-8 encoded</li>
             </ul>
         </div>
 

@@ -1,3 +1,8 @@
+1.0.0b4 (2010-01-22)
+--------------------
+* fixed issues related to the input encoding of RIS files
+* added note on input encodings related to RIS files to the input form 
+
 1.0.0b3 (2010-01-20)
 --------------------
 * fixed API name clash for getProperty()

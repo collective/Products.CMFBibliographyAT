@@ -62,7 +62,7 @@
 
           <div tal:content="error">Validation error output</div>
 
-          <textarea cols="80" rows="25" tabindex="4" name="up_text"
+          <textarea cols="60" rows="10" tabindex="4" name="up_text"
                     id="up_text"
                     tal:content="up_text"></textarea>
         </div>

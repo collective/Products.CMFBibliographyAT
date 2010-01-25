@@ -1,3 +1,8 @@
+1.0.0b5 (2010-01-25)
+--------------------
+* fixed installation/uninstallation issues in setuphandler.py and
+  exportimport handler
+
 1.0.0b4 (2010-01-22)
 --------------------
 * fixed issues related to the input encoding of RIS files

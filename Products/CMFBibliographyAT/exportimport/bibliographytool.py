@@ -122,6 +122,8 @@ def importBibliographyTool(context):
     """
 
     # Only run step if a flag file is present
+    if context.readDataFile('cmfbib-tool.txt') is None:
+        return
 
     site = context.getSite()
     tool = getToolByName(site, "portal_bibliography", None)

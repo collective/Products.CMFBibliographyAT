@@ -12,13 +12,17 @@ def importVarious(context):
     Provisional handler that does initialization that is not yet taken
     care of by other handlers.
     """
+
+    if context.readDataFile('cmfbib-tool.txt') is None:
+        return
+
     site = context.getSite()
     logger = context.getLogger('bibliography')
     out = StringIO()
     install_transform(site, out)
     autoMigrate(site, out)
     logger.info(out.getvalue())
-    
+
     return 'Various settings from CMFBibliographyAT imported.'
 
 

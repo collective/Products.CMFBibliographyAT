@@ -18,9 +18,9 @@
     <property name="PDF_renderer_enabled" type="boolean">True</property>
     <property name="RIS_renderer_enabled" type="boolean">True</property>
     <property name="XMLMODS_renderer_enabled" type="boolean">True</property>
-    <property name="BibTeX_default_output_encoding" type="string" >ascii</property>
-    <property name="EndNote_default_output_encoding" type="string">ascii</property> 
-    <property name="RIS_default_output_encoding" type="string">ascii</property> 
-    <property name="XMLMODS_default_output_encoding" type="string">ascii</property> 
+    <property name="BibTeX_default_output_encoding" type="string" >utf-8</property>
+    <property name="EndNote_default_output_encoding" type="string">utf-8</property> 
+    <property name="RIS_default_output_encoding" type="string">utf-8</property> 
+    <property name="XMLMODS_default_output_encoding" type="string">utf-8</property> 
  </object>
 </object>

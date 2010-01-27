@@ -5,34 +5,6 @@
       metal:use-macro="here/main_template/macros/master"
       i18n:domain="cmfbibliographyat">
 
-<metal:head fill-slot="javascript_head_slot">
-
-    <metal:bibliography-export-js metal:define-macro="bibliography-export-js">
-    <script type="text/javascript">
-    // <!--
-    function changeAvailableEncodings(avail_encodings, def_encoding) {
-        var export_form = document.forms['export'];
-        var encoding_field = export_form['output_encoding'];
-        var options_array = avail_encodings.split('|');
-        var options_length = options_array.length;
-        encoding_field.options.length = 0;
-        for (var j=0; j < options_length; j++ ) {
-            var newOpt = new Option(options_array[j], options_array[j], false, false);
-            if ( options_array[j] == def_encoding ) {
-                newOpt.selected = true;
-            } else {
-                newOpt.selected = false;
-            }
-            newOpt.defaultSelected = false;
-            encoding_field.options[encoding_field.options.length] = newOpt;
-        }
-    }
-    // -->
-    </script>
-    </metal:bibliography-export-js>
-
-</metal:head>
-
 <body>
 
   <div metal:fill-slot="main"
@@ -77,14 +49,11 @@
             <input class="noborder" type="radio" name="format"
                    onchange=""
                    tal:define="value python:format[1];
-                               renderer python: bib_tool.getRenderer(format='%s' % format[0]);
-                               avail_encodings python: '|'.join(getattr(renderer, 'getavailable_encodings', ())) or 'not needed for this export format';
-                               default_encoding python: bib_tool.getSheetProperty(format[0], 'default_output_encoding')"
+                               renderer python: bib_tool.getRenderer(format='%s' % format[0])"
                    tal:attributes="tabindex tabindex/next;
                                    value value;
                                    id string:bibexport_${value};
-                                   checked python:test(False, 'checked', None);
-                                   onchange python: 'javascript: changeAvailableEncodings(\'%s\', \'%s\')' % (avail_encodings, default_encoding);"
+                                   checked python:test(False, 'checked', None);"
                    id="bibexport_structuredtext" checked="checked" />
             <label for="bibexport_structuredtext"
                    tal:define="value python:format[1]"
@@ -98,15 +67,10 @@
         </fieldset>
 
           <div class="field">
+                <!--
                 <label i18n:translate="label_output_encoding">Text output encoding:&nbsp;</label>
-                <select
-                    width="100%"
-                    tal:attributes="id string:output_encoding;
-                                    tabindex tabindex/next;
-                                    name string:output_encoding:text;">
-
-                    <option value="" selected="" i18n:translate="select_export_format">&lt;Please select an export format first&gt;</option>
-                </select>
+                -->
+                <input type="hidden" readonly name="output_encoding" value="utf-8" />
           </div>
 
           <div class="field">

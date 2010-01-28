@@ -12,7 +12,6 @@ REQUEST=context.REQUEST
 
 parser_enabled_settings = []
 renderer_enabled_settings = []
-renderer_encoding_settings = []
 
 bib_tool = context.portal_bibliography
 
@@ -22,8 +21,6 @@ for key in REQUEST.keys():
         parser_enabled_settings.append(key)
     if key.startswith('renderer_enabled_'):
         renderer_enabled_settings.append(key)
-    if key.startswith('renderer_encoding_'):
-        renderer_encoding_settings.append(key)
 
 # enabled / disabled
 for setting in parser_enabled_settings:
@@ -37,12 +34,5 @@ for setting in renderer_enabled_settings:
     renderer_name = setting.split('_')[-1]
     renderer_property = '_'.join(setting.split('_')[:-1])
     bib_tool.updateSheetProperty(renderer_name, renderer_property, bool(REQUEST.get(setting)))
-
-# output encodings
-for setting in renderer_encoding_settings:
-
-    renderer_name = setting.split('_')[-1]
-    renderer_property = 'default_output_encoding'
-    bib_tool.updateSheetProperty(renderer_name, renderer_property, REQUEST.get(setting))
 
 return state.set(portal_status_message=context.translate(domain='cmfbibliographyat', msgid='bibliography_tool_updated_importexport', default='Updated Bibliography Settings - Import / Export.'))

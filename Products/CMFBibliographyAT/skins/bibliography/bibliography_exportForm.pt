@@ -66,12 +66,7 @@
           </tal:formats>
         </fieldset>
 
-          <div class="field">
-                <!--
-                <label i18n:translate="label_output_encoding">Text output encoding:&nbsp;</label>
-                -->
-                <input type="hidden" readonly name="output_encoding" value="utf-8" />
-          </div>
+          <input type="hidden" readonly name="output_encoding" value="utf-8" />
 
           <div class="field">
                 <label i18n:translate="label_eol_style">End-Of-Line Style (for text file based exports)</label>

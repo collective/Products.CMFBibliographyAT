@@ -53,8 +53,9 @@
                    tal:attributes="tabindex tabindex/next;
                                    value value;
                                    id string:bibexport_${value};
-                                   checked python:test(False, 'checked', None);"
+                                   checked python:test(value=='bib', 'checked', None);"
                    id="bibexport_structuredtext" checked="checked" />
+
             <label for="bibexport_structuredtext"
                    tal:define="value python:format[1]"
                    tal:content="python: format[0]"
@@ -79,7 +80,6 @@
                        value="1"
                        name="eol_style:int"
                        id="eol_style_on"
-                       checked="checked"
                        tal:attributes="tabindex tabindex/next;"/>
                 <label for="eol_style_on" i18n:translate="label_eol_style_msdos">Use MS-DOS / Windows end-of-line style (CR+LF)</label>
 
@@ -90,6 +90,7 @@
                        name="eol_style:int"
                        id="eol_style_off"
                        value="0"
+                       checked="checked"
                        tal:attributes="tabindex tabindex/next;" />
                 <label for="eol_style_off" i18n:translate="label_eol_style_unix">Use UniX end-of-line style (LF only)</label>
 

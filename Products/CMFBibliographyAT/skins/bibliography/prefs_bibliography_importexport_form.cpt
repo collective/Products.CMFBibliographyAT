@@ -187,33 +187,6 @@
                         <label tal:attributes="for python: 'renderer_disabled_%s' % name;"
                                i18n:translate="label_renderer_disabled">disabled</label>
                         </div>
-                        <tal:noencoding tal:condition="not: renderer/available_encodings">
-                        <div style="float:left;">
-                            <label i18n:translate="default_encoding">Default encoding: </label>
-                            <span style="font-style: oblique;" i18n:translate="no_output_encoding_needed">no output encoding needed</span><br />
-                        </div>
-                        </tal:noencoding>
-                        <tal:encoding tal:condition="renderer/available_encodings">
-                        <div style="float:left;">
-                        <label i18n:translate="default_encoding">Default encoding: </label>
-                        <select name=""
-                                width="100%"
-                                id=""
-                                tabindex=""
-                                tal:attributes="id python: 'renderer_encoding_%s' % name;
-                                                tabindex tabindex/next;
-                                                name python: 'renderer_encoding_%s:text' % name;">
-
-                            <option tal:repeat="encoding renderer/available_encodings"
-                                    tal:attributes="value encoding;
-                                                    selected python: test(encoding == bib_tool.getSheetProperty(name, 'default_output_encoding'), 'selected', None);"
-                                    tal:content="encoding" />
-
-                        </select>
-                        </div>
-                        </tal:encoding>
-
-
 
                 </div>
                 </fieldset>

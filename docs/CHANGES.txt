@@ -1,3 +1,8 @@
+1.0.0b6 (2010-01-28)
+--------------------
+* using UTF-8 output encoding for all renderers except BibTeX (ASCII/LaTeX notation)
+* cleanup (internal/UI) of encoding related issues
+
 1.0.0b5 (2010-01-25)
 --------------------
 * fixed installation/uninstallation issues in setuphandler.py and

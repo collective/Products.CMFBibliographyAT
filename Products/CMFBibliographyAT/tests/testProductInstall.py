@@ -120,7 +120,6 @@ class TestCMFBibliographyATInstall(PloneTestCase.PloneTestCase):
         bib_tool = self.portal.portal_bibliography
         self.assertEqual(bib_tool.getSheetProperty('BibTeX', 'parser_enabled'), True)
         self.assertEqual(bib_tool.getSheetProperty('BibTeX', 'renderer_enabled'), True)
-        self.assertEqual(bib_tool.getSheetProperty('BibTeX', 'default_output_encoding'), 'ascii')
 
     # end of the individual tests
 

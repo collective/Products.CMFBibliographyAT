@@ -4,7 +4,7 @@
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=up_text=None,file=None,format='bib',span_of_search=None
+##parameters=up_text=None,file=None,format='bib',span_of_search=None,input_encoding='utf-8'
 ##title=
 ##
 
@@ -38,6 +38,18 @@ else:
         state.setError('file', msg)
         return state.set(status='failure',
                          portal_status_message='Please correct the indicated errors.')
+
+
+try:
+    source = unicode(source, input_encoding).decode('utf-8')
+except UnicodeError:
+    state.setError('input_encoding', 'Improper input encoding selection.')
+    msg = """The choosen input encoding does not match the real encoding of """ \
+          """your input data in order to convert it to unicode internally."""
+    addStatusMessage(REQUEST,_(unicode(msg)))
+    return state.set(status='failure',
+                     portal_status_message=msg)
+
 
 # skip DOS line breaks
 source = source.replace('\r','')

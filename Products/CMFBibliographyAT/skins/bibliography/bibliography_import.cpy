@@ -39,9 +39,8 @@ else:
         return state.set(status='failure',
                          portal_status_message='Please correct the indicated errors.')
 
-
 try:
-    source = unicode(source, input_encoding).decode('utf-8')
+    source = unicode(source, input_encoding, 'ignore').encode('utf-8', 'ignore')
 except UnicodeError:
     state.setError('input_encoding', 'Improper input encoding selection.')
     msg = """The choosen input encoding does not match the real encoding of """ \
@@ -49,6 +48,7 @@ except UnicodeError:
     addStatusMessage(REQUEST,_(unicode(msg)))
     return state.set(status='failure',
                      portal_status_message=msg)
+
 
 
 # skip DOS line breaks

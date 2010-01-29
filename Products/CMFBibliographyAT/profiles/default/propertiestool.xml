@@ -6,6 +6,11 @@
    <element value="ISBN"/>
    <element value="PMID"/>
   </property>
+  <property name="available_input_encodings" type="lines">
+   <element value="UTF-8"/>
+   <element value="ISO-8859-15"/>
+   <element value="ASCII"/>
+  </property>
  </object>
  <object name="cmfbibat_properties">
     <property name="BibTeX_parser_enabled" type="boolean">True</property>

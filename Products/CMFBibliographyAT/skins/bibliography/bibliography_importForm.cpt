@@ -98,8 +98,25 @@
             </div>
             <div class="formHelp" tal:content="python: format[2]" />
           </tal:formats>
-
         </div>
+
+        <div class="field">
+            <label for="input_encoding"
+                 i18n:translate="label_input_encoding">Input encoding</label>
+
+            <div class="formHelp" i18n:translate="help_input_encoding">
+              Choose here the proper encoding of your input data. The choice is important in order
+              to order your data propertly into Plone.
+             </div>
+
+            <select name="input_encoding" id="input_encoding">
+                <option tal:repeat="encoding context/portal_properties/extensions_properties/available_input_encodings"
+                        tal:content="encoding"
+                        tal:attributes="value encoding"
+                />
+            </select>
+        </div>
+
 
         <div class="field"
              tal:condition="python: here.getEnableDuplicatesManager()">
@@ -122,6 +139,7 @@
                     tal:attributes="checked python: test(here.getDuplicatesMatchingPolicy() == 'global', 'checked', None)"/>
              <label i18n:translate="label_bibliography_global">Global (all site)</label>
         </div>
+
 
         <div class="input-encoding-note" style="background: #eeeeee"> 
             <strong i18n:translate="label_bibliography_encoding_notes">Encoding notes</strong>:

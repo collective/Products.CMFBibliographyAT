@@ -1,3 +1,7 @@
+1.0.0b8 (2010-01-29)
+--------------------
+* minor but critical bugfix in input encoding checker
+
 1.0.0b7 (2010-01-29)
 --------------------
 * re-added selection for input encoding on the import form

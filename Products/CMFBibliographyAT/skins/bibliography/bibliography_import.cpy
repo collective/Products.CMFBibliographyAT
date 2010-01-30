@@ -39,18 +39,6 @@ else:
         return state.set(status='failure',
                          portal_status_message='Please correct the indicated errors.')
 
-try:
-    source = unicode(source, input_encoding, 'ignore').encode('utf-8', 'ignore')
-except UnicodeError:
-    state.setError('input_encoding', 'Improper input encoding selection.')
-    msg = """The choosen input encoding does not match the real encoding of """ \
-          """your input data in order to convert it to unicode internally."""
-    addStatusMessage(REQUEST,_(unicode(msg)))
-    return state.set(status='failure',
-                     portal_status_message=msg)
-
-
-
 # skip DOS line breaks
 source = source.replace('\r','')
 
@@ -59,9 +47,9 @@ bibtool = context.portal_bibliography
 try:
     # FIXME - produce StringIO and factorize code here & in folder.py
     if file:
-        entries = bibtool.getEntries(source, format, file.filename)
+        entries = bibtool.getEntries(source, format, file.filename, input_encoding=input_encoding)
     else:
-        entries = bibtool.getEntries(source, format)
+        entries = bibtool.getEntries(source, format, input_encoding=input_encoding)
 except ImportParseError:
     state.setError('format', 'Select an appropriate format for your file.')
     msg = """%s Parser's 'checkFormat' and guessing the format""" \
@@ -69,6 +57,14 @@ except ImportParseError:
     addStatusMessage(REQUEST,_(unicode(msg)))
     return state.set(status='failure',
                      portal_status_message=msg)
+except UnicodeError:
+    state.setError('input_encoding', 'Improper input encoding selection.')
+    msg = """The choosen input encoding does not match the real encoding of """ \
+          """your input data in order to convert it to unicode internally."""
+    addStatusMessage(REQUEST,_(unicode(msg)))
+    return state.set(status='failure',
+                     portal_status_message=msg)
+
 
 # debug message if entries is not a python list
 if not entries or not same_type(entries, []):

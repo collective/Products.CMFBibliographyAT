@@ -7,7 +7,9 @@
 
 """BibliographyTool main class"""
 # Python stuff
-import re, string
+import re
+import string
+import codecs
 
 
 # Zope stuff
@@ -434,15 +436,14 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
 
 
     security.declareProtected(View, 'getEntries')
-    def getEntries(self, source, format, file_name=None):
+    def getEntries(self, source, format, file_name=None, input_encoding='utf-8'):
         """
         main routine to be called from BibliographyFolders
         returns a list with the parsed entries
         """
-        source = self.checkEncoding(source)
 
+        source = self.checkEncoding(source, input_encoding)
         format = self.checkFormat(source, format, file_name)
-
         parser = self.getParser(format)
 
         if parser:
@@ -612,20 +613,15 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
             # FIXME BAD
             return testid + 'a'
 
-    def checkEncoding(self, source):
-        """
-        Make sure we have utf encoded text
-        """
-        mimetypesTool = getToolByName(self, 'mimetypes_registry', None)
-        encoding = mimetypesTool and mimetypesTool.guess_encoding(source) \
-                   or 'utf-8'
-        fallbackEncoding = mimetypesTool and \
-                           hasattr (mimetypesTool, 'fallbackEncoding') and \
-                           mimetypesTool.fallbackEncoding or 'iso-8859-15'
-        try:
-            source = unicode(source, encoding)
-        except UnicodeDecodeError:
-            source = unicode(source, fallbackEncoding)
+    def checkEncoding(self, source, input_encoding='utf-8'):
+        """ Make sure we have utf-8 encoded text """
+
+        encoding = input_encoding
+        if source.startswith(codecs.BOM_UTF8):
+            source = source[3:] # chop of BOM (might confuse checkFormat())
+            encoding = 'utf-8'
+
+        source = unicode(source, encoding)
         return source.encode('utf-8')
 
     def checkFormat(self, source, format, file_name):
@@ -634,6 +630,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         if not it tries to infer the format from the 'file_name'
         raises an error if both fail
         """
+
         ok = 0
         if format:
             parser = self.getParser(format)

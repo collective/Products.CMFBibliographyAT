@@ -10,7 +10,7 @@
 import re
 import string
 import codecs
-
+import logging
 
 # Zope stuff
 from zope.interface import implements
@@ -51,6 +51,8 @@ from bibliograph.parsing.interfaces import IBibliographyParser
 # citation patterns
 citations = re.compile(r'\\?cite{([\w, ]*)}')
 bibitems = re.compile(r'\\?bibitem{([\w]*)}')
+
+LOG = logging.getLogger('CMFBibliographyAT')
 
 
 class ImportParseError(Exception):
@@ -447,7 +449,11 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         parser = self.getParser(format)
 
         if parser:
-            return parser.getEntries(source)
+            try:
+                return parser.getEntries(source)
+            except Exception, e:
+                LOG.error('Import error while importing file (%s)' % e, exc_info=True)
+                raise RuntimeError('An error occured (%s) - please check the log file for details' % e)
         else:
             return "No parser for '%s' available." % format
 

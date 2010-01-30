@@ -65,6 +65,10 @@ except UnicodeError:
     return state.set(status='failure',
                      portal_status_message=msg)
 
+except RuntimeError,e:
+    addStatusMessage(REQUEST,_(unicode(e)))
+    return state.set(status='failure',
+                     portal_status_message=e)
 
 # debug message if entries is not a python list
 if not entries or not same_type(entries, []):

@@ -9,8 +9,6 @@ from Products.CMFBibliographyAT.tests import dummy
 # and the types get still registered with the types tool
 from Products.GenericSetup import EXTENSION, profile_registry
 
-os.environ['NOT_FIX_BIBTEX'] = '1'
-
 profile_registry.registerProfile('test_types',
     'CMFBibliography member types for testing',
     "Extension profile including CMFBib's member types for testing",

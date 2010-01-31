@@ -54,7 +54,7 @@ class TestReferenceIdCooking(PloneTestCase.PloneTestCase):
         bf.setCookIdsOnBibRefCreation(value=cook_ids_on_bibref_creation)
         bf.setCookIdsAfterBibRefEdit(value=cook_ids_after_bibref_edit)
         idcooking_source = open(setup.IDCOOKING_TEST_BIB, 'r').read()
-        bf.processImport(idcooking_source, 'idcooking_test.bib')
+        bf.processImport(idcooking_source, 'idcooking_test.bib', input_encoding='iso-8859-15')
         return bf
 
     def processBibRefObject(self, bibfolder=None, bibref_item=None,

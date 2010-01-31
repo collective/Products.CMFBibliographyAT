@@ -748,7 +748,7 @@ class BaseBibliographyImportManager(Acquirer):
 
 
     security.declareProtected(AddPortalContent, 'processImport')
-    def processImport(self, source, filename, format=None, return_obs=False):
+    def processImport(self, source, filename, format=None, return_obs=False, input_encoding='utf-8'):
         """
         main routine to be called for importing entire files
         from custom code.
@@ -757,7 +757,7 @@ class BaseBibliographyImportManager(Acquirer):
 
         # get parsed entries from the Bibliography Tool
         bib_tool = getToolByName(self, 'portal_bibliography')
-        entries = bib_tool.getEntries(source, format, filename)
+        entries = bib_tool.getEntries(source, format, filename, input_encoding=input_encoding)
 
         obs = []
         for entry in entries:

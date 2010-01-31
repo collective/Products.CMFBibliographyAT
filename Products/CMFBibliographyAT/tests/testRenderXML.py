@@ -46,13 +46,6 @@ class TestRenderXML(PloneTestCase.PloneTestCase):
         # Need to remove Windows carriage returns for when tests run on Windows.
         xml_source = xml_source.replace('\r', '')
         expected_source = open(setup.MEDLINE_TEST_XML, 'r').read().strip()
-        # just in case we need to debug that again
-        #l1 = bib_source.splitlines(1)
-        #l2 = expected_source.splitlines(1)
-        #from difflib import Differ
-        #from pprint import pprint
-        #d = Differ()
-        #pprint(list(d.compare(l1,l2)))
         self.assertEqual(xml_source, expected_source)
 
     # end of the individual tests

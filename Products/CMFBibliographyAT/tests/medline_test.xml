@@ -30,7 +30,7 @@
         </role>
     </name>
     <originInfo>
-        <dateIssued>2003</dateIssued>
+        <dateIssued>2003-Feb</dateIssued>
     </originInfo>
     <typeOfResource>text</typeOfResource>
     <relatedItem type="host">
@@ -47,7 +47,7 @@
     <note>automatic medline import</note>
     <identifier type="citekey">GrootEtAl2003</identifier>
     <part>
-        <date>2003</date>
+        <date>2003-Feb</date>
         <detail type="volume"><number>90</number></detail>
         <detail type="number"><number>2</number></detail>
         <extent unit="page">
@@ -76,7 +76,7 @@
         </role>
     </name>
     <originInfo>
-        <dateIssued>2003</dateIssued>
+        <dateIssued>2003-Apr</dateIssued>
     </originInfo>
     <typeOfResource>text</typeOfResource>
     <relatedItem type="host">
@@ -93,7 +93,7 @@
     <note>automatic medline import</note>
     <identifier type="citekey">AlibardiThompson2003</identifier>
     <part>
-        <date>2003</date>
+        <date>2003-Apr</date>
         <detail type="volume"><number>256</number></detail>
         <detail type="number"><number>1</number></detail>
         <extent unit="page">
@@ -154,7 +154,7 @@
         </role>
     </name>
     <originInfo>
-        <dateIssued>2003</dateIssued>
+        <dateIssued>2003-Feb</dateIssued>
     </originInfo>
     <typeOfResource>text</typeOfResource>
     <relatedItem type="host">
@@ -171,7 +171,7 @@
     <note>automatic medline import</note>
     <identifier type="citekey">CokeEtAl2003</identifier>
     <part>
-        <date>2003</date>
+        <date>2003-Feb</date>
         <detail type="volume"><number>64</number></detail>
         <detail type="number"><number>2</number></detail>
         <extent unit="page">
@@ -201,7 +201,7 @@
         </role>
     </name>
     <originInfo>
-        <dateIssued>2002</dateIssued>
+        <dateIssued>2002-Aug</dateIssued>
     </originInfo>
     <typeOfResource>text</typeOfResource>
     <relatedItem type="host">
@@ -218,7 +218,7 @@
     <note>automatic medline import</note>
     <identifier type="citekey">TrapeMane2002</identifier>
     <part>
-        <date>2002</date>
+        <date>2002-Aug</date>
         <detail type="volume"><number>95</number></detail>
         <detail type="number"><number>3</number></detail>
         <extent unit="page">

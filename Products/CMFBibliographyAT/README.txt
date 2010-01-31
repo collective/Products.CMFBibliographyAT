@@ -38,11 +38,13 @@ CMFBibliography provides various new content types:
 
 Allowed content types are restricted to reference types.
 
-Currently supported import formats are 'BibTeX' and 'Medline'.
-Check out the accompanying files in 'import_samples' to see
-this in action.
+Currently supported import formats are 'BibTeX', 'Endnote', 'RIS',  'Medline'
+and XML/MODS.  Check out the accompanying files in 'import_samples' to see this
+in action.
 
-Currently supported export formats: BibTeX (but see below)
+Currently supported export formats: BibTeX (but see below), 'Endnote', 'RIS'
+and 'XML/MODS'.
+
 
 Under the folder's 'defaults' tab you can (i) specify default
 links for authors of references with the folder and (ii) define
@@ -59,36 +61,12 @@ to the portal tabs (if you don't want this, go to
 'portal_bibliography > Actions' and tick off its visibility).
 
 
-Known issues
-------------
-
-* There is no migration path from the old CMFBibliography (not
-  AT based) to the new one (AT based; CMFBibliographyAT) yet 
-  (and there won't be one)
-
-* If you upgrade to Archetypes 1.3.x you should also upgrade
-  CMFBibliographyAT to a version newer than Mai 25th 2004
-  (from the CVS 0.4 version) or the meta and portal types
-  might be wrong.
-
-
 Dependencies
 ------------
 
 * Bibutils (optional) http://www.scripps.edu/~cdputnam/software/bibutils
   to extend the range of supported import/output formats. Bibutils is
   mandatory for any kind of export/import. Minimum version is Bibutils 4.6.
-
-
-Extensions
-----------
-
-* ATBiblioList: An add-on to CMFBibliographyAT that lets organise
-  bibliographical references into selection lists and have them
-  printed in a "ready to publish" style.
-
-* AmazonTool: Supports import of bibliographic data from Amazon's
-  database by calling their web service per ISBN provided.
 
 Resources
 ---------

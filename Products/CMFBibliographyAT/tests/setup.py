@@ -1,3 +1,5 @@
+import os
+
 from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
 
@@ -6,6 +8,8 @@ from Products.CMFBibliographyAT.tests import dummy
 
 # and the types get still registered with the types tool
 from Products.GenericSetup import EXTENSION, profile_registry
+
+os.environ['NOT_FIX_BIBTEX'] = '1'
 
 profile_registry.registerProfile('test_types',
     'CMFBibliography member types for testing',

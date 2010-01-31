@@ -74,18 +74,15 @@ class TestBibliographyFolder(PloneTestCase.PloneTestCase):
 
     def test_BibtexExport(self):
         bf = self.getPopulatedBibFolder()
-        #bib_source = bf.bibliography_export(format='BibTeX').strip()
         bib_source = bf.restrictedTraverse('@@export').export(format='BibTeX').strip()
         expected_source = open(setup.MEDLINE_TEST_BIB, 'r').read().strip()
-##         # just in case we need to debug that again
-##         l1 = bib_source.splitlines(1)
-##         l2 = expected_source.splitlines(1)
-##         from difflib import Differ
-##         from pprint import pprint
-##         d = Differ()
-##         pprint(list(d.compare(l1,l2)))
-        self.assertEqual(bib_source, expected_source)
-
+        # split bibtex files by-line and compare them as lists (ignoring empty lines)
+        l1 = bib_source.splitlines(1)
+        l1 = [l.strip() for l in l1 if l.strip()]
+        l2 = expected_source.splitlines(1)
+        l2 = [l.strip() for l in l2 if l.strip()]
+        self.assertEqual(l1, l2)
+        return
     def test_BibtexExportCiteKeys(self):
         bf = self.getPopulatedBibFolder(setup.BIBTEX_TEST_CITE_KEY, 'bib')
         #bib_source = bf.bibliography_export(format='BibTeX').strip()

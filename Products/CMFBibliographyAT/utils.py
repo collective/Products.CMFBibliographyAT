@@ -25,7 +25,7 @@ def _getCoinsString(self, coinsData):
     coinsString = "ctx_ver=Z39.88-2004"
     for (key, value) in coinsData.items():
         if value:
-            if type(value) == list:
+            if instance(value, (tuple, list)):
                 for v in value:
                     coinsString += "&%s" % urlencode({key: v})
             else:

@@ -92,7 +92,7 @@ class TestBibtexParsing(PloneTestCase.PloneTestCase):
             'institution': 'Ökologie-Zentrum',
         }
 
-        source = bibtool.checkEncoding(source)
+        source = bibtool.checkEncoding(source, 'iso-8859-15')
         source = p.preprocess(source)
         result = p.parseEntry(source)
 
@@ -104,7 +104,7 @@ class TestBibtexParsing(PloneTestCase.PloneTestCase):
         p = bibtool.getParser('bibtex')
         source = open(setup.BIBTEX_TEST_LASTFIELDKOMMA, 'r').read()
 
-        source = bibtool.checkEncoding(source)
+        source = bibtool.checkEncoding(source, 'iso-8859-15')
         source = p.preprocess(source)
         results = p.getEntries(source)
 

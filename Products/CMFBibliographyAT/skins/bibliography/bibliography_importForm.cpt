@@ -140,15 +140,6 @@
              <label i18n:translate="label_bibliography_global">Global (all site)</label>
         </div>
 
-
-        <div class="input-encoding-note" style="background: #eeeeee"> 
-            <strong i18n:translate="label_bibliography_encoding_notes">Encoding notes</strong>:
-            <ul>    
-                <li i18n:translate="ris_input_encoding">RIS input data must be UTF-8 encoded</li>
-                <li i18n:translate="endnote_input_encoding">Endnote input data must be UTF-8 encoded</li>
-            </ul>
-        </div>
-
         <div class="formControls">
           <input class="context"
                  tabindex=""

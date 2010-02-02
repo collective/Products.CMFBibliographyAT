@@ -80,7 +80,7 @@
             <span tal:replace="structure result/Authors" >Authors</span>
               (<span tal:replace="result/publication_year">1900</span>).<br />
 
-            <a href="/view" tal:attributes="href result/getURL">
+            <a href="/view" tal:attributes="href result/getURL; UID result/UID" class="bibliography-item" >
                 <b class=""
                    tal:attributes="class python: 'state-%s' % result['review_state'];"
                    tal:content="structure result/Title">Title</b></a><br />
@@ -96,7 +96,6 @@
           </tal:not-bibliostyles>
 
           <tal:bibliostyles tal:condition="has_atbibliostyles">
-
           <div tal:define="formatted_list python: here.portal_bibliostyles.formatList(batch, style, instance=None, title_link=True, title_link_only_if_owner=False, brains_object=True, sort=False);"
                tal:repeat="ref formatted_list">
             <span tal:replace="structure ref" />

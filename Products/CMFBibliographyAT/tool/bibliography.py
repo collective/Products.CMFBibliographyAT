@@ -868,6 +868,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
                           'isbn',
                           'annote',)
         values = {}
+        values['UID'] = bibref_item.UID()
         tmp_title = _decode(bibref_item.Title())
         if tmp_title and (tmp_title[-1] == '.'): tmp_title = tmp_title[:-1]
         values['title'] = tmp_title

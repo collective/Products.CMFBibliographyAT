@@ -1,6 +1,7 @@
 1.0.0b10 (unreleased)
 ---------------------
 * fixed all unittests
+* #81 - fixed strange filtering for anonymous in bibliography_view
 
 1.0.0b9 (2010-01-30)
 --------------------

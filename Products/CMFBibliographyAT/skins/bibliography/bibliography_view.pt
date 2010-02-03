@@ -10,6 +10,7 @@
 
   <div metal:fill-slot="main">
   <metal:bibliography_view metal:define-macro="bibliograpy_view">
+
   <div metal:define-slot="bibliography_view"
        tal:define="navtool here/portal_properties/navtree_properties;
                    reference_types python:container.portal_bibliography.getReferenceTypes();

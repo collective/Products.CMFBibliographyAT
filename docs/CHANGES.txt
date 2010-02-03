@@ -1,4 +1,8 @@
-1.0.0b10 (unreleased)
+1.0.0b11 (unreleased)
+---------------------
+* #87 - PDF reference popup did not work
+
+1.0.0b10 (2010-02-03)
 ---------------------
 * fixed all unittests
 * #81 - fixed strange filtering for anonymous in bibliography_view

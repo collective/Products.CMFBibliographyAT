@@ -15,7 +15,7 @@
         />
 
     <browser:view
-        for="bibliograph.core.interfaces.IBibliography"
+        for="*"
         name="export"
         permission="zope.Public"
         class=".export.BibliographyExportView"

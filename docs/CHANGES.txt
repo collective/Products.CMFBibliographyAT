@@ -1,4 +1,8 @@
-1.0.0b11 (unreleased)
+1.0.0b12 (2010-02-09)
+---------------------
+* fix interface decl. for @@export
+
+1.0.0b11 (2010-02-09)
 ---------------------
 * #87 - PDF reference popup did not work
 * re-hacked support for support the export of single bibliographic items

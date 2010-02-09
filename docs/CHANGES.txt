@@ -1,6 +1,7 @@
 1.0.0b11 (unreleased)
 ---------------------
 * #87 - PDF reference popup did not work
+* re-hacked support for support the export of single bibliographic items
 
 1.0.0b10 (2010-02-03)
 ---------------------

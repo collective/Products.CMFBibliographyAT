@@ -28,7 +28,7 @@
 
     <form class="group"
           name="export"
-          action="@@export"
+          tal:attributes="action string:${here/absolute_url}/@@export"
           method="post"
           tal:define="absolute_url here/absolute_url">
 

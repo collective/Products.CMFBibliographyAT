@@ -45,7 +45,6 @@ from Products.CMFBibliographyAT.utils import _getCoinsString
 
 from bibliograph.core.utils import _encode, _decode
 
-
 BaseEntrySchema = HeaderSchema + \
                   AuthorSchema + \
                   CoreSchema + \

@@ -1,3 +1,7 @@
+1.0.0b13 (unreleased)
+---------------------
+* suffix for generated Endnote exports must be '.enw', not '.end'
+
 1.0.0b12 (2010-02-09)
 ---------------------
 * fix interface decl. for @@export

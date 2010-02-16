@@ -19,9 +19,11 @@ class BibliographyExportView(object):
         format = self.request.get('format', 'bibtex')
         response = self.request.response
         renderer = self._getRenderer(format)
+        # Hotfix: suffix for Endnote must be  '.enw', not '.end'
+        suffix = renderer.target_format == 'end' and 'enw' or renderer.target_format
         response.setHeader('Content-Type', 'application/octet-stream')
         response.setHeader('Content-Disposition',
-                           'attachment; filename=%s.%s' % (self.__name__, renderer.target_format))
+                           'attachment; filename=%s.%s' % (self.__name__, suffix))
         return self.export(format, output_encoding, eol_style)
 
     def export(self, format, output_encoding='utf-8', eol_style=0):

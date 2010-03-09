@@ -172,6 +172,7 @@ class ArticleReference(BaseEntry):
         coinsData['rft.pages'] = self.getPages()
         coinsData['rft.genre'] = "article"
         coinsData['rft.atitle'] = self.Title()
+        coinsData['rft.title'] = self.getJournal()
         coinsData['rft.jtitle'] = self.getJournal()
 
         coinsData['rft_val_fmt'] = "info:ofi/fmt:kev:mtx:journal"

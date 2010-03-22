@@ -39,7 +39,6 @@
                  results python: here.queryCatalog(REQUEST=request,use_types_blacklist=use_types_blacklist) or [];
 
                  results python: bib_tool.filterOutBibEntriesFromNonSearchableBibFolders(results);
-                 results python: [ result for result in results if [ role for role in mtool.getAuthenticatedMember().getRolesInContext(result.getObject()) if role in ['Manager', 'BibManager', 'Reviewer', 'Owner'] ] or (navtool and result.review_state in navtool.getProperty('wf_states_to_show')) ];
                  sort_on python:(('publication_year', 'cmp', 'desc'),
                                  ('Authors', 'nocase', 'asc'));
                  results python:sequence.sort(results, sort_on);

@@ -77,3 +77,17 @@ sys.modules[old_path + 'WebpublishedReference'] = webpublished
 
 from tool import bibliography
 sys.modules['Products.CMFBibliographyAT.BibliographyTool'] = bibliography
+
+# check Bibutils version
+from bibliograph.core.version_check import checkBibutilsVersion
+import logging
+LOG = logging.getLogger('Products.CMFBibliographyAT')
+
+try:
+    bibutils_version = checkBibutilsVersion()
+    LOG.info('Installed Bibutils version: %s' % bibutils_version)
+except RuntimeError, e:
+    bibutils_version = None
+    LOG.warn(e)
+
+

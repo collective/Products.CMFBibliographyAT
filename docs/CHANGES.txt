@@ -1,3 +1,8 @@
+1.0.2 (2010-04-10)
+==================
+* checking minimum Bibutils version and logging it during the Zope
+  startup phase
+
 1.0.1 (2010-03-22)
 ==================
 * removed stupid role check from bibliograph_search.pt which made

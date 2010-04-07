@@ -59,7 +59,7 @@
         Configure the parsers and renderers registered with the bibliography tool.
     </p>
 
-    <div id="bibutils-version">
+    <div id="bibutils-version" style="background: #eeeeee; padding: 3px">
         Bibutils: <span tal:replace="bib_tool/getBibutilsVersion" />
     </div>
 

@@ -1,4 +1,9 @@
-1.0.2 (2010-04-10)
+1.0.3 (2010-04-07)
+==================
+* exposing installed Bibutils version within the Plone UI (import/export tab of the 
+  bibliography management configlet)
+
+1.0.2 (2010-04-01)
 ==================
 * checking minimum Bibutils version and logging it during the Zope
   startup phase

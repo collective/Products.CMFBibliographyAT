@@ -9,15 +9,10 @@
 <body>
 
 <div metal:fill-slot="prefs_configlet_main"
-     tal:define="errors options/state/getErrors;
-                 bib_tool here/portal_bibliography">
+         tal:define="errors options/state/getErrors;
+                     bib_tool here/portal_bibliography">
 
     <ul class="contentViews">
-       <li class="" tal:condition="nothing">
-          <a href=""
-             tal:attributes="href string:$here_url/prefs_bibliography_docs"
-             i18n:translate="label_bibliography_docs">Documentation</a>
-       </li>
        <li class="">
           <a href=""
              tal:attributes="href string:$here_url/prefs_bibliography_general_form"
@@ -68,8 +63,6 @@
           method="post"
           tal:attributes="action string:${here/absolute_url}/${template/getId}">
 
-        <fieldset>
-            <legend i18n:translate="legend_bibliography_importexport">Bibliography Import / Export</legend>
 
             <fieldset>
                 <legend i18n:translate="legend_bibliography_parsers">Parsers (Bibliography Import)</legend>
@@ -217,7 +210,6 @@
                        />
             </div>
 
-        </fieldset>
 
         <input type="hidden" name="form.submitted" value="1" />
 

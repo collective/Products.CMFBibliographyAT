@@ -947,5 +947,13 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
 
         return result
 
+    security.declareProtected(View, 'getBibutilsVersion')
+    def getBibutilsVersion(self):
+        """ Return installed Bibutils version """
+        from bibliograph.core.version_check import checkBibutilsVersion
+        try:
+            return checkBibutilsVersion()
+        except RuntimeError, e:
+            return 'n/a (%s)' % e
 
 InitializeClass(BibliographyTool)

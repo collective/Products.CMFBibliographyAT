@@ -44,6 +44,7 @@
       &nbsp;
     </div>
 
+
     <h1 i18n:translate="head_importexport_bibliography_setup">Bibliography Setup - Import / Export</h1>
 
     <a href=""
@@ -57,6 +58,10 @@
     <p i18n:translate="description_importexport_bibliography_setup">
         Configure the parsers and renderers registered with the bibliography tool.
     </p>
+
+    <div id="bibutils-version">
+        Bibutils: <span tal:replace="bib_tool/getBibutilsVersion" />
+    </div>
 
     <form action=""
           name="prefs_bibliography_importexport"

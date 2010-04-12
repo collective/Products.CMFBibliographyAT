@@ -17,7 +17,6 @@
                    raw_results python: container.portal_catalog(meta_type=reference_types);
                    raw_results python: container.portal_bibliography.filterOutBibEntriesFromNonSearchableBibFolders(raw_results);
                    raw_results python: container.portal_bibliography.filterOutDupesByTitle(raw_results);
-                   raw_results python: [ result for result in raw_results if [ role for role in mtool.getAuthenticatedMember().getRolesInContext(result.getObject()) if role in ['Manager', 'BibManager', 'Reviewer', 'Owner'] ] or (navtool and result.review_state in navtool.getProperty('wf_states_to_show')) ];
                    style request/style|here/default_bibliography_style|here/portal_bibliostyles/default_bibliography_style|string:stl_default;
                    sort_on python:(('publication_year', 'cmp', 'desc'),
                                    ('Authors', 'nocase', 'asc'));

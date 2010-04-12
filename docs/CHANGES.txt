@@ -1,3 +1,8 @@
+1.0.4 (2010-04-12)
+==================
+* removed stupid filtering from bibliography_view making this view completely 
+  useless for anonymous visitors
+
 1.0.3 (2010-04-07)
 ==================
 * exposing installed Bibutils version within the Plone UI (import/export tab of the 

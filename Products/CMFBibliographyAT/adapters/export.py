@@ -35,7 +35,7 @@ class BiliographicExportAdapter(object):
         self.publication_month = self.context.getPublication_month()
         self.abstract = _decode(self.context.getAbstract())
         self.subject = _decode(self.context.getKeywords())
-        self.note = _decode(self.context.note)
+        self.note = _decode(self.context.getNote())
         self.annote = _decode(self.context.annote)
         self.url = self.context.aq_base.getURL()
 

@@ -51,7 +51,7 @@
    <property name="title">EtAl Bibliography ID Cooker</property>
    <property name="idcooker_enabled">True</property>
   </object>
-  <object name="plone" meta_type="PLONE Default Bibliography ID Cooker">
+  <object name="plone_cooker" meta_type="PLONE Default Bibliography ID Cooker">
    <property name="title">PLONE Default Bibliography ID Cooker</property>
    <property name="idcooker_enabled">True</property>
   </object>

@@ -63,7 +63,6 @@ class IncollectionReference(InbookReference):
     """
 
     implements(IInCollectionReference)
-    __implements__ = (InbookReference.__implements__,)
 
     security = ClassSecurityInfo()
     source_fields = ('booktitle', 'editor', 'volume', 'number', 'publication_type', 'publisher', 'address', 'edition', 'series', 'chapter', 'pages', 'isbn',)

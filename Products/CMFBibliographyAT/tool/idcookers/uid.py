@@ -17,7 +17,7 @@ class UidIdCooker(BibliographyIdCooker):
     The ID is cooked from the bibliographical reference's UID (Archetypes' unique object identifier).
     """
 
-    __implements__ = (IBibliographyIdCooker ,)
+
 
     meta_type = "UID Bibliography ID Cooker"
 

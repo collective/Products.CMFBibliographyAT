@@ -15,6 +15,8 @@
        tal:define="navtool here/portal_properties/navtree_properties;
                    reference_types python:container.portal_bibliography.getReferenceTypes();
                    raw_results python: container.portal_catalog(meta_type=reference_types);
+                   mtool context/portal_membership;
+                   wf_state context/@@plone_context_state/workflow_state;
                    raw_results python: container.portal_bibliography.filterOutBibEntriesFromNonSearchableBibFolders(raw_results);
                    raw_results python: container.portal_bibliography.filterOutDupesByTitle(raw_results);
                    style request/style|here/default_bibliography_style|here/portal_bibliostyles/default_bibliography_style|string:stl_default;

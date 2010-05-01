@@ -2,7 +2,7 @@
 
 # Zope stuff
 from zope.component import getUtility
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from App.Dialogs import MessageDialog
 
 # Bibliography stuff

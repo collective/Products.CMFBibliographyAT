@@ -5,7 +5,7 @@ import re
 # Zope stuff
 from zope.interface import implements
 from zope.interface import Interface
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
 from OFS.SimpleItem import SimpleItem

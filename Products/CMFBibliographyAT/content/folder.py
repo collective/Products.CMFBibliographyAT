@@ -20,7 +20,7 @@ import sys
 from AccessControl import ClassSecurityInfo
 from Acquisition import Acquirer
 from DocumentTemplate import sequence
-from Globals import PersistentMapping
+from Persistence import PersistentMapping
 from OFS.Folder import Folder
 from Products.ATContentTypes.content.base import ATCTOrderedFolder
 from Products.ATContentTypes.content.folder import ATBTreeFolder

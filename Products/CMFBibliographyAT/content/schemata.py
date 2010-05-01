@@ -22,8 +22,7 @@ from Products.Archetypes import PloneMessageFactory as _
 from Products.ATContentTypes.content.schemata \
      import ATContentTypeSchema as BaseSchema
 
-from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget \
-     import ReferenceBrowserWidget
+from archetypes.referencebrowserwidget.widget import ReferenceBrowserWidget
 
 from Products.CMFBibliographyAT.marshall import BibtexMarshaller
 from Products.ATExtensions.ateapi import FormattableNamesField

@@ -1,7 +1,7 @@
 """Abbreviation Bibliography IdCooker class"""
 
 # Zope stuff
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from App.Dialogs import MessageDialog
 
 # CMF stuff

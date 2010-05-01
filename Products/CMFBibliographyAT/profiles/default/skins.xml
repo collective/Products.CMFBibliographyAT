@@ -2,13 +2,8 @@
 <object name="portal_skins">
  <object name="bibliography" meta_type="Filesystem Directory View"
     directory="CMFBibliographyAT/skins/bibliography"/>
- <object name="bibliography_selenium_tests"
-    meta_type="Filesystem Directory View"
-    directory="CMFBibliographyAT/skins/bibliography_selenium_tests"/>
  <skin-path name="*">
   <layer name="bibliography"
      insert-after="custom"/>
-  <layer name="bibliography_selenium_tests"
-     insert-after="bibliography"/>
  </skin-path>
 </object>

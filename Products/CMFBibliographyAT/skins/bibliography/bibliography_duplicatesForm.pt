@@ -139,7 +139,7 @@
               matches with <br />
               <metal:block tal:repeat="uuid matched_local_uuids">
                 <a href=""
-                   tal:define="ref_object python: container.archetype_tool.lookupObject(uuid)"
+                   tal:define="ref_object python: container.reference_catalog.lookupObject(uuid)"
                    tal:attributes="href python:ref_object and ref_object.absolute_url()">
                   <span tal:replace="python:ref_object and '%s' % ref_object.getId()">here</span></a><br />
               </metal:block>
@@ -153,7 +153,7 @@
               matches with <br />
               <metal:block tal:repeat="uuid matched_global_uuids">
                 <a href=""
-                   tal:define="ref_object python: container.archetype_tool.lookupObject(uuid)"
+                   tal:define="ref_object python: container.reference_catalog.lookupObject(uuid)"
                    tal:attributes="href python:ref_object and ref_object.absolute_url()">
                   <span tal:replace="python:ref_object and '%s' % ref_object.getId()">here</span></a><br />
               </metal:block>

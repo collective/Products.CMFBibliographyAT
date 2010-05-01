@@ -63,7 +63,7 @@ class ProceedingsReference(BaseEntry):
     """
 
     implements(IProceedingsReference)
-    __implements__ = (BaseEntry.__implements__,)
+
 
     security = ClassSecurityInfo()
     archetype_name = "Proceedings Reference"

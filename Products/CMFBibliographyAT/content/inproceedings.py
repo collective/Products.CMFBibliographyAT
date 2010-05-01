@@ -62,7 +62,7 @@ class InproceedingsReference(InbookReference):
     """
 
     implements(IInProceedingsReference)
-    __implements__ = (InbookReference.__implements__,)
+
 
     security = ClassSecurityInfo()
     source_fields = ('booktitle', 'editor', 'volume', 

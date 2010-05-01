@@ -235,7 +235,6 @@ class TestPdfFolder(PloneTestCase.PloneTestCase):
         edit_authors = ({'lastname': 'Gabriel', 'firstname': 'Mike', 'middlename': ''}, )
         edit_publication_year = '2000'
         bibref1.processForm(values={'authors': edit_authors, 'publication_year': edit_publication_year,})
-
         self.failUnless('Gabriel2000' in bf3.contentIds())
         self.failUnless('pdfs' not in bf3.contentIds())
 

@@ -304,7 +304,7 @@ class Migration(object):
         """ migrate bibfolder._duplicates -> bibfolder.duplicates.<items> """
         ct = getToolByName(self.site, 'portal_catalog')
         bib_tool = getToolByName(self.site, 'portal_bibliography')
-        at_tool = getToolByName(self.site, 'archetype_tool')
+        reference_catalog = getToolByName(self.site, 'reference_catalog')
 
         print >> self.out, u'    Bibliography Folder needs duplication engine upgrade ...'
         brains = ct(portal_type=BIBFOLDER_TYPES, Language='all')
@@ -325,7 +325,7 @@ class Migration(object):
                     del entry['matched_uuids']
                     (report_line, import_status, bibref_item) = bibfolder.processSingleImport(entry, force_to_duplicates=True)
                     print >> self.out, '    Transferred _duplicates item %s to object %s in %s/duplicates' % (key, bibref_item.getId(), bibfolder.absolute_url())
-                    bibref_item.setIs_duplicate_of([ matched_uuid for matched_uuid in matched_uuids if at_tool.lookupObject(matched_uuid) ])
+                    bibref_item.setIs_duplicate_of([ matched_uuid for matched_uuid in matched_uuids if reference_catalog.lookupObject(matched_uuid) ])
                 delattr(bibfolder, '_duplicates')
 
         print >> self.out, u'    Upgraded of bibliography folders\' duplication engine completed. %s bibliography folders migrated.' % len(brains)

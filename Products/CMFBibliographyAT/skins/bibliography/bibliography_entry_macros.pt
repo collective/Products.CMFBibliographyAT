@@ -8,7 +8,7 @@
 
     <tal:main-macro metal:define-macro="main">
 
-        <metal:bibliography-entry-view metal:define-macro="bibliography_entry_view">
+        <metal:bibliography-entry-view metal:define-macro="bibliography_entry_view" tal:define="mtool context/portal_membership;">
              <p><span tal:content="structure python:here.Authors(format='%F %m %L',withURL=1, context=here, methodname='getAuthorURL')">
                 Authors</span>
                 <span tal:condition="python: hasattr(here, 'getEditor_flag') and here.getEditor_flag()" i18n:translate="editor_abbreviated">(ed.)</span>

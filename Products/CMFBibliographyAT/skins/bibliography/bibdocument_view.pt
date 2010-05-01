@@ -7,7 +7,8 @@
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main"
            tal:define="raw_text python: here.CookedBody(stx_level=2);
-                       text python:here.portal_bibliography.link_citations(raw_text)">
+                       text python:here.portal_bibliography.link_citations(raw_text);
+                       is_editable context/@@plone_context_state/is_editable;">
 
         <h1 tal:content="here/pretty_title_or_id" class="documentFirstHeading">
           Title or id

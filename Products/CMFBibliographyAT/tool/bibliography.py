@@ -15,7 +15,7 @@ import logging
 # Zope stuff
 from zope.interface import implements
 from zope import component
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo, ModuleSecurityInfo
 from OFS.Folder import Folder
 from persistent.mapping import PersistentMapping

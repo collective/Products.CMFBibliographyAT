@@ -54,7 +54,7 @@ class BaseEntry(BaseContent):
     """Base content for bibliographical references content types
     """
 
-    implements(IBibliographicItem,IBibliographyExport)
+    implements(IBibliographicItem)
 
     global_allow = 0
     content_icon = 'bibliography_entry.png'
@@ -68,7 +68,9 @@ class BaseEntry(BaseContent):
     schema = BaseEntrySchema
     _at_rename_after_creation = True
 
-
+    __implements__ = (BaseContent.__implements__,
+                      IBibliographyExport,
+                     )
     security = ClassSecurityInfo()
 
     # the default source
@@ -268,7 +270,7 @@ class BaseEntry(BaseContent):
     security.declareProtected(View, 'pre_validate')
     def pre_validate(self, REQUEST, errors):
 
-        reference_catalog = getToolByName(self, 'reference_catalog')
+        at_tool = getToolByName(self, 'archetype_tool')
 
         authors = REQUEST.get('authors',[])
         result = []
@@ -281,7 +283,7 @@ class BaseEntry(BaseContent):
                 author.reference = ''
             elif reference:
 
-                reference_object = reference_catalog.lookupObject(reference)
+                reference_object = at_tool.lookupObject(reference)
                 if reference_object.isTranslatable():
                     references.append(reference_object.getCanonical().UID())
                     reference_object = reference_object.getCanonical()
@@ -522,7 +524,7 @@ class BaseEntry(BaseContent):
         ###         fallback exception or use PloneTestCase
         ###
 
-        reference_catalog = getToolByName(self, 'reference_catalog')
+        at_tool = getToolByName(self, 'archetype_tool')
         bib_tool = getToolByName(self, 'portal_bibliography')
         bibfolder = container
 
@@ -536,7 +538,7 @@ class BaseEntry(BaseContent):
 
         if not pdf_file_uid and shasattr(self, '_temp_pdffile_UID') and self._temp_pdffile_UID:
             pdf_file_uid = self._temp_pdffile_UID
-            pdf_file_brefs = [ bref.UID() for bref in reference_catalog.lookupObject(pdf_file_uid).getBRefs('printable_version_of') if bref is not None ]
+            pdf_file_brefs = [ bref.UID() for bref in at_tool.lookupObject(pdf_file_uid).getBRefs('printable_version_of') if bref is not None ]
             delattr(self, '_temp_pdffile_UID')
 
         # first do all necessary ATCT, Archetypes, etc. things...
@@ -547,7 +549,7 @@ class BaseEntry(BaseContent):
         bib_tool.transaction_savepoint(optimistic=True)
 
         # then check PDF file association
-        pdf_file = pdf_file_uid and reference_catalog.lookupObject(pdf_file_uid)
+        pdf_file = pdf_file_uid and at_tool.lookupObject(pdf_file_uid)
         if pdf_file and pdf_file_brefs and (self.UID() not in pdf_file_brefs):
 
             # bibref item has been copied and UID of bibref item has changed
@@ -559,7 +561,7 @@ class BaseEntry(BaseContent):
 
             # PDF file and bibref item are not in the same bibfolder
             # => move PDF file!!!
-            moved_pdf_file = self.relocatePdfFile(pdf_file=reference_catalog.lookupObject(pdf_file_uid), op=1)
+            moved_pdf_file = self.relocatePdfFile(pdf_file=at_tool.lookupObject(pdf_file_uid), op=1)
 
     security.declareProtected(AddPortalContent, 'relocatePdfFile')
     def relocatePdfFile(self, pdf_file=None, bibfolder=None, op=1):

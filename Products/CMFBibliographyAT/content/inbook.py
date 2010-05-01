@@ -63,7 +63,7 @@ class InbookReference(BaseEntry):
     """
 
     implements(IInBookReference)
-
+    __implements__ = (BaseEntry.__implements__,)
 
     security = ClassSecurityInfo()
     archetype_name = "Inbook Reference"

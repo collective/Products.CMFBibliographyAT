@@ -60,7 +60,7 @@ class PreprintReference(BaseEntry):
     """
 
     implements(IPreprintReference)
-
+    __implements__ = (BaseEntry.__implements__,)
 
     security = ClassSecurityInfo()
     archetype_name = "Preprint Reference"

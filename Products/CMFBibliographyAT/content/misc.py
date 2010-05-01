@@ -53,7 +53,7 @@ class MiscReference(BaseEntry):
     """
 
     implements(IMiscReference)
-
+    __implements__ = (BaseEntry.__implements__,)
 
     security = ClassSecurityInfo()
     archetype_name = "Misc Reference"

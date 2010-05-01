@@ -23,9 +23,7 @@
         <form action="bibliography_search"
           method="get"
           name="bibliography_search_form"
-          tal:define="DateTime python:modules['DateTime'].DateTime;
-                      Iterator python:modules['Products.CMFPlone'].IndexIterator;
-                      tabindex python:Iterator(mainSlot=False)">
+          tal:define="DateTime python:modules['DateTime'].DateTime">
 
         <fieldset>
 
@@ -172,14 +170,14 @@
             <!-- add support for CMFBibliographyAT_extended_schemata -->
             </metal:bibliography-extended-schemata>
 
-            <div class="field" tal:define="portal_types context/portal_types">
+            <div class="field" tal:define="portal_types portal/portal_types">
                 <label i18n:translate="search_label_reference_type">Bibliographical Reference Type</label>
 
                 <div class="formHelp" i18n:translate="search_help_item_type">
                 Return items of a certain bibliography type.
                 </div>
 
-                <div tal:define="allTypes python:context.plone_utils.getUserFriendlyTypes(typesList=here.portal_bibliography.getReferenceTypes());">
+                <div tal:define="allTypes python:putils.getUserFriendlyTypes(typesList=here.portal_bibliography.getReferenceTypes());">
                     <tal:tabindex define="tabindex tabindex/next">
                     <select multiple="multiple"
                             name="portal_type:list"
@@ -209,7 +207,7 @@
 
             <div class="field"
                  i18n:domain="plone"
-                 tal:condition="not:context/@@plone_portal_state/anonymous">
+                 tal:condition="python: not here.portal_membership.isAnonymousUser()">
 
                 <label for="review_state" i18n:translate="label_review_status">Review status</label>
 
@@ -219,9 +217,8 @@
                 in certain states, select them from this list.
                 </div>
 
-                <tal:states define="navtree_props context/portal_properties/navtree_properties;
-                                    states python: here.portal_bibliography.listWfStatesForReferenceTypes();
-                                    normalizeString nocall:context/@@plone/normalizeString;"
+                <tal:states define="navtree_props portal_properties/navtree_properties;
+                                    states python: here.portal_bibliography.listWfStatesForReferenceTypes();"
                             repeat="state states">
                     <input class="noborder"
                            type="checkbox"

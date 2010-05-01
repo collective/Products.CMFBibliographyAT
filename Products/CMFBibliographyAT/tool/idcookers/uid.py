@@ -1,7 +1,7 @@
 """PLONE Default Bibliography IdCooker class"""
 
 # Zope stuff
-from App.class_init import InitializeClass
+from Globals import InitializeClass
 from App.Dialogs import MessageDialog
 
 # CMF stuff
@@ -17,7 +17,7 @@ class UidIdCooker(BibliographyIdCooker):
     The ID is cooked from the bibliographical reference's UID (Archetypes' unique object identifier).
     """
 
-
+    __implements__ = (IBibliographyIdCooker ,)
 
     meta_type = "UID Bibliography ID Cooker"
 

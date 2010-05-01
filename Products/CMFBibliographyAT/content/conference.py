@@ -58,6 +58,7 @@ class ConferenceReference(InbookReference):
     """
 
     implements(IConferenceReference)
+    __implements__ = (InbookReference.__implements__,)
 
     security = ClassSecurityInfo()
     source_fields = ('booktitle', 'volume', 'number',  'series', 'pages', 'address', 'organization', 'publisher',  )

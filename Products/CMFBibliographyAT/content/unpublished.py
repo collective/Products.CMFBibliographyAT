@@ -41,7 +41,7 @@ class UnpublishedReference(BaseEntry):
     """
 
     implements(IUnpublishedReference)
-
+    __implements__ = (BaseEntry.__implements__,)
 
     archetype_name = "Unpublished Reference"
     security = ClassSecurityInfo()

@@ -427,7 +427,7 @@ class TestReferenceIdCooking(PloneTestCase.PloneTestCase):
 
     def test_PloneReferenceIdCooker(self):
 
-        bf = self.getPopulatedBibFolder(idcooker_id='plone_cooker',
+        bf = self.getPopulatedBibFolder(idcooker_id='plone',
                                         use_pids_on_import=False)
         objectIds = bf.objectIds()
         # This test will fail with Plone 3.0.x versions using plone.i18n

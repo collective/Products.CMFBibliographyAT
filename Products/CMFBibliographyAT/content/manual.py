@@ -56,7 +56,7 @@ class ManualReference(BaseEntry):
     """
 
     implements(IManualReference)
-
+    __implements__ = (BaseEntry.__implements__,)
 
     archetype_name = "Manual Reference"
     source_fields = ('organization', 'address', 'edition', 'isbn',)

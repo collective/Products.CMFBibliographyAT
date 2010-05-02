@@ -22,7 +22,7 @@ from Testing import ZopeTestCase
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFBibliographyAT.tests import setup
 from ZODB.PersistentList import PersistentList
-from Persistence import PersistentMapping
+from Globals import PersistentMapping
 
 from Products.CMFBibliographyAT.tests import dummy
 

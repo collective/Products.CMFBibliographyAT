@@ -52,7 +52,7 @@ class BookletReference(BaseEntry):
     """
 
     implements(IBookletReference)
-
+    __implements__ = (BaseEntry.__implements__,)
 
     security = ClassSecurityInfo()
     archetype_name = "Booklet Reference"

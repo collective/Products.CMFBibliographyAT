@@ -9,11 +9,8 @@
 <body>
 
 <div metal:fill-slot="prefs_configlet_main"
-     tal:define="errors options/state/getErrors;
-                 bib_tool here/portal_bibliography;
-                 template_id template/getId;
-                 normalizeString nocall:context/@@plone/normalizeString;
-                 here_url context/@@plone_context_state/object_url;">
+         tal:define="errors options/state/getErrors;
+                     bib_tool here/portal_bibliography">
 
     <ul class="contentViews">
        <li class="">
@@ -80,7 +77,7 @@
                 <div class="field"
 
                      tal:define="name python: format[0];
-                                 normalized_name python:normalizeString(name);
+                                 normalized_name python: here.plone_utils.normalizeString(name);
                                  description python: format[2];
                                  extension python: format[1];
                                  parser python: bib_tool.getParser(format=extension, with_unavailables=True, with_disabled=True);
@@ -143,7 +140,7 @@
                 <div class="field"
 
                      tal:define="name python: format[0];
-                                 normalized_name python: normalizeString(name);
+                                 normalized_name python: here.plone_utils.normalizeString(name);
                                  description python: format[2];
                                  extension python: format[1];
                                  renderer python: bib_tool.getRenderer(format=extension, with_unavailables=True, with_disabled=True);

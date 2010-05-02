@@ -1,7 +1,7 @@
 """EtAl Bibliography IdCooker class"""
 
 # Zope stuff
-from App.class_init import InitializeClass
+from Globals import InitializeClass
 from App.Dialogs import MessageDialog
 
 # CMF stuff
@@ -18,7 +18,7 @@ class EtalIdCooker(BibliographyIdCooker):
     If an item has more than two authors, it uses the first author's name plus 'EtAl' plus the publication year.
     """
 
-
+    __implements__ = (IBibliographyIdCooker ,)
 
     meta_type = "EtAl Bibliography ID Cooker"
 

@@ -52,7 +52,7 @@ class PhdthesisReference(BaseEntry):
     """
 
     implements(IPhdthesisReference)
-
+    __implements__ = (BaseEntry.__implements__,)
 
     security = ClassSecurityInfo()
     archetype_name = "Phdthesis Reference"

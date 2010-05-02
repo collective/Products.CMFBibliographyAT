@@ -7,9 +7,7 @@
 
 # Zope stuff
 import os.path, copy
-from App.class_init import InitializeClass
-from App.Dialogs import MessageDialog
-from Persistence import PersistentMapping
+from Globals import InitializeClass, MessageDialog, PersistentMapping
 from Acquisition import Implicit
 from ZODB.PersistentList import PersistentList
 from AccessControl import ClassSecurityInfo

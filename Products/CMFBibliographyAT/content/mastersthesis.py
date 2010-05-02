@@ -53,7 +53,7 @@ class MastersthesisReference(BaseEntry):
     """
 
     implements(IMastersthesisReference)
-
+    __implements__ = (BaseEntry.__implements__,)
 
     security = ClassSecurityInfo()
     archetype_name = "Mastersthesis Reference"

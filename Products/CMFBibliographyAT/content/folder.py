@@ -355,7 +355,7 @@ class BaseBibliographyFolder(Acquirer):
         raw = REQUEST.get('BODY')
         id = self.getId()
         parent = self.aq_inner.aq_parent
-        if IBibliographyExport in parent.__implements__:
+        if IBibliographyExport.providedBy(parent):
             target_folder = parent
             try:
                 target_folder.manage_delObjects([id])

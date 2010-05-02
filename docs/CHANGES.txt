@@ -1,3 +1,7 @@
+1.1.0 (unreleased)
+==================
+* Plone 4 compatibility
+
 1.0.5 (2010-04-22)
 ==================
 * fixed handling of the 'note' field on the export adapter level

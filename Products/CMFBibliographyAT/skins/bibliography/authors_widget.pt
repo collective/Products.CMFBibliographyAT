@@ -5,7 +5,8 @@
       i18n:domain="plone">
   <head><title></title></head>
   <body>
-    <metal:define define-macro="edit">
+    <metal:define define-macro="edit"   tal:define="Iterator python:modules['Products.CMFPlone'].IndexIterator;
+                          tabindex python:Iterator(mainSlot=False);">
       <metal:use use-macro="here/widgets/field/macros/edit">
        <tal:block metal:fill-slot="widget_body">
        <fieldset tal:define="values python:field.getEditAccessor(here)();

@@ -21,7 +21,7 @@ if __name__ == '__main__':
 from Products.CMFPlone.tests import PloneTestCase
 from Products.CMFBibliographyAT.tests import setup
 from ZODB.PersistentList import PersistentList
-from Globals import PersistentMapping
+from Persistence import PersistentMapping
 
 from Products.CMFBibliographyAT import testing
 

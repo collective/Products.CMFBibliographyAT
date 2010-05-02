@@ -5,11 +5,12 @@
 #                                                                        #
 ##########################################################################
 
+from zope.interface import implements
 from Products.PortalTransforms.interfaces import itransform
 
 class BibawareToHTML:
     """Transforms the mime-type back to text/html"""
-    __implements__ = itransform
+    implements(itransform)
     __name__ = "bibaware_to_html"
     inputs = ('text/x-html-bibaware',)
     output = "text/html"

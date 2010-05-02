@@ -11,7 +11,7 @@ from Products.PortalTransforms.interfaces import itransform
 
 class HTMLToBibaware:
     """Transform enables inline citations and bibitems embedded in text"""
-    __implements__ = itransform
+    implements(itransform)
     __name__ = "html_to_bibaware"
     inputs = ('text/html',)
     output = "text/x-html-bibaware"

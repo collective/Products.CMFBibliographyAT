@@ -34,7 +34,7 @@ finalizeATCTSchema(WebpublishedSchema)
 class WebpublishedReference(BaseEntry):
     """Content type to make reference to a webpublished (only) document.
     """
-    __implements__ = (BaseEntry.__implements__,)
+
 
     implements(IWebpublishedReference)
 

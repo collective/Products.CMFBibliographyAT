@@ -20,7 +20,7 @@ import sys
 from AccessControl import ClassSecurityInfo
 from Acquisition import Acquirer
 from DocumentTemplate import sequence
-from Globals import PersistentMapping
+from Persistence import PersistentMapping
 from OFS.Folder import Folder
 from Products.ATContentTypes.content.base import ATCTOrderedFolder
 from Products.ATContentTypes.content.folder import ATBTreeFolder
@@ -214,8 +214,8 @@ def associateToBibliographyFolder(self, bibfolder=None):
     its Bibliography Folder
     """
     if bibfolder is not None:
-        if isinstance(bibfolder, basestring) and (at_tool.lookupObject(bibfolder) and True or False):
-            bibfolder = at_tool.lookupObject(bibfolder)
+        if isinstance(bibfolder, basestring) and (reference_catalog.lookupObject(bibfolder) and True or False):
+            bibfolder = reference_catalog.lookupObject(bibfolder)
         if shasattr(bibfolder, 'portal_type') and (bibfolder.portal_type in FOLDER_TYPES):
             self._assoc_bibliography_folder = bibfolder.UID()
 
@@ -793,7 +793,7 @@ class BaseBibliographyDuplicatesManager(Acquirer):
         bibliography folder for storing duplicate bibliographical entries.
         This method creates the folder if needed.
         """
-        at_tool = getToolByName(self, 'archetype_tool')
+        reference_catalog = getToolByName(self, 'reference_catalog')
 
         if self._assoc_duplicates_folder is None:
             tt = getToolByName(self, 'portal_types')
@@ -809,7 +809,7 @@ class BaseBibliographyDuplicatesManager(Acquirer):
             self._assoc_duplicates_folder = self[id].UID()
             self[id]._assoc_bibliography_folder = self.UID()
 
-        return at_tool.lookupObject(self._assoc_duplicates_folder)
+        return reference_catalog.lookupObject(self._assoc_duplicates_folder)
 
 
     security.declarePublic(View, 'getSiteDefaultEnableDuplicatesManager')
@@ -823,9 +823,9 @@ class BaseBibliographyDuplicatesManager(Acquirer):
         test if duplicates exist (used for action tab)
         """
         duplicates_folder = None
-        at_tool = getToolByName(self, 'archetype_tool')
+        reference_catalog = getToolByName(self, 'reference_catalog')
         if self._assoc_duplicates_folder is not None:
-            duplicates_folder = at_tool.lookupObject(self._assoc_duplicates_folder)
+            duplicates_folder = reference_catalog.lookupObject(self._assoc_duplicates_folder)
 
         if duplicates_folder:
             return duplicates_folder.contentValues() and True or False
@@ -922,12 +922,12 @@ class BaseBibliographyDuplicatesManager(Acquirer):
 
     def findDuplicated(self, uid=None):
 
-        at_tool = getToolByName(self, 'archetype_tool')
+        reference_catalog = getToolByName(self, 'reference_catalog')
         bib_tool = getToolByName(self, 'portal_bibliography')
 
         if uid and shasattr(self.getDuplicatesFolder(), uid):
 
-            duplicate = at_tool.lookupObject(uid)
+            duplicate = reference_catalog.lookupObject(uid)
             test, matched_objects = self.isDuplicate(duplicate, span_of_search='global')
             if test:
                 duplicate.setIs_duplicate_of(matched_objects)
@@ -949,8 +949,8 @@ class BaseBibliographyDuplicatesManager(Acquirer):
         :type key: string
         :param key: identifier for the entry stored in _duplicates
         """
-        at_tool = getToolByName(self, 'archetype_tool')
-        duplicate_bibref_item = at_tool.lookupObject(uid)
+        reference_catalog = getToolByName(self, 'reference_catalog')
+        duplicate_bibref_item = reference_catalog.lookupObject(uid)
         if duplicate_bibref_item:
             self.getDuplicatesFolder().manage_delObjects([duplicate_bibref_item.getId()])
 
@@ -975,7 +975,7 @@ class BaseBibliographyDuplicatesManager(Acquirer):
         :param matched_object: the entry matches this object
                                (already present on site)
         """
-        at_tool = getToolByName(self, 'archetype_tool')
+        reference_catalog = getToolByName(self, 'reference_catalog')
         bib_tool = getToolByName(self, 'portal_bibliography')
         if bibref_object.portal_type in bib_tool.getReferenceTypes():
 
@@ -991,7 +991,7 @@ class BaseBibliographyDuplicatesManager(Acquirer):
             objs = self.manage_cutObjects([bibref_object.getId(),])
             self.getDuplicatesFolder().manage_pasteObjects(objs)
 
-            bibref_object = at_tool.lookupObject(bibref_uid)
+            bibref_object = reference_catalog.lookupObject(bibref_uid)
 
             fti.allowed_content_types = allowed_types
 
@@ -1005,11 +1005,11 @@ class BaseBibliographyDuplicatesManager(Acquirer):
         (forces import of new entry)
         """
         initReport = self.initReport('duplication management')
-        at_tool = getToolByName(self, 'archetype_tool')
+        reference_catalog = getToolByName(self, 'reference_catalog')
         bib_tool = getToolByName(self, 'portal_bibliography')
 
         # process import for duplicated entry
-        duplicate_bibref_item = at_tool.lookupObject(uid)
+        duplicate_bibref_item = reference_catalog.lookupObject(uid)
 
         duplicate_bibref_item.setIs_duplicate_of(None)
 
@@ -1041,9 +1041,9 @@ class BaseBibliographyDuplicatesManager(Acquirer):
         :type key: string
         :param key: identifier for the entry stored in _duplicates
         """
-        at_tool = getToolByName(self, 'archetype_tool')
+        reference_catalog = getToolByName(self, 'reference_catalog')
         bib_tool = getToolByName(self, 'portal_bibliography')
-        duplicate_bibref_item = at_tool.lookupObject(uid)
+        duplicate_bibref_item = reference_catalog.lookupObject(uid)
 
         entry = bib_tool.getEntryDict(duplicate_bibref_item)
 
@@ -1077,8 +1077,8 @@ class BaseBibliographyDuplicatesManager(Acquirer):
         get a dict with uid: bibref_object entries
         """
         if uid:
-            at_tool = getToolByName(self, 'archetypes_tool')
-            return at_tool.lookupObject(uid)
+            reference_catalog = getToolByName(self, 'archetypes_tool')
+            return reference_catalog.lookupObject(uid)
 
         bib_tool = getToolByName(self, 'portal_bibliography')
         duplicates_dict = {}
@@ -1155,7 +1155,7 @@ class BaseBibliographyPdfFolderManager(Acquirer):
         Returns a folder for storing files
         Creates it if needed
         """
-        at_tool = getToolByName(self, 'archetype_tool')
+        reference_catalog = getToolByName(self, 'reference_catalog')
 
         if self._assoc_pdf_folder is None:
             if not self.hasObject(id):
@@ -1169,7 +1169,7 @@ class BaseBibliographyPdfFolderManager(Acquirer):
                 self[id].setTitle('PDFs')
                 fti.allowed_content_types = allowed_types
                 self._assoc_pdf_folder = self[id].UID()
-        pdf_folder = at_tool.lookupObject(self._assoc_pdf_folder)
+        pdf_folder = reference_catalog.lookupObject(self._assoc_pdf_folder)
 
         # test, if the returned object really is the pdf folder:
         if pdf_folder.getPhysicalPath()[:-1] == self.getPhysicalPath():
@@ -1284,7 +1284,6 @@ class BibliographyFolder(BaseBibliographyIdCookerManager,
 
     implements(IBibliographyFolder)
 
-    __implements__ = ATCTOrderedFolder.__implements__
 
     import_report = ''
     _properties= ATCTOrderedFolder._properties + \
@@ -1323,7 +1322,6 @@ class LargeBibliographyFolder(BaseBibliographyIdCookerManager,
 
     implements(ILargeBibliographyFolder)
 
-    __implements__ = ATBTreeFolder.__implements__
 
     import_report = ''
     _properties= ATBTreeFolder._properties + \
@@ -1386,7 +1384,6 @@ class DuplicatesBibliographyFolder(BaseBibliographyIdCookerManager,
     schema = DuplicatesBibFolderSchema
 
     _at_rename_after_creation = True
-    __implements__ = ATCTOrderedFolder.__implements__
 
     _assoc_bibliography_folder = None
 
@@ -1396,12 +1393,12 @@ class DuplicatesBibliographyFolder(BaseBibliographyIdCookerManager,
     def getBibFolder(self):
         """ returns associated bibliography folder
         """
-        at_tool = getToolByName(self, 'archetype_tool')
-        return at_tool.lookupObject(self._assoc_bibliography_folder)
+        reference_catalog = getToolByName(self, 'reference_catalog')
+        return reference_catalog.lookupObject(self._assoc_bibliography_folder)
 
     def getPdfFolder(self):
-        at_tool = getToolByName(self, 'archetype_tool')
-        bibfolder = at_tool.lookupObject(self._assoc_bibliography_folder)
+        reference_catalog = getToolByName(self, 'reference_catalog')
+        bibfolder = reference_catalog.lookupObject(self._assoc_bibliography_folder)
         if bibfolder is not None:
             return bibfolder.getPdfFolder()
 

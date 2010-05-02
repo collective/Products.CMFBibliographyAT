@@ -2,7 +2,7 @@
 
 # Zope stuff
 from zope.component import getUtility
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from App.Dialogs import MessageDialog
 
 # Bibliography stuff
@@ -17,12 +17,12 @@ class PloneIdCooker(BibliographyIdCooker):
     The ID is cooked from the bibliographical reference's title as a normalized string. That is the way Plone normally cooks object IDs.
     """
 
-    __implements__ = (IBibliographyIdCooker ,)
+
 
     meta_type = "PLONE Default Bibliography ID Cooker"
 
     def __init__(self,
-                 id = 'plone',
+                 id = 'plone_cooker',
                  title = "PLONE Default Bibliography ID Cooker"):
         """
         initializes id and title
@@ -46,7 +46,7 @@ InitializeClass(PloneIdCooker)
 def manage_addPloneIdCooker(self, REQUEST=None):
     """ """
     try:
-        self._setObject('plone', PloneIdCooker())
+        self._setObject('plone_cooker', PloneIdCooker())
     except:
         return MessageDialog(
             title='Bibliography tool warning message',

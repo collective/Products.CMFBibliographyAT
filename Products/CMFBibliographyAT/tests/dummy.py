@@ -2,6 +2,7 @@ from AccessControl import ClassSecurityInfo
 from ComputedAttribute import ComputedAttribute
 from ZPublisher.HTTPRequest import FileUpload
 from Products.Archetypes.public import *
+from Products.CMFBibliographyAT.config import PROJECTNAME
 
 simplememberschema = BaseSchema.copy() + Schema((
     StringField('fullname',
@@ -63,7 +64,7 @@ class SimpleTestMemberType(BaseContent):
 
     security = ClassSecurityInfo()
 
-registerType(SimpleTestMemberType)
+registerType(SimpleTestMemberType,PROJECTNAME)
 
 class TestMemberType(BaseContent):
     """A test type"""
@@ -82,4 +83,4 @@ class TestMemberType(BaseContent):
 
     getAuthors = ComputedAttribute('Authors')
 
-registerType(TestMemberType)
+registerType(TestMemberType, PROJECTNAME)

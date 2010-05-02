@@ -4,8 +4,8 @@ import re
 
 # Zope stuff
 from zope.interface import implements
-from Interface import Interface
-from Globals import InitializeClass
+from zope.interface import Interface
+from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 from OFS.Folder import Folder
 from OFS.SimpleItem import SimpleItem
@@ -13,6 +13,7 @@ from OFS.PropertyManager import PropertyManager
 import Products
 
 # PLONE things
+from plone.i18n.normalizer import filenamenormalizer
 from Products.CMFCore.utils import getToolByName
 from Products.CMFBibliographyAT.interface import \
      IBibliographyIdCooker as z3IBibliographyIdCooker
@@ -54,7 +55,7 @@ class BibliographyIdCooker(SimpleItem, PropertyManager):
     """
     Base class for the id cookers of the bibliography tool.
     """
-    __implements__ = (IBibliographyIdCooker ,)
+
     implements(z3IBibliographyIdCooker)
 
     meta_type = 'Bibliography IdCooker'
@@ -106,12 +107,7 @@ class BibliographyIdCooker(SimpleItem, PropertyManager):
     def _cleanId(self, text):
         """remove all charcaters not allowed in Zope ids"""
         putils = getToolByName(self, 'plone_utils')
-        # BBB: this should be replaced with a normalizer from plone.i18n
-        # (however there is no out-of-the-box normalizer available implementing
-        # the relaxed mode without breaking existing tests)
-        text = putils.normalizeString(text, relaxed=True)
-        # 'relaxed' is a bit too relaxed, not removing spaces.
-        text = text.replace(' ', '')
+        text = filenamenormalizer.normalize(text)
         return text
 
     def _object2ref(self, ref):

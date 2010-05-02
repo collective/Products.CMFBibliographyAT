@@ -15,7 +15,7 @@ import logging
 # Zope stuff
 from zope.interface import implements
 from zope import component
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo, ModuleSecurityInfo
 from OFS.Folder import Folder
 from persistent.mapping import PersistentMapping
@@ -98,7 +98,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
     sort_members_on = ''
     select_members_attr = ''
     members_search_on_attr = ''
-    infer_author_references_after_edit = False
+    infer_author_references_after_edit = True
     infer_author_references_after_import = True
     authorof_implies_owner = False
     authorof_implies_creator = False

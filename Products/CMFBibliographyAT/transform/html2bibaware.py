@@ -5,6 +5,9 @@
 #                                                                        #
 ##########################################################################
 
+
+form zope.interface import implements
+
 from Products.CMFCore.utils import getToolByName
 from Products.PortalTransforms.interfaces import itransform
 

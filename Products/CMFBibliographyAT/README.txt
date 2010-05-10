@@ -68,6 +68,8 @@ Dependencies
   to extend the range of supported import/output formats. Bibutils is
   mandatory for any kind of export/import. Minimum version is Bibutils 4.6.
 
+* Plone 3 or Plone 4
+
 Resources
 ---------
 

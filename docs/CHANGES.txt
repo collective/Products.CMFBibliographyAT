@@ -1,6 +1,6 @@
-1.1.0 (unreleased)
-==================
-* Plone 4 compatibility
+1.1.0b1 (2010/05/10)
+====================
+* compatibility with Plone 3 + Plone 4 
 
 1.0.5 (2010-04-22)
 ==================

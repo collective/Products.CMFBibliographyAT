@@ -1,3 +1,7 @@
+1.1.0b5 (2010/06/10)
+====================
+* fixed another Plone 3/4 incompatibility in transforms/*
+
 1.1.0b4 (2010/06/10)
 ====================
 * fixed Plone 3/4 incompatibility in transforms/*

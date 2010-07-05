@@ -1,3 +1,9 @@
+1.1.0b8 (2010/07/05)
+====================
+* fixed handling of non-ascii characters in author names due to incompatible
+  Plone API changes in normalizeString(). Now using the unicodedata.normalize()
+  functionality which may result in a slightly different id generation.
+
 1.1.0b7 (2010/07/05)
 ====================
 * another Plone 3/4 fix incompatibility in transforms/*

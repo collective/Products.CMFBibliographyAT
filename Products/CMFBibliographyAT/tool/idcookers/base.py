@@ -1,7 +1,7 @@
 """BibliographyIdCooker main class"""
 
 import re
-
+import unicodedata
 # Zope stuff
 from zope.interface import implements
 from zope.interface import Interface
@@ -106,9 +106,12 @@ class BibliographyIdCooker(SimpleItem, PropertyManager):
 
     def _cleanId(self, text):
         """remove all characters not allowed in Zope ids"""
-        putils = getToolByName(self, 'plone_utils')
-        text = filenamenormalizer.normalize(text)
-        return text
+        if not isinstance(text, unicode):
+            try:
+                text = unicode(text, 'utf-8')
+            except UnicodeError:
+                text = unicode(text, 'iso-8859-15')
+        return unicodedata.normalize('NFKD', text).encode('ascii', 'ignore')
 
     def _object2ref(self, ref):
         """ If the passed on argument 'ref' is a BibRef Item (object), translate the import fields (authors, publication_year, title)

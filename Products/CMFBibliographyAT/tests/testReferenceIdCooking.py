@@ -446,7 +446,7 @@ class TestReferenceIdCooking(PloneTestCase.PloneTestCase):
 
         bf = self.getPopulatedBibFolder(idcooker_id='etal',
                                         use_pids_on_import=False)
-        self.failUnless( 'OOAAUUoeoeaeaeuu2005' in bf.contentIds() )
+        self.failUnless( 'OOAAUUooaauu2005' in bf.contentIds() )
 
     # end of the individual tests
 

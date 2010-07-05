@@ -105,7 +105,7 @@ class BibliographyIdCooker(SimpleItem, PropertyManager):
         return self.idcooker_enabled
 
     def _cleanId(self, text):
-        """remove all charcaters not allowed in Zope ids"""
+        """remove all characters not allowed in Zope ids"""
         putils = getToolByName(self, 'plone_utils')
         text = filenamenormalizer.normalize(text)
         return text

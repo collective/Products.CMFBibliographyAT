@@ -31,6 +31,7 @@ from os.path import join
 MEDLINE_TEST_MED = join(PACKAGE_HOME, 'medline_test.med')
 MEDLINE_TEST_BIB = join(PACKAGE_HOME, 'medline_test.bib')
 MEDLINE_TEST_XML = join(PACKAGE_HOME, 'medline_test.xml')
+UMLAUTS_TEST_XML = join(PACKAGE_HOME, 'umlauts.xml')
 BIBTEX_TEST_BIB = join(PACKAGE_HOME, 'bibtex_test.bib')
 IDCOOKING_TEST_BIB = join(PACKAGE_HOME, 'idcooking_test.bib')
 PDFFOLDER_TEST_BIB = join(PACKAGE_HOME, 'pdffolder_test.bib')

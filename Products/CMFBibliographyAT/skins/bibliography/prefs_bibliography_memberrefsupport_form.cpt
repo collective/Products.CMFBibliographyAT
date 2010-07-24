@@ -264,27 +264,6 @@
 
         <input type="hidden" name="form.submitted" value="1" />
 
-        <tal:cmf-member-hiddenfields tal:condition="bib_tool/usesCMFMember">
-            <select style="visibility: hidden; padding-bottom:-2em;"
-                    multiple="multiple" name="member_types:list" id="member_types">
-
-                <option value="Member" selected="selected">Member</option>
-
-            </select>
-            <select style="visibility: hidden; padding-bottom:-2em;"
-                    name="select_members_attr:text" id="select_members_attr">
-
-                <option value="Title" selected="selected"></option>
-
-            </select>
-            <select style="visibility: hidden; padding-bottom:-2em;"
-                    name="sort_members_on:text" id="sort_members_on">
-
-                <option value="sortable_title" selected="selected"></option>
-
-            </select>
-        </tal:cmf-member-hiddenfields>
-
     </form>
 
 </div>

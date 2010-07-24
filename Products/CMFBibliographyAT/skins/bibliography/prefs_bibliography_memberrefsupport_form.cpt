@@ -107,7 +107,7 @@
 
             <div class="field"
                  tal:define="isInferAuthorReferencesAfterEditChecked python:bib_tool.infer_author_references_after_edit;
-                 isInferAuthorReferencesAfterEditNotChecked python:not bib_tool.infer_author_references_after_edit"/>
+                 isInferAuthorReferencesAfterEditNotChecked python:not bib_tool.infer_author_references_after_edit">
                              
 
                 <label i18n:translate="label_memberrefsafteredit_link">Infer author references after each edit of a bibliographical reference item</label>

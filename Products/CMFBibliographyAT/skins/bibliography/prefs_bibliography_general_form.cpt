@@ -257,8 +257,7 @@
                       name="allow_pdfupload_portal_policy:int"
                       id="allow_pdfupload_portal_policy_enabled"
                       value="1"
-                      tal:attributes="checked python: test (allowPdfUploadPortalPolicyChecked, 'checked', None);
-                                      ;" />
+                      tal:attributes="checked python: test (allowPdfUploadPortalPolicyChecked, 'checked', None)" />
 
                 <label tal:attributes="for python: 'allow_pdfupload_portal_policy_enabled'"
                        i18n:translate="label_pdfupload_portal_policy_enabled">Allow the upload of publications in PDF format for the site</label>

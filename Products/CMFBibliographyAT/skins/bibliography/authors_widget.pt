@@ -5,8 +5,7 @@
       i18n:domain="plone">
   <head><title></title></head>
   <body>
-    <metal:define define-macro="edit"   tal:define="Iterator python:modules['Products.CMFPlone'].IndexIterator;
-                          tabindex python:Iterator(mainSlot=False);">
+    <metal:define define-macro="edit"> 
       <metal:use use-macro="here/widgets/field/macros/edit">
        <tal:block metal:fill-slot="widget_body">
        <fieldset tal:define="values python:field.getEditAccessor(here)();
@@ -37,20 +36,17 @@
 	       name=""
 	       value=""
 	       size="30"
-	       tabindex="#"
 	       tal:attributes="name string:${fieldName}.${key}:records:ignore_empty;
 	       value python:field.getSubfieldValue(values, idx, key);
 	       size python:field.getSubfieldSize(key);
-	       maxlength python:field.getSubfieldMaxlength(key); 
-	       tabindex tabindex/next;"
+	       maxlength python:field.getSubfieldMaxlength(key);" 
 	       />
 	</tal:string>
 	<tal:selection condition="python: field.isSelection(key)">
 	<tal:block tal:define="value python:field.getSubfieldValue(values, idx, key);
                                vocab python:field.getVocabularyFor(key, here)">
 	   <select tal:attributes="name string:${fieldName}.${key}:records:ignore_empty; 
-                                   id fieldName;
-		                   tabindex tabindex/next;"
+                                   id fieldName"
                    i18n:domain="python:i18n_domain">
 	      <option tal:repeat="item vocab"
 		      tal:attributes="value item;
@@ -65,9 +61,7 @@
 	<textarea name=""
 		  cols="30"
 		  rows="5"
-		  tabindex="#"
-		  tal:attributes="name string:${fieldName}.${key}:records:ignore_empty:lines;
-        	                  tabindex tabindex/next;"
+		  tal:attributes="name string:${fieldName}.${key}:records:ignore_empty:lines;"
 		  tal:content="python:'\n'.join(field.getSubfieldValue(values, idx, key, []))" >
 	</textarea>
 	</tal:text>
@@ -76,8 +70,7 @@
                value python:field.getSubfieldValue(values, idx, key);
 	       inputname  string:${fieldName}.${key}:ignore_empty:records;
 	       formname   string:edit_form;
-	       inputvalue python: test(value, value, '');
-	       tabindex tabindex/next;"
+	       inputvalue python: test(value, value, '')"
 	       tal:omit-tag="">
 	    <div metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox|here/calendar_slot/macros/calendarDatePickerBox">
 	      a pop-up calendar
@@ -89,12 +82,10 @@
 	       name=""
 	       value=""
 	       size="10"
-	       tabindex="#"
 	       tal:attributes="name string:${fieldName}.${key}:${type}:records:ignore_empty;
 	       value python:field.getSubfieldValue(values, idx, key);
 	       size python:field.getSubfieldSize(key);
-	       maxlength python:field.getSubfieldMaxlength(key); 
-	       tabindex tabindex/next;"
+	       maxlength python:field.getSubfieldMaxlength(key)"
 	       />
 	</tal:number>
 	</tal:block>
@@ -120,15 +111,12 @@
        </table>
        <input type="submit" name="form.button.more" class="context"
        tal:condition="python: field.showMore(values)"
-       tal:attributes="tabindex tabindex/next" 
        i18n:attributes="value more_entries" />
           <div tal:condition="values">
             <input class="noborder"
                    type="checkbox"
                    value="off"
-                   tabindex=""
-                   tal:attributes="tabindex tabindex/next;
-                       name string:${fieldName}_delete;
+                   tal:attributes="name string:${fieldName}_delete;
                        id string:${fieldName}_checkbox;"
 		     />
             <span i18n:translate="delete_all_entries"

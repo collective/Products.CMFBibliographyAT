@@ -33,8 +33,6 @@
                  bib_tool here/portal_bibliography;
                  template_id template/getId;
                  here_url context/@@plone_context_state/object_url;
-                 Iterator python:modules['Products.CMFPlone'].IndexIterator;
-                 tabindex python:Iterator(mainSlot=False);
                  ">
 
     <ul class="contentViews">
@@ -93,8 +91,8 @@
 
             <div class="field"
                  tal:define="bibFoldersTranslatable python:bib_tool.bibfolders_translatable;
-                             bibFoldersNotTranslatable python:not bib_tool.bibfolders_translatable;
-                             tabindex tabindex/next;">
+                             bibFoldersNotTranslatable python:not bib_tool.bibfolders_translatable
+                             ">
 
                 <label i18n:translate="label_bibfolders_translatable">Translatable Bibliography Folders</label>
 
@@ -109,10 +107,9 @@
                        name="bibfolders_translatable:int"
                        id="bibrefitems_translatable_on"
                        value="1"
-                       tabindex=""
                        tal:attributes="checked bibFoldersTranslatable;
                                        onClick string:javascript:selectRadio('bibrefitems_translatable:int', true);;;
-                                       tabindex tabindex;" />
+                                       />
 
                 <label for="show_bibfolders_translatable_on" i18n:translate="label_bibfolders_translatable_on">Allow translation of bibliography folders</label>
 
@@ -123,9 +120,7 @@
                        name="bibfolders_translatable:int"
                        id="bibfolders_translatable_off"
                        value="0"
-                       tabindex=""
-                       tal:attributes="checked bibFoldersNotTranslatable;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked bibFoldersNotTranslatable" />
 
                 <label for="show_bibfolders_translatable_off" i18n:translate="label_bibfolders_translatable_off">Do not allow translation of bibliography folders</label>
             </div>
@@ -133,7 +128,7 @@
             <div class="field"
                  tal:define="bibrefItemsTranslatable python:bib_tool.bibrefitems_translatable;
                              bibrefItemsNotTranslatable python:not bib_tool.bibrefitems_translatable;
-                             tabindex tabindex/next;">
+                             ">
 
                 <label i18n:translate="label_bibrefitems_translatable">Translatable Bibliography Reference Items</label>
 
@@ -148,9 +143,7 @@
                        name="bibrefitems_translatable:int"
                        id="bibrefitems_translatable_on"
                        value="1"
-                       tabindex=""
-                       tal:attributes="checked bibrefItemsTranslatable;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked bibrefItemsTranslatable" />
 
                 <label for="show_bibrefitems_translatable_on" i18n:translate="label_bibrefitems_translatable_on">Allow translation of reference items</label>
 
@@ -161,10 +154,9 @@
                        name="bibrefitems_translatable:int"
                        id="bibrefitems_translatable_off"
                        value="0"
-                       tabindex=""
                        tal:attributes="checked bibrefItemsNotTranslatable;
                                        onClick string:javascript:selectRadio('bibfolders_translatable:int', false);;;
-                                       tabindex tabindex;" />
+                                       " />
 
                 <label for="show_bibrefitems_translatable_off" i18n:translate="label_bibrefitems_translatable_off">Do not allow translation of reference items</label>
             </div>
@@ -172,7 +164,7 @@
             <div class="field"
                  tal:define="isSearchableBibFoldersChecked python:bib_tool.searchable_bibfolders;
                              isSearchableBibFoldersNotChecked python:not bib_tool.searchable_bibfolders;
-                             tabindex tabindex/next;">
+                             ">
 
                 <label i18n:translate="label_searchable_bibfolders">Searchable Bibliography Folders</label>
 
@@ -192,9 +184,8 @@
                        name="searchable_bibfolders:int"
                        id="searchable_bibfolders_on"
                        value="1"
-                       tabindex=""
                        tal:attributes="checked isSearchableBibFoldersChecked;
-                                       tabindex tabindex" />
+                                       " />
 
                 <label for="searchable_bibfolders_on"
                        i18n:translate="label_searchable_bibfolders_on">Bibliography folders are searchable by default</label>
@@ -206,9 +197,8 @@
                        name="searchable_bibfolders:int"
                        id="searchable_bibfolders_off"
                        value="0"
-                       tabindex=""
                        tal:attributes="checked isSearchableBibFoldersNotChecked;
-                                       tabindex tabindex;" />
+                                       " />
 
                 <label for="searchable_bibfolders_off"
                        i18n:translate="label_searchable_bibfolders_off">By default new bibliography folders are not searchable</label>
@@ -217,7 +207,7 @@
             <div class="field"
                  tal:define="isIntroChecked python:bib_tool.allow_folder_intro;
                              isIntroNotChecked python:not bib_tool.allow_folder_intro;
-                             tabindex tabindex/next;">
+                             ">
 
                 <label i18n:translate="label_allow_intro_text">Intro Text for Bibliography Folders</label>
 
@@ -230,9 +220,8 @@
                        name="allow_folder_intro:int"
                        id="allow_folder_intro_on"
                        value="1"
-                       tabindex=""
                        tal:attributes="checked isIntroChecked;
-                                       tabindex tabindex" />
+                                       " />
 
                 <label for="allow_folder_intro_on"
                        i18n:translate="label_allow_folder_intro_on">Display intro text in bibliography folders' view page</label>
@@ -244,9 +233,8 @@
                        name="allow_folder_intro:int"
                        id="allow_folder_intro_off"
                        value="0"
-                       tabindex=""
                        tal:attributes="checked isIntroNotChecked;
-                                       tabindex tabindex;" />
+                                       " />
 
                 <label for="allow_folder_intro_off"
                        i18n:translate="label_allow_folder_intro_off">Display default message</label>
@@ -255,7 +243,7 @@
             <div class="field"
                 tal:define="allowPdfUploadPortalPolicyChecked python:bib_tool.allow_pdfupload_portal_policy;
                             allowPdfUploadPortalPolicyNotChecked python:not bib_tool.allow_pdfupload_portal_policy;
-                            tabindex tabindex/next;">
+                            ">
                <label i18n:translate="label_pdfupload_portal_policy">PDF Upload Portal Policy</label>
 
                <p class="formHelp" i18n:translate="help_pdfupload_portal_policy">
@@ -269,9 +257,8 @@
                       name="allow_pdfupload_portal_policy:int"
                       id="allow_pdfupload_portal_policy_enabled"
                       value="1"
-                      tabindex=""
                       tal:attributes="checked python: test (allowPdfUploadPortalPolicyChecked, 'checked', None);
-                                      tabindex tabindex;" />
+                                      ;" />
 
                 <label tal:attributes="for python: 'allow_pdfupload_portal_policy_enabled'"
                        i18n:translate="label_pdfupload_portal_policy_enabled">Allow the upload of publications in PDF format for the site</label>
@@ -283,9 +270,8 @@
                        name="allow_pdfupload_portal_policy:int"
                        id="allow_pdfupload_portal_policy_disabled"
                        value="0"
-                       tabindex=""
                        tal:attributes="checked python: test (allowPdfUploadPortalPolicyNotChecked, 'checked', None);
-                                       tabindex tabindex;" />
+                                       " />
 
                 <label tal:attributes="for python: 'allow_pdfupload_portal_policy_disabled'"
                        i18n:translate="label_pdfupload_portal_policy_disabled">Upload of publications in PDF format is forbidden all over the portal</label>
@@ -305,8 +291,7 @@
                        multiple="multiple"
                        name="allow_pdfupload_for_types:list"
                        width="100%"
-                       id="allow_pdfupload_for_types"
-                       tal:attributes="tabindex tabindex/next;">
+                       id="allow_pdfupload_for_types">
 
                         <option
                             tal:repeat="bibref_type python: bib_tool.getReferenceTypes()"
@@ -321,8 +306,7 @@
 
             <div class="field"
                 tal:define="synchronizePdfFileAttributesChecked python:bib_tool.synchronize_pdffile_attributes;
-                            synchronizePdfFileAttributesNotChecked python:not bib_tool.synchronize_pdffile_attributes;
-                            tabindex tabindex/next;">
+                synchronizePdfFileAttributesNotChecked python:not bib_tool.synchronize_pdffile_attributes">
                <label i18n:translate="label_synchronize_pdffiles">PDF File Synchronization</label>
 
                <p class="formHelp" i18n:translate="help_synchronize_pdffiles1">
@@ -343,9 +327,7 @@
                       name="synchronize_pdffile_attributes:int"
                       id="synchronize_pdffile_attributes_enabled"
                       value="1"
-                      tabindex=""
-                      tal:attributes="checked python: test (synchronizePdfFileAttributesChecked, 'checked', None);
-                                      tabindex tabindex;" />
+                      tal:attributes="checked python: test (synchronizePdfFileAttributesChecked, 'checked', None)"/>
 
                 <label tal:attributes="for python: 'synchronize_pdffile_attributes_enabled'"
                        i18n:translate="label_upload_pdffiles_enabled">Try to keep PDF file IDs in sync with IDs of bibliographical entries</label>
@@ -357,9 +339,7 @@
                        name="synchronize_pdffile_attributes:int"
                        id="synchronize_pdffile_attributes_disabled"
                        value="0"
-                       tabindex=""
-                       tal:attributes="checked python: test (synchronizePdfFileAttributesNotChecked, 'checked', None);
-                                       tabindex tabindex;" />
+                       tal:attributes="checked python: test (synchronizePdfFileAttributesNotChecked, 'checked', None)"/>
 
                 <label tal:attributes="for python: 'synchronize_pdffile_attributes_disabled'"
                        i18n:translate="label_upload_pdffiles_disabled">Keep the filesystem filename as ID for uploaded PDF files</label>
@@ -368,8 +348,7 @@
 
             <div class="field"
                  tal:define="isbnLinkChecked python:bib_tool.show_isbn_link;
-                             isbnLinkNotChecked python:not bib_tool.show_isbn_link;
-                             tabindex tabindex/next;">
+                             isbnLinkNotChecked python:not bib_tool.show_isbn_link">
 
                 <label i18n:translate="label_isbn_link">ISBN Link</label>
 
@@ -382,9 +361,7 @@
                        name="show_isbn_link:int"
                        id="show_isbn_link_on"
                        value="1"
-                       tabindex=""
-                       tal:attributes="checked isbnLinkChecked;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked isbnLinkChecked" />
 
                 <label for="show_isbn_link_on" i18n:translate="label_show_isbn_link_on">Allow ISBN links to be displayed</label>
 
@@ -395,9 +372,7 @@
                        name="show_isbn_link:int"
                        id="show_isbn_link_off"
                        value="0"
-                       tabindex=""
-                       tal:attributes="checked isbnLinkNotChecked;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked isbnLinkNotChecked" />
 
                 <label for="show_isbn_link_off" i18n:translate="label_show_isbn_link_off">Do not show ISBN links</label>
             </div>
@@ -415,29 +390,23 @@
                 <textarea cols="30"
                           rows="6"
                           name="preprint_servers:lines"
-                          tabindex=""
-                          tal:attributes="tabindex tabindex/next"
                           tal:content="python:'\n'.join(preprint_servers)">Preprint Servers</textarea>
             </div>
 
             <div class="formControls">
                 <input class="context"
-                       tabindex=""
                        type="submit"
                        name="form.button.Save"
                        value="Save"
                        i18n:attributes="value label_save"
                        i18n:domain="plone"
-                       tal:attributes="tabindex tabindex/next;"
                        />
                 <input class="standalone"
-                       tabindex=""
                        type="submit"
                        name="form.button.Cancel"
                        value="Cancel"
                        i18n:attributes="value label_cancel"
                        i18n:domain="plone"
-                       tal:attributes="tabindex tabindex/next;"
                        />
             </div>
 

@@ -6,9 +6,7 @@
 <body>
 
   <div metal:fill-slot="main" tal:define="errors options/state/getErrors;
-                   global props python:container.portal_properties;
-                   Iterator python:modules['Products.CMFPlone'].IndexIterator;
-                   tabindex python:Iterator();">
+                                          global props python:container.portal_properties">
 
     <h1><span tal:content="here/Title" /> - <span i18n:translate="heading_pubref_import">Import Bibliographical Entries</span></h1>
 
@@ -44,8 +42,7 @@
 
           <div tal:content="error">Validation error output</div>
 
-          <input type="file" id="file" name="file" size="30" value="hilfe" tabindex=""
-                 tal:attributes="tabindex tabindex/next" />
+          <input type="file" id="file" name="file" size="30" value="hilfe" />
 
         </div>
 
@@ -62,7 +59,7 @@
 
           <div tal:content="error">Validation error output</div>
 
-          <textarea cols="60" rows="10" tabindex="4" name="up_text"
+          <textarea cols="60" rows="10" name="up_text"
                     id="up_text"
                     tal:content="up_text"></textarea>
         </div>
@@ -86,8 +83,7 @@
             <div>
             <input class="noborder" type="radio" name="format"
                    tal:define="value python: format[1]"
-                   tal:attributes="tabindex tabindex/next;
-                                   value python: format[0];
+                   tal:attributes="value python: format[0];
                                    id string:cb_${value};
                                    checked python:test(format[1] == 'bib','checked',None)"
                    id="cb_structuredtext" checked="checked" />
@@ -142,12 +138,11 @@
 
         <div class="formControls">
           <input class="context"
-                 tabindex=""
                  type="submit"
                  name="form.button.import"
                  value="Import"
                  i18n:attributes="value"
-                 tal:attributes="tabindex tabindex/next;" />
+                 />
         </div>
 
       </fieldset>

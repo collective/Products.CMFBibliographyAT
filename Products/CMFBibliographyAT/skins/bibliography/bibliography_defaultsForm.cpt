@@ -8,8 +8,6 @@
 <body>
   <div metal:fill-slot="main"
        tal:define="global props python:container.portal_properties;
-                   Iterator python:modules['Products.CMFPlone'].IndexIterator;
-                   tabindex python:Iterator();
                    errors options/state/getErrors;">
 
     <div tal:replace="structure provider:plone.abovecontenttitle" />
@@ -63,11 +61,9 @@
                             key python:link.get('key','');
                             value python:link.get('value','');">
               <td><input name="nextlink.key:record:ignore_empty" size="25"
-                         tal:attributes="value key;
-                                         tabindex tabindex/next" /></td>
+                         tal:attributes="value key" /></td>
               <td><input name="nextlink.value:record:ignore_empty" size="40"
-                         tal:attributes="value value;
-                                         tabindex tabindex/next" /></td>
+                         tal:attributes="value value" /></td>
             </tr>
           </div>
         </table>
@@ -75,12 +71,11 @@
 
         <div class="formControls">
           <input class="context"
-                 tabindex=""
                  type="submit"
                  name="form.button.More"
                  value="More Links"
                  i18n:attributes="value"
-                 tal:attributes="tabindex tabindex/next;" />
+                 />
         </div>
 
         <div class="field"
@@ -95,20 +90,18 @@
           <textarea name="top:lines"
                     rows="10"
                     cols="25"
-                    tal:attributes="tabindex tabindex/next"
                     tal:content="python:'\n'.join(prop_value)">
           Some descriptive text</textarea>
         </div>
 
         <div class="formControls">
           <input class="context"
-                 tabindex=""
                  type="submit"
                  name="form.button.Save"
                  value="label_save"
                  i18n:domain="plone"
                  i18n:attributes="value"
-                 tal:attributes="tabindex tabindex/next;" />
+                 />
         </div>
         <input type="hidden" name="form.submitted" value="1" />
 

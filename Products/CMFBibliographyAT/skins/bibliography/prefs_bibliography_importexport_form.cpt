@@ -100,11 +100,10 @@
                                name=""
                                id=""
                                value="1"
-                               tabindex=""
                                tal:attributes="name python: 'parser_enabled_%s:int' % name;
                                                id python: 'parser_enabled_%s' % name;
                                                checked isEnabled;
-                                               tabindex tabindex/next;" />
+                                               "/>
 
                         <label tal:attributes="for python: 'parser_enabled_%s' % name;"
                                i18n:translate="label_parser_enabled">enabled</label>
@@ -115,11 +114,9 @@
                                 name=""
                                 id=""
                                 value="0"
-                                tabindex=""
                                 tal:attributes="name python: 'parser_enabled_%s:int' % name;
                                                 id python: 'parser_disabled_%s' % name;
-                                                checked isDisabled;
-                                                tabindex tabindex/next;" />
+                                                checked isDisabled" />
 
                         <label tal:attributes="for python: 'parser_disabled_%s' % name;"
                                i18n:translate="label_parser_disabled">disabled</label>
@@ -164,11 +161,9 @@
                                name=""
                                id=""
                                value="1"
-                               tabindex=""
                                tal:attributes="name python: 'renderer_enabled_%s:int' % name;
                                                id python: 'renderer_enabled_%s' % name;
-                                               checked isEnabled;
-                                               tabindex tabindex;" />
+                                               checked isEnabled "/>
 
                         <label tal:attributes="for python: 'renderer_enabled_%s' % name;"
                                i18n:translate="label_renderer_enabled">enabled</label>
@@ -179,11 +174,10 @@
                                 name=""
                                 id=""
                                 value="0"
-                                tabindex=""
                                 tal:attributes="name python: 'renderer_enabled_%s:int' % name;
                                                 id python: 'renderer_disabled_%s' % name;
                                                 checked isDisabled;
-                                                tabindex tabindex;" />
+                                                " />
 
                         <label tal:attributes="for python: 'renderer_disabled_%s' % name;"
                                i18n:translate="label_renderer_disabled">disabled</label>
@@ -199,22 +193,18 @@
 
             <div class="formControls">
                 <input class="context"
-                       tabindex=""
                        type="submit"
                        name="form.button.Save"
                        value="Save"
                        i18n:attributes="value label_save"
                        i18n:domain="plone"
-                       tal:attributes="tabindex tabindex/next;"
                        />
                 <input class="standalone"
-                       tabindex=""
                        type="submit"
                        name="form.button.Cancel"
                        value="Cancel"
                        i18n:attributes="value label_cancel"
                        i18n:domain="plone"
-                       tal:attributes="tabindex tabindex/next;"
                        />
             </div>
 

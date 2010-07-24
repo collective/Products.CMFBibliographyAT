@@ -13,8 +13,6 @@
                  bib_tool here/portal_bibliography;
                  template_id template/getId;
                  here_url context/@@plone_context_state/object_url;
-                 Iterator python:modules['Products.CMFPlone'].IndexIterator;
-                 tabindex python:Iterator(mainSlot=False);
                  ">
 
     <ul class="contentViews">
@@ -81,8 +79,7 @@
             <select name="default_idcooker_id:text"
                     width="100%"
                     id="default_idcooker_id"
-                    tabindex=""
-                    tal:attributes="tabindex tabindex/next;">
+                    >
 
                  <option tal:repeat="idcooker_id python: bib_tool.listIdCookers(with_disabled=True)"
                          tal:attributes="value idcooker_id;
@@ -105,9 +102,7 @@
                    name="cook_ids_on_bibref_creation:int"
                    id="cook_ids_on_bibref_creation_enabled"
                    value="1"
-                   tabindex=""
-                   tal:attributes="checked python: test (here.portal_bibliography.cook_ids_on_bibref_creation, 'checked', None);
-                                   tabindex tabindex;" />
+                   tal:attributes="checked python: test (here.portal_bibliography.cook_ids_on_bibref_creation, 'checked', None)" />
             <label tal:attributes="for python: 'cook_ids_on_bibref_creation_enabled'"
                                    i18n:translate="label_idcooker_bibrefcreation_enabled">Cook IDs for newly created bibliographical references</label>
             <br />
@@ -116,9 +111,7 @@
                    name="cook_ids_on_bibref_creation:int"
                    id="cook_ids_on_bibref_creation_disabled"
                    value="0"
-                   tabindex=""
-                   tal:attributes="checked python: test (not here.portal_bibliography.cook_ids_on_bibref_creation, 'checked', None);
-                                   tabindex tabindex;" />
+                   tal:attributes="checked python: test (not here.portal_bibliography.cook_ids_on_bibref_creation, 'checked', None)" />
             <label tal:attributes="for python: 'cook_ids_on_bibref_creation_disabled'"
                                    i18n:translate="label_idcooker_bibrefcreation_disabled">Keep Plone's auto-generated object IDs for bibliographical references</label>
             </div>
@@ -138,9 +131,7 @@
                    name="cook_ids_after_bibref_edit:int"
                    id="cook_ids_after_bibref_edit_enabled"
                    value="1"
-                   tabindex=""
-                   tal:attributes="checked python: test (here.portal_bibliography.cook_ids_after_bibref_edit, 'checked', None);
-                                   tabindex tabindex;" />
+                   tal:attributes="checked python: test (here.portal_bibliography.cook_ids_after_bibref_edit, 'checked', None)" />
             <label tal:attributes="for python: 'cook_ids_after_bibref_edit_enabled'"
                                    i18n:translate="label_idcooker_bibrefedit_enabled">Re-Cook IDs after every bibliographical reference edit</label>
             <br />
@@ -149,9 +140,7 @@
                    name="cook_ids_after_bibref_edit:int"
                    id="cook_ids_after_bibref_edit_disabled"
                    value="0"
-                   tabindex=""
-                   tal:attributes="checked python: test (not here.portal_bibliography.cook_ids_after_bibref_edit, 'checked', None);
-                                   tabindex tabindex;" />
+                   tal:attributes="checked python: test (not here.portal_bibliography.cook_ids_after_bibref_edit, 'checked', None)" />
             <label tal:attributes="for python: 'cook_ids_after_bibref_edit_disabled'"
                                    i18n:translate="label_idcooker_bibrefedit_disabled">Re-cooking of bibliographical reference IDs is very awful, i do not want this as a default for bibliography folders!!!</label>
             </div>
@@ -170,9 +159,7 @@
                    name="use_pids_on_import:int"
                    id="use_pids_on_import_disabled"
                    value="0"
-                   tabindex=""
-                   tal:attributes="checked python: test (not here.portal_bibliography.use_pids_on_import, 'checked', None);
-                                   tabindex tabindex;" />
+                   tal:attributes="checked python: test (not here.portal_bibliography.use_pids_on_import, 'checked', None)" />
             <label tal:attributes="for python: 'use_pids_on_import_disabled'"
                                    i18n:translate="label_idcooker_usepids_on_import_disabled">Always cook IDs for imported reference items</label>
             <br />
@@ -181,9 +168,7 @@
                    name="use_pids_on_import:int"
                    id="use_pids_on_import_enabled"
                    value="1"
-                   tabindex=""
-                   tal:attributes="checked python: test (here.portal_bibliography.use_pids_on_import, 'checked', None);
-                                   tabindex tabindex;" />
+                   tal:attributes="checked python: test (here.portal_bibliography.use_pids_on_import, 'checked', None)" />
             <label tal:attributes="for python: 'use_pids_on_import_enabled'"
                                    i18n:translate="label_idcooker_usepids_enabled">On import use reference IDs from imported file</label>
             </div>
@@ -213,11 +198,10 @@
                    name=""
                    id=""
                    value="1"
-                   tabindex=""
                    tal:attributes="name python: 'idcooker_enabled_%s:int' % idcooker_id;
                                    id python: 'idcooker_enabled_%s' % idcooker_id;
-                                   checked isEnabled;
-                                   tabindex tabindex;" />
+                                   checked isEnabled"
+                                   />
             <label tal:attributes="for python: 'idcooker_enabled_%s' % idcooker_id;"
                                    i18n:translate="label_idcooker_enabled">enabled</label>
             <br />
@@ -226,11 +210,10 @@
                    name=""
                    id=""
                    value="0"
-                   tabindex=""
                    tal:attributes="name python: 'idcooker_enabled_%s:int' % idcooker_id;
                    id python: 'idcooker_disabled_%s' % idcooker_id;
-                   checked isDisabled;
-                   tabindex tabindex;" />
+                   checked isDisabled"
+                   />
 
             <label tal:attributes="for python: 'idcooker_disabled_%s' % idcooker_id;"
                    i18n:translate="label_idcooker_disabled">disabled</label>
@@ -242,22 +225,18 @@
 
         <div class="formControls">
             <input class="context"
-                   tabindex=""
                    type="submit"
                    name="form.button.Save"
                    value="Save"
                    i18n:attributes="value label_save"
                    i18n:domain="plone"
-                   tal:attributes="tabindex tabindex/next;"
                    />
             <input class="standalone"
-                   tabindex=""
                    type="submit"
                    name="form.button.Cancel"
                    value="Cancel"
                    i18n:attributes="value label_cancel"
                    i18n:domain="plone"
-                   tal:attributes="tabindex tabindex/next;"
                    />
       </div>
       </fieldset>

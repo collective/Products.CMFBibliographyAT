@@ -12,9 +12,8 @@
      tal:define="errors options/state/getErrors;
                  bib_tool here/portal_bibliography;
                  template_id template/getId;
-                 here_url context/@@plone_context_state/object_url;
-                 Iterator python:modules['Products.CMFPlone'].IndexIterator;
-                 tabindex python:Iterator(mainSlot=False);">
+                 here_url context/@@plone_context_state/object_url"
+                 >
                  
 
     <ul class="contentViews">
@@ -73,8 +72,8 @@
 
             <div class="field"
                  tal:define="isShowMembersChecked python:bib_tool.support_member_references;
-                             isShowMembersNotChecked python:not bib_tool.support_member_references;
-                             tabindex tabindex/next;">
+                             isShowMembersNotChecked python:not bib_tool.support_member_references"
+                             >
 
                 <label i18n:translate="label_memberrefsupport_link">Support Member References for the authors and editors fields</label>
 
@@ -87,9 +86,7 @@
                        name="support_member_references:int"
                        id="support_member_references_on"
                        value="1"
-                       tabindex=""
-                       tal:attributes="checked isShowMembersChecked;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked isShowMembersChecked" />
 
                 <label for="support_member_references_on"
                        i18n:translate="label_memberrefsupport_on">Support referencing authors / editors to portal members</label>
@@ -101,9 +98,7 @@
                        name="support_member_references:int"
                        id="support_member_references_off"
                        value="0"
-                       tabindex=""
-                       tal:attributes="checked isShowMembersNotChecked;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked isShowMembersNotChecked" />
 
                 <label for="support_member_references_off"
                        i18n:translate="label_memberrefsupport_off">Just enter author / editor names into ordinary text fields</label>
@@ -112,8 +107,8 @@
 
             <div class="field"
                  tal:define="isInferAuthorReferencesAfterEditChecked python:bib_tool.infer_author_references_after_edit;
-                             isInferAuthorReferencesAfterEditNotChecked python:not bib_tool.infer_author_references_after_edit;
-                             tabindex tabindex/next;">
+                 isInferAuthorReferencesAfterEditNotChecked python:not bib_tool.infer_author_references_after_edit"/>
+                             
 
                 <label i18n:translate="label_memberrefsafteredit_link">Infer author references after each edit of a bibliographical reference item</label>
 
@@ -126,9 +121,7 @@
                        name="infer_author_references_after_edit:int"
                        id="infer_author_references_after_edit_on"
                        value="1"
-                       tabindex=""
-                       tal:attributes="checked isInferAuthorReferencesAfterEditChecked;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked isInferAuthorReferencesAfterEditChecked" />
 
                 <label for="infer_author_references_after_edit_on"
                        i18n:translate="label_memberrefafteredit_on">Automatically infer authors to member references</label>
@@ -140,9 +133,7 @@
                        name="infer_author_references_after_edit:int"
                        id="infer_author_references_after_edit_off"
                        value="0"
-                       tabindex=""
-                       tal:attributes="checked isInferAuthorReferencesAfterEditNotChecked;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked isInferAuthorReferencesAfterEditNotChecked" />
 
                 <label for="infer_author_references_after_edit_off"
                        i18n:translate="label_memberrefafteredit_off">Leave the member reference field of authors / editors untouched</label>
@@ -151,8 +142,7 @@
 
             <div class="field"
                  tal:define="isInferAuthorReferencesAfterImportChecked python:bib_tool.infer_author_references_after_import;
-                             isInferAuthorReferencesAfterImportNotChecked python:not bib_tool.infer_author_references_after_import;
-                             tabindex tabindex/next;">
+                             isInferAuthorReferencesAfterImportNotChecked python:not bib_tool.infer_author_references_after_import" />
 
                 <label i18n:translate="label_memberrefsafterimport_link">Infer author references after import of bibliographical reference items</label>
 
@@ -165,9 +155,7 @@
                        name="infer_author_references_after_import:int"
                        id="infer_author_references_after_import_on"
                        value="1"
-                       tabindex=""
-                       tal:attributes="checked isInferAuthorReferencesAfterImportChecked;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked isInferAuthorReferencesAfterImportChecked" />
 
                 <label for="infer_author_references_after_import"
                        i18n:translate="label_memberrefafterimport_on">Automatically infer authors to member references</label>
@@ -179,9 +167,7 @@
                        name="infer_author_references_after_import:int"
                        id="infer_author_references_after_import_off"
                        value="0"
-                       tabindex=""
-                       tal:attributes="checked isInferAuthorReferencesAfterImportNotChecked;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked isInferAuthorReferencesAfterImportNotChecked" />
 
                 <label for="infer_author_references_after_import_off"
                        i18n:translate="label_memberrefafterimport_off">Leave the member reference field of authors / editors untouched</label>
@@ -190,8 +176,8 @@
 
             <div class="field"
                  tal:define="authorOfImpliesOwnerChecked python:bib_tool.authorof_implies_owner;
-                             authorOfImpliesOwnerNotChecked python:not bib_tool.authorof_implies_owner;
-                             tabindex tabindex/next;">
+                 authorOfImpliesOwnerNotChecked python:not bib_tool.authorof_implies_owner" />
+                             
 
                 <label i18n:translate="label_authorofimpliesowner_link">Make authors that can be referenced to a portal member owners of their bibliographical entries</label>
 
@@ -204,9 +190,7 @@
                        name="authorof_implies_owner:int"
                        id="authorof_implies_owner_on"
                        value="1"
-                       tabindex=""
-                       tal:attributes="checked authorOfImpliesOwnerChecked;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked authorOfImpliesOwnerChecked" />
 
                 <label for="authorof_implies_owner"
                        i18n:translate="label_authorofimpliesowner_on">Make authors owners of their bibliographical entries</label>
@@ -218,9 +202,7 @@
                        name="authorof_implies_owner:int"
                        id="authorof_implies_owner_off"
                        value="0"
-                       tabindex=""
-                       tal:attributes="checked authorOfImpliesOwnerNotChecked;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked authorOfImpliesOwnerNotChecked" />
 
                 <label for="authorof_implies_owner_off"
                        i18n:translate="label_authorofimpliesowner_off">Do not touch any local roles of bibliographical entries!!!</label>
@@ -229,8 +211,7 @@
 
             <div class="field"
                  tal:define="authorOfImpliesCreatorChecked python:bib_tool.authorof_implies_creator;
-                             authorOfImpliesCreatorNotChecked python:not bib_tool.authorof_implies_creator;
-                             tabindex tabindex/next;">
+                             authorOfImpliesCreatorNotChecked python:not bib_tool.authorof_implies_creator" >
 
                 <label i18n:translate="label_authorofimpliescreator_link">Make authors that can be referenced to a portal member creators (the metadata field) of their bibliographical entries</label>
 
@@ -243,9 +224,7 @@
                        name="authorof_implies_creator:int"
                        id="authorof_implies_creator_on"
                        value="1"
-                       tabindex=""
-                       tal:attributes="checked authorOfImpliesCreatorChecked;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked authorOfImpliesCreatorChecked" />
 
                 <label for="authorof_implies_creator"
                        i18n:translate="label_authorofimpliescreator_on">Make authors creators of their bibliographical entries</label>
@@ -257,9 +236,7 @@
                        name="authorof_implies_creator:int"
                        id="authorof_implies_creator_off"
                        value="0"
-                       tabindex=""
-                       tal:attributes="checked authorOfImpliesCreatorNotChecked;
-                                       tabindex tabindex;" />
+                       tal:attributes="checked authorOfImpliesCreatorNotChecked" />
 
                 <label for="authorof_implies_creator_off"
                        i18n:translate="label_authorofimpliescreator_off">Do not touch the creators metadata field!!!</label>
@@ -268,22 +245,18 @@
 
             <div class="formControls">
                 <input class="context"
-                       tabindex=""
                        type="submit"
                        name="form.button.Save"
                        value="Save"
                        i18n:attributes="value label_save"
                        i18n:domain="plone"
-                       tal:attributes="tabindex tabindex/next;"
                        />
                 <input class="standalone"
-                       tabindex=""
                        type="submit"
                        name="form.button.Cancel"
                        value="Cancel"
                        i18n:attributes="value label_cancel"
                        i18n:domain="plone"
-                       tal:attributes="tabindex tabindex/next;"
                        />
             </div>
 

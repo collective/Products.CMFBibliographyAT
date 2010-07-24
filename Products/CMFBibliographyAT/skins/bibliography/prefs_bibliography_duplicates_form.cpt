@@ -13,8 +13,6 @@
                  bib_tool here/portal_bibliography;
                  template_id template/getId;
                  here_url context/@@plone_context_state/object_url;
-                 Iterator python:modules['Products.CMFPlone'].IndexIterator;
-                 tabindex python:Iterator(mainSlot=False);
                  ">
 
     <ul class="contentViews">
@@ -73,8 +71,8 @@
 
            <div class="field"
                 tal:define="enableDuplicatesManagerChecked python:bib_tool.enable_duplicates_manager;
-                            enableDuplicatesManagerNotChecked python:not bib_tool.enable_duplicates_manager;
-                            tabindex tabindex/next;">
+                            enableDuplicatesManagerNotChecked python:not bib_tool.enable_duplicates_manager
+                            ">
                <label i18n:translate="label_enable_duplicates_manager">Enable Duplicates Management Engine</label>
 
                <div class="formHelp" i18n:translate="help_enable_duplicates_manager">
@@ -87,9 +85,8 @@
                       name="enable_duplicates_manager:int"
                       id="enable_duplicates_manager_enabled"
                       value="1"
-                      tabindex=""
                       tal:attributes="checked python: test (enableDuplicatesManagerChecked, 'checked', None);
-                                      tabindex tabindex;" />
+                                      " />
 
                 <label tal:attributes="for python: 'enable_duplicates_manager_enabled'"
                        i18n:translate="label_enable_duplicates_manager_enabled">Use duplicates management as a default for new bibliography folders</label>
@@ -101,9 +98,7 @@
                        name="enable_duplicates_manager:int"
                        id="enable_duplicates_manager_disabled"
                        value="0"
-                       tabindex=""
-                       tal:attributes="checked python: test (enableDuplicatesManagerNotChecked, 'checked', None);
-                                       tabindex tabindex;" />
+                       tal:attributes="checked python: test (enableDuplicatesManagerNotChecked, 'checked', None)"/>
 
                 <label tal:attributes="for python: 'enable_duplicates_manager_disabled'"
                        i18n:translate="label_enable_duplicates_manager_disabled">No duplicates management shall be the default for new bibliography folders</label>
@@ -112,22 +107,18 @@
             <input type="hidden" name="form.submitted" value="1" />
             <div class="formControls">
                 <input class="context"
-                       tabindex=""
                        type="submit"
                        name="form.button.Save"
                        value="Save"
                        i18n:attributes="value label_save"
                        i18n:domain="plone"
-                       tal:attributes="tabindex tabindex/next;"
                        />
                 <input class="standalone"
-                       tabindex=""
                        type="submit"
                        name="form.button.Cancel"
                        value="Cancel"
                        i18n:attributes="value label_cancel"
                        i18n:domain="plone"
-                       tal:attributes="tabindex tabindex/next;"
                        />
             </div>
 

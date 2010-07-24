@@ -23,9 +23,7 @@
         <form action="bibliography_search"
           method="get"
           name="bibliography_search_form"
-          tal:define="DateTime python:modules['DateTime'].DateTime;
-                      Iterator python:modules['Products.CMFPlone'].IndexIterator;
-                      tabindex python:Iterator(mainSlot=False)">
+          tal:define="DateTime python:modules['DateTime'].DateTime" >
 
         <fieldset>
 
@@ -46,8 +44,6 @@
                        id="SearchableText"
                        name="SearchableText"
                        size="25"
-                       tabindex=""
-                       tal:attributes="tabindex tabindex/next;"
                        />
             </div>
 
@@ -62,8 +58,6 @@
                        id="Title"
                        name="Title"
                        size="25"
-                       tabindex=""
-                       tal:attributes="tabindex tabindex/next;"
                        />
             </div>
 
@@ -80,8 +74,6 @@
                        id="getAuthors"
                        name="getAuthors"
                        size="25"
-                       tabindex=""
-                       tal:attributes="tabindex tabindex/next;"
                        />
             </div>
 
@@ -135,8 +127,7 @@
                                                             show_hm python: False;
                                                             show_ymd python: True;
                                                             inputname id;
-                                                            inputvalue python: today.Date();
-                                                            tabindex tabindex/next;">
+                                                            inputvalue python: today.Date()" >
 
                         <metal:calendar-start metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox|here/calendar_slots/macros/calendarDatePickerBox" />
                         </tal:use-calendar-macro>
@@ -150,8 +141,7 @@
                                                             show_hm python: False;
                                                             show_ymd python: True;
                                                             inputname id;
-                                                            inputvalue python: today.Date();
-                                                            tabindex tabindex/next;">
+                                                            inputvalue python: today.Date()">
 
                         <metal:calendar-start metal:use-macro="here/calendar_macros/macros/calendarDatePickerBox|here/calendar_slots/macros/calendarDatePickerBox" />
                         </tal:use-calendar-macro>
@@ -180,7 +170,6 @@
                 </div>
 
                 <div tal:define="allTypes python:context.plone_utils.getUserFriendlyTypes(typesList=here.portal_bibliography.getReferenceTypes());">
-                    <tal:tabindex define="tabindex tabindex/next">
                     <select multiple="multiple"
                             name="portal_type:list"
                             id="portal_type"
@@ -192,16 +181,13 @@
                             value="#"
                             class="noborder"
                             selected="selected"
-                            tabindex=""
                             tal:attributes="value python: type[1];
-                                            tabindex tabindex;
                                             id python:'portal_type_%s' % type[1]">
                         <span tal:content="python: type[0]"
                           /> (<span tal:content="python: type[1]" />)
                         </option>
                     </select>
                     <br />
-                    </tal:tabindex>
                 </div>
             </div>
 
@@ -244,12 +230,10 @@
             <div class="formControls"
                  i18n:domain="plone">
                 <input class="context"
-                       tabindex=""
                        type="submit"
                        name="submit"
                        value="Search"
                        i18n:attributes="value label_search;"
-                       tal:attributes="tabindex tabindex/next;"
                        />
             </div>
 

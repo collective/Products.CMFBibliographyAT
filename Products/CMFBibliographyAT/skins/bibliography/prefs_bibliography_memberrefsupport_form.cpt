@@ -142,7 +142,7 @@
 
             <div class="field"
                  tal:define="isInferAuthorReferencesAfterImportChecked python:bib_tool.infer_author_references_after_import;
-                             isInferAuthorReferencesAfterImportNotChecked python:not bib_tool.infer_author_references_after_import" />
+                             isInferAuthorReferencesAfterImportNotChecked python:not bib_tool.infer_author_references_after_import" >
 
                 <label i18n:translate="label_memberrefsafterimport_link">Infer author references after import of bibliographical reference items</label>
 

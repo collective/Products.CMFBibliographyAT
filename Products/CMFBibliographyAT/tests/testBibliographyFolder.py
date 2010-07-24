@@ -59,6 +59,14 @@ class TestBibliographyFolder(PloneTestCase.PloneTestCase):
             self.failUnless(id in bf.contentIds(),
                             'Importing %s failed.' % id)
 
+    def test_XMLWithUmlautsImport(self):
+        bf = self.folder.bib_folder
+        xml_source = open(setup.UMLAUTS_TEST_XML, 'r').read()
+        bf.processImport(xml_source, 'umlauts.xml')
+        self.assertEqual(len(bf.contentIds()), 1)
+        entry = bf.contentValues()[0]
+        self.assertEqual(entry.Title(), 'Tr\xc3\xb6ger \xc3\x84rger')
+
     def test_BibtexImport(self):
         bf = self.folder.bib_folder
         bib_source = open(setup.BIBTEX_TEST_BIB, 'r').read()

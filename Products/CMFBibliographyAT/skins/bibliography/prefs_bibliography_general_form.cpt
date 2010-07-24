@@ -109,7 +109,7 @@
                        value="1"
                        tal:attributes="checked bibFoldersTranslatable;
                                        onClick string:javascript:selectRadio('bibrefitems_translatable:int', true);;;
-                                       />
+                                       "/>
 
                 <label for="show_bibfolders_translatable_on" i18n:translate="label_bibfolders_translatable_on">Allow translation of bibliography folders</label>
 

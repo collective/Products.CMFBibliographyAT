@@ -176,7 +176,7 @@
 
             <div class="field"
                  tal:define="authorOfImpliesOwnerChecked python:bib_tool.authorof_implies_owner;
-                 authorOfImpliesOwnerNotChecked python:not bib_tool.authorof_implies_owner" />
+                 authorOfImpliesOwnerNotChecked python:not bib_tool.authorof_implies_owner" >
                              
 
                 <label i18n:translate="label_authorofimpliesowner_link">Make authors that can be referenced to a portal member owners of their bibliographical entries</label>

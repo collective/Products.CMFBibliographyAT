@@ -1,6 +1,6 @@
 1.1.1 (2010/08/22)
 ====================
-* compatiblity with Plone 4.0rc
+* compatiblity with Plone 4.0rc1
 
 1.1.0 (2010/07/05)
 ====================

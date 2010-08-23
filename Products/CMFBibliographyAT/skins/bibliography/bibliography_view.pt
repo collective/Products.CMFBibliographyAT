@@ -58,8 +58,6 @@
         </form>
         </div>
 
-        <div class="spacer" />
-
     </metal:bibliography-style-slot>
     </metal:bibliography-style>
 

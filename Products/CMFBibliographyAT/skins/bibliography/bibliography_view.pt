@@ -106,8 +106,6 @@
       </metal:bibliography-view-slot>
       </metal:bibliography-view>
 
-      <div class="spacer">&nbsp;</div>
-
       <!-- Navigation -->
       <div metal:use-macro="here/batch_macros/macros/navigation" />
 

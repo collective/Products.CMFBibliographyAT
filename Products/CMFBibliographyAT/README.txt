@@ -77,7 +77,6 @@ Resources
 * For questions or for giving feedback: please ask on the plone-biblio
   mailing list: https://mail.das-netzwerkteam.de/mailman/listinfo/plone-biblio
 
-
 Author
 ------
 * Raphael Ritz (original author)
@@ -85,4 +84,5 @@ Author
 
 Credits
 -------
-* The CMFBiblibgraphyAT 1.0 release has been made possible with funding of the Humboldt University, Berlin
+* The CMFBiblibgraphyAT 1.0/1.1 releases were made possible with 
+  funding of the Humboldt University, Berlin

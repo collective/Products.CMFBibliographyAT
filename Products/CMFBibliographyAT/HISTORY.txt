@@ -1,3 +1,14 @@
+Older/Newer
+===========
+
+Changes newer than 1.0 are relative to *eggs root*:: 
+    
+    /docs/CHANGES.txt
+
+Changes older than 1.0 are relative to the *eggs root*:: 
+
+    /Products.CMFBibliographAT/docs/HISTORY.txt
+
 1.0
 ===
 

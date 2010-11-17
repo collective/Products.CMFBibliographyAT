@@ -1,6 +1,15 @@
 Pre-V 1.0 changes
 -----------------
 
+Changes after 1.0 are relative to *eggs root*:: 
+    
+    /docs/CHANGES.txt
+
+Changes for 1.0 are relative to the *eggs root*:: 
+
+    /Products.CMFBibliographAT/HISTORY.txt
+ 
+
 2006-01-05  Mike Gabriel <m.gabriel@sunweavers.net>
 
     * i18n files for de/en are done and should be always co-maintained
@@ -170,18 +179,18 @@ Pre-V 1.0 changes
 
       Features:
 
-        For each bibfolder you can select:
+      ï¿½ For each bibfolder you can select:
 
-        o an individual ID cooking method
-        o force ID cooking on import (as opposed to using parser IDs)
-        o force ID cooking on bibref item creation TTW
-        o force ID re-cooking on every bibref item edit
+      ï¿½ o an individual ID cooking method
+      ï¿½ o force ID cooking on import (as opposed to using parser IDs)
+      ï¿½ o force ID cooking on bibref item creation TTW
+      ï¿½ o force ID re-cooking on every bibref item edit
 
-        Site-wide settings:
+      ï¿½ Site-wide settings:
 
-        o set defaults for new bibfolders (ID cooking method, ID cooking on create,
-          on every edit, on import)
-        o enable / disable ID cookers site-wide
+      ï¿½ o set defaults for new bibfolders (ID cooking method, ID cooking on create,
+      ï¿½ ï¿½ on every edit, on import)
+      ï¿½ o enable / disable ID cookers site-wide
 
 2006-08-19 Mike Gabriel <m.gabriel@sunweavers.net>
 

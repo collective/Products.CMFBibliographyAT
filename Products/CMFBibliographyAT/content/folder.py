@@ -228,16 +228,6 @@ class BaseBibliographyFolder(Acquirer):
 
     security = ClassSecurityInfo()
 
-    filter_content_types = 1
-    allowed_content_types = REFERENCE_TYPES
-    content_icon = 'bibliography_bibfolder.png'
-
-    default_view = 'base_view'
-    view_methods = ('folder_listing',
-                    'folder_tabular_view',
-                    'base_view',
-                    )
-
     author_urls = {}
 
     schema = BibFolderSchema
@@ -696,7 +686,7 @@ class BaseBibliographyImportManager(Acquirer):
         url = None
         relations = None
         obj = None
-
+        
         if isinstance(entry, EntryParseError):
             return ('Failed: %s\n' % entry.description, 'FAILED')
 
@@ -708,27 +698,30 @@ class BaseBibliographyImportManager(Acquirer):
             if newid and newid != "nobody1000":
                 type = entry.get('reference_type', 'ArticleReference')
                 del entry['reference_type']
-                if type in self.allowed_content_types:
-                    self.invokeFactory(type, newid)
-                    obj = getattr(self, newid)
-                    obj.edit(**entry)
-                    url = obj.absolute_url()
-                    if obj.showMemberAuthors() and infer_references:
-                        relations = obj.inferAuthorReferences()
+                if type not in [_.getId() for _ in self.getAllowedTypes()]:
+                    return "Error: Content-Type %s is not " %  type +\
+                           "allowed to create in Folder %s." % self.Type() 
+                self.invokeFactory(type, newid)
+                obj = getattr(self, newid)
+                obj.edit(**entry)
+                url = obj.absolute_url()
+                if obj.showMemberAuthors() and infer_references:
+                    relations = obj.inferAuthorReferences()
 
-            if self.getEnableDuplicatesManager():
-                if not skip_matching or force_to_duplicates:
-                    test, matched_objects = self.isDuplicate(obj, span_of_search)
-                    if test or force_to_duplicates:
+            if self.getEnableDuplicatesManager() \
+               and (not skip_matching or force_to_duplicates):
+                test, matched_objects = self.isDuplicate(obj, span_of_search)
+                if test or force_to_duplicates:
+                    # in any case, we want the duplicate obj to be aware of 
+                    # local AND global matches
+                    if span_of_search != 'global':
+                        dummy, matched_objects = self.isDuplicate(obj, 'global')
 
-                        # in any case, we want the duplicate obj to be aware of local AND global matches
-                        if span_of_search != 'global':
-                            dummy, matched_objects = self.isDuplicate(obj, 'global')
+                    duplicate = self.moveToDuplicatesFolder(obj, matched_objects)
+                    return ('Skipped: %s\n' % obj.Title() or 'no info',
+                            'SKIPPED', duplicate)
 
-                        duplicate = self.moveToDuplicatesFolder(obj, matched_objects)
-                        return ('Skipped: %s\n' % obj.Title() or 'no info',
-                                'SKIPPED', duplicate)
-
+            import_status = 'ok'
         except: # for debugging
             # XXX shouldn't catch all exceptions
             # Remove the \n from import_status so that it all appears
@@ -738,7 +731,6 @@ class BaseBibliographyImportManager(Acquirer):
                           % (sys.exc_info()[0],
                              sys.exc_info()[1])
 
-        import_status = 'ok'
 
         report_line = self.buildReportLine(import_status,
                                            entry,
@@ -748,7 +740,8 @@ class BaseBibliographyImportManager(Acquirer):
 
 
     security.declareProtected(AddPortalContent, 'processImport')
-    def processImport(self, source, filename, format=None, return_obs=False, input_encoding='utf-8'):
+    def processImport(self, source, filename, format=None, return_obs=False, 
+                      input_encoding='utf-8'):
         """
         main routine to be called for importing entire files
         from custom code.
@@ -757,16 +750,16 @@ class BaseBibliographyImportManager(Acquirer):
 
         # get parsed entries from the Bibliography Tool
         bib_tool = getToolByName(self, 'portal_bibliography')
-        entries = bib_tool.getEntries(source, format, filename, input_encoding=input_encoding)
-
+        entries = bib_tool.getEntries(source, format, filename, 
+                                      input_encoding=input_encoding)
         obs = []
         for entry in entries:
             if entry.get('title'):
+                infer_references = bib_tool.inferAuthorReferencesAfterImport()
+                upload = self.processSingleImport(entry, 
+                                              infer_references=infer_references)
                 if return_obs:
-                    upload = self.processSingleImport(entry, infer_references=bib_tool.inferAuthorReferencesAfterImport())
                     obs.append(upload[2])
-                else:
-                    upload = self.processSingleImport(entry, infer_references=bib_tool.inferAuthorReferencesAfterImport())
                 current_report = current_report + upload[0]
 
         self.logImportReport(current_report)
@@ -794,27 +787,17 @@ class BaseBibliographyDuplicatesManager(Acquirer):
         This method creates the folder if needed.
         """
         reference_catalog = getToolByName(self, 'reference_catalog')
-
         if self._assoc_duplicates_folder is None:
             tt = getToolByName(self, 'portal_types')
-            fti = tt[self.portal_type]
-            allowed_types = fti.allowed_content_types
-            duplicates_folder_portal_type = 'DuplicatesBibliographyFolder'
-            fti.allowed_content_types += (duplicates_folder_portal_type,)
-            self.invokeFactory(type_name = duplicates_folder_portal_type,
-                               id = id,
-                               )
+            fti = tt['DuplicatesBibliographyFolder']
+            fti._constructInstance(self, id)
             self[id].setTitle('Pending Duplicate Bibliography Entries')
-            fti.allowed_content_types = allowed_types
             self._assoc_duplicates_folder = self[id].UID()
             self[id]._assoc_bibliography_folder = self.UID()
-
         return reference_catalog.lookupObject(self._assoc_duplicates_folder)
-
 
     security.declarePublic(View, 'getSiteDefaultEnableDuplicatesManager')
     def getSiteDefaultEnableDuplicatesManager(self):
-
         bib_tool = getToolByName(self, 'portal_bibliography')
         return bib_tool.enableDuplicatesManager()
 
@@ -1158,16 +1141,11 @@ class BaseBibliographyPdfFolderManager(Acquirer):
         reference_catalog = getToolByName(self, 'reference_catalog')
 
         if self._assoc_pdf_folder is None:
-            if not self.hasObject(id):
+            if not self.hasObject(id):                
                 tt = getToolByName(self, 'portal_types')
-                fti = tt[self.portal_type]
-                allowed_types = fti.allowed_content_types
-                fti.allowed_content_types += ('PDF Folder',)
-                self.invokeFactory(type_name = 'PDF Folder',
-                                   id = id,
-                                   )
+                fti = tt['PDF Folder']
+                fti._constructInstance(self, id)
                 self[id].setTitle('PDFs')
-                fti.allowed_content_types = allowed_types
                 self._assoc_pdf_folder = self[id].UID()
         pdf_folder = reference_catalog.lookupObject(self._assoc_pdf_folder)
 
@@ -1366,20 +1344,8 @@ class DuplicatesBibliographyFolder(BaseBibliographyIdCookerManager,
 
     """container for duplicates of bibliographic references
     """
-    archetype_name = "Duplicates Bibliography Folder"
 
     security = ClassSecurityInfo()
-
-    global_allow = False
-    filter_content_types = 1
-    allowed_content_types = ()
-    content_icon = 'bibliography_duplicatesfolder.png'
-
-    default_view = 'base_view'
-    view_methods = ('folder_listing',
-                    'folder_tabular_view',
-                    'base_view',
-                    )
 
     schema = DuplicatesBibFolderSchema
 

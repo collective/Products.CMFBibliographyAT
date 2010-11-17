@@ -1,3 +1,10 @@
+1.1.2 (unreleased)
+====================
+* added self.contained buildout with test setup. [jensens]
+
+* cleanup import code and other parts of content/folder.py to enable 
+  import into subclassed types. [jensens]
+
 1.1.1 (2010/08/22)
 ====================
 * compatiblity with Plone 4.0rc1

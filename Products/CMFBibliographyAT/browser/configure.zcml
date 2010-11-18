@@ -2,11 +2,6 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser">
 
-    <browser:resource
-        name="authors_widget.kss"
-        file="authors_widget.kss"
-        />
-
     <browser:view
         for="*"
         name="isBibliographyExportable"
@@ -19,6 +14,13 @@
         name="export"
         permission="zope.Public"
         class=".export.BibliographyExportView"
+        />
+
+    <browser:page
+        for="Products.CMFBibliographyAT.interface.IBibliographyFolder"
+        name="bibliography_importForm"
+        permission="cmf.AddPortalContent"
+        class=".import.ImportView"
         />
 
 </configure>

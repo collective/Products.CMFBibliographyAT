@@ -1,19 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
-      metal:use-macro="here/main_template/macros/master" i18n:domain="cmfbibliographyat">
+      metal:use-macro="context/main_template/macros/master" 
+      i18n:domain="cmfbibliographyat">
 
 <body>
 
-  <div metal:fill-slot="main" tal:define="errors options/state/getErrors;
-                                          global props python:container.portal_properties">
+  <div metal:fill-slot="main" 
+       tal:define="global props python:container.portal_properties">
 
-    <h1><span tal:content="here/Title" /> - <span i18n:translate="heading_pubref_import">Import Bibliographical Entries</span></h1>
+    <h1><span tal:content="context/Title" /> - 
+        <span i18n:translate="heading_pubref_import">Import Bibliographical Entries</span></h1>
 
-    <p class="documentDescription" tal:content="here/Description" />
+    <p class="documentDescription" tal:content="context/Description" />
 
     <p i18n:translate="description_pubref_import">
-      Enter the name of your source file or click <span i18n:name="browse"><strong i18n:domain="plone" i18n:translate="browse">Browse</strong></span>
+      Enter the name of your source file or click 
+      <span i18n:name="browse"><strong i18n:domain="plone" i18n:translate="browse">Browse</strong></span>
       to get a file dialog box to select it. Alternatively you can enter the
       source test directly. Then specify the format from
       the list below. Processing is started by clicking
@@ -21,7 +24,9 @@
     </p>
 
 
-    <form class="group" name="import" enctype="multipart/form-data" action="#" method="post" tal:attributes="action string:${here/getId}/${template/getId}">
+    <form class="group" name="import" enctype="multipart/form-data" 
+          action="#" method="post" 
+          tal:attributes="action string:${context/absolute_url}/@@bibliography_importForm">
 
       <input type="hidden" name="form.submitted" value="1" />
 
@@ -30,9 +35,9 @@
         <legend i18n:translate="legend_import_source">Import Source</legend>
 
         <div class="field"
-             tal:define="error errors/file|nothing;
-                         file request/file|here/file|nothing;"
-             tal:attributes="class python:test(error, 'field error', 'field')">
+             tal:define="error view/errors/file|nothing;
+                         file request/file|context/file|nothing;"
+             tal:attributes="class python:error and 'field error' or 'field'">
           <label for="file" i18n:translate="label_source_file">Source File</label>
 
           <div class="formHelp" i18n:translate="help_bibliography_file_import">
@@ -47,14 +52,14 @@
         </div>
 
         <div class="field"
-             tal:define="error errors/up_text|nothing;
-                         up_text request/up_text|here/up_text|nothing;"
-             tal:attributes="class python:test(error, 'field error', 'field')">
+             tal:define="error view/errors/up_text|nothing;
+                         up_text request/up_text|context/up_text|nothing;"
+             tal:attributes="class python:error and 'field error' or 'field'">
 
           <label for="up_text" i18n:translate="label_source_text">Source Text</label>
 
           <div class="formHelp" i18n:translate="help_bibliography_text_import">
-            You can paste here the import text (make sure it is correctly formatted regarding the parser you will choose below).
+            You can paste context the import text (make sure it is correctly formatted regarding the parser you will choose below).
           </div>
 
           <div tal:content="error">Validation error output</div>
@@ -65,9 +70,9 @@
         </div>
 
         <div class="field"
-             tal:define="error errors/format|nothing;
-                         format request/format|here/format|nothing;"
-             tal:attributes="class python:test(error, 'field error', 'field')">
+             tal:define="error view/errors/format|nothing;
+                         format request/format|context/format|nothing;"
+             tal:attributes="class python:error and 'field error' or 'field'">
 
           <label for="import_format"
                  i18n:translate="label_bibliography_import_format">Source Format</label>
@@ -79,13 +84,13 @@
           <div tal:content="error">Validation error output</div>
 
           <tal:formats i18n:domain="plone"
-                       repeat="format here/portal_bibliography/getImportFormats">
+                       repeat="format context/portal_bibliography/getImportFormats">
             <div>
             <input class="noborder" type="radio" name="format"
                    tal:define="value python: format[1]"
                    tal:attributes="value python: format[0];
                                    id string:cb_${value};
-                                   checked python:test(format[1] == 'bib','checked',None)"
+                                   checked python:format[1] == 'bib' and 'checked' or None"
                    id="cb_structuredtext" checked="checked" />
             <label for="cb_structuredtext"
                    tal:define="value python: format[1]"
@@ -101,7 +106,7 @@
                  i18n:translate="label_input_encoding">Input encoding</label>
 
             <div class="formHelp" i18n:translate="help_input_encoding">
-              Choose here the proper encoding of your input data. The choice is important in order
+              Choose context the proper encoding of your input data. The choice is important in order
               to order your data propertly into Plone.
              </div>
 
@@ -115,7 +120,7 @@
 
 
         <div class="field"
-             tal:condition="python: here.getEnableDuplicatesManager()">
+             tal:condition="python: context.getEnableDuplicatesManager()">
             <label for="import_span"
                  i18n:translate="label_bibliography_import_span">Import duplicate search span</label>
 
@@ -126,13 +131,13 @@
              <input type="radio"
                     name="span_of_search"
                     value="local" checked=""
-                    tal:attributes="checked python: test(here.getDuplicatesMatchingPolicy() == 'local', 'checked', None)" />
+                    tal:attributes="checked python: context.getDuplicatesMatchingPolicy() == 'local' and 'checked' or None" />
              <label i18n:translate="label_bibliography_local">Local (this folder)</label>
 
              <input type="radio"
                     name="span_of_search"
                     value="global" checked=""
-                    tal:attributes="checked python: test(here.getDuplicatesMatchingPolicy() == 'global', 'checked', None)"/>
+                    tal:attributes="checked python: context.getDuplicatesMatchingPolicy() == 'global' and 'checked' or None"/>
              <label i18n:translate="label_bibliography_global">Global (all site)</label>
         </div>
 
@@ -149,36 +154,35 @@
 
     </form>
 
-        <div tal:define="processed_import request/processed_import|nothing;
-                         last_report here/getLastImportReport"
-             tal:condition="processed_import">
-          <h4 i18n:translate="label_import_report">Import Report</h4>
-          <p><strong tal:content="python:last_report[0]">Import Header</strong></p>
-          <ol>
-            <li tal:repeat="report_line python:last_report[1:]"
-                tal:content="structure report_line" />
-          </ol>
-        </div>
+    <div tal:define="last_report context/getLastImportReport"
+         tal:condition="python:view.processed">
+      <h4 i18n:translate="label_import_report">Import Report</h4>
+      <p><strong tal:content="python:last_report[0]">Import Header</strong></p>
+      <ol>
+        <li tal:repeat="report_line python:last_report[1:]"
+            tal:content="structure report_line" />
+      </ol>
+    </div>
 
-        <div tal:condition="not: request/show_history|nothing">
-        <a href="#"
-           tal:attributes="href string:${template/getId}?show_history=1"
-           i18n:translate="label_show_import_history">
-           Show import history.
-        </a>
-        </div>
-        <div tal:define="show_history request/show_history|nothing;
-                         reports here/getImportReports"
-             tal:condition="show_history">
-          <h4 i18n:translate="label_import_history">Import History</h4>
-         <div tal:repeat="report reports">
-          <p><strong tal:content="python:report[0]">Import Header</strong></p>
-          <ol>
-            <li tal:repeat="report_line python:report[1:]"
-                tal:content="structure report_line" />
-          </ol>
-         </div>
-        </div>
+    <div tal:condition="not: request/show_history|nothing">
+	    <a href="#"
+	       tal:attributes="href string:${context/absolute_url}/@@bibliography_importForm?show_history=1"
+	       i18n:translate="label_show_import_history">
+	       Show import history.
+	    </a>
+    </div>
+    <div tal:define="show_history request/show_history|nothing;
+                     reports context/getImportReports"
+         tal:condition="show_history">
+      <h4 i18n:translate="label_import_history">Import History</h4>
+      <div tal:repeat="report reports">
+      <p><strong tal:content="python:report[0]">Import Header</strong></p>
+      <ol>
+        <li tal:repeat="report_line python:report[1:]"
+            tal:content="structure report_line" />
+      </ol>
+     </div>
+    </div>
 
   </div>
 

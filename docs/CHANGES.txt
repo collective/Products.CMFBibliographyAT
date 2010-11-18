@@ -1,5 +1,8 @@
 1.1.2 (unreleased)
 ====================
+* moved bibliography_importForm from ControllerPageTemplate to view-class. 
+  [jensens]
+
 * added self.contained buildout with test setup. [jensens]
 
 * cleanup import code and other parts of content/folder.py to enable 

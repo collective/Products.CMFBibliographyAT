@@ -1,6 +1,0 @@
-[default]
-title=Import Bibliographical References
-
-[actions]
-action.failure=traverse_to:string:bibliography_importForm
-action.success=redirect_to:string:bibliography_importForm

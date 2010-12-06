@@ -41,8 +41,7 @@ from bibliograph.core.interfaces import IBibliographyExport
 
 from Products.CMFBibliographyAT.DuplicatesCriteria import DuplicatesCriteriaManager
 from Products.CMFBibliographyAT.config import CMFBAT_USES_LINGUAPLONE
-from Products.CMFBibliographyAT.config import REFERENCE_TYPES, PROJECTNAME, \
-     FOLDER_TYPES
+from Products.CMFBibliographyAT.config import PROJECTNAME, FOLDER_TYPES
 from Products.CMFBibliographyAT.interface import IBibliographyFolder
 from Products.CMFBibliographyAT.interface import ILargeBibliographyFolder
 from bibliograph.parsing.parsers.base import EntryParseError

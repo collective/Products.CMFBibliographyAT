@@ -97,7 +97,7 @@ class ImportView(BrowserView):
         for entry in entries:
             counter += 1
             count = '#%05i: ' % counter 
-            logger.info('processing entry' % count)
+            logger.info(count+'processing entry')
             # Workaround for #36 where an entry represents
             # an error from parser instead of a dict containing
             # importable data

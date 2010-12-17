@@ -4,6 +4,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.Archetypes import PloneMessageFactory as _
 from Products.Archetypes.utils import addStatusMessage
 from Products.CMFBibliographyAT.tool.bibliography import ImportParseError
+import logging
+logger = logging.getLogger('CMFBibliographyAT import')
 
 class ImportView(BrowserView):
     
@@ -88,14 +90,23 @@ class ImportView(BrowserView):
         # process import for each entry
         processedEntries = 0
         importErrors = 0
-        for entry in entries:
+
+        logger.info('Start import of %s raw entries.' % len(entries))
+        counter = 0            
         
+        for entry in entries:
+            counter += 1
+            count = '#%05i: ' % counter 
+            logger.info('processing entry' % count)
             # Workaround for #36 where an entry represents
             # an error from parser instead of a dict containing
             # importable data
             if isinstance(entry, basestring):
-                upload = ('Entry could not be parsed! %s' % entry, 'error')   
+                msg = 'Entry could not be parsed! %s' % (counter, entry)
+                upload = (msg, 'error')
+                logger.error(count+msg)   
             elif entry.get('title'):
+                logger.info(count+'Normal processing')   
                 upload = self.context.processSingleImport(entry,
                                                   span_of_search=span_of_search)
             else:
@@ -104,6 +115,7 @@ class ImportView(BrowserView):
                                       if key == key.lower()])
                 upload = ('Found entry without title: %s\n' % formated, 
                           'error')
+                logger.error(count+upload[0])   
             if upload[1] == 'ok':
                 processedEntries += 1
             else:
@@ -115,6 +127,6 @@ class ImportView(BrowserView):
         msg = "Processed %i entries. There were %i errors. Import processed in %f seconds. See import report below." \
               % (processedEntries, importErrors, 
                  self.context.ZopeTime().timeTime()-start_time)
-        
+        logger.info(msg)
         addStatusMessage(self.request, _(unicode(msg)))
         return self.template() 

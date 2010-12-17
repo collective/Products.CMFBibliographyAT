@@ -102,7 +102,7 @@ class ImportView(BrowserView):
             # an error from parser instead of a dict containing
             # importable data
             if isinstance(entry, basestring):
-                msg = 'Entry could not be parsed! %s' % (counter, entry)
+                msg = 'Entry could not be parsed! %s' % entry
                 upload = (msg, 'error')
                 logger.error(count+msg)   
             elif entry.get('title'):

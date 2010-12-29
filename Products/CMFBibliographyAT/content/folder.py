@@ -1132,7 +1132,7 @@ class BaseBibliographyPdfFolderManager(Acquirer):
     _move_associated_pdffiles = False
 
     security.declareProtected(View, 'getPdfFolder')
-    def getPdfFolder(self, id = 'pdfs'):
+    def getPdfFolder(self, pdfsid = 'pdfs'):
         """
         Returns a folder for storing files
         Creates it if needed
@@ -1140,20 +1140,21 @@ class BaseBibliographyPdfFolderManager(Acquirer):
         reference_catalog = getToolByName(self, 'reference_catalog')
 
         if self._assoc_pdf_folder is None:
-            if not self.hasObject(id):                
+            if not self.hasObject(pdfsid):                
                 tt = getToolByName(self, 'portal_types')
                 fti = tt['PDF Folder']
-                fti._constructInstance(self, id)
-                self[id].setTitle('PDFs')
-                self._assoc_pdf_folder = self[id].UID()
+                fti._constructInstance(self, pdfsid)
+                self[pdfsid].setTitle('PDFs')
+                self._assoc_pdf_folder = self[pdfsid].UID()
         pdf_folder = reference_catalog.lookupObject(self._assoc_pdf_folder)
 
         # test, if the returned object really is the pdf folder:
-        if pdf_folder.getPhysicalPath()[:-1] == self.getPhysicalPath():
+        if pdf_folder is not None \
+           and pdf_folder.getPhysicalPath()[:-1] == self.getPhysicalPath():
             return pdf_folder
         else:
             # BULLSHIT, reference to PDF folder broken.
-            pdf_folder = eval('self.%s' % id)
+            pdf_folder = eval('self.%s' % pdfsid)
             try: self._assoc_pdf_folder = pdf_folder.UID()
             except: pass
             return pdf_folder

@@ -62,7 +62,8 @@ class Migration(object):
                     print >>self.out, u'Migrating ISBN number of ', ref.absolute_url(1)
 
                     # replace ISBN
-                    ids = [d for d in ref.getIdentifiers() if d['label'] != 'ISBN']
+                    ids = [d for d in ref.getIdentifiers() 
+                           if d.get('label', None) != 'ISBN']
                     ids.append({'label' : 'ISBN', 'value' : new_isbn})
                     ref.setIdentifiers(ids)
                     ref._migrated_isbn = True

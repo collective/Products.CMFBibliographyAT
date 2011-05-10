@@ -14,7 +14,7 @@
   <div metal:define-slot="bibliography_view"
        tal:define="navtool here/portal_properties/navtree_properties;
                    reference_types python:container.portal_bibliography.getReferenceTypes();
-                   raw_results python: container.portal_catalog(meta_type=reference_types);
+                   raw_results python: container.portal_catalog(portal_type=reference_types);
                    mtool context/portal_membership;
                    wf_state context/@@plone_context_state/workflow_state;
                    raw_results python: container.portal_bibliography.filterOutBibEntriesFromNonSearchableBibFolders(raw_results);
@@ -71,27 +71,12 @@
       <metal:bibliography-view metal:define-macro="bibentries_view">
       <metal:bibliography-view-slot metal:define-slot="bibentries_view"
                                     tal:define="has_atbibliostyles python: hasattr(here, 'portal_bibliostyles') and True or False;">
-
           <tal:not-bibliostyles tal:condition="not: has_atbibliostyles">
-          <metal:block tal:repeat="result batch">
+          <metal:block tal:repeat="result batch"
+                       tal:define="formatter nocall:context/@@biblistitemformatter">
 
-          <p class="body">
+          <tal:item tal:replace="structure python:formatter(result)" />
 
-            <span tal:replace="structure result/Authors" >Authors</span>
-              (<span tal:replace="result/publication_year">1900</span>).<br />
-
-            <a href="/view" tal:attributes="href result/getURL; UID result/UID" class="bibliography-item" >
-                <b class=""
-                   tal:attributes="class python: 'state-%s' % result['review_state'];"
-                   tal:content="structure result/Title">Title</b></a><br />
-
-            <span tal:content="structure result/Source"
-                  tal:condition="result/Source" />
-            <span tal:condition="not:result/Source"
-                  i18n:translate="label_bibref_no_source">
-              No source specified</span>
-
-          </p>
           </metal:block>
           </tal:not-bibliostyles>
 

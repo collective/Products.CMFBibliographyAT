@@ -22,5 +22,12 @@
         permission="cmf.AddPortalContent"
         class=".import.ImportView"
         />
+        
+    <browser:page
+        for="Products.CMFBibliographyAT.interface.IBibliographyFolder"
+        name="biblistitemformatter"
+        permission="zope2.View"
+        class=".listitemformatter.Formatter"
+        />
 
 </configure>

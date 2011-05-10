@@ -1,0 +1,20 @@
+<p class="body">
+  <span tal:replace="structure view/item/Authors" >Authors</span>
+    (<span tal:replace="view/item/publication_year">1900</span>).<br />
+
+  <a href="/view" 
+     tal:attributes="href view/item/getURL; 
+                     UID view/item/UID" 
+     class="bibliography-item" >
+    <b class=""
+       tal:attributes="class python: 'state-%s' % view.item['review_state'];"
+       tal:content="structure view/item/Title">Title</b></a><br />
+
+  <span tal:content="structure view/item/Source"
+        tal:condition="view/item/Source" />
+  <span tal:condition="not:view/item/Source"
+        i18n:translate="label_bibref_no_source">
+    No source specified</span>
+
+</p>
+

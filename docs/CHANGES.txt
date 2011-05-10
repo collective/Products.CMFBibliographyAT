@@ -1,5 +1,10 @@
 1.1.2 (unreleased)
 ====================
+
+* added a formatter view for the single result-item. this can be overruled by a 
+  layer-bond view if one needs a different view on a result item.
+  [jensens]  
+
 * moved bibliography_importForm from ControllerPageTemplate to view-class. 
   [jensens]
 

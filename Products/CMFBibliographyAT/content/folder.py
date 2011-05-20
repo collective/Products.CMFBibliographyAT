@@ -208,19 +208,6 @@ BibFolderSchema.moveField('searchable', after='description')
 DuplicatesBibFolderSchema = ATBTreeFolderSchema.copy()
 finalizeATCTSchema(BibFolderSchema, folderish=True, moveDiscussion=False)
 
-def associateToBibliographyFolder(self, bibfolder=None):
-    """on post-create associate PDF Folder / Duplicates Bibliography Folder to
-    its Bibliography Folder
-    """
-    if bibfolder is not None:
-        if isinstance(bibfolder, basestring) and (reference_catalog.lookupObject(bibfolder) and True or False):
-            bibfolder = reference_catalog.lookupObject(bibfolder)
-        if shasattr(bibfolder, 'portal_type') and (bibfolder.portal_type in FOLDER_TYPES):
-            self._assoc_bibliography_folder = bibfolder.UID()
-
-        if not self._assoc_bibliography_folder is not None:
-            raise ValueError, 'While associating %s at %s to its Bibliography Folder something went terribly wrong ...' % (self.Title(), self.absolute_url())
-
 class BaseBibliographyFolder(Acquirer):
     """base class for containers for bibliographic references
     """
@@ -938,7 +925,7 @@ class BaseBibliographyDuplicatesManager(Acquirer):
 
         else:
             return "UID %s does not exist - cannot delete referenced " + \
-                   "duplicate entry" % key
+                   "duplicate entry" % uid
 
     def compareAuthors(self, entry, existing):
         new_last_names = [_decode(a.get('lastname')) for a in entry.get('authors',[])]
@@ -1352,9 +1339,6 @@ class DuplicatesBibliographyFolder(BaseBibliographyIdCookerManager,
     _at_rename_after_creation = True
 
     _assoc_bibliography_folder = None
-
-    # this method is provided as a function above
-    associateToBibliographyFolder = associateToBibliographyFolder
 
     def getBibFolder(self):
         """ returns associated bibliography folder

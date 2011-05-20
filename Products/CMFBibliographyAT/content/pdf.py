@@ -23,7 +23,6 @@ from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 
 from Products.CMFBibliographyAT.config \
      import PROJECTNAME, USE_EXTERNAL_STORAGE
-from folder import associateToBibliographyFolder
 
 if USE_EXTERNAL_STORAGE:
     from Products.ExternalStorage.ExternalStorage import ExternalStorage as Storage
@@ -85,9 +84,6 @@ class PdfFolder(ATBTreeFolder):
 
     # play nice with the bibfolders custom listing
     publication_year = "0001" # should suffice to be always last
-
-    # this method is provided as a function in CMFBAT's folder module
-    associateToBibliographyFolder = associateToBibliographyFolder
 
     def Authors(self, *args, **kw):
         """ compatibility method """

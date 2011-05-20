@@ -583,8 +583,10 @@ class BaseBibliographyImportManager(Acquirer):
     def logImportReport(self, report):
         """Store the import report.
         """
+        if isinstance(report, unicode):
+            report = _encode(report)
         # finish building and write the report
-        old_report = self.getProperty('import_report', '')
+        old_report = self.getProperty('import_report', '')        
         report = report + '='*30 + '\n' + _encode(_decode(old_report))
         self.manage_changeProperties(import_report=report)
 

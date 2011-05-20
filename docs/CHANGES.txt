@@ -1,6 +1,15 @@
 1.1.2 (unreleased)
 ====================
 
+* fixed import report: for some reson the new report might be uniocde, (maybe in
+  Plone 4 username or email is unicode?) but merging it with the old report 
+  before stroing it failed: old report is utf8 so convert unicode to utf8 if 
+  necessary.
+  [jensens]
+
+* removed strange (used undefined variables) and superfluos (unused) code. 
+  [jensens]
+
 * added a formatter view for the single result-item. this can be overruled by a 
   layer-bond view if one needs a different view on a result item.
   [jensens]  

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName 
@@ -79,6 +80,8 @@ class ImportView(BrowserView):
         member = mtool.getAuthenticatedMember()
         fullname = member.getProperty('fullname', None)
         if fullname:
+            if isinstance(fullname, unicode):
+                fullname = fullname.encode('utf-8')
             username = '%s (%s)' % (fullname, member.getId())
         else:
             username = member.getId()          

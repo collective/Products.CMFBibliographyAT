@@ -4,16 +4,14 @@
 from types import UnicodeType
 from zLOG import LOG, INFO, BLATHER, PROBLEM, WARNING
 from urllib import urlencode
+from bibliograph.core.utils import _encode
 
 from AccessControl import ModuleSecurityInfo
 security = ModuleSecurityInfo('Products.CMFBibliographyAT.utils')
 
 def log(msg, severity=INFO, detail='', error=None):
-    if type(msg) is UnicodeType:
-        msg = msg.encode(sys.getdefaultencoding(), 'replace')
-    if type(detail) is UnicodeType:
-        detail = detail.encode(sys.getdefaultencoding(), 'replace')
-    LOG('CMFBibliographyAT', severity, msg, detail, error)
+    # XXX is this used somewhere?
+    LOG('CMFBibliographyAT', severity, _encode(msg), _encode(detail), error)
 
 # added some more routines...
 

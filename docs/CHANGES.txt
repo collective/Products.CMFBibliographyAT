@@ -1,13 +1,15 @@
 1.1.2 (unreleased)
 ====================
 
+* throw an event for each imported entry.
+  [jensens]
+
 * fixed import report on write too. Same problem with fullname: it can be 
   unicode.
-  [jensens]
 
 * fixed import report: for some reson the new report might be uniocde, (maybe in
   Plone 4 username or email is unicode?) but merging it with the old report 
-  before stroing it failed: old report is utf8 so convert unicode to utf8 if 
+  before storing it failed: old report is utf8 so convert unicode to utf8 if 
   necessary.
   [jensens]
 
@@ -21,7 +23,7 @@
 * moved bibliography_importForm from ControllerPageTemplate to view-class. 
   [jensens]
 
-* added self.contained buildout with test setup. [jensens]
+* added self-contained buildout with test setup. [jensens]
 
 * cleanup import code and other parts of content/folder.py to enable 
   import into subclassed types. [jensens]

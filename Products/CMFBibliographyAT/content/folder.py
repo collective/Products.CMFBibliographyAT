@@ -27,6 +27,7 @@ from Products.ATContentTypes.content.folder import ATBTreeFolder
 from Products.ATContentTypes.content.folder import ATBTreeFolderSchema
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from zope.interface import implements
+from zope.event import notify
 
 # CMF imports
 from Products.Archetypes.utils import shasattr
@@ -44,6 +45,7 @@ from Products.CMFBibliographyAT.config import CMFBAT_USES_LINGUAPLONE
 from Products.CMFBibliographyAT.config import PROJECTNAME, FOLDER_TYPES
 from Products.CMFBibliographyAT.interface import IBibliographyFolder
 from Products.CMFBibliographyAT.interface import ILargeBibliographyFolder
+from Products.CMFBibliographyAT.events import BibentryImportedEvent
 from bibliograph.parsing.parsers.base import EntryParseError
 from Products.CMFBibliographyAT.utils import log
 
@@ -698,18 +700,22 @@ class BaseBibliographyImportManager(Acquirer):
 
             if self.getEnableDuplicatesManager() \
                and (not skip_matching or force_to_duplicates):
-                test, matched_objects = self.isDuplicate(obj, span_of_search)
+                test, matched_objects = self.isDuplicate(obj, span_of_search)                
                 if test or force_to_duplicates:
+                    is_dup = True
                     # in any case, we want the duplicate obj to be aware of 
                     # local AND global matches
                     if span_of_search != 'global':
                         dummy, matched_objects = self.isDuplicate(obj, 'global')
 
                     duplicate = self.moveToDuplicatesFolder(obj, matched_objects)
+                    notify(BibentryImportedEvent(duplicate, True))            
                     return ('Skipped: %s\n' % obj.Title() or 'no info',
                             'SKIPPED', duplicate)
 
             import_status = 'ok'
+            notify(BibentryImportedEvent(obj, False))
+                        
         except: # for debugging
             # XXX shouldn't catch all exceptions
             # Remove the \n from import_status so that it all appears

@@ -95,8 +95,8 @@ class ImportView(BrowserView):
         importErrors = 0
 
         logger.info('Start import of %s raw entries.' % len(entries))
-        counter = 0            
-        
+        counter = 0     
+                
         for entry in entries:
             counter += 1
             count = '#%05i: ' % counter 
@@ -125,9 +125,9 @@ class ImportView(BrowserView):
                 importErrors += 1
             state, msg = upload[1].upper(), upload[0]
             if isinstance(state, unicode):
-                state = state.decode('utf-8')
+                state = state.encode('utf-8')
             if isinstance(msg, unicode):
-                msg = msg.decode('utf-8')
+                msg = msg.encode('utf-8')
             tmp_report += '%s: %s\n' % (state, msg)        
         self.context.logImportReport(tmp_report)
         self.processed = True        

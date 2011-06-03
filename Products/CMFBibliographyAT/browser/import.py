@@ -123,7 +123,12 @@ class ImportView(BrowserView):
                 processedEntries += 1
             else:
                 importErrors += 1
-            tmp_report += '%s: %s\n' % (upload[1].upper(), upload[0])        
+            state, msg = upload[1].upper(), upload[0]
+            if isinstance(state, unicode):
+                state = state.decode('utf-8')
+            if isinstance(msg, unicode):
+                msg = msg.decode('utf-8')
+            tmp_report += '%s: %s\n' % (state, msg)        
         self.context.logImportReport(tmp_report)
         self.processed = True        
         # set the portal status message up

@@ -4,9 +4,11 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName 
 from Products.Archetypes import PloneMessageFactory as _
 from Products.Archetypes.utils import addStatusMessage
+from bibliograph.core.utils import _encode
 from Products.CMFBibliographyAT.tool.bibliography import ImportParseError
 import logging
 logger = logging.getLogger('CMFBibliographyAT import')
+
 
 class ImportView(BrowserView):
     
@@ -80,14 +82,12 @@ class ImportView(BrowserView):
         member = mtool.getAuthenticatedMember()
         fullname = member.getProperty('fullname', None)
         if fullname:
-            if isinstance(fullname, unicode):
-                fullname = fullname.encode('utf-8')
-            username = '%s (%s)' % (fullname, member.getId())
+            username = '%s (%s)' % (_encode(fullname), _encode(member.getId()))
         else:
-            username = member.getId()          
+            username = _encode(member.getId())          
         tmp_report = '[%s] Imported by %s' % (self.context.ZopeTime(), username)
         if filename is not None:
-            tmp_report += ' from file %s' % filename
+            tmp_report += ' from file %s' % _encode(filename)
         tmp_report += ':\n\n' 
         
         # process import for each entry
@@ -105,7 +105,7 @@ class ImportView(BrowserView):
             # an error from parser instead of a dict containing
             # importable data
             if isinstance(entry, basestring):
-                msg = 'Entry could not be parsed! %s' % entry
+                msg = 'Entry could not be parsed! %s' % _encode(entry)
                 upload = (msg, 'error')
                 logger.error(count+msg)   
             elif entry.get('title'):
@@ -123,11 +123,7 @@ class ImportView(BrowserView):
                 processedEntries += 1
             else:
                 importErrors += 1
-            state, msg = upload[1].upper(), upload[0]
-            if isinstance(state, unicode):
-                state = state.encode('utf-8')
-            if isinstance(msg, unicode):
-                msg = msg.encode('utf-8')
+            state, msg = _encode(upload[1].upper()), _encode(upload[0])
             tmp_report += '%s: %s\n' % (state, msg)        
         self.context.logImportReport(tmp_report)
         self.processed = True        

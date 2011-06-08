@@ -24,7 +24,7 @@
         />
         
     <browser:page
-        for="Products.CMFBibliographyAT.interface.IBibliographyFolder"
+        for="*"
         name="biblistitemformatter"
         permission="zope2.View"
         class=".listitemformatter.Formatter"

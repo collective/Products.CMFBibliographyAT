@@ -23,17 +23,26 @@ from DocumentTemplate import sequence
 from Persistence import PersistentMapping
 from OFS.Folder import Folder
 from Products.ATContentTypes.content.base import ATCTOrderedFolder
-from Products.ATContentTypes.content.folder import ATBTreeFolder
-from Products.ATContentTypes.content.folder import ATBTreeFolderSchema
+from Products.ATContentTypes.content.folder import (
+    ATBTreeFolder,
+    ATBTreeFolderSchema
+)
 from Products.ATContentTypes.content.schemata import finalizeATCTSchema
 from zope.interface import implements
 from zope.event import notify
 
 # CMF imports
+from Products.CMFCore.utils import (
+    _checkPermission,
+     getToolByName
+)
+from Products.CMFCore.permissions import (
+    View, 
+    ModifyPortalContent, 
+    AddPortalContent, 
+    ManageProperties
+)
 from Products.Archetypes.utils import shasattr
-from Products.CMFCore.permissions import View, ModifyPortalContent, AddPortalContent, ManageProperties
-from Products.CMFCore.utils import _checkPermission
-from Products.CMFCore.utils import getToolByName
 
 # My imports ;-)
 from bibliograph.core.utils import _encode, _decode
@@ -247,10 +256,10 @@ class BaseBibliographyFolder(Acquirer):
 
     security.declareProtected(View, 'isTranslatable')
     def isTranslatable(self):
-
         bib_tool = getToolByName(self, 'portal_bibliography')
         plone_utils = getToolByName(self, 'plone_utils')
-        return bib_tool.isBibFolderTranslatable() and plone_utils.isTranslatable(self)
+        return bib_tool.isBibFolderTranslatable() \
+               and plone_utils.isTranslatable(self)
 
     security.declareProtected(View, 'getSiteDefaultAllowPdfUploadForTypes')
     def getSiteDefaultAllowPdfUploadForTypes(self):
@@ -271,7 +280,8 @@ class BaseBibliographyFolder(Acquirer):
         """list available reference types for use in schema field
         """
         bib_tool = getToolByName(self, 'portal_bibliography')
-        return DisplayList(tuple([ (ref_type, ref_type) for ref_type in bib_tool.getReferenceTypes() ]))
+        return DisplayList([(ref_type, ref_type) 
+                            for ref_type in bib_tool.getReferenceTypes() ])
 
     security.declareProtected(View, 'getBibReferences')
     def getBibReferences(self, lazy=False, sort_on='publication_year'):
@@ -444,39 +454,39 @@ class BaseBibliographyIdCookerManager(Acquirer):
 
     security.declarePublic(View, 'getSiteDefaultIdCookerId')
     def getSiteDefaultIdCookerId(self):
-
         bib_tool = getToolByName(self, 'portal_bibliography')
         return bib_tool.getDefaultIdCooker(with_disabled=False).getId()
 
     security.declarePublic(View, 'getSiteDefaultUseParserIdsOnImport')
     def getSiteDefaultUseParserIdsOnImport(self):
-
         bib_tool = getToolByName(self, 'portal_bibliography')
         return bib_tool.useParserIdsOnImport()
 
     security.declarePublic(View, 'getSiteDefaultCookIdsOnBibRefCreation')
     def getSiteDefaultCookIdsOnBibRefCreation(self):
-
         bib_tool = getToolByName(self, 'portal_bibliography')
         return bib_tool.cookIdsOnBibRefCreation()
 
     security.declarePublic(View, 'getSiteDefaultCookIdsAfterBibRefEdit')
     def getSiteDefaultCookIdsAfterBibRefEdit(self):
-
         bib_tool = getToolByName(self, 'portal_bibliography')
         return bib_tool.cookIdsAfterBibRefEdit()
 
     security.declarePublic(View, 'listEnabledIdCookers')
     def listEnabledIdCookers(self):
-
         bib_tool = getToolByName(self, 'portal_bibliography')
-        return DisplayList(tuple([(bib_tool.getIdCooker(idcooker_id=cooker_id).getId(), bib_tool.getIdCooker(idcooker_id=cooker_id).Title()) for cooker_id in bib_tool.listIdCookers(with_disabled=False) ]))
+        dl = DisplayList(
+               [(bib_tool.getIdCooker(idcooker_id=cooker_id).getId(), 
+                 bib_tool.getIdCooker(idcooker_id=cooker_id).Title()) 
+                 for cooker_id in bib_tool.listIdCookers(with_disabled=False)])
+        return dl
 
     security.declarePublic(AddPortalContent, 'listEnabledIdCookers')
     def getIdCooker(self):
-
         bib_tool = getToolByName(self, 'portal_bibliography')
-        return bib_tool.getIdCooker(idcooker_id=self.getReferenceIdCookingMethod(), with_disabled=True)
+        return bib_tool.getIdCooker(
+                   idcooker_id=self.getReferenceIdCookingMethod(), 
+                   with_disabled=True)
 
     security.declareProtected(AddPortalContent, 'cookId')
     def cookId(self, ref):
@@ -655,8 +665,9 @@ class BaseBibliographyImportManager(Acquirer):
         return _encode(line + '.\n')
 
     security.declareProtected(AddPortalContent, 'processSingleImport')
-    def processSingleImport(self, entry, span_of_search=None, force_to_duplicates=False,
-                            skip_matching=False, infer_references=True):
+    def processSingleImport(self, entry, span_of_search=None, 
+                            force_to_duplicates=False, skip_matching=False, 
+                            infer_references=True):
         """ called for importing a single entry
 
         :type entry: dict
@@ -686,12 +697,12 @@ class BaseBibliographyImportManager(Acquirer):
         try:
             newid = self.cookId(entry)
             if newid and newid != "nobody1000":
-                type = entry.get('reference_type', 'ArticleReference')
+                rtype = entry.get('reference_type', 'ArticleReference')
                 del entry['reference_type']
-                if type not in [_.getId() for _ in self.getAllowedTypes()]:
-                    return "Error: Content-Type %s is not " %  type +\
+                if rtype not in [_.getId() for _ in self.getAllowedTypes()]:
+                    return "Error: Content-Type %s is not " %  rtype +\
                            "allowed to create in Folder %s." % self.Type() 
-                self.invokeFactory(type, newid)
+                self.invokeFactory(rtype, newid)
                 obj = getattr(self, newid)
                 obj.edit(**entry)
                 url = obj.absolute_url()
@@ -709,8 +720,8 @@ class BaseBibliographyImportManager(Acquirer):
                         dummy, matched_objects = self.isDuplicate(obj, 'global')
 
                     duplicate = self.moveToDuplicatesFolder(obj, matched_objects)
-                    notify(BibentryImportedEvent(duplicate, True))            
-                    return ('Skipped: %s\n' % obj.Title() or 'no info',
+                    notify(BibentryImportedEvent(duplicate, matched_objects))            
+                    return ('Duplicate: %s\n' % obj.Title() or 'no info',
                             'SKIPPED', duplicate)
 
             import_status = 'ok'

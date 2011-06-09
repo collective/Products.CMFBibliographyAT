@@ -7,6 +7,6 @@ class BibentryImportedEvent(ObjectEvent):
     """
     implements(IBibentryImportedEvent)
     
-    def __init__(self, obj, duplicate):
+    def __init__(self, obj, duplicates):
         ObjectEvent.__init__(self, obj)
-        self.duplicate = duplicate
+        self.duplicates = duplicates

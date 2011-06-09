@@ -10,4 +10,6 @@ class IBibentryImportedEvent(IObjectEvent):
     """A bibentry was imported successfully or as duplicate.
     """
     
-    duplicate = Attribute("Indicates if import was duplicate or not.")
+    duplicates = Attribute("Indicates if import was duplicate or not. False "
+                           "if not duplicate or a list of matched objects if "
+                           "it is a duplicate.")

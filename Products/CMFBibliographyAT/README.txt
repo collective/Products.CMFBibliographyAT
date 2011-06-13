@@ -21,7 +21,7 @@ Installation
 
 * Either choose the ``CMFBibliographyAT`` extension profile while
   creating a new Plone site or install it through the add-on 
-  control panel within the Plone UI
+  control panel within the Plone UI.
 
 
 What it does
@@ -31,7 +31,7 @@ CMFBibliography provides various new content types:
 
 * Bibliography Entries: Highly structured content objects to
   hold bibliographic data referencing a publication. The schema
-  is derived from BibTeX (LaTeX's bibliography handling modul).
+  is derived from BibTeX (LaTeX's bibliography handling module).
 
 * Bibliography Folder: Enhanced 'Skinned Folder' with some
   import/import functionality (available through the 'import' tab).

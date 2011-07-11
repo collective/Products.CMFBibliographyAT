@@ -40,6 +40,7 @@ setup(name='Products.CMFBibliographyAT',
           'bibliograph.parsing',
           'bibliograph.rendering',
           'Products.ATExtensions',
+          'zope.app.schema', # Plone 4.1
           'pyisbn',
           # -*- Extra requirements: -*-
       ],

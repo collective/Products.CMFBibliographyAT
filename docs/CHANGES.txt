@@ -1,5 +1,5 @@
-1.1.2 (unreleased)
-====================
+1.1.2 (2011/07/11)
+==================
 
 * throw an event for each imported entry.
   [jensens]

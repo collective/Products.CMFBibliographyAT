@@ -9,16 +9,8 @@ from Products.CMFBibliographyAT.tests import dummy
 # and the types get still registered with the types tool
 from Products.GenericSetup import EXTENSION, profile_registry
 
-profile_registry.registerProfile('test_types',
-    'CMFBibliography member types for testing',
-    "Extension profile including CMFBib's member types for testing",
-    'profiles/testing_member_types',
-    'Products.CMFBibliographyAT',
-    EXTENSION)
-
 ZopeTestCase.installProduct('CMFBibliographyAT')
-PROFILES = ['Products.CMFBibliographyAT:default',
-            'Products.CMFBibliographyAT:test_types',]
+PROFILES = ['Products.CMFBibliographyAT:default']
 PloneTestCase.setupPloneSite(extension_profiles=PROFILES)
 
 

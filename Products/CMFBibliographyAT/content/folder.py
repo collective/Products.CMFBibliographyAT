@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ##########################################################################
 #                                                                        #
 #           copyright (c) 2003,2005 ITB, Humboldt-University Berlin      #
@@ -6,7 +7,6 @@
 # modified by LOGILAB S.A. (Paris, FRANCE) - 2005                        #
 # http://www.logilab.fr/ -- mailto:contact@logilab.fr                    #
 ##########################################################################
-
 """BibliographyFolder main class"""
 
 __revision__ = '$Id:  $'
@@ -37,9 +37,9 @@ from Products.CMFCore.utils import (
      getToolByName
 )
 from Products.CMFCore.permissions import (
-    View, 
-    ModifyPortalContent, 
-    AddPortalContent, 
+    View,
+    ModifyPortalContent,
+    AddPortalContent,
     ManageProperties
 )
 from Products.Archetypes.utils import shasattr
@@ -280,7 +280,7 @@ class BaseBibliographyFolder(Acquirer):
         """list available reference types for use in schema field
         """
         bib_tool = getToolByName(self, 'portal_bibliography')
-        return DisplayList([(ref_type, ref_type) 
+        return DisplayList([(ref_type, ref_type)
                             for ref_type in bib_tool.getReferenceTypes() ])
 
     security.declareProtected(View, 'getBibReferences')
@@ -476,8 +476,8 @@ class BaseBibliographyIdCookerManager(Acquirer):
     def listEnabledIdCookers(self):
         bib_tool = getToolByName(self, 'portal_bibliography')
         dl = DisplayList(
-               [(bib_tool.getIdCooker(idcooker_id=cooker_id).getId(), 
-                 bib_tool.getIdCooker(idcooker_id=cooker_id).Title()) 
+               [(bib_tool.getIdCooker(idcooker_id=cooker_id).getId(),
+                 bib_tool.getIdCooker(idcooker_id=cooker_id).Title())
                  for cooker_id in bib_tool.listIdCookers(with_disabled=False)])
         return dl
 
@@ -485,7 +485,7 @@ class BaseBibliographyIdCookerManager(Acquirer):
     def getIdCooker(self):
         bib_tool = getToolByName(self, 'portal_bibliography')
         return bib_tool.getIdCooker(
-                   idcooker_id=self.getReferenceIdCookingMethod(), 
+                   idcooker_id=self.getReferenceIdCookingMethod(),
                    with_disabled=True)
 
     security.declareProtected(AddPortalContent, 'cookId')
@@ -598,7 +598,7 @@ class BaseBibliographyImportManager(Acquirer):
         if isinstance(report, unicode):
             report = _encode(report)
         # finish building and write the report
-        old_report = self.getProperty('import_report', '')        
+        old_report = self.getProperty('import_report', '')
         report = report + '='*30 + '\n' + _encode(_decode(old_report))
         self.manage_changeProperties(import_report=report)
 
@@ -648,8 +648,14 @@ class BaseBibliographyImportManager(Acquirer):
         line = u'%s - %s' % (ref_authors, ref_title)
 
         if entry.has_key('publication_year'):
-            line = u'%s (%s)' %(line, entry.get('publication_year'))
-
+            year = entry.get('publication_year')
+            try:
+                year = unicode(year)
+            except:
+                # got some "A paraître" values...
+                year = entry.get('publication_year').decode('utf-8')
+            line = u'%s (%s)' %(line, year)
+            
         if import_status == 'OK':
             line = u'Successfully Imported: %s' % line
         if import_status == 'ok' and relations:
@@ -665,8 +671,8 @@ class BaseBibliographyImportManager(Acquirer):
         return _encode(line + '.\n')
 
     security.declareProtected(AddPortalContent, 'processSingleImport')
-    def processSingleImport(self, entry, span_of_search=None, 
-                            force_to_duplicates=False, skip_matching=False, 
+    def processSingleImport(self, entry, span_of_search=None,
+                            force_to_duplicates=False, skip_matching=False,
                             infer_references=True):
         """ called for importing a single entry
 
@@ -687,7 +693,7 @@ class BaseBibliographyImportManager(Acquirer):
         url = None
         relations = None
         obj = None
-        
+
         if isinstance(entry, EntryParseError):
             return ('Failed: %s\n' % entry.description, 'FAILED')
 
@@ -701,7 +707,7 @@ class BaseBibliographyImportManager(Acquirer):
                 del entry['reference_type']
                 if rtype not in [_.getId() for _ in self.getAllowedTypes()]:
                     return "Error: Content-Type %s is not " %  rtype +\
-                           "allowed to create in Folder %s." % self.Type() 
+                           "allowed to create in Folder %s." % self.Type()
                 self.invokeFactory(rtype, newid)
                 obj = getattr(self, newid)
                 obj.edit(**entry)
@@ -711,22 +717,22 @@ class BaseBibliographyImportManager(Acquirer):
 
             if self.getEnableDuplicatesManager() \
                and (not skip_matching or force_to_duplicates):
-                test, matched_objects = self.isDuplicate(obj, span_of_search)                
+                test, matched_objects = self.isDuplicate(obj, span_of_search)
                 if test or force_to_duplicates:
                     is_dup = True
-                    # in any case, we want the duplicate obj to be aware of 
+                    # in any case, we want the duplicate obj to be aware of
                     # local AND global matches
                     if span_of_search != 'global':
                         dummy, matched_objects = self.isDuplicate(obj, 'global')
 
                     duplicate = self.moveToDuplicatesFolder(obj, matched_objects)
-                    notify(BibentryImportedEvent(duplicate, matched_objects))            
+                    notify(BibentryImportedEvent(duplicate, matched_objects))
                     return ('Duplicate: %s\n' % obj.Title() or 'no info',
                             'SKIPPED', duplicate)
 
             import_status = 'ok'
             notify(BibentryImportedEvent(obj, False))
-                        
+
         except: # for debugging
             # XXX shouldn't catch all exceptions
             # Remove the \n from import_status so that it all appears
@@ -745,7 +751,7 @@ class BaseBibliographyImportManager(Acquirer):
 
 
     security.declareProtected(AddPortalContent, 'processImport')
-    def processImport(self, source, filename, format=None, return_obs=False, 
+    def processImport(self, source, filename, format=None, return_obs=False,
                       input_encoding='utf-8'):
         """
         main routine to be called for importing entire files
@@ -755,13 +761,13 @@ class BaseBibliographyImportManager(Acquirer):
 
         # get parsed entries from the Bibliography Tool
         bib_tool = getToolByName(self, 'portal_bibliography')
-        entries = bib_tool.getEntries(source, format, filename, 
+        entries = bib_tool.getEntries(source, format, filename,
                                       input_encoding=input_encoding)
         obs = []
         for entry in entries:
             if entry.get('title'):
                 infer_references = bib_tool.inferAuthorReferencesAfterImport()
-                upload = self.processSingleImport(entry, 
+                upload = self.processSingleImport(entry,
                                               infer_references=infer_references)
                 if return_obs:
                     obs.append(upload[2])
@@ -1146,7 +1152,7 @@ class BaseBibliographyPdfFolderManager(Acquirer):
         reference_catalog = getToolByName(self, 'reference_catalog')
 
         if self._assoc_pdf_folder is None:
-            if not self.hasObject(pdfsid):                
+            if not self.hasObject(pdfsid):
                 tt = getToolByName(self, 'portal_types')
                 fti = tt['PDF Folder']
                 fti._constructInstance(self, pdfsid)

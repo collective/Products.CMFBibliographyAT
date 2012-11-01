@@ -1,7 +1,12 @@
 1.1.3 (unreleased)
 ==================
 
+* added way to let subscriber add at least minor info to the log
+  and some code formatting
+  [jensens]
+
 * fix migration [kiorky]
+
 * handle some utf-8 decode problems [kiorky]
 
 1.1.2 (2011/07/11)

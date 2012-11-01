@@ -1,3 +1,4 @@
+=================
 CMFBibliographyAT
 =================
 
@@ -77,12 +78,15 @@ Resources
 * For questions or for giving feedback: please ask on the plone-biblio
   mailing list: https://mail.das-netzwerkteam.de/mailman/listinfo/plone-biblio
 
-Author
-------
+Authors
+-------
 * Raphael Ritz (original author)
 * Andreas Jung (current maintainer)
+* Jens Klein (contributions)
 
 Credits
 -------
 * The CMFBiblibgraphyAT 1.0/1.1 releases were made possible with 
   funding of the Humboldt University, Berlin
+
+

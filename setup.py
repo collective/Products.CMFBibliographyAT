@@ -6,9 +6,9 @@ version = '1.1.3-dev'
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-desc = read('Products', 'CMFBibliographyAT', 'README.txt')
-changes = read('docs', 'CHANGES.txt')
-long_desc = desc + '\n\nChanges\n=======\n\n' + changes
+desc = read('README.rst')
+changes = read('docs', 'CHANGES.rst')
+long_desc = desc + changes
 
 setup(name='Products.CMFBibliographyAT',
       version=version,
@@ -28,7 +28,7 @@ setup(name='Products.CMFBibliographyAT',
       author_email='raphael.ritz@incf.org',
       maintainer='Andreas Jung',
       maintainer_email='info@zopyx.com',
-      url='http://plone.org/products/cmfbibliographyat',
+      url='http://pypi.python.org/pypi/Products.CMFBibliographyAT',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['Products'],

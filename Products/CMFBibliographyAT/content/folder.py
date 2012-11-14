@@ -615,7 +615,7 @@ class BaseBibliographyImportManager(Acquirer):
             report = _encode(report)
         # finish building and write the report
         old_report = self.getProperty('import_report', '')
-        report = report + '='*30 + '\n' + _encode(_decode(old_report))
+        report = report + '=' * 30 + '\n' + _encode(_decode(old_report))
         self.manage_changeProperties(import_report=report)
 
     def initReport(self, origin):
@@ -670,7 +670,7 @@ class BaseBibliographyImportManager(Acquirer):
             except:
                 # got some "A paraître" values...
                 year = entry.get('publication_year').decode('utf-8')
-            line = u'%s (%s)' %(line, year)
+            line = u'%s (%s)' % (line, year)
         if import_status == 'OK':
             line = u'Successfully Imported: %s' % line
         if import_status == 'ok' and relations:
@@ -721,7 +721,7 @@ class BaseBibliographyImportManager(Acquirer):
                 rtype = entry.get('reference_type', 'ArticleReference')
                 del entry['reference_type']
                 if rtype not in [_.getId() for _ in self.getAllowedTypes()]:
-                    return "Error: Content-Type %s is not " %  rtype +\
+                    return "Error: Content-Type %s is not " % rtype + \
                            "allowed to create in Folder %s." % self.Type()
                 self.invokeFactory(rtype, newid)
                 obj = getattr(self, newid)
@@ -851,7 +851,8 @@ class BaseBibliographyDuplicatesManager(Acquirer):
 
     def listDuplicatesMatchingPolicies(self):
 
-        return DisplayList((('local', 'local_duplicates_matchingpolicy'), ('global', 'global_duplicates_matchingpolicy')))
+        return DisplayList((('local', 'local_duplicates_matchingpolicy'),
+                            ('global', 'global_duplicates_matchingpolicy')))
 
     def isDuplicate(self, bibref_item, span_of_search=None):
         """
@@ -867,7 +868,7 @@ class BaseBibliographyDuplicatesManager(Acquirer):
         ref_types = bib_tool.getReferenceTypes()
         have = all_criteria.has_key
         global_tests = []
-        filter = {'portal_type':ref_types}
+        filter = {'portal_type': ref_types}
         # get search span from criteria
         if span_of_search == 'local':
             # local configuration
@@ -878,17 +879,17 @@ class BaseBibliographyDuplicatesManager(Acquirer):
             portal_catalog = getToolByName(self, 'portal_catalog')
             all_folders = portal_catalog(meta_type=FOLDER_TYPES)
             for each_result in all_folders:
-                acquired_objects += each_result.getObject().contentValues(filter=filter)
+                obj = each_result.getObject()
+                acquired_objects += obj.contentValues(filter=filter)
         else:
-            raise ValueError, "span of search for duplicates has an " + \
-                  "invalid value : %s" % span_of_search
-
-        # no string exceptions please
-        # raise Exception('span of search for duplicates has an invalid value : %s' % span_of_search)
-
-        for existing_object in [ obj for obj in acquired_objects if obj.UID() != bibref_item.UID() ]:
+            raise ValueError("span of search for duplicates has an " +
+                             "invalid value : %s" % span_of_search)
+        bibref_item_uid = bibref_item.UID()
+        for existing_object in acquired_objects:
+            if existing_object.UID() == bibref_item_uid:
+                continue
             bib_type = entry.get('reference_type', 'ArticleReference')
-            if not have(bib_type) :
+            if not have(bib_type):
                 continue
             criteria = all_criteria[bib_type]
             if not criteria:
@@ -900,6 +901,8 @@ class BaseBibliographyDuplicatesManager(Acquirer):
                     equal = self.compareAuthors(entry, existing_object)
                     if not equal:
                         break
+                elif attribute == 'identifiers':
+                    import pdb;pdb.set_trace()
                 else:
                     x = entry.get(attribute, None)
                     try:
@@ -910,12 +913,15 @@ class BaseBibliographyDuplicatesManager(Acquirer):
                             get_func = getattr(existing_object,
                                                attribute.capitalize())
                         except AttributeError:
-                            print "can't do ", 'get' + attribute.capitalize(), \
+                            # XXX print ?
+                            print "can't do get" + attribute.capitalize(), \
                                   'or', attribute.capitalize()
                             break
                     y = _decode(get_func())
-                    if y and y[-1] == '.': y = y[:-1]
-                    if x and x[-1] == '.': x = x[:-1]
+                    if y and y[-1] == '.':
+                        y = y[:-1]
+                    if x and x[-1] == '.':
+                        x = x[:-1]
                     if x != y:
                         #print "***Debug***: found difference"
                         #print "%s doesn't match %s" % (x, y)
@@ -932,24 +938,24 @@ class BaseBibliographyDuplicatesManager(Acquirer):
     def findDuplicated(self, uid=None):
 
         reference_catalog = getToolByName(self, 'reference_catalog')
-        bib_tool = getToolByName(self, 'portal_bibliography')
-
         if uid and shasattr(self.getDuplicatesFolder(), uid):
 
             duplicate = reference_catalog.lookupObject(uid)
-            test, matched_objects = self.isDuplicate(duplicate, span_of_search='global')
+            test, matched_objects = self.isDuplicate(duplicate,
+                                                     span_of_search='global')
             if test:
                 duplicate.setIs_duplicate_of(matched_objects)
 
-            return "Matching bibliographical reference of duplicate item with UID %s updated" % uid
+            return "Matching bibliographical reference of duplicate item " \
+                   "with UID %s updated" % uid
 
         elif uid is None:
             for duplicate in self.getDuplicatesFolder().contentValues():
 
-                test, matched_objects = self.isDuplicate(duplicate, span_of_search='global')
+                test, matched_objects = self.isDuplicate(duplicate,
+                                                    span_of_search='global')
                 if test:
                     duplicate.setIs_duplicate_of(matched_objects)
-
 
     def skipDuplicated(self, uid):
         """
@@ -961,22 +967,25 @@ class BaseBibliographyDuplicatesManager(Acquirer):
         reference_catalog = getToolByName(self, 'reference_catalog')
         duplicate_bibref_item = reference_catalog.lookupObject(uid)
         if duplicate_bibref_item:
-            self.getDuplicatesFolder().manage_delObjects([duplicate_bibref_item.getId()])
-
+            dupfolder = self.getDuplicatesFolder()
+            dupfolder.manage_delObjects([duplicate_bibref_item.getId()])
         else:
             return "UID %s does not exist - cannot delete referenced " + \
                    "duplicate entry" % uid
 
     def compareAuthors(self, entry, existing):
-        new_last_names = [_decode(a.get('lastname')) for a in entry.get('authors', [])]
-        old_last_names = [_decode(a.get('lastname')) for a in existing.getRawAuthors()]
+        new_last_names = [_decode(a.get('lastname'))
+                          for a in entry.get('authors', [])]
+        old_last_names = [_decode(a.get('lastname'))
+                          for a in existing.getRawAuthors()]
         if new_last_names == old_last_names:
             return True
         return False
 
     def moveToDuplicatesFolder(self, bibref_object, matched_objects):
         """
-        moves bibref item to associated Duplicates Bibliography Folder for post-processing
+        moves bibref item to associated Duplicates Bibliography Folder for
+        post-processing
 
         :type entry: dict
         :param entry: a single bibliography entry
@@ -1024,11 +1033,10 @@ class BaseBibliographyDuplicatesManager(Acquirer):
 
         duplicates_manager_restore = self.getEnableDuplicatesManager()
         self.setEnableDuplicatesManager(False)
-        objs = self.getDuplicatesFolder().manage_cutObjects([duplicate_bibref_item.getId(), ])
+        dupfolder = self.getDuplicatesFolder()
+        objs = dupfolder.manage_cutObjects([duplicate_bibref_item.getId(), ])
         self.manage_pasteObjects(objs)
         self.setEnableDuplicatesManager(duplicates_manager_restore)
-
-
 
         entry = bib_tool.getEntryDict(duplicate_bibref_item)
         url = duplicate_bibref_item.absolute_url()
@@ -1061,15 +1069,18 @@ class BaseBibliographyDuplicatesManager(Acquirer):
             orig_obj.setAuthors(entry.get('authors', []))
             orig_obj.edit(**entry)
 
-            # hmmm... replace means: also replace the PDF file (if any is associated)
+            # hmmm... replace means: also replace the PDF file (if any in
+            # associated)
             if duplicate_bibref_item.getPdf_file():
                 orig_obj.setPdf_file(duplicate_bibref_item.getPdf_file())
 
-            # and if id cooking after bibref edit is enabled, we have to re-cook the orig_obj's ID
+            # and if id cooking after bibref edit is enabled, we have to 
+            # re-cook the orig_obj's ID
             if self.getCookIdsAfterBibRefEdit():
                 orig_obj.bibliography_entry_cookId()
 
-        # nasty trick, isn't it? the bibref item does not know that it sleeps in the duplicates bibliography folder... but we do!!!
+        # nasty trick, isn't it? the bibref item does not know that it sleeps
+        # in the duplicates bibliography folder... but we do!!!
         duplicates_folder = duplicate_bibref_item.getBibFolder()
         duplicates_folder.manage_delObjects([duplicate_bibref_item.getId()])
 
@@ -1400,12 +1411,12 @@ class DuplicatesBibliographyFolder(BaseBibliographyIdCookerManager,
     def getBibFolder(self):
         """ returns associated bibliography folder
         """
-        reference_catalog = getToolByName(self, 'reference_catalog')
-        return reference_catalog.lookupObject(self._assoc_bibliography_folder)
+        ref_catalog = getToolByName(self, 'reference_catalog')
+        return ref_catalog.lookupObject(self._assoc_bibliography_folder)
 
     def getPdfFolder(self):
-        reference_catalog = getToolByName(self, 'reference_catalog')
-        bibfolder = reference_catalog.lookupObject(self._assoc_bibliography_folder)
+        ref_catalog = getToolByName(self, 'reference_catalog')
+        bibfolder = ref_catalog.lookupObject(self._assoc_bibliography_folder)
         if bibfolder is not None:
             return bibfolder.getPdfFolder()
 

@@ -901,8 +901,6 @@ class BaseBibliographyDuplicatesManager(Acquirer):
                     equal = self.compareAuthors(entry, existing_object)
                     if not equal:
                         break
-                elif attribute == 'identifiers':
-                    import pdb;pdb.set_trace()
                 else:
                     x = entry.get(attribute, None)
                     try:

@@ -23,7 +23,7 @@ Changelog
 * fixed import report on write too. Same problem with fullname: it can be 
   unicode.
 
-* fixed import report: for some reson the new report might be uniocde, (maybe in
+* fixed import report: for some reason the new report might be uniocde, (maybe in
   Plone 4 username or email is unicode?) but merging it with the old report 
   before storing it failed: old report is utf8 so convert unicode to utf8 if 
   necessary.

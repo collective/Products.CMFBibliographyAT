@@ -742,7 +742,7 @@ class BaseBibliographyImportManager(Acquirer):
                     duplicate = self.moveToDuplicatesFolder(obj, matched_obj)
                     notify(BibentryImportedEvent(duplicate, matched_obj))
                     message = self.REQUEST.get('bibtext_import_message',
-                                               'SKIPPED')
+                                               'DUPLICATE CREATED')
                     return ('Duplicate: %s\n' % obj.Title() or 'no info',
                             message, duplicate)
 

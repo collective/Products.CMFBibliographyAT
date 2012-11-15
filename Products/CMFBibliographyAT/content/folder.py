@@ -643,8 +643,8 @@ class BaseBibliographyImportManager(Acquirer):
     security.declareProtected(ModifyPortalContent, 'buildReportLine')
     def buildReportLine(self, import_status, entry, url=None, relations=None):
         """ format a line to be added in the import report """
-        if entry.has_key('authors'):
-            authors = entry.get('authors')
+        if 'authors' in entry:
+            authors = entry['authors']
             authors_list = []
             for author in authors:
                 firstname = author.get('firstname')
@@ -663,7 +663,7 @@ class BaseBibliographyImportManager(Acquirer):
             ref_title = ref_title.replace(car, '')
         line = u'%s - %s' % (ref_authors, ref_title)
 
-        if entry.has_key('publication_year'):
+        if 'publication_year' in entry:
             year = entry.get('publication_year')
             try:
                 year = unicode(year)
@@ -763,7 +763,6 @@ class BaseBibliographyImportManager(Acquirer):
                                            url=url,
                                            relations=relations)
         return (report_line, import_status, obj)
-
 
     security.declareProtected(AddPortalContent, 'processImport')
     def processImport(self, source, filename, format=None, return_obs=False,
@@ -870,9 +869,13 @@ class BaseBibliographyDuplicatesManager(Acquirer):
         global_tests = []
         filter = {'portal_type': ref_types}
         # get search span from criteria
-        if span_of_search == 'local':
+        cache_key = 'CMFBibliographyAT_import_duplicate_aqobj'
+        if cache_key in self.REQUEST:
+            acquired_objects = self.REQUEST[cache_key]
+        elif span_of_search == 'local':
             # local configuration
             acquired_objects = self.contentValues(filter=filter)
+            self.REQUEST[cache_key] = acquired_objects
             # print "***Debuging*** found %s" % aquired_objects
         elif span_of_search == 'global':
             acquired_objects = []
@@ -881,6 +884,7 @@ class BaseBibliographyDuplicatesManager(Acquirer):
             for each_result in all_folders:
                 obj = each_result.getObject()
                 acquired_objects += obj.contentValues(filter=filter)
+            self.REQUEST[cache_key] = acquired_objects
         else:
             raise ValueError("span of search for duplicates has an " +
                              "invalid value : %s" % span_of_search)

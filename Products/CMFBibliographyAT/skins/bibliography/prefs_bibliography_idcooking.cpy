@@ -20,8 +20,8 @@ for key in REQUEST.keys():
 # enabled / disabled
 for setting in idcookers_enabled_settings:
 
-    idcooker_id = string.split(setting, '_')[-1]
-    idcooker_property = '_'.join(string.split(setting, '_')[:-1])
+    idcooker_id = '_'.join(string.split(setting, '_')[2:])
+    idcooker_property = '_'.join(string.split(setting, '_')[:2])
     idcooker = context.portal_bibliography.getIdCooker(idcooker_id=idcooker_id, with_disabled=True)
     if context.portal_bibliography.getDefaultIdCooker(with_disabled=True).getId() != idcooker_id:
         idcooker.manage_changeProperties({idcooker_property: REQUEST.get(setting),})

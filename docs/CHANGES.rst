@@ -6,6 +6,9 @@ Changelog
 1.1.3 (unreleased)
 ==================
 
+* fix id cooker control panel string parsing issue.
+  [alecm]
+
 * added way to let subscriber add at least minor info to the log
   and some code formatting
   [jensens]

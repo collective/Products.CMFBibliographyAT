@@ -124,8 +124,9 @@ class InbookReference(BaseEntry):
         coinsData['rft_val_fmt'] = "info:ofi/fmt:kev:mtx:book"
 
         # Why do we have fields in the superclass that aren't in the subclasses?
-        coinsData['rft.edition'] = hasattr(self, 'edition') and self.getEdition() or ""
-        coinsData['rft.chapter'] = hasattr(self, 'chapter') and self.getChapter() or ""
+        schema = self.schema.keys()
+        coinsData['rft.edition'] = ('edition' in schema) and self.getEdition() or ""
+        coinsData['rft.chapter'] = ('chapter' in schema) and self.getChapter() or ""
 
         
         return coinsData

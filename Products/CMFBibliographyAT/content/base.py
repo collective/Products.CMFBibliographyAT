@@ -340,6 +340,8 @@ class BaseEntry(BaseContent):
         if month:
             try:
                 month = int(month)
+                if month > 12:
+                    raise ValueError()
             except ValueError:
                 try:
                     # This is probably a string

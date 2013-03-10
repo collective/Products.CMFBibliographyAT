@@ -15,6 +15,8 @@ Changelog
 
 * fix migration [kiorky]
 
+* fix some broken asumption about month [kiorky]
+
 * handle some utf-8 decode problems [kiorky]
 
 * fix schema access in subclasses (fix conferences atleast) [kiorky]

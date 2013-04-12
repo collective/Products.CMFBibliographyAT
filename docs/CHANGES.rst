@@ -7,7 +7,6 @@ Changelog
 ==================
 
 * fix id cooker control panel string parsing issue.
-  [alecm]
 
 * added way to let subscriber add at least minor info to the log
   and some code formatting
@@ -20,6 +19,8 @@ Changelog
 * handle some utf-8 decode problems [kiorky]
 
 * fix schema access in subclasses (fix conferences atleast) [kiorky]
+
+* Allow PDF Files, in pdf folders [kiorky]
 
 1.1.2 (2011/07/11)
 ==================

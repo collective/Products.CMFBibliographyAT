@@ -12,7 +12,9 @@
  <property name="immediate_view">folder_listing</property>
  <property name="global_allow">False</property>
  <property name="filter_content_types">True</property>
- <property name="allowed_content_types"/>
+ <property name="allowed_content_types">
+  <element value="PDF File" />
+ </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">folder_listing</property>
  <property name="view_methods">

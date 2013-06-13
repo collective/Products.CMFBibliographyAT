@@ -6,7 +6,7 @@
  <include package=".adapters" />
  <include package=".browser" />
  <include file="profiles.zcml" />
- 
+
  <include package="bibliograph.core" />
  <include package="bibliograph.parsing" />
  <include package="bibliograph.rendering" />
@@ -36,5 +36,8 @@
 
  <five:deprecatedManageAddDelete
      class=".tests.dummy.TestMemberType" />
+
+ <utility component=".vocabularies.RefsTypes"
+     name="Products.CMFBibliographyAT.reftypes"/>
 
 </configure>

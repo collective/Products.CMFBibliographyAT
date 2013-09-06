@@ -2,10 +2,10 @@
 Changelog
 =========
 
-1.1.4 (unreleased)
+1.1.4 (2013-09-16)
 ------------------
 
-* nothing done yet
+* packaging problem with 1.1.3 [jensens]
 
 1.1.3 (2013-09-16)
 ------------------

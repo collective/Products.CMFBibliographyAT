@@ -2,9 +2,9 @@
 Changelog
 =========
 
-
-1.1.3 (unreleased)
+1.1.3 (2013-09-16)
 ==================
+
 * Added a zope3 vocabulary factory grabbing all reference types
 
 * fix id cooker control panel string parsing issue.

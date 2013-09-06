@@ -1,9 +1,9 @@
-=========
+
 Changelog
 =========
 
 1.1.3 (2013-09-16)
-==================
+------------------
 
 * Added a zope3 vocabulary factory grabbing all reference types
 
@@ -24,7 +24,7 @@ Changelog
 * Allow PDF Files, in pdf folders [kiorky]
 
 1.1.2 (2011/07/11)
-==================
+------------------
 
 * throw an event for each imported entry.
   [jensens]
@@ -54,81 +54,81 @@ Changelog
   import into subclassed types. [jensens]
 
 1.1.1 (2010/08/22)
-====================
+------------------
 * compatiblity with Plone 4.0rc1
 
 1.1.0 (2010/07/05)
-====================
+------------------
 * final 1.1.0 release
 
 1.1.0b8 (2010/07/05)
-====================
+--------------------
 * fixed handling of non-ascii characters in author names due to incompatible
   Plone API changes in normalizeString(). Now using the unicodedata.normalize()
   functionality which may result in a slightly different id generation.
 
 1.1.0b7 (2010/07/05)
-====================
+--------------------
 * another Plone 3/4 fix incompatibility in transforms/*
 
 1.1.0b6 (2010/06/10)
-====================
+--------------------
 * fixed another Plone 3/4 incompatibility in transforms/*
 
 1.1.0b5 (2010/06/10)
-====================
+--------------------
 * fixed another Plone 3/4 incompatibility in transforms/*
 
 1.1.0b4 (2010/06/10)
-====================
+--------------------
 * fixed Plone 3/4 incompatibility in transforms/*
 
 1.1.0b3 (2010/06/10)
-====================
+--------------------
 * fixed import
 
 1.1.0b2 (2010/05/10)
-====================
+--------------------
 * fixed missing import
 
 1.1.0b1 (2010/05/10)
-====================
+--------------------
 * compatibility with Plone 3 + Plone 4 
 
 1.0.5 (2010-04-22)
-==================
+------------------
 * fixed handling of the 'note' field on the export adapter level
 
 1.0.4 (2010-04-12)
-==================
+------------------
 * removed stupid filtering from bibliography_view making this view completely 
   useless for anonymous visitors
 
 1.0.3 (2010-04-07)
-==================
+------------------
 * exposing installed Bibutils version within the Plone UI (import/export tab of the 
   bibliography management configlet)
 
 1.0.2 (2010-04-01)
-==================
+------------------
 * checking minimum Bibutils version and logging it during the Zope
   startup phase
 
 1.0.1 (2010-03-22)
-==================
+------------------
 * removed stupid role check from bibliograph_search.pt which made
   the bibliographic search unusable for anonymous users
 
 1.0.0 (2010-03-19)
-==================
+------------------
 * final release
 
 1.0.0c2 (2010-03-09)
-====================
+--------------------
 * fixed COINS data for article reference (jtitle -> title)
 
 1.0.0c1 (2010-03-03)
-====================
+--------------------
 * release candidate
 
 1.0.0b13 (2010-02-16)

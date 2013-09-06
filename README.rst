@@ -15,7 +15,7 @@ manage the renderers and parsers for the import/export functionality.
 
 
 Installation
-------------
+============
 
 * Add ``Products.CMFBibliographyAT`` to the ``eggs`` option of your
   buildout.cfg file and re-run buildout.
@@ -26,7 +26,7 @@ Installation
 
 
 What it does
-------------
+============
 
 CMFBibliography provides various new content types:
 
@@ -63,7 +63,7 @@ to the portal tabs (if you don't want this, go to
 
 
 Dependencies
-------------
+============
 
 * Bibutils (optional) http://www.scripps.edu/~cdputnam/software/bibutils
   to extend the range of supported import/output formats. Bibutils is
@@ -72,20 +72,22 @@ Dependencies
 * Plone 3 or Plone 4
 
 Resources
----------
+=========
 
 * Bugtracker: http://plone.org/products/cmfbibliographyat/issues
 * For questions or for giving feedback: please ask on the plone-biblio
   mailing list: https://mail.das-netzwerkteam.de/mailman/listinfo/plone-biblio
 
 Authors
--------
+=======
+
 * Raphael Ritz (original author)
 * Andreas Jung (current maintainer)
 * Jens Klein (contributions)
 
 Credits
--------
+=======
+
 * The CMFBiblibgraphyAT 1.0/1.1 releases were made possible with 
   funding of the Humboldt University, Berlin
 

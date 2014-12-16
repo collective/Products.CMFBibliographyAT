@@ -5,7 +5,7 @@ Changelog
 1.1.5 (unreleased)
 ------------------
 
-* nothing so far
+* hedge import case handling
 
 1.1.4 (2013-09-16)
 ------------------

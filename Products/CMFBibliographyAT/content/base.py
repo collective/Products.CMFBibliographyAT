@@ -651,7 +651,8 @@ class BaseEntry(BaseContent):
     security.declareProtected(View, 'validate_identifiers')
     def validate_identifiers(self, data={}):
         """ Identifier verification: types can only be used once """
-
+        if not data:
+            return
         if data['label'] == 'ISBN':
             isbn = data.get('value')
             if not isbn:

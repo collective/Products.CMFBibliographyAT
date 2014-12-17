@@ -10,5 +10,11 @@
       description="Extension profile for CMFBibliographyAT Product."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-
+    <genericsetup:upgradeStep
+        profile="Products.CMFBibliographyAT:default"
+        source="1.1.1.1"
+        destination="1222222"
+        title="Products.CMFBibliographyAT - 1222222"
+        description=""
+        handler=".migrations.upgrade_1222222"/>
 </configure>

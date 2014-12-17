@@ -5,6 +5,10 @@
    <element value="DOI"/>
    <element value="ISBN"/>
    <element value="PMID"/>
+   <element value="ASIN"/>
+   <element value="PURL"/>
+   <element value="URN"/>
+   <element value="ISSN"/>
   </property>
   <property name="available_input_encodings" type="lines">
    <element value="UTF-8"/>

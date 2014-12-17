@@ -1,4 +1,5 @@
 bin/
+*.mo
 var/
 eggs/
 develop-eggs/

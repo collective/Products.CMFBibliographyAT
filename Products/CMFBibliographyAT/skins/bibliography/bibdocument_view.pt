@@ -37,10 +37,6 @@
             <div tal:replace="structure text" />
         </div>
 
-        <div metal:use-macro="here/document_relateditems/macros/relatedItems">
-            show related items if they exist
-        </div>
-
         <div metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>

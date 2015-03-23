@@ -957,8 +957,8 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
             return 'n/a (%s)' % e
 
     security.declareProtected(View, 'getAuthorFullNames')
-    def getAuthorFullNames(self, author):
-        return "%s %s" % (author['firstname'], author['lastname'])
+    def getAuthorShortName(self, author):
+        return "%s, %s" % (author['lastname'], author['firstname'][0])
 
     def getAllBibAuthors(self):
         catalog = getToolByName(self, 'portal_catalog')
@@ -969,7 +969,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
             authors = brain.getObject().getAuthors()
             for author in authors:
                 if 'lastname' in author.keys():
-                    author_name = self.getAuthorFullNames(author);
+                    author_name = self.getAuthorShortName(author);
                     if not author_name in authors_save:
                         authors_save.append(author_name)
 
@@ -991,7 +991,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
 
     def authorPublishedReference(self, reference=None, authorName=None):
         for author in reference.getAuthors():
-            author_name = self.getAuthorFullNames(author);
+            author_name = self.getAuthorShortName(author);
             if author_name == authorName:
                 return True;
         return False;

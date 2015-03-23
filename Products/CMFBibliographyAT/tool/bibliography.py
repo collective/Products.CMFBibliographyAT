@@ -956,4 +956,45 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         except RuntimeError, e:
             return 'n/a (%s)' % e
 
+    security.declareProtected(View, 'getAuthorFullNames')
+    def getAuthorFullNames(self, author):
+        return "%s %s" % (author['firstname'], author['lastname'])
+
+    def getAllBibAuthors(self):
+        catalog = getToolByName(self, 'portal_catalog')
+        brains = catalog(portal_type = self.getReferenceTypes())
+        authors_save = []
+
+        for brain in brains:
+            authors = brain.getObject().getAuthors()
+            for author in authors:
+                if 'lastname' in author.keys():
+                    author_name = self.getAuthorFullNames(author);
+                    if not author_name in authors_save:
+                        authors_save.append(author_name)
+
+        authors_save.sort();
+        return authors_save;
+
+    def getAllBibYears(self):
+        catalog = getToolByName(self, 'portal_catalog')
+        brains = catalog(portal_type = self.getReferenceTypes())
+        years_save = []
+
+        for brain in brains:
+            year = brain.getObject().getPublication_year()
+            if year and not year in years_save:
+                years_save.append(year)
+
+        years_save.sort();
+        return years_save;
+
+    def authorPublishedReference(self, reference=None, authorName=None):
+        for author in reference.getAuthors():
+            author_name = self.getAuthorFullNames(author);
+            if author_name == authorName:
+                return True;
+        return False;
+
+
 InitializeClass(BibliographyTool)

@@ -299,7 +299,7 @@ class BaseBibliographyFolder(Acquirer):
                             for ref_type in bib_tool.getReferenceTypes() ])
 
     security.declareProtected(View, 'getBibReferences')
-    def getBibReferences(self, lazy=False, sort_on='publication_year'):
+    def getBibReferences(self, lazy=False, sort_on='publication_year', filter={}):
         """Returns all of the contained bib references, as catalog brains.
         """
         bibtool = getToolByName(self, 'portal_bibliography')
@@ -313,9 +313,42 @@ class BaseBibliographyFolder(Acquirer):
             sort_on=sort_on,
             sort_order='reverse',
         )
+
+        filtered = self.filterBrainsOfBibReferences(refs, filter);
+        if (filtered != False):
+            return filtered;
+
         if lazy:
             return refs
         return [brain.getObject() for brain in refs]
+
+    security.declareProtected(View, 'filterBrainsOfBibReferences')
+    def filterBrainsOfBibReferences(self, brains, filter):
+        bibtool = getToolByName(self, 'portal_bibliography')
+        filtered = [];
+        returnFiltered = False;
+
+        for brain in brains:
+            saveBrain = False
+            for k, v in filter.iteritems():
+                if not v:
+                    continue;
+                returnFiltered = True;
+                if (k == 'author' and bibtool.authorPublishedReference(brain.getObject(), v) != True):
+                    saveBrain = False
+                    break;
+                if (k == 'publication_year' and brain.getObject().getPublication_year() != v):
+                    saveBrain = False
+                    break;
+                saveBrain = True
+
+            if saveBrain:
+                filtered.append(brain)
+
+        if returnFiltered:
+            return filtered;
+
+        return False
 
     ## play nice with FTP and WebDAV
 

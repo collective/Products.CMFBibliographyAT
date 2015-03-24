@@ -956,7 +956,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         except RuntimeError, e:
             return 'n/a (%s)' % e
 
-    security.declareProtected(View, 'getAuthorFullNames')
+    security.declareProtected(View, 'getAuthorShortName')
     def getAuthorShortName(self, author):
         return "%s, %s" % (author['lastname'], author['firstname'][0])
 

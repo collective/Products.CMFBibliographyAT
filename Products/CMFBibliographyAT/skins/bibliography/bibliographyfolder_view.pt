@@ -24,41 +24,42 @@
 
 <metal:macro metal:define-macro="folderlisting"
        tal:define="style request/style|here/default_bibliography_style|here/portal_bibliostyles/default_bibliography_style|string:stl_default;
-				   b_start python:request.get('b_start', 0);
-				   f_author python:request.get('author');
-				   f_year python:request.get('year');
-                   raw_results python: here.getBibReferences(lazy=True, filter={'author': f_author, 'publication_year': f_year});
-                   sort_on python:(('publication_year', 'cmp', 'desc'),
-                                   ('Authors', 'nocase', 'asc'));
-                   results python:sequence.sort(raw_results, sort_on);
-                   Batch python:modules['Products.CMFPlone'].Batch;
-                   DateTime python:modules['DateTime'].DateTime;">
+				  b_start python:request.get('b_start', 0);
+				  f_author python:request.get('author');
+				  f_year python:request.get('year');
+          raw_results python: here.getBibReferences(lazy=True, filter={'author': f_author, 'publication_year': f_year});
+          sort_on python:(('publication_year', 'cmp', 'desc'), ('Authors', 'nocase', 'asc'));
+          results python:sequence.sort(raw_results, sort_on);
+          Batch python:modules['Products.CMFPlone'].Batch;
+          DateTime python:modules['DateTime'].DateTime;
+          allAuthors python:container.portal_bibliography.getAllBibAuthors();
+          allYears python:container.portal_bibliography.getAllBibYears();">
 
     <p i18n:translate="info_items_in_bibfolder" tal:condition="python:len(results) > 1">There are <span i18n:name="count" tal:replace="python:len(results)">len(results)</span> references in this bibliography folder.</p>
     <p i18n:translate="info_item_in_bibfolder" tal:condition="python:len(results) == 1">There is only a single reference in this bibliography folder.</p>
-	<p>
-		<form name="article_filter"
-			  tal:attributes="method python:'get'; action python: ''">
-			Filter By Author
-			<select tal:define="persons python: container.portal_bibliography.getAllBibAuthors();"
-				 tal:attributes="onChange python:'this.form.submit()'; name string:author">
-				<option i18n:translate="select"></option>
-				<option tal:repeat="item persons"
-					tal:content="item"
-					tal:attributes="value python:item; selected python: test(item == f_author, 'selected', None)">Person name</option>
-			</select>
 
-			Filter By Year
-			<select tal:define="years python: container.portal_bibliography.getAllBibYears();"
-				  tal:attributes="onChange python:'this.form.submit()'; name string:year">
-				<option i18n:translate="select"></option>
-				<option tal:repeat="item years"
-					tal:content="item"
-					tal:attributes="value python:item; selected python: test(item == f_year, 'selected', None)">Year</option>
-			</select>
-			<input type="submit" value="GO" />
+	<p  tal:condition="python: allAuthors and allYears">
+		<form name="article_filter" tal:attributes="method python:'get'; action python: ''">
+
+        <span i18n:translate="filter_by_author">Filter by Author</span>
+  			<select tal:attributes="onChange python:'this.form.submit()'; name string:author">
+  				<option i18n:translate="select" value="">Select</option>
+  				<option tal:repeat="item allAuthors"
+  					tal:content="item"
+  					tal:attributes="value python:item; selected python: test(item == f_author, 'selected', None)">Person name</option>
+  			</select>
+
+  			<span i18n:translate="filter_by_year">Filter by Year</span>
+  			<select tal:attributes="onChange python:'this.form.submit()'; name string:year">
+  				<option i18n:translate="select" value="">Select</option>
+  				<option tal:repeat="item allYears"
+  					tal:content="item"
+  					tal:attributes="value python:item; selected python: test(item == f_year, 'selected', None)">Year</option>
+  			</select>
+  			<input type="submit" value="GO" />
 		</form>
 	</p>
+
 	<p tal:condition="not: results" i18n:translate="no_refs_in_folder">There are no bibliographic entries in this folder.</p>
 
     <metal:block tal:condition="results"

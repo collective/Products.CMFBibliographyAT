@@ -2,6 +2,11 @@
 Changelog
 =========
 
+1.2.0 (2015-12-14)
+------------------
+
+* Compability with Plone 4. Macro 'relatedItems' is deprecated https://dev.plone.org/ticket/9985
+
 1.1.5 (unreleased)
 ------------------
 

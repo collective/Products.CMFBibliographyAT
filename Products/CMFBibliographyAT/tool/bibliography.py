@@ -960,9 +960,12 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
     def getAuthorShortName(self, author):
         return "%s, %s" % (author['lastname'], author['firstname'][0])
 
-    def getAllBibAuthors(self):
+    def getAllBibAuthors(self, p=None):
         catalog = getToolByName(self, 'portal_catalog')
-        brains = catalog(portal_type = self.getReferenceTypes())
+        query = {'portal_type': self.getReferenceTypes(), 'Language': 'all'};
+        if p:
+            query['path'] = p
+        brains = catalog(query)
         authors_save = []
 
         for brain in brains:
@@ -976,9 +979,12 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         authors_save.sort();
         return authors_save;
 
-    def getAllBibYears(self):
+    def getAllBibYears(self, p=None):
         catalog = getToolByName(self, 'portal_catalog')
-        brains = catalog(portal_type = self.getReferenceTypes())
+        query = {'portal_type': self.getReferenceTypes(), 'Language': 'all'};
+        if p:
+            query['path'] = p
+        brains = catalog(query)
         years_save = []
 
         for brain in brains:

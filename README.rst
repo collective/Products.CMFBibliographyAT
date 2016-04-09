@@ -13,6 +13,11 @@ In addition the package adds a 'bibliography' action to the portal tabs and it
 provides a BibliographyTool called 'portal_bibliography' through which you can
 manage the renderers and parsers for the import/export functionality.
 
+Warning
+=======
+
+1.1.x is only to be used with Plone 3.x and 1.2.x is only to be used with Plone 4.x and up.
+
 
 Installation
 ============

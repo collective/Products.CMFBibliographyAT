@@ -994,41 +994,6 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
 
         years_save.sort();
         return years_save;
-
-    def filterBrainsOfBibReferences(self, brains, filter):
-        bibtool = getToolByName(self, 'portal_bibliography')
-        filtered = [];
-        returnFiltered = False;
-
-        for brain in brains:
-            saveBrain = True;
-            for k, v in filter.iteritems():
-                v = v.strip();
-                if not v:
-                    continue;
-                returnFiltered = True;
-                if (k == 'author' and bibtool.authorPublishedReference(brain.getObject(), v) != True):
-                    saveBrain = False
-                    break;
-                if (k == 'publication_year' and brain.getObject().getPublication_year() != v):
-                    saveBrain = False
-                    break;
-                saveBrain = True
-
-            if saveBrain:
-                filtered.append(brain)
-
-        if returnFiltered:
-            return filtered;
-
-        return filtered
-
-    def authorPublishedReference(self, reference=None, authorName=None):
-        for author in reference.getAuthors():
-            author_name = self.getAuthorShortName(author);
-            if author_name == authorName:
-                return True;
-        return False;
     
 
 InitializeClass(BibliographyTool)

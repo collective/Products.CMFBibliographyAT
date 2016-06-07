@@ -988,7 +988,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
         years_save = []
 
         for brain in brains:
-            year = brain.getObject().getPublication_year()
+            year = brain.getObject().getPublication_year().lower()
             if year and not year in years_save:
                 years_save.append(year)
 

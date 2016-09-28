@@ -1,5 +1,5 @@
-include *.rst
-include docs *
-include docs/*
-recursive-include src *
-recursive-exclude src *.pyc 
+recursive-include Products *
+recursive-include docs *
+
+global-exclude *.py[co]
+global-exclude *.mo

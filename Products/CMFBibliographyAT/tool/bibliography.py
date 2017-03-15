@@ -958,6 +958,8 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
 
     security.declareProtected(View, 'getAuthorShortName')
     def getAuthorShortName(self, author):
+        if not author['firstname'] or not author['lastname']:
+            return None
         return "%s, %s" % (author['lastname'], author['firstname'][0])
 
     def getAllBibAuthors(self, p=None):
@@ -973,7 +975,7 @@ class BibliographyTool(UniqueObject, Folder, ## ActionProviderBase,
             for author in authors:
                 if 'lastname' in author.keys():
                     author_name = self.getAuthorShortName(author);
-                    if not author_name in authors_save:
+                    if author_name and not author_name in authors_save:
                         authors_save.append(author_name)
 
         authors_save.sort();

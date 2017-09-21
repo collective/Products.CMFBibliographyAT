@@ -467,7 +467,7 @@ class BaseEntry(BaseContent):
         bib_tool = getToolByName(self, 'portal_bibliography')
         pdf_file = self.getPdf_file()
         if (pdf_file is not None) and self.isPdfUploadAllowedForThisType() and bib_tool.allowPdfUploadPortalPolicy():
-            return pdf_file.Schema()['file'].getBaseUnit(pdf_file, **kwargs)
+            return pdf_file.Schema()['file'].getBaseUnit(pdf_file)
         else:
             return None
 

@@ -189,7 +189,7 @@ CoreSchema = Schema((
                         startup_directory_method='getPdfFolderPath',
                         i18n_domain = "cmfbibliographyat",
                         visible={'edit': 'visible', 'view': 'invisible',},
-                        condition="python: object.portal_membership.checkPermission('ManagePortal', object)",
+                        condition="python: object.portal_membership.checkPermission('AddPortalContent', object)",
                     ),
     ),
     FileField('uploaded_pdfFile',

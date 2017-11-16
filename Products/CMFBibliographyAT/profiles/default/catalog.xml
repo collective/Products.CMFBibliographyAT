@@ -21,6 +21,9 @@
  <index name="getKeywords" meta_type="KeywordIndex">
   <indexed_attr value="getKeywords"/>
  </index>
+ <index name="getOpenscience_keywords" meta_type="KeywordIndex">
+  <indexed_attr value="getOpenscience_keywords"/>
+ </index>
  <column value="Authors"/>
  <column value="Source"/>
  <column value="citationLabel"/>

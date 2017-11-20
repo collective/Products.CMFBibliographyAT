@@ -16,7 +16,8 @@
           Show where we came from
         </div>
 
-        <div tal:replace="structure provider:plone.belowcontentbody" />
+        <div tal:condition="python:not request.get('ajax_load', False)"
+             tal:replace="structure provider:plone.belowcontentbody" />
     </tal:main-macro>
 
 </metal:main>

@@ -37,7 +37,8 @@
             <div tal:replace="structure text" />
         </div>
 
-        <div metal:use-macro="here/document_actions/macros/document_actions">
+        <div tal:condition="python:not request.get('ajax_load', False)"
+             metal:use-macro="here/document_actions/macros/document_actions">
             Document actions (print, sendto etc)
         </div>
 

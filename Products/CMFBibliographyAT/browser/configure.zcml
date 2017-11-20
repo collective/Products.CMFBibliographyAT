@@ -22,7 +22,14 @@
         permission="cmf.AddPortalContent"
         class=".import.ImportView"
         />
-        
+
+    <browser:page
+        for="Products.CMFBibliographyAT.interface.ILargeBibliographyFolder"
+        name="bibliography_importForm"
+        permission="cmf.AddPortalContent"
+        class=".import.ImportView"
+        />
+
     <browser:page
         for="*"
         name="biblistitemformatter"

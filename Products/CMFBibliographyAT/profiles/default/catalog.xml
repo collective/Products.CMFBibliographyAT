@@ -18,9 +18,11 @@
  <index name="publication_year" meta_type="FieldIndex">
   <indexed_attr value="publication_year"/>
  </index>
+ <!--
  <index name="getKeywords" meta_type="KeywordIndex">
   <indexed_attr value="getKeywords"/>
  </index>
+ -->
  <column value="Authors"/>
  <column value="Source"/>
  <column value="citationLabel"/>

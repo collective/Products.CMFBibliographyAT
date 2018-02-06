@@ -47,9 +47,9 @@ InbookSchema = HeaderSchema.copy() + AuthorSchema.copy() + CoreSchema.copy() +  
                SourceSchema.copy() + TrailingSchema.copy()
 InbookSchema.get('authors').required = 1
 InbookSchema.get('publication_year').required = 1
-InbookSchema.get('chapter').required = 1
+InbookSchema.get('chapter').required = 0
 InbookSchema.get('booktitle').required = 1
-InbookSchema.get('pages').required = 1
+InbookSchema.get('pages').required = 0
 InbookSchema.get('publisher').required = 1
 InbookSchema.get('editor').required = 1
 

@@ -165,6 +165,20 @@ class BaseEntry(BaseContent):
         """
         return self.getAuthors()
 
+    security.declareProtected(View, 'getAuthorList')
+    def bAuthorsList(self):
+        authors = [dict(e) for e in self.getAuthors()]
+        results = []
+        for e in authors:
+            result = []
+            for k in ('lastname', 'firstname', 'middlename', 'homepage'):
+                if k not in e:
+                    e[k] = ''
+                result.append(e[k])
+            results.append(tuple(result))
+        if results:
+            return results
+
     security.declareProtected(View, 'AuthorItems')
     def AuthorItems(self, format="%L %f"):
         """

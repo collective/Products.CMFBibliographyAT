@@ -55,7 +55,11 @@
                  tal:condition="identifiers">
               <label i18n:translate="view_label_identifiers">Identifiers</label>
                 <ul>
-                    <li tal:repeat="identifier identifiers"><i tal:content="python:identifier['label']"></i>: <span tal:replace="python:identifier['value']"></span></li>
+                    <li tal:repeat="identifier identifiers">
+                        <i tal:content="python:identifier['label']"></i>:
+                        <a tal:condition="python:identifier['value'].startswith('http')" tal:attributes="href python:identifier['value']" tal:content="python:identifier['value']"></a>
+                        <span tal:condition="python:not identifier['value'].startswith('http')" tal:replace="python:identifier['value']"></span>
+                    </li>
                 </ul>
             </div>
     

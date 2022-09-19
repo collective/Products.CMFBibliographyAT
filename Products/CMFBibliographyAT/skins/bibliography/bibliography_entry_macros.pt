@@ -49,6 +49,15 @@
               <label i18n:translate="view_label_bibref_note">Note</label>
               <div tal:content="here/getNote" />
             </div>
+
+            <div class="field"
+                 tal:define="identifiers here/getIdentifiers"
+                 tal:condition="identifiers">
+              <label i18n:translate="view_label_identifiers">Identifiers</label>
+                <ul>
+                    <li tal:repeat="identifier identifiers"><i tal:content="python:identifier['label']"></i>: <span tal:replace="python:identifier['value']"></span></li>
+                </ul>
+            </div>
     
             <div class="field"
                  tal:condition="python:here.getURL(remote=True)">

@@ -37,12 +37,8 @@
               <label i18n:translate="view_label_keywords">Categories</label>
               <div tal:content="python:', '.join(here.Subject())" />
             </div>
-    
-            <div class="field"
-                 tal:condition="python:here.getKeywords()">
-              <label i18n:translate="view_label_keywords">Keywords</label>
-              <div tal:content="python:', '.join(here.getKeywords())" />
-            </div>
+
+            <!-- Keywords go here -->
     
             <div class="field"
                  tal:condition="here/getNote">

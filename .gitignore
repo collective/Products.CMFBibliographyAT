@@ -12,3 +12,6 @@ parts/
 .pydevproject
 .tmp*
 dist
+/nbproject
+build.xml
+*.mf
